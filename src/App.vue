@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import Topbar from "@/components/Topbar";
+import Topbar from "@/components/TopbarComponents/Topbar";
 export default {
   name: "App",
   components: {
