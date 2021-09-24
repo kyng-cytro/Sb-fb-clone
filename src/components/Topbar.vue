@@ -3,7 +3,7 @@
       <p> This is the top bar</p>
       <nav>
         <div>
-          <!-- <img id="logo" src = {facebookLogo} width = "40" height = "40"></img> -->
+          <img id="logo" src = "@/assets/images/facebook.png"></img>
           <Link class="navbar-brand" to="/">
             Facebook Lite
           </Link>
@@ -47,5 +47,7 @@ export default {
 
 #logo {
   margin: 0px 20px 10px 0px;
+  width: 40px;
+  height: 40px;
 }
 </style>
