@@ -3,9 +3,9 @@
       <div>
         <FriendSidebar />
       </div>
-     <!-- <div>
+      <div>
         <FriendRequestDisplay />
-      </div> -->
+      </div> 
       <p> this is firends page</p>
     </div>
   
@@ -14,17 +14,21 @@
 <script>
 
 import FriendSidebar from "@/components/FriendsComponents/FriendSidebar.vue";
-
+import FriendRequestDisplay from "@/components/FriendsComponents/FriendRequestDisplay.vue";
 
 export default {
   name: "Friends",
   components: {
-    FriendSidebar
+    FriendSidebar,
+    FriendRequestDisplay
   },
 };
 </script>
 
 
 <style scoped>
-
+.Friends {
+  display: flex;
+  flex-direction: row;
+}
 </style>
