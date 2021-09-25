@@ -1,5 +1,5 @@
 <template>
-    <div class="topbar">
+    <nav class="topbar">
       <div>
         <img id="logo" src = "@/assets/images/facebook.png" />
         <Link class="navbar-brand" to="/">
@@ -12,7 +12,7 @@
         <CircularIcon type = "notifications"/>
         <CircularIcon type = "triangle"/>
       </div>
-    </div>
+    </nav>
 </template>
 
 <script>

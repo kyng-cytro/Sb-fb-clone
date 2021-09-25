@@ -5,10 +5,9 @@
       </div>
       <div>
         <FriendRequestDisplay />
-      </div> 
-      <p> this is firends page</p>
+      </div>
     </div>
-  
+
 </template>
 
 <script>
