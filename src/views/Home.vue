@@ -15,7 +15,7 @@
 export default {
   name: "Home",
   components: {
-    
+
   },
 };
 </script>
@@ -23,7 +23,11 @@ export default {
 
 <style scoped>
 .home {
-  height: 100%;
+  /* position: fixed;
+    top:0.1;
+    right: 0.1;
+    bottom: 0.1;
+    left: 0.1; */
   width: 100%;
   display: flex;
   justify-content: space-between;

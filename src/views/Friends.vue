@@ -29,5 +29,6 @@ export default {
 .Friends {
   display: flex;
   flex-direction: row;
+  background: rgb(244, 246, 247);
 }
 </style>

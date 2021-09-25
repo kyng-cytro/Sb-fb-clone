@@ -4,9 +4,9 @@
         <p>Friend Requests</p>
       </div>
       <div class="friendRequestDisplay">
-        <li v-for="friend in friends" :key="friend.name">
+        <div class="square" v-for="friend in friends" :key="friend.name">
             <FriendRequestSquare v-bind:friend="friend"/>
-        </li>
+        </div>
     </div>
   </div>
 </template>
@@ -50,6 +50,9 @@ export default {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+}
+.square {
+  padding: 5px;
 }
 
 </style>
