@@ -2,9 +2,7 @@
     <nav class="topbar">
       <div>
         <img id="logo" src = "@/assets/images/facebook.png" />
-        <Link class="navbar-brand" to="/">
-          Facebook Lite
-        </Link>
+        <router-link to="/" class="title">Facebook Lite</router-link>
       </div>
       <div id="icons">
         <CircularIcon type = "plus"/>
@@ -28,6 +26,13 @@ export default {
 
 
 <style scoped>
+.title {
+  font-size: 1.4em;
+}
+.title:hover {
+  text-decoration: none;
+}
+
 .topbar {
   display: flex;
   justify-content: space-between;

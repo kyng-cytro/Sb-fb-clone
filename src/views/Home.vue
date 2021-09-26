@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-     <!-- <NavigationSidebar /> -->
+     <HomeSidebar />
       <div class = "content">
         <p>This is where the posts will go!</p>
       </div>
@@ -11,11 +11,12 @@
 <script>
 // @ is an alias to /src
 //import HelloWorld from "@/components/HelloWorld.vue";
+import HomeSidebar from "@/components/HomeComponents/Sidebar/HomeSidebar.vue";
 
 export default {
   name: "Home",
   components: {
-
+    HomeSidebar
   },
 };
 </script>
