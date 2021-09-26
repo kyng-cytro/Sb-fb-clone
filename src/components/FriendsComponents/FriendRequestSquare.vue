@@ -11,6 +11,7 @@
               <div>
                 <button type="button" v-on:click="handleDeleteClick" class="btn btn-secondary" disabled>Request deleted</button>
               </div>
+              <em class="invisible">Invisible placeholder</em>
             </div>
             <div v-else-if="accepted">
               <div>
@@ -19,6 +20,7 @@
               <div>
                 <button type="button" class="btn btn-secondary" disabled>Request confirmed</button>
               </div>
+              <em class="invisible">Invisible placeholder</em>
             </div>
             <div v-else>
               <div>
@@ -27,8 +29,8 @@
               <div>
                 <button type="button" v-on:click="handleDeleteClick" class="btn btn-secondary">Delete</button>
               </div>
-            </div>
             <em>{{"Expires in " + friend.daysUntilExpiration + " days"}}</em>
+            </div>
           </div>
         </div>
 </template>
