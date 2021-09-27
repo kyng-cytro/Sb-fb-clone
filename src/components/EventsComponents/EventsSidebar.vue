@@ -3,7 +3,10 @@
       <nav>
         <div class="container">
           <div class = "sidebar-buttons-container">
-            <PageSidebarButton type = "home" />
+            <PageSidebarButton iconName = "home" text = "Home" />
+            <PageSidebarButton iconName = "home" text = "Your Events" />
+            <PageSidebarButton iconName = "home" text = "Birthdays" />
+            <PageSidebarButton iconName = "home" text = "Notifications" />
           </div>
         </div>
       </nav>
@@ -14,10 +17,9 @@
 import PageSidebarButton from "@/components/PageSidebarButton.vue";
 
 export default {
-  name: "FriendSidebar",
+  name: "EventsSidebar",
   components: {
     PageSidebarButton
-
   }
 
 }
