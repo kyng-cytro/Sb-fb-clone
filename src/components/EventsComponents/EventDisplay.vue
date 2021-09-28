@@ -12,20 +12,29 @@
 </template>
 
 <script>
-import eventSquare from './eventSquare.vue';
+import eventSquare from './EventSquare.vue';
 
 const events = [
   {
-    imgSrc: "businessMan.jpg",
-    name: "Miles",
-    daysUntilExpiration: 29,
-    numOfMutualevents: 21,
+    imgSrc: "basket.jpg",
+    name: "Basket Weaving",
+    date: "FRI, DEC 24 AT 5PM MST",
+    numInterested: 21,
+    numGoing: 52
   },
   {
-    imgSrc: "anson.jpg",
-    name: "Anson",
-    daysUntilExpiration: 29,
-    numOfMutualevents: 21,
+    imgSrc: "chiliCookOff.jpg",
+    name: "Chili Cookoff",
+    date: "FRI, DEC 24 AT 5PM MST",
+    numInterested: "9.3K",
+    numGoing: 523
+  },
+  {
+    imgSrc: "library.jpg",
+    name: "Reading Club",
+    date: "FRI, DEC 24 AT 5PM MST",
+    numInterested: 23,
+    numGoing: 7
   },
 ];
 

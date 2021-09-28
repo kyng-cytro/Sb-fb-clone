@@ -1,35 +1,15 @@
 <template>
         <div class="eventSquare">
-          <img class="profilePic" :src="require('@/assets/images/FriendProfilePics/' + event.imgSrc)" />
+          <img class="eventPic" :src="require('@/assets/images/EventImages/' + event.imgSrc)" />
           <div class="info">
-            <strong>{{event.name}}</strong>
-            <p id="mutualFriends">{{event.numOfMutualFriends}} mutual friends <p>
-            <div v-if="deleted">
-              <div>
-                <button type="button" class="btn btn-secondary invisible" disabled>Invisible</button>
-              </div>
-              <div>
-                <button type="button" v-on:click="handleDeleteClick" class="btn btn-secondary" disabled>Request deleted</button>
-              </div>
-              <em class="invisible">Invisible placeholder</em>
-            </div>
-            <div v-else-if="accepted">
-              <div>
-                <button type="button" class="btn btn-secondary invisible" disabled>Invisible</button>
-              </div>
-              <div>
-                <button type="button" class="btn btn-secondary" disabled>Request confirmed</button>
-              </div>
-              <em class="invisible">Invisible placeholder</em>
-            </div>
-            <div v-else>
-              <div>
-                <button type="button" v-on:click="handleAcceptClick" class = "btn btn-primary">Confirm</button>
-              </div>
-              <div>
-                <button type="button" v-on:click="handleDeleteClick" class="btn btn-secondary">Delete</button>
-              </div>
-            <em>{{"Expires in " + event.daysUntilExpiration + " days"}}</em>
+          <strong id="date">{{event.date}}</strong>
+          <br />
+          <strong id="name">{{event.name}}</strong>
+          <br />
+          <em>{{event.numInterested + " Interested · " + event.numGoing + " Going"}}</em>
+            <div>
+              <button type="button" v-on:click="handleInterestedClick" class="btn btn-secondary">Interested</button>
+              <button type="button" class="btn btn-secondary">Share</button>
             </div>
           </div>
         </div>
@@ -39,15 +19,12 @@
 export default {
   name: "event-square",
   props: ["event"],
-  data() {
-    return { deleted: false, accepted: false }
-  },
+  // data() {
+  //   return { deleted: false, accepted: false }
+  // },
   methods: {
-    handleDeleteClick() {
-      this.deleted = true
-    },
-    handleAcceptClick() {
-      this.accepted = true
+    handleInterestedClick() {
+      console.log("You're intererested!");
     },
   }
 }
@@ -67,15 +44,19 @@ export default {
   flex-direction: column;
 }
 
-.profilePic {
-  width: 215px;
-  height: 215px;
+.eventPic {
+  width: 350px;
+  height: 180px;
   object-fit: cover; /*This makes it so the image is cropped instead of squished */
   border-radius: 10px 10px 0px 0px;
 }
 
 .info {
   margin:10px;
+}
+
+#name:hover {
+  text-decoration: underline;
 }
 
 button {
@@ -96,9 +77,13 @@ button {
   background-color: white;
 }
 
-#mutualFriends {
+#data {
   color: rgb(111, 111, 111);
   font-size: .9em;
+}
+
+#date {
+  font-size: 0.9em;
 }
 
 em {

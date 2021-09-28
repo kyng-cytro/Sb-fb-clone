@@ -10,7 +10,7 @@
             <button v-on:click="beginEditing">Create New Event</button>
           </div>
           <div v-else-if="eventState === 'editing'">
-            <input v-model="eventName" placeholder="Event Name">
+            <input v-model="eventName" placeholder="Event Name" v-on:input="updateName">
             <datepicker v-model="eventDate" :bootstrap-styling="true">
               <div slot="beforeCalendarHeader" class="calender-header">
                 Hello!
@@ -40,6 +40,9 @@ export default {
     beginEditing() {
       this.$emit('stateChange', "editing");
       console.log("You clikced me!");
+    },
+    updateName() {
+      this.$emit('nameChange', this.eventName);
     }
   },
   props: ["eventState"],
