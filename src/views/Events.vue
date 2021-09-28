@@ -3,7 +3,9 @@
       <div>
         <EventsSidebar :eventState="this.eventState" v-on:stateChange="updateEventState"/>
       </div>
+
       <div>
+        <EventDisplay />
       </div>
     </div>
 
@@ -12,11 +14,13 @@
 <script>
 
 import EventsSidebar from "@/components/EventsComponents/EventsSidebar.vue";
+import EventDisplay from "@/components/EventsComponents/EventDisplay.vue"
 
 export default {
   name: "Events",
   components: {
     EventsSidebar,
+    EventDisplay
   },
   methods: {
     updateEventState(newState) {
