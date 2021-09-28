@@ -1,7 +1,7 @@
 <template>
     <div class = "Events">
       <div>
-        <EventsSidebar />
+        <EventsSidebar :eventState="this.eventState" v-on:stateChange="updateEventState"/>
       </div>
       <div>
       </div>
@@ -18,6 +18,16 @@ export default {
   components: {
     EventsSidebar,
   },
+  methods: {
+    updateEventState(newState) {
+      this.eventState = newState;
+    },
+  },
+  data (){
+    return {
+      eventState : "normal", //Options for state include normal, creatingEvent, eventCreated
+    }
+  }
 };
 </script>
 
