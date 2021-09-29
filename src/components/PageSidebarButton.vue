@@ -4,7 +4,18 @@
           <table>
             <tr class="sidebar-button">
               <td>
+                <div v-if="iconName == 'home'">
                 <img class = "sidebar-button-icon" :src = "require('@/assets/images/PageSidebarIcons/' + iconName + '.png')" />
+                </div>
+                <div v-else-if="iconName == 'yourEvents'">
+                  <img class= "sidebar-button-icon" style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yi/r/8LdRCFAE7sJ.png'); background-position: 0px -636px; background-size: auto; width: 20px; height: 21px; background-repeat: no-repeat; display: inline-block;">
+                </div>
+                <div v-else-if="iconName == 'birthdays'">
+                  <img class= "sidebar-button-icon" style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yk/r/7hm0iQNUoee.png'); background-position: 0px -874px; background-size: auto; width: 20px; height: 21px; background-repeat: no-repeat; display: inline-block;">
+                </div>
+                <div v-else-if="iconName == 'notifications'">
+                  <img class= "sidebar-button-icon" style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/YAs-iG3Ba3Q.png'); background-position: 0px -283px; background-size: auto; width: 20px; height: 21px; background-repeat: no-repeat; display: inline-block;">
+                </div>
               </td>
               <td>
                <p>{{text}}</p>
@@ -28,7 +39,15 @@ export default {
         return "/";
       }
       return "\\"
-    }
+    },
+
+    // getIconName: function() {
+    //   if(this.$props.iconName == "home" ){
+        
+    //   }
+
+    //   return"";
+    // }
   }
 
 
