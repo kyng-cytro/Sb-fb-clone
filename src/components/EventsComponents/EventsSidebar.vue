@@ -4,9 +4,9 @@
         <div class="container">
           <div v-if="eventState==='normal'" class = "sidebar-buttons-container">
             <PageSidebarButton iconName = "home" text = "Home" />
-            <PageSidebarButton iconName = "home" text = "Your Events" />
-            <PageSidebarButton iconName = "home" text = "Birthdays" />
-            <PageSidebarButton iconName = "home" text = "Notifications" />
+            <PageSidebarButton iconName = "yourEvents" text = "Your Events" />
+            <PageSidebarButton iconName = "birthdays" text = "Birthdays" />
+            <PageSidebarButton iconName = "notifications" text = "Notifications" />
             <button v-on:click="changeEventState('editing')">Create New Event</button>
           </div>
           <div v-else-if="eventState === 'editing'">
@@ -20,9 +20,12 @@
               </datepicker>
               <vue-timepicker v-model="eventTime" manual-input format="h:mm A" v-on:input="updateTime"></vue-timepicker>
             </div>
+<<<<<<< HEAD
             <div v-else-if="stages[stage] === 'Location'">
                 <textarea v-model="eventDescription" placeholder="Location"></textarea>
             </div>
+=======
+>>>>>>> 67b5c4daf9cf14f13d9ae81c43de683379ea3a16
             <div v-else-if="stages[stage] === 'Description'">
                 <textarea v-model="eventDescription" placeholder="Description"></textarea>
             </div>

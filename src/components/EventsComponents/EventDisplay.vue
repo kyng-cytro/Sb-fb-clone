@@ -5,14 +5,14 @@
       </div>
       <div class="eventDisplay">
         <div class="square" v-for="event in events" :key="event.name">
-            <eventSquare v-bind:event="event"/>
+            <EventSquare v-bind:event="event"/>
         </div>
     </div>
   </div>
 </template>
 
 <script>
-import eventSquare from './EventSquare.vue';
+import EventSquare from './EventSquare.vue';
 
 const events = [
   {
@@ -43,7 +43,7 @@ const events = [
 export default {
   name: "eventDisplay",
   components: {
-    eventSquare
+    EventSquare
 
   },
   data(){
