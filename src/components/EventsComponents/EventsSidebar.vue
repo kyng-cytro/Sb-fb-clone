@@ -10,13 +10,13 @@
             <button v-on:click="beginEditing">Create New Event</button>
           </div>
           <div v-else-if="eventState === 'editing'">
-            <input v-model="eventName" placeholder="Event Name" v-on:input="updateName">
-            <datepicker v-model="eventDate" :bootstrap-styling="true">
+            <input v-model="eventName" placeholder="Event name" v-on:input="updateName">
+            <datepicker v-model="eventDate" :bootstrap-styling="true" v-on:input="updateDate">
               <div slot="beforeCalendarHeader" class="calender-header">
                 Hello!
               </div>
             </datepicker>
-            <vue-timepicker v-model="eventTime" manual-input format="h:mm A"></vue-timepicker>
+            <vue-timepicker v-model="eventTime" manual-input format="h:mm A" v-on:input="updateTime"></vue-timepicker>
           </div>
         </div>
       </nav>
@@ -43,6 +43,14 @@ export default {
     },
     updateName() {
       this.$emit('nameChange', this.eventName);
+    },
+    updateDate() {
+      console.log("You're changing the date");
+      this.$emit('dateChange', this.eventDate);
+    },
+    updateTime() {
+      console.log("You're changing the time!");
+      this.$emit('timeChange', this.eventTime);
     }
   },
   props: ["eventState"],
