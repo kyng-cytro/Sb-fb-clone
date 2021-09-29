@@ -6,7 +6,8 @@
 
       <div>
         <EventDisplay v-if="eventState === 'normal'"/>
-        <EventPreview :event="currentEvent" v-if="eventState === 'editing'"/>
+        <EventPreview :event="currentEvent" v-else-if="eventState === 'editing'"/>
+        <p v-else-if="eventState === 'eventCreated'">The event has been created!</p>
       </div>
     </div>
 
