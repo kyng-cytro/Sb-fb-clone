@@ -1,17 +1,17 @@
 <template>
       <div>
-        <!-- <router-link :to="'/' + capitalizeFirstLetter(type)" class="sidebar-button"> -->
+        <router-link :to="getRouterLocation" class="sidebar-button"> 
           <table>
             <tr class="sidebar-button">
               <td>
                 <img class = "sidebar-button-icon" :src = "require('@/assets/images/PageSidebarIcons/' + iconName + '.png')" />
               </td>
               <td>
-                <p>{{text}}</p>
+               <p>{{text}}</p>
               </td>
             </tr>
           </table>
-        <!-- </router-link> -->
+         </router-link> 
       </div>
 </template>
 
@@ -19,6 +19,19 @@
 export default {
   name: "PageSidebarButton",
   props: ['iconName', 'text'],
+
+  computed: {
+    getRouterLocation: function() {
+        if (this.$props.text == "Home"){
+       
+        //console.log(this.$props.text);
+        return "/";
+      }
+      return "\\"
+    }
+  }
+
+
 }
 
 </script>
