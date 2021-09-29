@@ -2,10 +2,10 @@
   <div id="preview">
     <div id="date">
       <div id="redBar">
-        <h1 id="dayText">
-          {{event.date.toLocaleDateString("en-US", {day: 'numeric'})}}
-        </h1>
       </div>
+      <h1 id="dayText">
+        {{event.date.toLocaleDateString("en-US", {day: 'numeric'})}}
+      </h1>
     </div>
     <strong class="dateText">{{event.date.toLocaleDateString("en-US", dateFormatting).toUpperCase() + " AT " + event.date.toLocaleTimeString("en-US", timeFormatting)}}</strong>
     <h1 class="placeholder" v-if="event.name === ''">Event name</h1>
