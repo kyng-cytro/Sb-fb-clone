@@ -7,16 +7,24 @@
             <PageSidebarButton iconName = "home" text = "Your Events" />
             <PageSidebarButton iconName = "home" text = "Birthdays" />
             <PageSidebarButton iconName = "home" text = "Notifications" />
-            <button v-on:click="beginEditing">Create New Event</button>
+            <button v-on:click="changeEventState('editing')">Create New Event</button>
           </div>
           <div v-else-if="eventState === 'editing'">
-            <input v-model="eventName" placeholder="Event name" v-on:input="updateName">
-            <datepicker v-model="eventDate" :bootstrap-styling="true" v-on:input="updateDate">
-              <div slot="beforeCalendarHeader" class="calender-header">
-                Hello!
-              </div>
-            </datepicker>
-            <vue-timepicker v-model="eventTime" manual-input format="h:mm A" v-on:input="updateTime"></vue-timepicker>
+            <h1>{{stages[stage]}}</h1>
+            <div v-if="stages[stage] === 'Event Details'">
+              <input v-model="eventName" placeholder="Event name" v-on:input="updateName">
+              <datepicker v-model="eventDate" :bootstrap-styling="true" v-on:input="updateDate">
+                <div slot="beforeCalendarHeader" class="calender-header">
+                  Hello!
+                </div>
+              </datepicker>
+              <vue-timepicker v-model="eventTime" manual-input format="h:mm A" v-on:input="updateTime"></vue-timepicker>
+            </div>
+            <div v-else="stages[stage] === 'Description'">
+                <textarea v-model="eventDescription" placeholder="Description"></textarea>
+            </div>
+            <button v-on:click="regressStage('Location')">Back</button>
+            <button v-on:click="progressStage('Location')">Next</button>
           </div>
         </div>
       </nav>
@@ -37,8 +45,8 @@ export default {
     VueTimepicker
   },
   methods: {
-    beginEditing() {
-      this.$emit('stateChange', "editing");
+    changeEventState(newState) {
+      this.$emit('stateChange', newState);
       console.log("You clikced me!");
     },
     updateName() {
@@ -51,6 +59,17 @@ export default {
     updateTime() {
       console.log("You're changing the time!");
       this.$emit('timeChange', this.eventTime);
+    },
+    progressStage() {
+      this.stage++;
+    },
+    regressStage() {
+      if (this.stage === 0) {
+        this.changeEventState("normal");
+      }
+      else {
+        this.stage--;
+      }
     }
   },
   props: ["eventState"],
@@ -59,6 +78,9 @@ export default {
       eventTime: "",
       eventDate: "",
       eventName: "",
+      eventDescription: "",
+      stages: ["Event Details", "Location", "Description"], //Possible values are Event Details, Location, and Description
+      stage: 0
     }
   },
 }
