@@ -2,7 +2,8 @@
   <div class="home">
      <HomeSidebar />
       <div class = "content">
-        <p>This is where the posts will go!</p>
+        <!-- <p>This is where the posts will go!</p> -->
+        <PostDisplay />
       </div>
   </div>
 
@@ -12,11 +13,13 @@
 // @ is an alias to /src
 //import HelloWorld from "@/components/HelloWorld.vue";
 import HomeSidebar from "@/components/HomeComponents/Sidebar/HomeSidebar.vue";
+import PostDisplay from "@/components/HomeComponents/PostDisplay.vue";
 
 export default {
   name: "Home",
   components: {
-    HomeSidebar
+    HomeSidebar,
+    PostDisplay
   },
 };
 </script>
