@@ -20,12 +20,9 @@
               </datepicker>
               <vue-timepicker v-model="eventTime" manual-input format="h:mm A" v-on:input="updateTime"></vue-timepicker>
             </div>
-<<<<<<< HEAD
             <div v-else-if="stages[stage] === 'Location'">
                 <textarea v-model="eventDescription" placeholder="Location"></textarea>
             </div>
-=======
->>>>>>> 67b5c4daf9cf14f13d9ae81c43de683379ea3a16
             <div v-else-if="stages[stage] === 'Description'">
                 <textarea v-model="eventDescription" placeholder="Description"></textarea>
             </div>
