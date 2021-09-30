@@ -1,7 +1,7 @@
 <template>
     <div class = "Events">
       <div>
-        <EventsSidebar :eventState="this.eventState" v-on:stateChange="updateEventState" v-on:nameChange="updateEventName" v-on:dateChange="updateEventDate" v-on:timeChange="updateEventTime"/>
+        <EventsSidebar :eventState="this.eventState" v-on:stateChange="updateEventState" v-on:nameChange="updateEventName" v-on:dateChange="updateEventDate" v-on:timeChange="updateEventTime" v-on:locationChange="updateEventLocation"/>
       </div>
 
       <div>
@@ -56,7 +56,10 @@ export default {
         tempDate.setMinutes(minutes);
       }
       this.currentEvent.date = tempDate;
-    }
+    },
+    updateEventLocation(newLocation) {
+      this.currentEvent.location = newLocation;
+    },
   },
   data (){
     return {

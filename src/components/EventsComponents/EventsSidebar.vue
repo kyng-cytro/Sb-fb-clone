@@ -21,13 +21,13 @@
               <vue-timepicker v-model="eventTime" manual-input format="h:mm A" v-on:input="updateTime"></vue-timepicker>
             </div>
             <div v-else-if="stages[stage] === 'Location'">
-                <textarea v-model="eventDescription" placeholder="Location"></textarea>
+                <textarea v-model="eventLocation" v-on:input="updateLocation" placeholder="Location"></textarea>
             </div>
             <div v-else-if="stages[stage] === 'Description'">
                 <textarea v-model="eventDescription" placeholder="Description"></textarea>
             </div>
-            <button v-on:click="regressStage('Location')">Back</button>
-            <button v-on:click="progressStage('Location')">Next</button>
+            <button v-on:click="regressStage()">Back</button>
+            <button v-on:click="progressStage()">Next</button>
           </div>
         </div>
       </nav>
@@ -56,12 +56,13 @@ export default {
       this.$emit('nameChange', this.eventName);
     },
     updateDate() {
-      console.log("You're changing the date");
       this.$emit('dateChange', this.eventDate);
     },
     updateTime() {
-      console.log("You're changing the time!");
       this.$emit('timeChange', this.eventTime);
+    },
+    updateLocation() {
+      this.$emit('locationChange', this.eventLocation);
     },
     progressStage() {
       if (this.stage === this.stages.length - 1) {
@@ -85,6 +86,7 @@ export default {
       eventTime: "",
       eventDate: "",
       eventName: "",
+      eventLocation: "",
       eventDescription: "",
       stages: ["Event Details", "Location", "Description"], //Possible values are Event Details, Location, and Description
       stage: 0
