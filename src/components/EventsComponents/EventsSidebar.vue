@@ -20,6 +20,9 @@
               </datepicker>
               <vue-timepicker v-model="eventTime" manual-input format="h:mm A" v-on:input="updateTime"></vue-timepicker>
             </div>
+            <div v-else-if="stages[stage] === 'Location'">
+                <textarea v-model="eventDescription" placeholder="Location"></textarea>
+            </div>
             <div v-else-if="stages[stage] === 'Description'">
                 <textarea v-model="eventDescription" placeholder="Description"></textarea>
             </div>
@@ -61,7 +64,11 @@ export default {
       this.$emit('timeChange', this.eventTime);
     },
     progressStage() {
-      this.stage++;
+      if (this.stage === this.stages.length - 1) {
+        this.changeEventState("eventCreated");
+      } else {
+        this.stage++;
+      }
     },
     regressStage() {
       if (this.stage === 0) {
