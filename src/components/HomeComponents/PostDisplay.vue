@@ -17,15 +17,17 @@ import PostSquare from './PostSquare.vue';
 const posts = [
   {
     imgSrc: "basket.jpg",
-    name: "Basket Weaving",
-    text: "Come join our Basket Weaving on firday",
+    name: "John Smith",
+    //name: "Basket Waaving",
+    text: "I've been Weaving Basket",
     date: "FRI, DEC 24 AT 5PM MST",
     numInterested: 21,
     numGoing: 52
   },
   {
     imgSrc: "chiliCookOff.jpg",
-    name: "Chili Cookoff",
+    name: "Jane Smith",
+   // name: "Chili Cookoff",
     text: " Come try our chili",
     date: "FRI, DEC 24 AT 5PM MST",
     numInterested: "9.3K",
@@ -59,11 +61,16 @@ export default {
 
 <style scoped>
 .postDisplay {
+  justify-content: left;
+  align-items: left;
+  width: inherit;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
 }
 .square {
+
+  float: left;
   padding: 5px;
 }
 
