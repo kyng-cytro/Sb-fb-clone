@@ -1,13 +1,13 @@
 <template>
     <div class = "Events">
       <div>
-        <EventsSidebar :eventState="this.eventState" v-on:stateChange="updateEventState" v-on:nameChange="updateEventName" v-on:dateChange="updateEventDate" v-on:timeChange="updateEventTime"/>
+        <EventsSidebar :eventState="this.eventState" v-on:stateChange="updateEventState" v-on:nameChange="updateEventName" v-on:dateChange="updateEventDate" v-on:timeChange="updateEventTime" v-on:locationChange="updateEventLocation" v-on:descriptionChange="updateEventDescription"/>
       </div>
 
       <div>
         <EventDisplay v-if="eventState === 'normal'"/>
         <EventPreview :event="currentEvent" v-else-if="eventState === 'editing'"/>
-        <p v-else-if="eventState === 'eventCreated'">The event has been created!</p>
+        <EventData :event="currentEvent" :eventState="eventState" v-else-if="eventState === 'eventCreated'" />
       </div>
     </div>
 
@@ -18,13 +18,15 @@
 import EventsSidebar from "@/components/EventsComponents/EventsSidebar.vue";
 import EventDisplay from "@/components/EventsComponents/EventDisplay.vue"
 import EventPreview from "@/components/EventsComponents/EventPreview.vue"
+import EventData from "@/components/EventsComponents/EventData.vue"
 
 export default {
   name: "Events",
   components: {
     EventsSidebar,
     EventDisplay,
-    EventPreview
+    EventPreview,
+    EventData
   },
   methods: {
     updateEventState(newState) {
@@ -56,11 +58,17 @@ export default {
         tempDate.setMinutes(minutes);
       }
       this.currentEvent.date = tempDate;
-    }
+    },
+    updateEventLocation(newLocation) {
+      this.currentEvent.location = newLocation;
+    },
+    updateEventDescription(newDescription) {
+      this.currentEvent.description = newDescription;
+    },
   },
   data (){
     return {
-      eventState : "normal", //Options for state include normal, creatingEvent, eventCreated
+      eventState : "eventCreated", //Options for state include normal, creatingEvent, eventCreated
       currentEvent : {
         name: "",
         date: new Date(),
