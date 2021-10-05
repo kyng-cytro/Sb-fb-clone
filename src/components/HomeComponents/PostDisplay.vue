@@ -29,7 +29,7 @@ const posts = [
     imgSrc: "chiliCookOff.jpg",
     name: "Jane Smith",
    // name: "Chili Cookoff",
-    text: " Come try our chili",
+    text: " Come get warm by our chili",
     date: "FRI, DEC 24 AT 5PM MST",
     numComments: 20,
     numShares: 5,

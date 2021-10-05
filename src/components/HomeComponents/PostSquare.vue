@@ -15,7 +15,8 @@
           <br /> -->
          <!-- <strong id="name">{{post.name}}</strong>
           <br /> -->
-
+        <img src="https://scontent.xx.fbcdn.net/m1/v/t6/An8ODe1zojZFxtkCySvD_PWHUfwwSqPRWxNfZiVRQtoYgVOHHeQxpmcNcbugcbUbDZvtBac7oXZXBUiZytVCug9oYjJureLV-72SKTQ6uZ2bhOnT.png?ccb=10-5&oh=46181cacd09dafe23b296bbd8368ad2d&oe=6161C011&_nc_sid=55e238" style="height: 20px; width: 20px;">
+        
           <em> {{post.numLikes + " Likes"}}</em>
           <em style="float: right;">{{post.numComments + " comments " + post.numShares + " shares"}}</em>
           <div class="line"></div>
@@ -23,17 +24,17 @@
               <div>
                                
               <button type="button" v-on:click="handleInterestedClick" class="btn btn-secondary">
-                <img class= "sidebar-button-icon" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png');background-position:0 -320px;background-size:26px 1060px;width:18px;height:18px;background-repeat:no-repeat;display:inline-block">
+                <img  style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png');background-position:0 -320px;background-size:26px 1060px;width:18px;height:18px;background-repeat:no-repeat;display:inline-block">
                 Like</button>
               </div>
               <div>
               <button type="button" class="btn btn-secondary">
-                 <img class= "sidebar-button-icon" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png');background-position:0 -280px;background-size:26px 1060px;width:18px;height:18px;background-repeat:no-repeat;display:inline-block">
+                 <img style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png');background-position:0 -280px;background-size:26px 1060px;width:18px;height:18px;background-repeat:no-repeat;display:inline-block">
                 Comment</button>
               </div>
               <div>
               <button type="button" class="btn btn-secondary">
-                 <img class= "sidebar-button-icon" style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png'); background-position: 0px -340px; background-size: 26px 1060px; width: 18px; height: 18px; background-repeat: no-repeat; display: inline-block;">
+                 <img  style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png'); background-position: 0px -340px; background-size: 26px 1060px; width: 18px; height: 18px; background-repeat: no-repeat; display: inline-block;">
                 Share</button>
               </div>
             </div>
@@ -156,6 +157,7 @@ em {
   
   
   
+  
 }
 
 #personPic {
@@ -181,6 +183,8 @@ em {
 
 .line {
    border-bottom: 1px solid #bbb;
+
+   padding: 3px;
 
 
 }
