@@ -2,51 +2,20 @@
   <div id="preview">
     <strong>Desktop Preview</strong>
     <div id="previewBox">
-      <div id="headerInfo">
-        <div id="date">
-          <div id="redBar">
-          </div>
-          <h1 id="dayText">
-            {{event.date.toLocaleDateString("en-US", {day: 'numeric'})}}
-          </h1>
-        </div>
-        <strong class="dateText">{{event.date.toLocaleDateString("en-US", dateFormatting).toUpperCase() + " AT " + event.date.toLocaleTimeString("en-US", timeFormatting)}}</strong>
-        <h1 class="placeholder" v-if="event.name === ''">Event name</h1>
-        <h1 v-else>{{event.name}}</h1>
-        <p id="location">{{event.location}}</p>
-        <div id="inviteBox">
-            <p><strong>{You} </strong>invited you</p>
-            <button class="btn btn-secondary">Going</button>
-            <button class="btn btn-secondary">Maybe</button>
-            <button class="btn btn-secondary">Can't Go</button>
-            <button class="btn btn-secondary">Invite</button>
-        </div>
-      </div>
+      <EventData :event="event" />
     </div>
-      <div id="details">
-        <div id="previewBox">
-          <h3>Details</h3>
-          <p>1 person going, including {you}</p>
-          <strong>{{event.location}}</strong>
-          <p>Todo: potentially include privacy</p>
-        </div>
-
-      </div>
   </div>
 </template>
 
 <script>
+import EventData from "./EventData.vue";
+
 export default {
   name: "Events",
   components: {
+    EventData
   },
-  props: ["event"],
-  data() {
-    return {
-      dateFormatting: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'},
-      timeFormatting: { hour: "numeric", minute: "2-digit"}
-    }
-  }
+  props: ["event", "eventState"],
 };
 </script>
 
