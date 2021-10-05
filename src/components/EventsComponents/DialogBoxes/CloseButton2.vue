@@ -8,30 +8,36 @@
     </div>
     <div class="content">
       <p>Email to</p>
-      <input v-model="currentEmail" @keypress.enter="newEmail()">
+      <textarea></textarea>
+      <EmailAutoComplete ref="EmailAutoComplete" :onCompletion='(val) => emailAddress = val'>
+        <input type='text' v-model='emailAddress' @keydown.native='$refs.EmailAutoComplete.check($event)' />
+      </EmailAutoComplete>
     </div>
   </div>
 </template>
 
 <script>
+import EmailAutoComplete from "vue-email-autocomplete";
+import "vue-email-autocomplete/dist/vue-email-autocomplete.css";
 
 export default {
   methods: {
     closeModal: function () {
       this.$FModal.hide();
     },
-    newEmail() {
-      console.log("You just entered the email: " + this.currentEmail);
-      this.emailAddresses.push(this.currentEmail);
-      this.currentEmail = "";
-    }
-  },
-  components: {
-  },
-  data() {
-    return {
-      emailAddresses: [],
-      currentEmail: ""
+    components: {
+      EmailAutoComplete
+    },
+    data() {
+      return {
+        emailAddress: '',
+        customDomains: [
+          "domain1.com",
+          "domain2.com",
+          "domain3.com",
+          "domain4.com"
+        ]
+      }
     }
   },
 };

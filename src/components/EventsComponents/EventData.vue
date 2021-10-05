@@ -51,6 +51,7 @@
         </div>
       </div>
     </div>
+  <CloseButtonComponent />
   </div>
 </template>
 
@@ -74,6 +75,7 @@ const popUpStyles = {
 export default {
   name: "Events",
   components: {
+    CloseButtonComponent
   },
   methods: {
     openEmailDialog() {
@@ -149,7 +151,7 @@ div {
     background-color: rgb(224, 224, 224);
   }
   #details {
-    background-color: rgb(217, 217, 217);
+    background-color: rgb(224, 221, 221);
     margin: 20px;
     padding: 10px;
     display: flex;
