@@ -21,8 +21,9 @@ const posts = [
     //name: "Basket Waaving",
     text: "I've been Weaving Basket",
     date: "FRI, DEC 24 AT 5PM MST",
-    numInterested: 21,
-    numGoing: 52
+    numComments: 21,
+    numShares: 2,
+    numLikes: 52
   },
   {
     imgSrc: "chiliCookOff.jpg",
@@ -30,16 +31,18 @@ const posts = [
    // name: "Chili Cookoff",
     text: " Come try our chili",
     date: "FRI, DEC 24 AT 5PM MST",
-    numInterested: "9.3K",
-    numGoing: 523
+    numComments: 20,
+    numShares: 5,
+    numLikes: 523
   },
   {
     imgSrc: "library.jpg",
     name: "Reading Club",
     text: " Read your book in our nook",
     date: "FRI, DEC 24 AT 5PM MST",
-    numInterested: 23,
-    numGoing: 7
+    numComments: 23,
+    numShares: 7,
+    numLikes: "9.3k"
   },
 ];
 

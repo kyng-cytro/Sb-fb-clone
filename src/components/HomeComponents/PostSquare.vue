@@ -16,13 +16,26 @@
          <!-- <strong id="name">{{post.name}}</strong>
           <br /> -->
 
-          <em> so many Likes</em>
-          <em style="float: right;">{{post.numInterested + " comments " + post.numGoing + " shares"}}</em>
-          <div class="line"><br/></div>
+          <em> {{post.numLikes + " Likes"}}</em>
+          <em style="float: right;">{{post.numComments + " comments " + post.numShares + " shares"}}</em>
+          <div class="line"></div>
             <div class ="Buttons">
-              <button type="button" v-on:click="handleInterestedClick" class="btn btn-secondary">Interested</button>
-              <button type="button" class="btn btn-secondary"> Comment</button>
-              <button type="button" class="btn btn-secondary">Share</button>
+              <div>
+                               
+              <button type="button" v-on:click="handleInterestedClick" class="btn btn-secondary">
+                <img class= "sidebar-button-icon" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png');background-position:0 -320px;background-size:26px 1060px;width:18px;height:18px;background-repeat:no-repeat;display:inline-block">
+                Like</button>
+              </div>
+              <div>
+              <button type="button" class="btn btn-secondary">
+                 <img class= "sidebar-button-icon" style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png');background-position:0 -280px;background-size:26px 1060px;width:18px;height:18px;background-repeat:no-repeat;display:inline-block">
+                Comment</button>
+              </div>
+              <div>
+              <button type="button" class="btn btn-secondary">
+                 <img class= "sidebar-button-icon" style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png'); background-position: 0px -340px; background-size: 26px 1060px; width: 18px; height: 18px; background-repeat: no-repeat; display: inline-block;">
+                Share</button>
+              </div>
             </div>
           </div>
         </div>
@@ -72,21 +85,44 @@ export default {
 }
 
 .Buttons{
+  display: flex;
    flex-direction: row;
+   flex: 33%;
+   justify-content: space-between;
 }
 
 button {
-  width: 110px;
+  width: 120px;
   margin: 2%;
   font-weight: bold;
   font-size: .9em;
-  flex: row;
+  
+  
 }
-
+/*
 .btn-secondary {
   color: black;
-  background-color: hsl(0, 0%, 92%);
+  background-color: white; /*hsl(0, 0%, 92%);
   border: 0px
+}
+*/
+.btn-secondary {
+  color: black;
+
+  background-color: hsl(0, 0%, 92%);
+  border: 0px;
+  border-radius: 6px;
+  margin: 2%;
+  font-weight: bold;
+  font-size: .9em;
+}
+.btn-secondary:hover {
+  color: black;
+  background-color: hsl(0, 0%, 82%);
+  transition: 0.3s;
+}
+.btn-secondary:focus {
+  outline-color: hsl(0, 0%, 92%);
 }
 
 .invisible {
@@ -144,8 +180,8 @@ em {
 }
 
 .line {
-  background-color: #bbb;
-  margin: 1px;
+   border-bottom: 1px solid #bbb;
+
 
 }
 
