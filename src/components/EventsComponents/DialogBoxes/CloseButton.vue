@@ -7,6 +7,11 @@
       </div>
     </div>
     <div class="content">
+      <ul>
+          <li v-for="email in emailAddresses" :key="email">
+              {{email}}
+          </li>
+      </ul>
       <p>Email to</p>
       <input v-model="currentEmail" @keypress.enter="newEmail()">
     </div>
