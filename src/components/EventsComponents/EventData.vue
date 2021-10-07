@@ -13,12 +13,11 @@
       <h1 v-else>{{event.name}}</h1>
       <p id="location">{{event.location}}</p>
       <div v-if="eventState==='eventCreated'">
-          <button class="btn btn-secondary" @click="openEmailDialog">Email</button>
+          <button class="btn btn-secondary" @click="() => togglePopup('emailTrigger')">Email</button>
           <button class="btn btn-secondary">Text</button>
           <button class="btn btn-secondary">Invite</button>
           <button class="btn btn-secondary">Edit</button>
           <!-- <v-btn flat slot="activator" class="success">Test</v-btn> -->
-          <!-- Consider using https://vuejsexamples.com/a-full-screen-modal-popup-for-vue/ for the pop up dialouges here -->
       </div>
       <div v-else id="inviteBox">
           <p><strong>{You} </strong>invited you</p>
@@ -52,12 +51,17 @@
       </div>
     </div>
   <CloseButtonComponent />
+  <SelfCreatedPopup v-show="this.popupTriggers['emailTrigger']" :togglePopup="() => togglePopup('emailTrigger')">
+    <h2>My Popup!</h2>
+  </SelfCreatedPopup>
+  <button >Open Email Popup</button>
   </div>
 </template>
 
 <script>
 // import EmailDialog from './DialogBoxes/EmailDialog.vue';
 import CloseButtonComponent from './DialogBoxes/CloseButton';
+import SelfCreatedPopup from './DialogBoxes/SelfCreatedPopup'
 
 const popUpStyles = {
   border: '4px solid grey',
@@ -75,7 +79,19 @@ const popUpStyles = {
 export default {
   name: "Events",
   components: {
-    CloseButtonComponent
+    CloseButtonComponent,
+    SelfCreatedPopup
+  },
+  props: ["event", "eventState"],
+  data() {
+    return {
+      dateFormatting: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'},
+      timeFormatting: { hour: "numeric", minute: "2-digit"},
+      popupTriggers: {
+        emailTrigger: false,
+        //Add other values here
+      }
+    }
   },
   methods: {
     openEmailDialog() {
@@ -92,15 +108,13 @@ export default {
         },
       );
       console.log("I'm trying to open a dialog!");
+    },
+    togglePopup(trigger) {
+      //Invert the value passed in with trigger
+      this.popupTriggers[trigger] = !this.popupTriggers[trigger];
+      // console.log(trigger);
     }
   },
-  props: ["event", "eventState"],
-  data() {
-    return {
-      dateFormatting: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'},
-      timeFormatting: { hour: "numeric", minute: "2-digit"}
-    }
-  }
 };
 </script>
 
