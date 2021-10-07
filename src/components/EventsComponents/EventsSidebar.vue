@@ -1,38 +1,36 @@
 <template>
-  <div>
-      <nav>
-        <div class="container">
-          <div v-if="eventState==='normal' || eventState==='eventCreated'" class = "sidebar-buttons-container">
-            <PageSidebarButton iconName = "home" text = "Home" />
-            <PageSidebarButton iconName = "yourEvents" text = "Your Events" />
-            <PageSidebarButton iconName = "birthdays" text = "Birthdays" />
-            <PageSidebarButton iconName = "notifications" text = "Notifications" />
-            <button id="createNewEventButton" v-on:click="changeEventState('editing')">＋ Create New Event</button>
+  <div id="sidebar">
+      <div class="container">
+        <div v-if="eventState==='normal' || eventState==='eventCreated'" class = "sidebar-buttons-container">
+          <PageSidebarButton iconName = "home" text = "Home" />
+          <PageSidebarButton iconName = "yourEvents" text = "Your Events" />
+          <PageSidebarButton iconName = "birthdays" text = "Birthdays" />
+          <PageSidebarButton iconName = "notifications" text = "Notifications" />
+          <button id="createNewEventButton" v-on:click="changeEventState('editing')">＋ Create New Event</button>
+        </div>
+        <div v-else-if="eventState === 'editing'">
+          <h1>{{stages[stage]}}</h1>
+          <div v-if="stages[stage] === 'Event Details'">
+            <input v-model="eventName" placeholder="Event name" v-on:input="updateName">
+            <datepicker v-model="eventDate" :bootstrap-styling="true" v-on:input="updateDate">
+              <div slot="beforeCalendarHeader" class="calender-header">
+                Hello!
+              </div>
+            </datepicker>
+            <vue-timepicker v-model="eventTime" manual-input format="h:mm A" v-on:input="updateTime"></vue-timepicker>
           </div>
-          <div v-else-if="eventState === 'editing'">
-            <h1>{{stages[stage]}}</h1>
-            <div v-if="stages[stage] === 'Event Details'">
-              <input v-model="eventName" placeholder="Event name" v-on:input="updateName">
-              <datepicker v-model="eventDate" :bootstrap-styling="true" v-on:input="updateDate">
-                <div slot="beforeCalendarHeader" class="calender-header">
-                  Hello!
-                </div>
-              </datepicker>
-              <vue-timepicker v-model="eventTime" manual-input format="h:mm A" v-on:input="updateTime"></vue-timepicker>
-            </div>
-            <div v-else-if="stages[stage] === 'Location'">
-                <textarea v-model="eventLocation" v-on:input="updateLocation" placeholder="Location"></textarea>
-            </div>
-            <div v-else-if="stages[stage] === 'Description'">
-                <textarea v-model="eventDescription" v-on:input="updateDescription" placeholder="Description"></textarea>
-            </div>
-            <div id="navigationButtons">
-              <button v-on:click="regressStage()" class="btn-secondary">Back</button>
-              <button id="nextButton" v-on:click="progressStage()" class="btn-secondary">Next</button>
-            </div>
+          <div v-else-if="stages[stage] === 'Location'">
+              <textarea v-model="eventLocation" v-on:input="updateLocation" placeholder="Location"></textarea>
+          </div>
+          <div v-else-if="stages[stage] === 'Description'">
+              <textarea v-model="eventDescription" v-on:input="updateDescription" placeholder="Description"></textarea>
           </div>
         </div>
-      </nav>
+        <div id="navigationButtons">
+          <button v-on:click="regressStage()" class="btn-secondary">Back</button>
+          <button id="nextButton" v-on:click="progressStage()" class="btn-secondary">Next</button>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -102,6 +100,13 @@ export default {
 
 
 <style scoped>
+#sidebar {
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+}
+
 .container {
   background-color: white;
   box-shadow: 3px 3px 3px rgb(232, 232, 232);

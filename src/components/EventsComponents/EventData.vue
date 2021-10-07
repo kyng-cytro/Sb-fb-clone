@@ -1,17 +1,13 @@
 <template>
   <div>
-    <div id="headerInfo">
-      <div id="date">
-        <div id="redBar">
-        </div>
-        <h1 id="dayText">
-          {{event.date.toLocaleDateString("en-US", {day: 'numeric'})}}
-        </h1>
+    <CalendarIcon :date="event.date" />
+    <div>
+      <div id="headerInfo">
+        <strong class="dateText">{{event.date.toLocaleDateString("en-US", dateFormatting).toUpperCase() + " AT " + event.date.toLocaleTimeString("en-US", timeFormatting)}}</strong>
+        <h1 class="placeholder" v-if="event.name === ''">Event name</h1>
+        <h1 v-else>{{event.name}}</h1>
+        <p id="location">{{event.location}}</p>
       </div>
-      <strong class="dateText">{{event.date.toLocaleDateString("en-US", dateFormatting).toUpperCase() + " AT " + event.date.toLocaleTimeString("en-US", timeFormatting)}}</strong>
-      <h1 class="placeholder" v-if="event.name === ''">Event name</h1>
-      <h1 v-else>{{event.name}}</h1>
-      <p id="location">{{event.location}}</p>
       <div v-if="eventState==='eventCreated'">
           <button class="btn btn-secondary" @click="() => togglePopup('emailTrigger')">Email</button>
           <button class="btn btn-secondary">Text</button>
@@ -51,36 +47,23 @@
       </div>
     </div>
   <CloseButtonComponent />
-  <SelfCreatedPopup v-show="this.popupTriggers['emailTrigger']" :togglePopup="() => togglePopup('emailTrigger')">
+  <PopupDialog v-show="this.popupTriggers['emailTrigger']" :togglePopup="() => togglePopup('emailTrigger')">
     <h2>My Popup!</h2>
-  </SelfCreatedPopup>
+  </PopupDialog>
   <button >Open Email Popup</button>
   </div>
 </template>
 
 <script>
 // import EmailDialog from './DialogBoxes/EmailDialog.vue';
-import CloseButtonComponent from './DialogBoxes/CloseButton';
-import SelfCreatedPopup from './DialogBoxes/SelfCreatedPopup'
-
-const popUpStyles = {
-  border: '4px solid grey',
-  borderBottomLeftRadius: '25px',
-  borderBottomRightRadius: '25px',
-  position: "fixed",
-  top: "5%",
-  left: "25%",
-  width: "50%",
-  boxShadow: "0px 0px 10px rgb(185, 183, 183)",
-  borderWidth: "0px",
-  borderRadius: "10px",
-};
+import PopupDialog from './DialogBoxes/PopupDialog.vue'
+import CalendarIcon from './EventDataComponents/CalendarIcon.vue'
 
 export default {
   name: "Events",
   components: {
-    CloseButtonComponent,
-    SelfCreatedPopup
+    PopupDialog,
+    CalendarIcon
   },
   props: ["event", "eventState"],
   data() {
@@ -94,21 +77,6 @@ export default {
     }
   },
   methods: {
-    openEmailDialog() {
-      this.$FModal.show(
-        {
-          component: CloseButtonComponent,
-          overlayStyles: {
-              backgroundColor: 'rgba(232, 232, 232, 0.8)',
-          },
-          contentStyles: popUpStyles,
-        },
-        {
-          msg: "Emails!"
-        },
-      );
-      console.log("I'm trying to open a dialog!");
-    },
     togglePopup(trigger) {
       //Invert the value passed in with trigger
       this.popupTriggers[trigger] = !this.popupTriggers[trigger];
@@ -144,21 +112,6 @@ div {
     padding: 30px;
     box-shadow: 0px 2px 4px rgb(214, 211, 211);
     background-color: white;
-  }
-  #date {
-    width: 80px;
-    height: 80px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 12px rgb(217, 217, 217);
-    text-align: center;
-  }
-  #redBar {
-    height: 20px;
-    background-color: rgb(247, 79, 79);
-    border-radius: 8px 8px 0px 0px;
-  }
-  #dayText {
-    font-weight: bold;
   }
   #inviteBox {
 
