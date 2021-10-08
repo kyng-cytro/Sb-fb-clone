@@ -11,7 +11,7 @@
                 <p>MAYBE</p>
             </div>
             <div class="item">
-                <strong>0</strong>
+                <strong>{{numInvited}}</strong>
                 <p>INVITED</p>
             </div>
         </div>
@@ -25,7 +25,7 @@
 
 <script>
 export default {
-
+    props: ['numInvited']
 }
 </script>
 

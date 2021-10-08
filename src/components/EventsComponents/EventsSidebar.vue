@@ -14,7 +14,6 @@
             <input v-model="eventName" placeholder="Event name" v-on:input="updateName">
             <datepicker v-model="eventDate" :bootstrap-styling="true" v-on:input="updateDate">
               <div slot="beforeCalendarHeader" class="calender-header">
-                Hello!
               </div>
             </datepicker>
             <vue-timepicker v-model="eventTime" manual-input format="h:mm A" v-on:input="updateTime"></vue-timepicker>

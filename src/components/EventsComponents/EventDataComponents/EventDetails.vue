@@ -11,7 +11,8 @@
         <p>{{event.description}}</p>
       </div>
       <div id="previewBox">
-        <EventAttendance />
+        <EventAttendance :numInvited="0"/>
+        <!-- TODO: have this dynamically update as you invite people -->
       </div>
     </div>
 </template>
