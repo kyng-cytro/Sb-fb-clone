@@ -9,13 +9,7 @@
           <button class="btn btn-secondary">Edit</button>
           <!-- <v-btn flat slot="activator" class="success">Test</v-btn> -->
       </div>
-      <div v-else id="inviteBox">
-          <p><strong>{You} </strong>invited you</p>
-          <button class="btn btn-secondary">Going</button>
-          <button class="btn btn-secondary">Maybe</button>
-          <button class="btn btn-secondary">Can't Go</button>
-          <button class="btn btn-secondary">Invite</button>
-      </div>
+      <ButtonsPreview v-else />
     </div>
     <EventDetails :event="this.event"/>
   <CloseButtonComponent />
@@ -31,13 +25,15 @@
 import PopupDialog from './DialogBoxes/PopupDialog.vue'
 import EventDataHeaderInfo from './EventDataComponents/EventDataHeaderInfo.vue'
 import EventDetails from './EventDataComponents/EventDetails.vue'
+import ButtonsPreview from './EventDataComponents/ButtonsPreview.vue'
 
 export default {
   name: "Events",
   components: {
     PopupDialog,
     EventDataHeaderInfo,
-    EventDetails
+    EventDetails,
+    ButtonsPreview
   },
   props: ["event", "eventState"],
   data() {
@@ -62,13 +58,9 @@ export default {
 div {
   border-radius: 5px;
 }
-  #inviteBox {
-
-    background-color: rgb(224, 224, 224);
-  }
   button {
-    background-color: rgb(199, 196, 196);
-    border-color: rgb(199, 196, 196);
+    background-color: rgb(235,235,235);
+    border-color: rgb(235,235,235);
     color: black;
     margin: 5px;
   }

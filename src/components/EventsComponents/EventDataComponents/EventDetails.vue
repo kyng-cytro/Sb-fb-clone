@@ -2,7 +2,10 @@
     <div id="details">
       <div id="previewBox">
         <h3>Details</h3>
-        <p>1 person going, including {you}</p>
+        <p>
+          <i class="bi bi-people-fill" style="color: grey"></i>
+          1 person going, including {you}
+          </p>
         <strong>{{event.location}}</strong>
         <p>Todo: potentially include privacy</p>
         <p>{{event.description}}</p>
@@ -26,8 +29,8 @@ export default {
 
 <style scoped>
   #details {
-    background-color: rgb(224, 221, 221);
-    margin: 20px;
+    background-color: rgb(247, 243, 243);
+    width: 100%;
     padding: 10px;
     display: flex;
     flex-direction: row;

@@ -35,7 +35,7 @@ div {
     border-width: thin;
     margin: 10px;
     outline-color: black;
-    padding: 30px;
+    /* padding: 30px; */
     box-shadow: 0px 2px 4px rgb(214, 211, 211);
   }
 </style>

@@ -5,7 +5,8 @@
             <strong class="dateText">{{event.date.toLocaleDateString("en-US", dateFormatting).toUpperCase() + " AT " + event.date.toLocaleTimeString("en-US", timeFormatting)}}</strong>
             <h1 class="placeholder" v-if="event.name === ''">Event name</h1>
             <h1 v-else>{{event.name}}</h1>
-            <p id="location">{{event.location}}</p>
+            <p class="placeholder" v-if="event.location === ''">Location</p>
+            <p v-else id="location">{{event.location}}</p>
       </div>
     </div>
 </template>
@@ -27,7 +28,11 @@ export default {
 }
 </script>
 
-<style>
+
+<style scoped>
+div {
+  margin: 30px;
+}
   .placeholder {
     color: rgb(196, 196, 196);
   }
