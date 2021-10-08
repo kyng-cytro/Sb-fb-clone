@@ -31,14 +31,18 @@ export default {
 
 <style scoped>
 div {
-  margin: 30px;
+  margin: 18px;
+}
+h1 {
+  font-weight: bold;
+  font-size: 2em;
 }
   .placeholder {
     color: rgb(196, 196, 196);
   }
   .dateText {
-    font-size: 0.9em;
-    color: rgb(224, 49, 49);
+    font-size: 1em;
+    color: rgb(243,66,95);
   }
 
 </style>

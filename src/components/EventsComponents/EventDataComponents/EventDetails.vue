@@ -37,6 +37,7 @@ export default {
   }
   #previewBox {
     border-style: solid;
+    border-radius: 8px;
     border-color: rgb(236, 232, 232);
     border-width: thin;
     margin: 10px;

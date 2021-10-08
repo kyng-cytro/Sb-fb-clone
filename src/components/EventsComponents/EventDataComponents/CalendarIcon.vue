@@ -25,7 +25,7 @@
   }
   #redBar {
     height: 20px;
-    background-color: rgb(247, 79, 79);
+    background-color: rgb(243,66,95);
     border-radius: 8px 8px 0px 0px;
   }
   #dayText {
