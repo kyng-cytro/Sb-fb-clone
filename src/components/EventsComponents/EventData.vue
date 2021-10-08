@@ -1,13 +1,7 @@
 <template>
   <div>
-    <CalendarIcon :date="event.date" />
     <div>
-      <div id="headerInfo">
-        <strong class="dateText">{{event.date.toLocaleDateString("en-US", dateFormatting).toUpperCase() + " AT " + event.date.toLocaleTimeString("en-US", timeFormatting)}}</strong>
-        <h1 class="placeholder" v-if="event.name === ''">Event name</h1>
-        <h1 v-else>{{event.name}}</h1>
-        <p id="location">{{event.location}}</p>
-      </div>
+      <EventDataHeaderInfo :event="this.event"/>
       <div v-if="eventState==='eventCreated'">
           <button class="btn btn-secondary" @click="() => togglePopup('emailTrigger')">Email</button>
           <button class="btn btn-secondary">Text</button>
@@ -23,29 +17,7 @@
           <button class="btn btn-secondary">Invite</button>
       </div>
     </div>
-    <div id="details">
-      <div id="previewBox">
-        <h3>Details</h3>
-        <p>1 person going, including {you}</p>
-        <strong>{{event.location}}</strong>
-        <p>Todo: potentially include privacy</p>
-        <p>{{event.description}}</p>
-      </div>
-      <div id="previewBox">
-        <div>
-            <strong>1</strong>
-            <p>GOING</p>
-        </div>
-        <div>
-            <strong>0</strong>
-            <p>MAYBE</p>
-        </div>
-        <div>
-            <strong>0</strong>
-            <p>INVITED</p>
-        </div>
-      </div>
-    </div>
+    <EventDetails :event="this.event"/>
   <CloseButtonComponent />
   <PopupDialog v-show="this.popupTriggers['emailTrigger']" :togglePopup="() => togglePopup('emailTrigger')">
     <h2>My Popup!</h2>
@@ -57,19 +29,19 @@
 <script>
 // import EmailDialog from './DialogBoxes/EmailDialog.vue';
 import PopupDialog from './DialogBoxes/PopupDialog.vue'
-import CalendarIcon from './EventDataComponents/CalendarIcon.vue'
+import EventDataHeaderInfo from './EventDataComponents/EventDataHeaderInfo.vue'
+import EventDetails from './EventDataComponents/EventDetails.vue'
 
 export default {
   name: "Events",
   components: {
     PopupDialog,
-    CalendarIcon
+    EventDataHeaderInfo,
+    EventDetails
   },
   props: ["event", "eventState"],
   data() {
     return {
-      dateFormatting: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'},
-      timeFormatting: { hour: "numeric", minute: "2-digit"},
       popupTriggers: {
         emailTrigger: false,
         //Add other values here
@@ -90,38 +62,9 @@ export default {
 div {
   border-radius: 5px;
 }
-  .placeholder {
-    color: rgb(196, 196, 196);
-  }
-  .dateText {
-    font-size: 0.9em;
-    color: rgb(224, 49, 49);
-  }
-  #preview {
-    margin: 25px;
-    padding: 10px;
-    background-color: white;
-    box-shadow: 0px 0px 8px rgb(196, 195, 195);
-  }
-  #previewBox {
-    border-style: solid;
-    border-color: rgb(236, 232, 232);
-    border-width: thin;
-    margin: 10px;
-    outline-color: black;
-    padding: 30px;
-    box-shadow: 0px 2px 4px rgb(214, 211, 211);
-    background-color: white;
-  }
   #inviteBox {
 
     background-color: rgb(224, 224, 224);
-  }
-  #details {
-    background-color: rgb(224, 221, 221);
-    margin: 20px;
-    padding: 10px;
-    display: flex;
   }
   button {
     background-color: rgb(199, 196, 196);
