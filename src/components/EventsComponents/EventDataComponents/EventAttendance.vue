@@ -16,16 +16,37 @@
             </div>
         </div>
         <hr />
-        <div>
+        <div v-if="this.eventState !== 'eventCreated'">
             <p id="hostName">{Username}</p>
             <p id="host">Host</p>
+        </div>
+        <div v-else>
+            <!-- This is where we want to include a list of the people invited -->
+            <p v-show="invites.email.length !== 0">Invited by email</p>
+            <ul v-for="email in invites.email" :key="email">
+                <li>
+                    {{email}}
+                </li>
+            </ul>
+            <p v-show="invites.text.length !== 0">Invited by text:</p>
+            <ul v-for="text in invites.text" :key="text">
+                <li>
+                    {{text}}
+                </li>
+            </ul>
+            <p v-show="invites.friends.length !== 0">Friends Invited:</p>
+            <ul v-for="friend in invites.friends" :key="friend">
+                <li>
+                    {{friend}}
+                </li>
+            </ul>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    props: ['numInvited']
+    props: ['numInvited', 'eventState', 'invites']
 }
 </script>
 

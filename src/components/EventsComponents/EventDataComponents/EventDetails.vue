@@ -11,8 +11,7 @@
         <p>{{event.description}}</p>
       </div>
       <div id="previewBox">
-        <EventAttendance :numInvited="0"/>
-        <!-- TODO: have this dynamically update as you invite people -->
+        <EventAttendance :numInvited="numInvited" :eventState="eventState" :invites="this.invites"/>
       </div>
     </div>
 </template>
@@ -24,7 +23,7 @@ export default {
     components: {
         EventAttendance
     },
-    props: ['event']
+    props: ['event', 'numInvited', 'eventState', "invites"]
 }
 </script>
 

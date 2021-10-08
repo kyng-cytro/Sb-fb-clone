@@ -3,19 +3,18 @@
         <div class="popup-inner">
             <slot />
     <div class="header">
-    <strong>Email Invitation</strong>
     <div class="close">
         <button @click="togglePopup()">×</button>
     </div>
     </div>
     <div class="content">
     <ul>
-        <li v-for="email in emailAddresses" :key="email">
-            {{email}}
+        <li v-for="invite in this.inviteList" :key="invite">
+            {{invite}}
         </li>
     </ul>
     <p>Email to</p>
-    <input v-model="currentEmail" @keypress.enter="newEmail()">
+    <input v-model="currentInvite" @keypress.enter="newInvite()">
         </div>
     </div>
     </div>
@@ -23,20 +22,20 @@
 
 <script>
     export default {
-    props: ['togglePopup'],
+    props: ['togglePopup', 'inviteList'],
     methods: {
-        newEmail() {
+        newInvite() {
             console.log("You just entered the email: " + this.currentEmail);
-            this.emailAddresses.push(this.currentEmail);
-            this.currentEmail = "";
+            this.inviteList.push(this.currentInvite);
+            this.currentInvite = "";
     }
   },
   components: {
   },
   data() {
     return {
-      emailAddresses: [],
-      currentEmail: ""
+    //   emailAddresses: [],
+      currentInvite: ""
     }
   },
 }
@@ -59,5 +58,8 @@
 .popup-inner {
     background-color: white;
     padding: 32px;
+    border-radius: 8px;
+    /* box-shadow: 0px, 0px, 5px, rgb(200, 200, 200); */
+    box-shadow: 0px 0px 16px 8px #cac9c9;
 }
 </style>

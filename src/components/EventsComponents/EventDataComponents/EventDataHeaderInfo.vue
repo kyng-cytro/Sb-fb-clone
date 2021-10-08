@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="container">
         <CalendarIcon :date="event.date" />
         <div id="headerInfo">
             <strong class="dateText">{{event.date.toLocaleDateString("en-US", dateFormatting).toUpperCase() + " AT " + event.date.toLocaleTimeString("en-US", timeFormatting)}}</strong>
@@ -30,9 +30,11 @@ export default {
 
 
 <style scoped>
-div {
-  margin: 18px;
+#container {
+  padding: 18px;
+  width: 100%;
 }
+
 h1 {
   font-weight: bold;
   font-size: 2em;
