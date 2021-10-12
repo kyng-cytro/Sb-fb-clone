@@ -15,11 +15,11 @@
           <br /> -->
          <!-- <strong id="name">{{post.name}}</strong>
           <br /> -->
-        <img src="https://scontent.xx.fbcdn.net/m1/v/t6/An8ODe1zojZFxtkCySvD_PWHUfwwSqPRWxNfZiVRQtoYgVOHHeQxpmcNcbugcbUbDZvtBac7oXZXBUiZytVCug9oYjJureLV-72SKTQ6uZ2bhOnT.png?ccb=10-5&oh=46181cacd09dafe23b296bbd8368ad2d&oe=6161C011&_nc_sid=55e238" style="height: 20px; width: 20px;">
+       <!-- <img src="https://scontent.xx.fbcdn.net/m1/v/t6/An8ODe1zojZFxtkCySvD_PWHUfwwSqPRWxNfZiVRQtoYgVOHHeQxpmcNcbugcbUbDZvtBac7oXZXBUiZytVCug9oYjJureLV-72SKTQ6uZ2bhOnT.png?ccb=10-5&oh=46181cacd09dafe23b296bbd8368ad2d&oe=6161C011&_nc_sid=55e238" style="height: 20px; width: 20px;">-->
         
 
 
-         <div v-if="!facebookLight" class= "info">
+         <!--<div v-if="!facebookLight" class= "info"> -->
           <em> {{post.numLikes + " Likes"}}</em>
           <em style="float: right;">{{post.numComments + " comments " + post.numShares + " shares"}}</em>
           <div class="line"></div>
@@ -41,7 +41,7 @@
                 Share</button>
               </div>
             </div>
-          </div>
+          
           </div>
         </div>
 </template>
