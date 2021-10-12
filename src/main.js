@@ -4,6 +4,9 @@ import router from "./router";
 
 Vue.config.productionTip = false;
 
+import FullpageModal from 'vue-fullpage-modal';
+Vue.use(FullpageModal);
+
 new Vue({
   router,
   render: (h) => h(App),
