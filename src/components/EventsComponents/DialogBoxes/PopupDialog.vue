@@ -2,11 +2,16 @@
     <div class="popup">
         <div class="popup-inner">
             <div class="header">
-                <h2>{{header}}</h2>
+                <div id="headerContainer">
+                    <h2>{{header}}</h2>
+                </div>
                 <div class="close">
-                    <button @click="togglePopup()">×</button>
+                    <button @click="togglePopup()">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
                 </div>
             </div>
+            <hr />
             <slot />
         </div>
     </div>
@@ -26,7 +31,7 @@ export default {
     right: 0;
     bottom: 0;
     z-index: 99;
-    background-color: rgba(224, 224, 224, 0.8);
+    background-color: rgba(241, 241, 241, 0.8);
 
     display: flex;
     align-items: center;
@@ -34,9 +39,27 @@ export default {
 }
 .popup-inner {
     background-color: white;
-    padding: 32px;
     border-radius: 8px;
-    /* box-shadow: 0px, 0px, 5px, rgb(200, 200, 200); */
-    box-shadow: 0px 0px 16px 8px #cac9c9;
+    box-shadow: 0px 0px 16px 8px #dadada;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#headerContainer {
+    text-align: center;
+}
+
+button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: rgb(82, 82, 82);
+    background-color: rgb(228,230,235);
+    border-width: 0px;
+    font-size: 0.8em;
 }
 </style>

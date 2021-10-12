@@ -1,15 +1,14 @@
 <template>
     <div class="content">
-        <ul>
-            <li v-for="invite in this.inviteList" :key="invite">
-                {{invite}}
-            </li>
-        </ul>
+        <InviteFriends :invitedFriends="this.inviteList.friends"/>
+        <InviteNonFacebook :invitedByEmail="this.inviteList.emails" :invitedByText="this.inviteList.texts"/>
         <input v-model="currentInvite" @keypress.enter="newInvite()">
     </div>
 </template>
 
 <script>
+import InviteFriends from "./InviteFriends.vue"
+import InviteNonFacebook from "./InviteNonFacebook.vue"
 export default {
     props: ['inviteList'],
     methods: {
@@ -20,6 +19,8 @@ export default {
             }
         },
         components: {
+            InviteFriends,
+            InviteNonFacebook,
         },
         data() {
             return {

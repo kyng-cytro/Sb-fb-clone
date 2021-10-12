@@ -38,8 +38,8 @@ export default {
         friendsTrigger: false
       },
       invites: {
-        email: [],
-        text: [],
+        emails: [],
+        texts: [],
         friends: []
       }
 
@@ -58,7 +58,7 @@ export default {
       // for (let i = 0; i < invites.length; i++) {
       //   num += invites[i]
       // }
-      return this.invites.email.length + this.invites.text.length + this.invites.friends.length
+      return this.invites.emails.length + this.invites.texts.length + this.invites.friends.length
     }
   }
 };
