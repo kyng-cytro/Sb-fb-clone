@@ -17,6 +17,9 @@
           <br /> -->
         <img src="https://scontent.xx.fbcdn.net/m1/v/t6/An8ODe1zojZFxtkCySvD_PWHUfwwSqPRWxNfZiVRQtoYgVOHHeQxpmcNcbugcbUbDZvtBac7oXZXBUiZytVCug9oYjJureLV-72SKTQ6uZ2bhOnT.png?ccb=10-5&oh=46181cacd09dafe23b296bbd8368ad2d&oe=6161C011&_nc_sid=55e238" style="height: 20px; width: 20px;">
         
+
+
+         <div v-if="!facebookLight" class= "info">
           <em> {{post.numLikes + " Likes"}}</em>
           <em style="float: right;">{{post.numComments + " comments " + post.numShares + " shares"}}</em>
           <div class="line"></div>
@@ -39,15 +42,30 @@
               </div>
             </div>
           </div>
+          </div>
         </div>
 </template>
 
 <script>
+
+import HomeSidebar from "./Sidebar/HomeSidebar.vue";
+
+
 export default {
   name: "post-square",
-  props: ["post"],
-  // data() {
+  props: ["post"], 
+  // props: {
+  //   post
+  //   facebookLight 
+  // },
+   data() {
   //   return { deleted: false, accepted: false }
+    return {
+      facebookLight: HomeSidebar.facebookLight, //''
+    }
+   },
+  // components: {
+  //   HomeSidebar
   // },
   methods: {
     handleInterestedClick() {
@@ -154,9 +172,7 @@ em {
   text-align: center;
   /*background-color: green;*/
   margin: 10px;
-  
-  
-  
+    
   
 }
 
