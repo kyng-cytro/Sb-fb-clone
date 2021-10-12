@@ -34,7 +34,6 @@
   },
   data() {
     return {
-    //   emailAddresses: [],
       currentInvite: ""
     }
   },

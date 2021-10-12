@@ -6,12 +6,6 @@
       <ButtonsPreview v-else />
     </div>
     <EventDetails :event="this.event" :numInvited = "numInvited" :eventState="this.eventState" :invites="this.invites"/>
-  <PopupDialog v-show="this.popupTriggers['emailTrigger']" :inviteList="this.invites.email" :togglePopup="() => togglePopup('emailTrigger')">
-    <h3>Invite by email</h3>
-  </PopupDialog>
-  <PopupDialog v-show="this.popupTriggers['textTrigger']" :inviteList="this.invites.text" :togglePopup="() => togglePopup('textTrigger')">
-    <h3>Invite by text</h3>
-  </PopupDialog>
   <PopupDialog v-show="this.popupTriggers['friendsTrigger']" :inviteList="this.invites.friends" :togglePopup="() => togglePopup('friendsTrigger')">
     <h3>Invite your friends</h3>
   </PopupDialog>
@@ -39,8 +33,6 @@ export default {
   data() {
     return {
       popupTriggers: {
-        emailTrigger: false,
-        textTrigger: false,
         friendsTrigger: false
       },
       invites: {

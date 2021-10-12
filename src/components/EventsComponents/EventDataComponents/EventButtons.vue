@@ -3,17 +3,9 @@
         <hr/>
         <div id="container">
             <div id="buttons">
-                <button class="btn btn-secondary" @click="click('emailTrigger')">
-                    <i class="bi bi-envelope-fill"></i>
-                    Email
-                </button>
-                <button class="btn btn-secondary" @click="click('textTrigger')">
-                    <i class="bi bi-chat-right-text"></i>
-                    Text
-                </button>
                 <button class="btn btn-secondary" @click="click('friendsTrigger')">
-                    <i class="bi bi-facebook"></i>
-                    Friends
+                    <i class="bi bi-envelope-fill"></i>
+                    Invite
                 </button>
                 <button class="btn btn-secondary">
                     <i class="bi bi-pencil-fill"></i>
