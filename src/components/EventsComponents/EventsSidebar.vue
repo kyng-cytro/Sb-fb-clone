@@ -11,12 +11,28 @@
         <div v-else-if="eventState === 'editing'">
           <h1>{{stages[stage]}}</h1>
           <div v-if="stages[stage] === 'Event Details'">
-            <input v-model="eventName" placeholder="Event name" v-on:input="updateName">
-            <datepicker v-model="eventDate" :bootstrap-styling="true" v-on:input="updateDate">
-              <div slot="beforeCalendarHeader" class="calender-header">
+            <!-- The following commented out code is how the page looked before using material components -->
+            <div class="input">
+              <md-field>
+                <label>Event name</label>
+                <md-input v-model="eventName" md-counter="100"></md-input>
+              </md-field>
+            </div>
+            <!-- <input v-model="eventName" placeholder="Event name" v-on:input="updateName"> -->
+            <div id="dateAndTime">
+              <div class="input">
+                <md-datepicker style="width: 130px" v-model="eventDate" v-on:input="updateDate">
+                  <label>Start Date</label>
+                </md-datepicker>
               </div>
-            </datepicker>
-            <vue-timepicker v-model="eventTime" manual-input format="h:mm A" v-on:input="updateTime"></vue-timepicker>
+              <!-- <datepicker v-model="eventDate" :bootstrap-styling="true" v-on:input="updateDate">
+                <div slot="beforeCalendarHeader" class="calender-header">
+                </div>
+              </datepicker> -->
+              <div class="input">
+                <vue-timepicker v-model="eventTime" manual-input format="h:mm A" v-on:input="updateTime"></vue-timepicker>
+              </div>
+            </div>
           </div>
           <div v-else-if="stages[stage] === 'Location'">
               <textarea v-model="eventLocation" v-on:input="updateLocation" placeholder="Location"></textarea>
@@ -35,15 +51,22 @@
 
 <script>
 import PageSidebarButton from "@/components/PageSidebarButton.vue";
-import Datepicker from 'vuejs-datepicker';
+// import Datepicker from 'vuejs-datepicker';
 import VueTimepicker from 'vue2-timepicker/src/vue-timepicker.vue'
 
+//MATERIAL IMPORTS:
+import Vue from 'vue'
+import VueMaterial from 'vue-material'
+import 'vue-material/dist/vue-material.min.css'
+import 'vue-material/dist/theme/default.css'
+
+Vue.use(VueMaterial)
 
 export default {
   name: "EventsSidebar",
   components: {
     PageSidebarButton,
-    Datepicker,
+    // Datepicker,
     VueTimepicker
   },
   methods: {
@@ -111,6 +134,26 @@ export default {
   box-shadow: 3px 3px 3px rgb(232, 232, 232);
   width: 350px;
   padding: 10px;
+}
+
+.input {
+  padding: 10px;
+  margin: 10px;
+  /* height: 30px; */
+  border-radius: 5px;
+  border:1px solid rgb(231, 231, 231);
+}
+
+.input:hover {
+  border:1px solid rgb(196, 196, 196);
+}
+
+#dateAndTime {
+  display: flex;
+}
+
+md-datepicker {
+  width: 1px;
 }
 
 #createNewEventButton {
