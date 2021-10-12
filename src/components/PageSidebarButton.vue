@@ -16,6 +16,12 @@
                 <div v-else-if="iconName == 'notifications'">
                   <img class= "sidebar-button-icon" style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/YAs-iG3Ba3Q.png'); background-position: 0px -283px; background-size: auto; width: 20px; height: 21px; background-repeat: no-repeat; display: inline-block;">
                 </div>
+                <div v-else-if="iconName == 'friendRequest'">
+                  <img class= "sidebar-button-icon" style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yn/r/PbS2X31JOmQ.png'); background-position: 0px -214px; background-size: 26px 626px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;">
+                </div>
+                <div v-else-if="iconName == 'suggestion'">
+                  <img class= "sidebar-button-icon" style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yn/r/PbS2X31JOmQ.png'); background-position: 0px -170px; background-size: 26px 626px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;">
+                </div>
               </td>
               <td>
                <p>{{text}}</p>

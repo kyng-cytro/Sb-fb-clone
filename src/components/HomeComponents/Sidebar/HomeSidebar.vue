@@ -8,7 +8,7 @@
         <p>Enable Facebook Lite  </p>
       </td>
       <td>
-        <input type="checkbox" id="checkbox" v-model="facebookLight">
+        <input type="checkbox" id="checkbox" v-on:click="fbLight" v-model="facebookLight">
       </td>
     </tr>
     <SidebarButton type="friends" />
@@ -34,6 +34,11 @@
     data() {
       return {
         facebookLight: false,
+      }
+    },
+    methods: {
+      passToParent(){
+        this.$emit(this.facebookLight)
       }
     }
   }

@@ -17,27 +17,32 @@ import PostSquare from './PostSquare.vue';
 const posts = [
   {
     imgSrc: "basket.jpg",
-    name: "Basket Weaving",
-    text: "Come join our Basket Weaving on firday",
+    name: "John Smith",
+    //name: "Basket Waaving",
+    text: "I've been Weaving Basket",
     date: "FRI, DEC 24 AT 5PM MST",
-    numInterested: 21,
-    numGoing: 52
+    numComments: 21,
+    numShares: 2,
+    numLikes: 52
   },
   {
     imgSrc: "chiliCookOff.jpg",
-    name: "Chili Cookoff",
-    text: " Come try our chili",
+    name: "Jane Smith",
+   // name: "Chili Cookoff",
+    text: " Come get warm by our chili",
     date: "FRI, DEC 24 AT 5PM MST",
-    numInterested: "9.3K",
-    numGoing: 523
+    numComments: 20,
+    numShares: 5,
+    numLikes: 523
   },
   {
     imgSrc: "library.jpg",
     name: "Reading Club",
     text: " Read your book in our nook",
     date: "FRI, DEC 24 AT 5PM MST",
-    numInterested: 23,
-    numGoing: 7
+    numComments: 23,
+    numShares: 7,
+    numLikes: "9.3k"
   },
 ];
 
@@ -59,11 +64,16 @@ export default {
 
 <style scoped>
 .postDisplay {
+  justify-content: left;
+  align-items: left;
+  width: inherit;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
 }
 .square {
+
+  float: left;
   padding: 5px;
 }
 

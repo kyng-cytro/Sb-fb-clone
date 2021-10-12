@@ -1,10 +1,15 @@
 <template>
   <div class="home">
-     <HomeSidebar />
+     <HomeSidebar @change="fbLight($facebookLight)"/>
       <div class = "content">
         <!-- <p>This is where the posts will go!</p> -->
         <PostDisplay />
+        <div v-if="facebookLight">
+          HelloWorld
+        </div>
       </div>
+
+      
   </div>
 
 </template>
@@ -17,10 +22,20 @@ import PostDisplay from "@/components/HomeComponents/PostDisplay.vue";
 
 export default {
   name: "Home",
+  data() {
+    return {
+    facebookLight: false
+    }
+  },
   components: {
     HomeSidebar,
     PostDisplay
   },
+  methods:{
+    fblight(value){
+      this.facebookLight = value
+    }
+  }
 };
 </script>
 
@@ -34,16 +49,19 @@ export default {
     left: 0.1; */
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  /*justify-content: space-between; */
   flex-flow: row;
   background: rgb(244, 246, 247);
 }
 
 .content {
+  /*position: absolute;
+  left: 300px;*/
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
+  margin-left: 100px;
 }
 
 

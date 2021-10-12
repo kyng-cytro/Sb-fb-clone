@@ -1,28 +1,71 @@
 <template>
         <div class="postSquare">
+          <div class= "header">
+            <span class="dot"> </span>
+            
+            <strong id="nameHeader">{{post.name}}</strong>    
+            </div> 
+
+            <p  id="text">{{post.text}}</p>
+          
+
           <img class="eventPic" :src="require('@/assets/images/EventImages/' + post.imgSrc)" />
           <div class="info">
-          <strong id="date">{{post.date}}</strong>
-          <br />
-          <strong id="name">{{post.name}}</strong>
-          <br />
-          <strong id="text">{{post.text}}</strong>
-          <br />
-          <em>{{post.numInterested + " Interested · " + post.numGoing + " Going"}}</em>
-            <div>
-              <button type="button" v-on:click="handleInterestedClick" class="btn btn-secondary">Interested</button>
-              <button type="button" class="btn btn-secondary">Share</button>
+         <!-- <strong id="date">{{post.date}}</strong>
+          <br /> -->
+         <!-- <strong id="name">{{post.name}}</strong>
+          <br /> -->
+        <img src="https://scontent.xx.fbcdn.net/m1/v/t6/An8ODe1zojZFxtkCySvD_PWHUfwwSqPRWxNfZiVRQtoYgVOHHeQxpmcNcbugcbUbDZvtBac7oXZXBUiZytVCug9oYjJureLV-72SKTQ6uZ2bhOnT.png?ccb=10-5&oh=46181cacd09dafe23b296bbd8368ad2d&oe=6161C011&_nc_sid=55e238" style="height: 20px; width: 20px;">
+        
+
+
+         <div v-if="!facebookLight" class= "info">
+          <em> {{post.numLikes + " Likes"}}</em>
+          <em style="float: right;">{{post.numComments + " comments " + post.numShares + " shares"}}</em>
+          <div class="line"></div>
+            <div class ="Buttons">
+              <div>
+                               
+              <button type="button" v-on:click="handleInterestedClick" class="btn btn-secondary">
+                <img  style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png');background-position:0 -320px;background-size:26px 1060px;width:18px;height:18px;background-repeat:no-repeat;display:inline-block">
+                Like</button>
+              </div>
+              <div>
+              <button type="button" class="btn btn-secondary">
+                 <img style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png');background-position:0 -280px;background-size:26px 1060px;width:18px;height:18px;background-repeat:no-repeat;display:inline-block">
+                Comment</button>
+              </div>
+              <div>
+              <button type="button" class="btn btn-secondary">
+                 <img  style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png'); background-position: 0px -340px; background-size: 26px 1060px; width: 18px; height: 18px; background-repeat: no-repeat; display: inline-block;">
+                Share</button>
+              </div>
             </div>
+          </div>
           </div>
         </div>
 </template>
 
 <script>
+
+import HomeSidebar from "./Sidebar/HomeSidebar.vue";
+
+
 export default {
   name: "post-square",
-  props: ["post"],
-  // data() {
+  props: ["post"], 
+  // props: {
+  //   post
+  //   facebookLight 
+  // },
+   data() {
   //   return { deleted: false, accepted: false }
+    return {
+      facebookLight: HomeSidebar.facebookLight, //''
+    }
+   },
+  // components: {
+  //   HomeSidebar
   // },
   methods: {
     handleInterestedClick() {
@@ -36,7 +79,7 @@ export default {
 <style scoped>
 .postSquare {
   /* box-shadow: 0px 0px 3px; */
-  width: 100%;
+  width: 400px;
   border-radius: 10px;
   margin: 10%;
   /* padding: 10%; */
@@ -46,10 +89,10 @@ export default {
 }
 
 .eventPic {
-  width: 350px;
+  width: 400px;;
   height: 180px;
   object-fit: cover; /*This makes it so the image is cropped instead of squished */
-  border-radius: 10px 10px 0px 0px;
+  /*border-radius: 10px 10px 0px 0px;*/
 }
 
 .info {
@@ -60,17 +103,45 @@ export default {
   text-decoration: underline;
 }
 
+.Buttons{
+  display: flex;
+   flex-direction: row;
+   flex: 33%;
+   justify-content: space-between;
+}
+
 button {
-  width: 90%;
+  width: 120px;
+  margin: 2%;
+  font-weight: bold;
+  font-size: .9em;
+  
+  
+}
+/*
+.btn-secondary {
+  color: black;
+  background-color: white; /*hsl(0, 0%, 92%);
+  border: 0px
+}
+*/
+.btn-secondary {
+  color: black;
+
+  background-color: hsl(0, 0%, 92%);
+  border: 0px;
+  border-radius: 6px;
   margin: 2%;
   font-weight: bold;
   font-size: .9em;
 }
-
-.btn-secondary {
+.btn-secondary:hover {
   color: black;
-  background-color: hsl(0, 0%, 92%);
-  border: 0px
+  background-color: hsl(0, 0%, 82%);
+  transition: 0.3s;
+}
+.btn-secondary:focus {
+  outline-color: hsl(0, 0%, 92%);
 }
 
 .invisible {
@@ -90,6 +161,56 @@ button {
 em {
   color: rgb(111, 111, 111);
   font-size: .9em;
+}
+
+.header {
+  /*background-color: yellow;*/
+  flex-direction: column;
+}
+
+#nameHeader {
+  text-align: center;
+  /*background-color: green;*/
+  margin: 10px;
+    
+  
+}
+
+#personPic {
+  flex-direction: inherit;
+  margin: 10px;
+  height: 25px;
+  width: 25px;
+  
+  background-color: #bbb;
+}
+
+.dot {
+  margin-left:10px;
+  margin-top: 10px;
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%; 
+  display: inline-block;
+
+  float: left;
+}
+
+.line {
+   border-bottom: 1px solid #bbb;
+
+   padding: 3px;
+
+
+}
+
+p#text {
+  /*margin:10px;*/
+  margin-top: 10px;
+  margin-left: 15px; 
+  
+
 }
 
 </style>

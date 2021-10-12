@@ -4,6 +4,9 @@
         <div class="container">
           <div class = "sidebar-buttons-container">
             <PageSidebarButton iconName="home" text="Home" />
+            <PageSidebarButton iconName="friendRequest" text="Friend Request" />
+            <PageSidebarButton iconName="suggestion" text="Suggestions" />
+            <PageSidebarButton iconName="birthdays" text="Birthdays" />
           </div>
         </div>
       </nav>
