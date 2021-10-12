@@ -6,9 +6,9 @@
       <ButtonsPreview v-else />
     </div>
     <EventDetails :event="this.event" :numInvited = "numInvited" :eventState="this.eventState" :invites="this.invites"/>
-  <PopupDialog v-show="this.popupTriggers['friendsTrigger']" :inviteList="this.invites.friends" :togglePopup="() => togglePopup('friendsTrigger')">
-    <h3>Invite your friends</h3>
-  </PopupDialog>
+    <PopupDialog v-show="this.popupTriggers['friendsTrigger']" :togglePopup="() => togglePopup('friendsTrigger')" header="Invite">
+      <Invite :inviteList="this.invites.friends"/>
+    </PopupDialog>
   </div>
 </template>
 
@@ -19,6 +19,7 @@ import EventDataHeaderInfo from './EventDataComponents/EventDataHeaderInfo.vue'
 import EventDetails from './EventDataComponents/EventDetails.vue'
 import ButtonsPreview from './EventDataComponents/ButtonsPreview.vue'
 import EventButtons from './EventDataComponents/EventButtons.vue'
+import Invite from './DialogBoxes/InviteComponents/Invite.vue'
 
 export default {
   name: "Events",
@@ -27,7 +28,8 @@ export default {
     EventDataHeaderInfo,
     EventDetails,
     ButtonsPreview,
-    EventButtons
+    EventButtons,
+    Invite
   },
   props: ["event", "eventState"],
   data() {
@@ -46,6 +48,7 @@ export default {
   methods: {
     togglePopup(trigger) {
       //Invert the value passed in with trigger
+      console.log("I clicked ");
       this.popupTriggers[trigger] = !this.popupTriggers[trigger];
     }
   },

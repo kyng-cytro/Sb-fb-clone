@@ -1,42 +1,20 @@
 <template>
     <div class="popup">
         <div class="popup-inner">
+            <div class="header">
+                <h2>{{header}}</h2>
+                <div class="close">
+                    <button @click="togglePopup()">×</button>
+                </div>
+            </div>
             <slot />
-    <div class="header">
-    <div class="close">
-        <button @click="togglePopup()">×</button>
-    </div>
-    </div>
-    <div class="content">
-    <ul>
-        <li v-for="invite in this.inviteList" :key="invite">
-            {{invite}}
-        </li>
-    </ul>
-    <p>Email to</p>
-    <input v-model="currentInvite" @keypress.enter="newInvite()">
         </div>
-    </div>
     </div>
 </template>
 
 <script>
-    export default {
-    props: ['togglePopup', 'inviteList'],
-    methods: {
-        newInvite() {
-            console.log("You just entered the email: " + this.currentEmail);
-            this.inviteList.push(this.currentInvite);
-            this.currentInvite = "";
-    }
-  },
-  components: {
-  },
-  data() {
-    return {
-      currentInvite: ""
-    }
-  },
+export default {
+    props: ['togglePopup', 'header']
 }
 </script>
 
