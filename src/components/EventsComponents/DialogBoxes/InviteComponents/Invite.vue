@@ -1,14 +1,20 @@
 <template>
-    <div class="content">
-        <InviteFriends :invitedFriends="this.inviteList.friends"/>
-        <InviteNonFacebook :invitedByEmail="this.inviteList.emails" :invitedByText="this.inviteList.texts"/>
-        <input v-model="currentInvite" @keypress.enter="newInvite()">
+    <div id="invite">
+        <div>
+            <InviteFriends :invitedFriends="this.inviteList.friends"/>
+            <InviteNonFacebook :invitedByEmail="this.inviteList.emails" :invitedByText="this.inviteList.texts"/>
+            <input v-model="currentInvite" @keypress.enter="newInvite()">
+        </div>
+        <div>
+            <InvitesLeft :invites="this.inviteList"/>
+        </div>
     </div>
 </template>
 
 <script>
-import InviteFriends from "./InviteFriends.vue"
-import InviteNonFacebook from "./InviteNonFacebook.vue"
+import InviteFriends from "./InviteFriends.vue";
+import InviteNonFacebook from "./InviteNonFacebook.vue";
+import InvitesLeft from "./InvitesLeft.vue";
 export default {
     props: ['inviteList'],
     methods: {
@@ -21,6 +27,7 @@ export default {
         components: {
             InviteFriends,
             InviteNonFacebook,
+            InvitesLeft,
         },
         data() {
             return {
@@ -30,6 +37,8 @@ export default {
     }
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+#invite {
+    display: flex;
+}
 </style>

@@ -46,11 +46,13 @@ export default {
 .header {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 15px;
 }
 
 #headerContainer {
+    display: flex;
     text-align: center;
+    width: 100%;
 }
 
 button {
@@ -61,5 +63,15 @@ button {
     background-color: rgb(228,230,235);
     border-width: 0px;
     font-size: 0.8em;
+}
+
+h2 {
+    margin: auto;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+hr {
+    margin: 0px;
 }
 </style>
