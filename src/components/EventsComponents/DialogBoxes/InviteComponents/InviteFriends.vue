@@ -8,7 +8,7 @@
             </div>
         </div>
         <div id="friendSelectionContainer">
-            <InviteFriendsSidebarSuggestions />
+            <InviteFriendsSidebar />
             <InviteFriendsList />
         </div>
     </div>
@@ -16,12 +16,12 @@
 
 <script>
 import InviteFriendsList from "./InviteFriendsList.vue";
-import InviteFriendsSidebarSuggestions from "./InviteFriendsSidebarSuggestions.vue"
+import InviteFriendsSidebar from "./InviteFriendsSidebar.vue"
     export default {
         props: ['invitedFriends'],
         components: {
             InviteFriendsList,
-            InviteFriendsSidebarSuggestions 
+            InviteFriendsSidebar
         }
     }
 </script>
