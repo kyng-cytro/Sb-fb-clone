@@ -5,7 +5,7 @@
                 Select All
             </button>
             <div v-for="friend in friends" :key="friend.name" class="selectRectangle">
-                <InviteFriendsListItem v-bind:friend="friend"/>
+                <InviteFriendsListItem @selected="select" @deselected="deselect" v-bind:friend="friend"/>
             </div>
         </div>
 
@@ -29,8 +29,8 @@ const friends = [
     numOfMutualFriends: 21,
   },
   {
-    imgSrc: "anson.jpg",
-    name: "Anson",
+    imgSrc: "xinru.jpg",
+    name: "Xinru",
     daysUntilExpiration: 29,
     numOfMutualFriends: 21,
   },
@@ -41,7 +41,23 @@ const friends = [
         },
         data() {
             return {
-                friends
+                friends,
+                selectedFriends: [],
+            }
+        },
+        methods: {
+            select(friend) {
+                this.selectedFriends.push(friend);
+                console.log(this.selectedFriends);
+            },
+            deselect(friend) {
+                let index = this.selectedFriends.indexOf(friend);
+                if (index > -1) {
+                    this.selectedFriends.splice(index, 1);
+                } else {
+                    console.log("This item was not found in the list!");
+                }
+                console.log(this.selectedFriends);
             }
         }
     }

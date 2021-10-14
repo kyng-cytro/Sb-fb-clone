@@ -22,6 +22,11 @@
         methods: {
             select() {
                 this.selected = !this.selected;
+                if(this.selected) {
+                    this.$emit('selected', this.friend);
+                } else {
+                    this.$emit('deselected', this.friend);
+                }
             }
         }
     }
