@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import InviteFriends from "./InviteFriends.vue";
+import InviteFriends from "./InviteFriends/InviteFriends.vue";
 import InviteNonFacebook from "./InviteNonFacebook.vue";
 import InvitesLeft from "./InvitesLeft.vue";
 export default {

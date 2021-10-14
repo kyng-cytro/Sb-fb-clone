@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import InviteFriendsList from "./InviteFriendsList.vue";
-import InviteFriendsSidebar from "./InviteFriendsSidebar.vue"
+import InviteFriendsList from "../InviteFriends/InviteFriendsList.vue";
+import InviteFriendsSidebar from "../InviteFriends/InviteFriendsSidebar.vue"
     export default {
         props: ['invitedFriends'],
         components: {
