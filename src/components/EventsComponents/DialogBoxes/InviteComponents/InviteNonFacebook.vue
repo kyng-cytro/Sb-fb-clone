@@ -1,9 +1,6 @@
 <template>
     <div>
         <ul>
-            <li v-for="invite in this.inviteList" :key="invite">
-                {{invite}}
-            </li>
         </ul>
     </div>
 </template>

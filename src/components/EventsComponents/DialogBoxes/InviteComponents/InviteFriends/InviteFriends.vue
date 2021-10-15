@@ -26,7 +26,7 @@ import InviteFriendsSidebar from "../InviteFriends/InviteFriendsSidebar.vue"
     }
 </script>
 
-<style>
+<style scoped>
 .container {
     padding: 15px;
 }

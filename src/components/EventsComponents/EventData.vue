@@ -8,7 +8,7 @@
     <PopulateFriends />
     <EventDetails :event="this.event" :numInvited = "numInvited" :eventState="this.eventState" :invites="this.invites"/>
     <PopupDialog v-show="this.popupTriggers['friendsTrigger']" :togglePopup="() => togglePopup('friendsTrigger')" header="Invite">
-      <Invite :inviteList="this.invites.friends"/>
+      <Invite />
     </PopupDialog>
   </div>
 </template>

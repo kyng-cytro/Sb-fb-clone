@@ -1,12 +1,11 @@
 <template>
-    <div class="container" v-on:click="select">
+    <div class="container">
         <div class="verticalAlign">
             <img :src="require('@/assets/images/FriendProfilePics/' + friend.imgSrc)"/>
-            <p v-bind:class="{bold: this.selected}">{{friend.name}}</p>
+            <p>{{friend.name}}</p>
         </div>
         <div class="verticalAlign">
-            <i v-if="!this.selected" class="bi bi-circle"></i>    
-            <i v-else class="bi bi-check-circle-fill selectedCheck"></i>
+            <i @click="remove" class="bi bi-x-lg"></i>
         </div>
     </div>
 </template>
@@ -17,20 +16,15 @@ import Friend from "@/classes/friend.js";
     export default {
         props: ['friend'],
         methods: {
-            select() {
+            remove() {
                 Friend.update({
                     where: this.friend.id,
                     data: {
-                        selected: !this.selected
+                        selected: false,
                     }
                 });
             }
         },
-        computed: {
-            selected() {
-                return this.friend.selected;
-            }
-        }
     }
 </script>
 
@@ -39,18 +33,20 @@ import Friend from "@/classes/friend.js";
     display: flex;
     justify-content: space-between;
     padding: 0px;
+    height: 20px;
+    margin-top: 20px;
 }
 .verticalAlign {
     display: flex;
     padding: 0px;
-    height: 40px;
-    line-height: 45px;
+    height: 30px;
+    line-height: 30px;
     text-align: center;
 }
 
 img {
-    width: 37px;
-    height: 37px;
+    width: 25px;
+    height: 25px;
     object-fit: cover; /*This makes it so the image is cropped instead of squished */
     border-radius: 50%;
     margin-top: 5px;

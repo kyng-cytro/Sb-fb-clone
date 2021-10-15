@@ -44,6 +44,8 @@ export default {
         for (let i = 0; i < friendExampleList.length; i++) {
             Friend.insert({data: friendExampleList[i]});
         }
+        //Todo: should be able to replace this with:
+        // Friend.insert({data: friendExampleList});
     },
     methods: {
         addFriend() {

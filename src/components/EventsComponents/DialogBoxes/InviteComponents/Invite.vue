@@ -1,12 +1,12 @@
 <template>
     <div id="invite">
         <div>
-            <InviteFriends :invitedFriends="this.inviteList.friends"/>
-            <InviteNonFacebook :invitedByEmail="this.inviteList.emails" :invitedByText="this.inviteList.texts"/>
+            <InviteFriends />
+            <InviteNonFacebook />
             <input v-model="currentInvite" @keypress.enter="newInvite()">
         </div>
         <div>
-            <InvitesLeft :invites="this.inviteList"/>
+            <InvitesLeft />
         </div>
     </div>
 </template>
@@ -16,11 +16,10 @@ import InviteFriends from "./InviteFriends/InviteFriends.vue";
 import InviteNonFacebook from "./InviteNonFacebook.vue";
 import InvitesLeft from "./InvitesLeft.vue";
 export default {
-    props: ['inviteList'],
     methods: {
         newInvite() {
             console.log("You just entered the email: " + this.currentEmail);
-                this.inviteList.push(this.currentInvite);
+                // this.inviteList.push(this.currentInvite);
                 this.currentInvite = "";
             }
         },

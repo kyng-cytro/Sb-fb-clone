@@ -11,17 +11,17 @@
         <p>{{event.description}}</p>
       </div>
       <div id="previewBox">
-        <EventAttendance :numInvited="numInvited" :eventState="eventState" :invites="this.invites"/>
+        <!-- <EventAttendance :numInvited="numInvited" :eventState="eventState" :invites="this.invites"/> -->
       </div>
     </div>
 </template>
 
 <script>
-import EventAttendance from "./EventAttendance.vue"
-
+// import EventAttendance from "./EventAttendance.vue"
+//Todo: restore the EventAttendance component
 export default {
     components: {
-        EventAttendance
+        // EventAttendance
     },
     props: ['event', 'numInvited', 'eventState', "invites"]
 }

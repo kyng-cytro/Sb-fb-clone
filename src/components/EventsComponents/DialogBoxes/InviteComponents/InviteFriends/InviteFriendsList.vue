@@ -4,8 +4,8 @@
             <button id="selectAll" class="selectRectangle">
                 Select All
             </button>
-            <div v-for="friend in friends" :key="friend.name" class="selectRectangle">
-                <InviteFriendsListItem @selected="select" @deselected="deselect" v-bind:friend="friend"/>
+            <div v-for="friend in friends" :key="friend.id" class="selectRectangle">
+                <InviteFriendsListItem v-bind:friend="friend"/>
             </div>
         </div>
 
@@ -14,50 +14,22 @@
 
 <script>
 import InviteFriendsListItem from './InviteFriendsListItem.vue';
+import Friend from "@/classes/friend.js";
 
-const friends = [
-  {
-    imgSrc: "businessMan.jpg",
-    name: "Miles",
-    daysUntilExpiration: 29,
-    numOfMutualFriends: 21,
-  },
-  {
-    imgSrc: "anson.jpg",
-    name: "Anson",
-    daysUntilExpiration: 29,
-    numOfMutualFriends: 21,
-  },
-  {
-    imgSrc: "xinru.jpg",
-    name: "Xinru",
-    daysUntilExpiration: 29,
-    numOfMutualFriends: 21,
-  },
-];
     export default {
         components: {
             InviteFriendsListItem
         },
         data() {
             return {
-                friends,
                 selectedFriends: [],
             }
         },
         methods: {
-            select(friend) {
-                this.selectedFriends.push(friend);
-                console.log(this.selectedFriends);
-            },
-            deselect(friend) {
-                let index = this.selectedFriends.indexOf(friend);
-                if (index > -1) {
-                    this.selectedFriends.splice(index, 1);
-                } else {
-                    console.log("This item was not found in the list!");
-                }
-                console.log(this.selectedFriends);
+        },
+        computed: {
+            friends() {
+                return Friend.all();
             }
         }
     }
@@ -65,7 +37,7 @@ const friends = [
 
 <style scoped>
 .container {
-    width: 400px;
+    width: 350px;
 }
 .selectRectangle {
     background-color:transparent;
