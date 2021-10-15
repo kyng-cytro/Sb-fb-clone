@@ -26,7 +26,7 @@ export default {
         click(trigger) {
             this.$emit('buttonClick', trigger);
         }
-    }
+    },
 }
 </script>
 

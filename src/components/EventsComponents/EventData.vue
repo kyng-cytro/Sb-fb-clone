@@ -5,6 +5,7 @@
       <EventButtons v-if="eventState==='eventCreated'" v-on:buttonClick="togglePopup"/>
       <ButtonsPreview v-else />
     </div>
+    <VuexTest />
     <EventDetails :event="this.event" :numInvited = "numInvited" :eventState="this.eventState" :invites="this.invites"/>
     <PopupDialog v-show="this.popupTriggers['friendsTrigger']" :togglePopup="() => togglePopup('friendsTrigger')" header="Invite">
       <Invite :inviteList="this.invites.friends"/>
@@ -20,6 +21,7 @@ import EventDetails from './EventDataComponents/EventDetails.vue'
 import ButtonsPreview from './EventDataComponents/ButtonsPreview.vue'
 import EventButtons from './EventDataComponents/EventButtons.vue'
 import Invite from './DialogBoxes/InviteComponents/Invite.vue'
+import VuexTest from './VuexTest.vue'
 
 export default {
   name: "Events",
@@ -29,7 +31,8 @@ export default {
     EventDetails,
     ButtonsPreview,
     EventButtons,
-    Invite
+    Invite,
+    VuexTest
   },
   props: ["event", "eventState"],
   data() {
