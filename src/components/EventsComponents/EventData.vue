@@ -7,8 +7,13 @@
     </div>
     <PopulateFriends />
     <EventDetails :event="this.event" :numInvited = "numInvited" :eventState="this.eventState" :invites="this.invites"/>
-    <PopupDialog v-show="this.popupTriggers['friendsTrigger']" :togglePopup="() => togglePopup('friendsTrigger')" header="Invite">
-      <Invite />
+    <PopupDialog maxHeight="500px" v-show="this.popupTriggers['friendsTrigger']" :togglePopup="() => togglePopup('friendsTrigger')" header="Invite">
+      <template v-slot:content>
+        <Invite />
+      </template>
+      <template v-slot:footer>
+        <InviteFooter />
+      </template>
     </PopupDialog>
   </div>
 </template>
@@ -21,6 +26,7 @@ import EventDetails from './EventDataComponents/EventDetails.vue'
 import ButtonsPreview from './EventDataComponents/ButtonsPreview.vue'
 import EventButtons from './EventDataComponents/EventButtons.vue'
 import Invite from './DialogBoxes/InviteComponents/Invite.vue'
+import InviteFooter from './DialogBoxes/InviteComponents/InviteFooter.vue'
 import PopulateFriends from './PopulateFriends.vue'
 
 export default {
@@ -32,6 +38,7 @@ export default {
     ButtonsPreview,
     EventButtons,
     Invite,
+    InviteFooter,
     PopulateFriends
   },
   props: ["event", "eventState"],

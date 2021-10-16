@@ -2,6 +2,7 @@
     <div id="invite">
         <div>
             <InviteFriends />
+            <hr />
             <InviteNonFacebook />
         </div>
         <div>

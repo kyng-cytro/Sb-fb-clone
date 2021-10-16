@@ -12,14 +12,29 @@
                 </div>
             </div>
             <hr />
-            <slot />
+            <div v-bind:style="contentStyles">
+                <slot name="content"> </slot>
+            </div>
+            <hr />
+            <div>
+                <slot name="footer"></slot>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    props: ['togglePopup', 'header']
+    props: ['togglePopup', 'header', 'maxHeight'],
+    created() {
+            console.log(`background-color: white; border-radius: 8px; box-shadow: 0px 0px 16px 8px #dadada; max-height: ` + this.maxHeight);
+    },
+    computed: {
+        contentStyles() {
+            return `overflow-y: scroll;
+            max-height: ` + this.maxHeight;
+        }
+    }
 }
 </script>
 
@@ -54,6 +69,7 @@ export default {
     text-align: center;
     width: 100%;
 }
+
 
 button {
     width: 40px;
