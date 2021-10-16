@@ -5,12 +5,16 @@
             <div v-for="friend in selectedFriends" :key="friend.key">
                 <InvitesLeftListItem :friend="friend"/>
             </div>
+            <div v-for="emailFriend in emailFriends" :key="emailFriend.key">
+                {{emailFriend.name}}
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 import Friend from "@/classes/friend.js";
+import NonFacebookFriend from "@/classes/nonFacebookFriend.js";
 import InvitesLeftListItem from "./InvitesLeftListItem.vue";
 
     export default {
@@ -30,6 +34,12 @@ import InvitesLeftListItem from "./InvitesLeftListItem.vue";
            remainingInvites() {
                return this.maxInvites - this.selectedFriends.length;
            },
+           emailFriends() {
+               return NonFacebookFriend.query().where('email', (email) => email !== '').get();
+           },
+           phoneFriends() {
+               return NonFacebookFriend.query().where('phone', (phone) => phone !== '').get();
+           }
        }
     }
 </script>
