@@ -1,7 +1,14 @@
 <template>
     <div class="container">
         <div class="verticalAlign">
-            <img :src="require('@/assets/images/FriendProfilePics/' + friend.imgSrc)"/>
+            <!-- If the user is a facebook user: -->
+            <img v-if="this.isFacebookUser" :src="require('@/assets/images/FriendProfilePics/' + friend.imgSrc)"/>
+
+            <!-- If they are an email user -->
+            <img v-else-if="this.friend.email" :src="require('@/assets/images/ListIcons/at.png')"/>
+
+            <!-- If they are a phone user -->
+            <img v-else :src="require('@/assets/images/ListIcons/text.png')"/>
             <p>{{friend.name}}</p>
         </div>
         <div class="verticalAlign">
@@ -12,17 +19,24 @@
 
 <script>
 import Friend from "@/classes/friend.js";
+import NonFacebookFriend from "@/classes/nonFacebookFriend.js";
 
     export default {
-        props: ['friend'],
+        props: ['friend', 'isFacebookUser'],
         methods: {
             remove() {
-                Friend.update({
-                    where: this.friend.id,
-                    data: {
-                        selected: false,
-                    }
-                });
+                //If this is a facebook friend, remove it the normal way
+                if(this.isFacebookUser) {
+                    Friend.update({
+                        where: this.friend.id,
+                        data: {
+                            selected: false,
+                        }
+                    });
+                }
+                else { //Otherwise
+                NonFacebookFriend.delete(this.friend.id);
+                }
             }
         },
     }
@@ -50,6 +64,10 @@ img {
     object-fit: cover; /*This makes it so the image is cropped instead of squished */
     border-radius: 50%;
     margin-top: 5px;
+}
+
+p i {
+    padding-left: -15px;
 }
 
 p {

@@ -6,7 +6,7 @@
       <ButtonsPreview v-else />
     </div>
     <PopulateFriends />
-    <EventDetails :event="this.event" :numInvited = "numInvited" :eventState="this.eventState" :invites="this.invites"/>
+    <EventDetails :event="this.event" :eventState="this.eventState" />
     <PopupDialog maxHeight="500px" v-show="this.popupTriggers['friendsTrigger']" :togglePopup="() => togglePopup('friendsTrigger')" header="Invite">
       <template v-slot:content>
         <Invite />
@@ -47,30 +47,14 @@ export default {
       popupTriggers: {
         friendsTrigger: false
       },
-      invites: {
-        emails: [],
-        texts: [],
-        friends: []
-      }
-
     }
   },
   methods: {
     togglePopup(trigger) {
       //Invert the value passed in with trigger
-      console.log("I clicked ");
       this.popupTriggers[trigger] = !this.popupTriggers[trigger];
     }
   },
-  computed: {
-    numInvited: function() {
-      // let num = 0;
-      // for (let i = 0; i < invites.length; i++) {
-      //   num += invites[i]
-      // }
-      return this.invites.emails.length + this.invites.texts.length + this.invites.friends.length
-    }
-  }
 };
 </script>
 

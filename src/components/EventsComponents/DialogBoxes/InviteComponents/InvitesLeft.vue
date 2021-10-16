@@ -3,10 +3,13 @@
         <div>
             <p>{{remainingInvites}} INVITES LEFT</p>
             <div v-for="friend in selectedFriends" :key="friend.key">
-                <InvitesLeftListItem :friend="friend"/>
+                <InvitesLeftListItem :friend="friend" :isFacebookUser="true"/>
             </div>
             <div v-for="emailFriend in emailFriends" :key="emailFriend.key">
-                {{emailFriend.name}}
+                <InvitesLeftListItem :friend="emailFriend" :isFacebookUser="false"/>
+            </div>
+            <div v-for="phoneFriend in phoneFriends" :key="phoneFriend.key">
+                <InvitesLeftListItem :friend="phoneFriend" :isFacebookUser="false"/>
             </div>
         </div>
     </div>
@@ -39,6 +42,12 @@ import InvitesLeftListItem from "./InvitesLeftListItem.vue";
            },
            phoneFriends() {
                return NonFacebookFriend.query().where('phone', (phone) => phone !== '').get();
+           },
+           onlyEmailFriends() {
+               return this.emailFriends.filter(x => !this.phoneFriends.includes(x));
+           },
+           onlyPhoneFriends() {
+               return this.phoneFriends.filter(x => !this.emailFriends.includes(x));
            }
        }
     }
