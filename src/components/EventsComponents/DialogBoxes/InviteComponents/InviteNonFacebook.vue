@@ -1,13 +1,23 @@
 <template>
     <div class="container">
-        <h3>Invite non Facebook users</h3>
+        <p>Want to invite friends not on Facebook? No problem!</p>
         <md-field>
-            <label>Enter name</label>
+            <label>Name</label>
             <md-input v-model="name"></md-input>
-            <span class="md-helper-text">Helper text</span>
+            <span class="md-helper-text">Required</span>
         </md-field>
-        <ul>
-        </ul>
+        <div class="info">
+            <md-field>
+                <label>Phone number</label>
+                <md-input v-model="phoneNumber"></md-input>
+            </md-field>
+            <p id="orText"> or </p>
+            <md-field>
+                <label>Email</label>
+                <md-input v-model="email"></md-input>
+            </md-field>
+            <button @click="addNonFacebookFriend">Add</button>
+        </div>
     </div>
 </template>
 
@@ -25,12 +35,53 @@ Vue.use(VueMaterial)
                 email: '',
                 phoneNumber: '',
             }
+        },
+        methods: {
+            addNonFacebookFriend() {
+                
+            }
         }
     }
 </script>
 
 <style scoped>
 .container {
-    padding: 15px;
+    padding: 20px;
+    padding-left: 30px;
+}
+p {
+    color: grey;
+    font-style: italic;
+}
+#orText {
+    padding: 20px;
+    padding-top: 30px
+}
+
+.info {
+    padding-left: 30px;
+    display: flex;
+}
+button {
+    background-color: rgb(59, 138, 241);
+    color: white;
+    padding: 12px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 10px;
+    border-width: 0px;
+    outline: none;
+    align-self: flex-end;
+    margin: 20px;
+}
+
+button:hover {
+    background-color: rgb(125, 181, 255);
+    color: rgb(24,119,242);
+    transition: 0.1s;
+}
+
+button::selection {
+    outline: none;
 }
 </style>
