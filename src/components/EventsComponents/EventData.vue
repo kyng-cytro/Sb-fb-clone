@@ -19,7 +19,6 @@
 </template>
 
 <script>
-// import EmailDialog from './DialogBoxes/EmailDialog.vue';
 import PopupDialog from './DialogBoxes/PopupDialog.vue'
 import EventDataHeaderInfo from './EventDataComponents/EventDataHeaderInfo.vue'
 import EventDetails from './EventDataComponents/EventDetails.vue'

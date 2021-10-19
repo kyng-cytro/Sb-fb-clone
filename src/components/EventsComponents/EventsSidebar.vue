@@ -9,6 +9,7 @@
           <button id="createNewEventButton" v-on:click="changeEventState('editing')">＋ Create New Event</button>
         </div>
         <div v-else-if="eventState === 'editing'">
+          <p>Event > Create Event</p>
           <h1>{{stages[stage]}}</h1>
           <div v-if="stages[stage] === 'Event Details'">
             <!-- The following commented out code is how the page looked before using material components -->
@@ -30,7 +31,9 @@
                 </div>
               </datepicker> -->
               <div class="input">
-                <vue-timepicker v-model="eventTime" manual-input format="h:mm A" v-on:input="updateTime"></vue-timepicker>
+                <!-- <vue-timepicker id="timePicker" v-model="eventTime" manual-input format="h:mm A" v-on:input="updateTime">Select time</vue-timepicker> -->
+                <EventTimePicker />
+
               </div>
             </div>
           </div>
@@ -41,7 +44,8 @@
               <textarea v-model="eventDescription" v-on:input="updateDescription" placeholder="Description"></textarea>
           </div>
         </div>
-        <div id="navigationButtons">
+        <div id="navigationButtons" v-show="eventState === 'editing'">
+          <hr />
           <button v-on:click="regressStage()" class="btn-secondary">Back</button>
           <button id="nextButton" v-on:click="progressStage()" class="btn-secondary">Next</button>
         </div>
@@ -52,7 +56,8 @@
 <script>
 import PageSidebarButton from "@/components/PageSidebarButton.vue";
 // import Datepicker from 'vuejs-datepicker';
-import VueTimepicker from 'vue2-timepicker/src/vue-timepicker.vue'
+// import VueTimepicker from 'vue2-timepicker/src/vue-timepicker.vue';
+import EventTimePicker from './EventTimePicker.vue';
 
 //MATERIAL IMPORTS:
 import Vue from 'vue'
@@ -67,7 +72,8 @@ export default {
   components: {
     PageSidebarButton,
     // Datepicker,
-    VueTimepicker
+    // VueTimepicker,
+    EventTimePicker
   },
   methods: {
     changeEventState(newState) {
@@ -131,9 +137,13 @@ export default {
 
 .container {
   background-color: white;
-  box-shadow: 3px 3px 3px rgb(232, 232, 232);
   width: 350px;
   padding: 10px;
+  z-index: 9;
+  box-shadow: 2px 0px 3px #d6d6d6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .input {
@@ -155,7 +165,9 @@ export default {
 md-datepicker {
   width: 1px;
 }
-
+#timePicker {
+  width: 10px;
+}
 #createNewEventButton {
   width: 100%;
   height: 40px;
@@ -198,5 +210,18 @@ md-datepicker {
 }
 #nextButton {
   width: 100%;
+}
+
+h1 {
+  margin-left: 9px;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+p {
+  color: grey;
+  font-size: 0.8em;
+  margin: 0px;
+  margin-left: 9px;
 }
 </style>
