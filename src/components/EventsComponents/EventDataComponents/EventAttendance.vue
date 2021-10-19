@@ -27,7 +27,12 @@
             <p>Is this thing on?</p>
         </div>
         <PopupDialog v-show="this.popupTriggers['guestsTrigger']" header="Guests" maxHeight="500px" :togglePopup="() => togglePopup('guestsTrigger')">
-            <AttendanceTabs />
+            <AttendanceTabs>
+                <AttendanceTab>Going(1)</AttendanceTab>
+                <AttendanceTab>Maybe (0)</AttendanceTab>
+                <AttendanceTab>Invited ({{numInvited}})</AttendanceTab>
+                <AttendanceTab>Can't Go (0)</AttendanceTab>
+            </AttendanceTabs>
         </PopupDialog>
     </div>
 </template>
@@ -69,9 +74,19 @@ export default {
 </script>
 
 <style scoped>
+#attendanceHeader {
+    display: flex;
+    justify-content: space-between;
+}
 #attendance {
     display: flex;
     flex-direction: row;
+}
+
+
+h3 {
+  font-weight: bold;
+  font-size: 1.4em;
 }
 
 .item {
@@ -99,4 +114,13 @@ p {
     font-size: 0.8em;
 }
 
+button {
+    outline: none;
+    border-width: 0px;
+    background-color: transparent;
+    color: #216FDB;
+}
+button:hover {
+    text-decoration: underline;
+}
 </style>
