@@ -15,17 +15,13 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-    export default {
-        setup(props, { slots }) {
-            const tabTitles = ref(slots.default().map((tab) => tab.props.title)); //slots.default gives us an array of everything in the slot
-            const selectedTitle = ref(tabTitles.value[0]);
+import Vue from 'vue'
 
-            provide("selectedTitle", selectedTitle) {
-                return {
-                    selectedTitle,
-                    tabTitles,
-                }
+    export default {
+        data() {
+            return {
+                tabTitles,
+                selectedTitle,
             }
         }
     }
