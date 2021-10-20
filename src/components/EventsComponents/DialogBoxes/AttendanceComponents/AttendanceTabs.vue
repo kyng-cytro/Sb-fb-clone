@@ -1,5 +1,6 @@
 <template>
     <div class="tabs">
+        <!-- Using a slot is fine, but the problem will come when you have padding and stuff and content inside the tab, because then it offsets the other tabs -->
         <AttendanceTab v-on:setSelected="setSelected" title="Going (1)" :selectedTitle="this.selectedTitle">
             <AttendanceTabInvitedListItem :friend="user"></AttendanceTabInvitedListItem>
         </AttendanceTab>
