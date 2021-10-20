@@ -1,42 +1,40 @@
 <template>
     <div class="popup">
         <div class="popup-inner">
-            <slot />
-    <div class="header">
-    <div class="close">
-        <button @click="togglePopup()">×</button>
-    </div>
-    </div>
-    <div class="content">
-    <ul>
-        <li v-for="invite in this.inviteList" :key="invite">
-            {{invite}}
-        </li>
-    </ul>
-    <p>Email to</p>
-    <input v-model="currentInvite" @keypress.enter="newInvite()">
+            <div class="header">
+                <div id="headerContainer">
+                    <h2>{{header}}</h2>
+                </div>
+                <div class="close">
+                    <button @click="togglePopup()">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+            </div>
+            <hr />
+            <div v-bind:style="contentStyles">
+                <slot name="content"> </slot>
+            </div>
+            <hr />
+            <div>
+                <slot name="footer"></slot>
+            </div>
         </div>
-    </div>
     </div>
 </template>
 
 <script>
-    export default {
-    props: ['togglePopup', 'inviteList'],
-    methods: {
-        newInvite() {
-            console.log("You just entered the email: " + this.currentEmail);
-            this.inviteList.push(this.currentInvite);
-            this.currentInvite = "";
+export default {
+    props: ['togglePopup', 'header', 'maxHeight'],
+    created() {
+            console.log(`background-color: white; border-radius: 8px; box-shadow: 0px 0px 16px 8px #dadada; max-height: ` + this.maxHeight);
+    },
+    computed: {
+        contentStyles() {
+            return `overflow-y: scroll;
+            max-height: ` + this.maxHeight;
+        }
     }
-  },
-  components: {
-  },
-  data() {
-    return {
-      currentInvite: ""
-    }
-  },
 }
 </script>
 
@@ -48,7 +46,7 @@
     right: 0;
     bottom: 0;
     z-index: 99;
-    background-color: rgba(224, 224, 224, 0.8);
+    background-color: rgba(241, 241, 241, 0.8);
 
     display: flex;
     align-items: center;
@@ -56,9 +54,40 @@
 }
 .popup-inner {
     background-color: white;
-    padding: 32px;
     border-radius: 8px;
-    /* box-shadow: 0px, 0px, 5px, rgb(200, 200, 200); */
-    box-shadow: 0px 0px 16px 8px #cac9c9;
+    box-shadow: 0px 0px 16px 8px #dadada;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+#headerContainer {
+    display: flex;
+    text-align: center;
+    width: 100%;
+}
+
+
+button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: rgb(82, 82, 82);
+    background-color: rgb(228,230,235);
+    border-width: 0px;
+    font-size: 0.8em;
+}
+
+h2 {
+    margin: auto;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+hr {
+    margin: 0px;
 }
 </style>
