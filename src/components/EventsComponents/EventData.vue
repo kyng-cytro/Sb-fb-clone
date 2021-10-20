@@ -5,20 +5,28 @@
       <EventButtons v-if="eventState==='eventCreated'" v-on:buttonClick="togglePopup"/>
       <ButtonsPreview v-else />
     </div>
-    <EventDetails :event="this.event" :numInvited = "numInvited" :eventState="this.eventState" :invites="this.invites"/>
-  <PopupDialog v-show="this.popupTriggers['friendsTrigger']" :inviteList="this.invites.friends" :togglePopup="() => togglePopup('friendsTrigger')">
-    <h3>Invite your friends</h3>
-  </PopupDialog>
+    <PopulateFriends />
+    <EventDetails :event="this.event" :eventState="this.eventState" />
+    <PopupDialog maxHeight="500px" v-show="this.popupTriggers['friendsTrigger']" :togglePopup="() => togglePopup('friendsTrigger')" header="Invite">
+      <template v-slot:content>
+        <Invite />
+      </template>
+      <template v-slot:footer>
+        <InviteFooter />
+      </template>
+    </PopupDialog>
   </div>
 </template>
 
 <script>
-// import EmailDialog from './DialogBoxes/EmailDialog.vue';
 import PopupDialog from './DialogBoxes/PopupDialog.vue'
 import EventDataHeaderInfo from './EventDataComponents/EventDataHeaderInfo.vue'
 import EventDetails from './EventDataComponents/EventDetails.vue'
 import ButtonsPreview from './EventDataComponents/ButtonsPreview.vue'
 import EventButtons from './EventDataComponents/EventButtons.vue'
+import Invite from './DialogBoxes/InviteComponents/Invite.vue'
+import InviteFooter from './DialogBoxes/InviteComponents/InviteFooter.vue'
+import PopulateFriends from './PopulateFriends.vue'
 
 export default {
   name: "Events",
@@ -27,7 +35,10 @@ export default {
     EventDataHeaderInfo,
     EventDetails,
     ButtonsPreview,
-    EventButtons
+    EventButtons,
+    Invite,
+    InviteFooter,
+    PopulateFriends
   },
   props: ["event", "eventState"],
   data() {
@@ -35,12 +46,6 @@ export default {
       popupTriggers: {
         friendsTrigger: false
       },
-      invites: {
-        email: [],
-        text: [],
-        friends: []
-      }
-
     }
   },
   methods: {
@@ -49,15 +54,6 @@ export default {
       this.popupTriggers[trigger] = !this.popupTriggers[trigger];
     }
   },
-  computed: {
-    numInvited: function() {
-      // let num = 0;
-      // for (let i = 0; i < invites.length; i++) {
-      //   num += invites[i]
-      // }
-      return this.invites.email.length + this.invites.text.length + this.invites.friends.length
-    }
-  }
 };
 </script>
 
