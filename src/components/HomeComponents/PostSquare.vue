@@ -64,14 +64,15 @@ export default {
       facebookLight: HomeSidebar.facebookLight, //''
     }
    },
+   
   // components: {
   //   HomeSidebar
   // },
-  methods: {
-    handleInterestedClick() {
-      console.log("You're intererested!");
-    },
-  }
+  // methods: {
+  //   handleInterestedClick() {
+  //     console.log("You're intererested!");
+  //   },
+  // }
 }
 </script>
 
