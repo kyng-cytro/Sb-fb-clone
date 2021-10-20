@@ -1,32 +1,59 @@
 <template>
-<!-- This component was created by following this tutorial: https://learnvue.co/2019/12/building-reusable-components-in-vuejs-tabs/ -->
     <div class="tabs">
-        <ul class="tabs_header">
-            <li 
-                v-for="title in this.tabTitles"
-                :key="title"
-                @click="selectedTitle = title"
-            >
-                {{ title }}
-            </li>
-        </ul>
-        <slot /> 
+        <AttendanceTab v-on:setSelected="setSelected" title="Going (1)" :selectedTitle="this.selectedTitle">
+            <AttendanceTabInvitedListItem :friend="user"></AttendanceTabInvitedListItem>
+        </AttendanceTab>
+        <AttendanceTab v-on:setSelected="setSelected" title="Maybe (0)" :selectedTitle="this.selectedTitle">
+
+        </AttendanceTab>
+        <AttendanceTab v-on:setSelected="setSelected" v-bind:title="'Invited (' + this.numInvited + ')'" :selectedTitle="this.selectedTitle">
+
+        </AttendanceTab>
+        <AttendanceTab v-on:setSelected="setSelected" title="Can't Go (0)" :selectedTitle="this.selectedTitle">
+
+        </AttendanceTab>
     </div>
 </template>
 
 <script>
-import Vue from 'vue'
+import NonFacebookFriend from "@/classes/nonFacebookFriend.js";
+import Friend from "@/classes/friend.js";
+import AttendanceTab from "./AttendanceTab.vue";
+import AttendanceTabInvitedListItem from "./AttendanceTabInvitedListItem.vue";
+
+const user = {
+    name: "Anson Savage",
+    imgSrc: "anson.jpg",
+}
 
     export default {
         data() {
             return {
-                tabTitles,
-                selectedTitle,
+                selectedTitle: "Going (1)",
+                user: user,
+            }
+        },
+        components: {
+            AttendanceTab,
+            AttendanceTabInvitedListItem
+        },
+        computed: {
+            numInvited() {
+                return NonFacebookFriend.all().length + Friend.query().where('selected', true).get().length;
+            }
+        },
+        methods: {
+            setSelected(title) {
+                this.selectedTitle = title;
             }
         }
     }
 </script>
 
 <style scoped>
+.tabs {
+    display: flex;
+    padding: 4px;
+}
 
 </style>

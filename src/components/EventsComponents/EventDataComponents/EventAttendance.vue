@@ -27,12 +27,13 @@
             <p>Is this thing on?</p>
         </div>
         <PopupDialog v-show="this.popupTriggers['guestsTrigger']" header="Guests" maxHeight="500px" :togglePopup="() => togglePopup('guestsTrigger')">
-            <AttendanceTabs>
-                <AttendanceTab>Going(1)</AttendanceTab>
-                <AttendanceTab>Maybe (0)</AttendanceTab>
-                <AttendanceTab>Invited ({{numInvited}})</AttendanceTab>
-                <AttendanceTab>Can't Go (0)</AttendanceTab>
-            </AttendanceTabs>
+            <template v-slot:content>
+                <AttendanceTabs>
+                </AttendanceTabs>
+            </template>
+            <template v-slot:footer>
+                <p>This is the footer</p>
+            </template>
         </PopupDialog>
     </div>
 </template>

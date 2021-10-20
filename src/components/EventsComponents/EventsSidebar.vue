@@ -78,7 +78,6 @@ export default {
   methods: {
     changeEventState(newState) {
       this.$emit('stateChange', newState);
-      console.log("You clikced me!");
     },
     updateName() {
       this.$emit('nameChange', this.eventName);
