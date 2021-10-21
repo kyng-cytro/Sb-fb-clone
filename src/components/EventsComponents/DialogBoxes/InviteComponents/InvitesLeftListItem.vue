@@ -49,7 +49,7 @@ import NonFacebookFriend from "@/classes/nonFacebookFriend.js";
     padding: 0px;
     height: 20px;
     margin-top: 20px;
-    width: 220px;
+    width: 210px;
 }
 .verticalAlign {
     display: flex;
@@ -73,6 +73,7 @@ p i {
 
 p {
     margin-left: 10px;
+    font-size: 0.9em;
 }
 
 .emptyCircle {
