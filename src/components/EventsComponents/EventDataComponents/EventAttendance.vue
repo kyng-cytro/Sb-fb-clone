@@ -26,7 +26,7 @@
         <div v-else>
             <p>Is this thing on?</p>
         </div>
-        <PopupDialog v-show="this.popupTriggers['guestsTrigger']" header="Guests" maxHeight="500px" :togglePopup="() => togglePopup('guestsTrigger')">
+        <PopupDialog v-show="this.popupTriggers['guestsTrigger']" header="Guests" maxHeight="500px" minHeight="300px" :togglePopup="() => togglePopup('guestsTrigger')">
             <template v-slot:content>
                 <AttendanceTabs>
                 </AttendanceTabs>

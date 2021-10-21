@@ -5,14 +5,14 @@
             <img v-if="this.isFacebookUser" :src="require('@/assets/images/FriendProfilePics/' + friend.imgSrc)"/>
 
             <!-- If they are an email user -->
-            <img v-else-if="this.friend.email" :src="require('@/assets/images/ListIcons/at.png')"/>
+            <i v-else-if="this.friend.email" class="bi bi-envelope"></i>
 
             <!-- If they are a phone user -->
-            <img v-else :src="require('@/assets/images/ListIcons/text.png')"/>
+            <i v-else class="bi bi-chat-dots"></i>
             <p>{{friend.name}}</p>
         </div>
         <div class="verticalAlign">
-            <i @click="remove" class="bi bi-x-lg"></i>
+            <i @click="remove" class="bi bi-x-lg delete"></i>
         </div>
     </div>
 </template>
@@ -49,6 +49,7 @@ import NonFacebookFriend from "@/classes/nonFacebookFriend.js";
     padding: 0px;
     height: 20px;
     margin-top: 20px;
+    width: 220px;
 }
 .verticalAlign {
     display: flex;
@@ -82,15 +83,17 @@ p {
     height: 10px;
 }
 i {
-    padding-right: 60px;
+    /* padding-right: 60px; */
     color: rgb(137,142,149);
     font-weight: bold;
+    font-size: 1.6em;
 }
 .selectedCheck {
     color: rgb(5,113,237);
 }
 
-.bold {
-    font-weight: bold;
+
+.delete {
+    font-size: .9em;
 }
 </style>

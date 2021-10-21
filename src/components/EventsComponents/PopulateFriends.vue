@@ -1,10 +1,5 @@
 <template>
 <div>
-    <!-- <input v-model="form.name">
-    <button @click="addFriend">Add friend</button>
-    <li v-for="friend in friends" :key="friend.id">
-        {{friend.name}}
-    </li> -->
 </div>
   
 </template>

@@ -4,7 +4,7 @@
         <div id="container">
             <div id="buttons">
                 <button class="btn btn-secondary" @click="click('friendsTrigger')">
-                    <i class="bi bi-envelope-fill"></i>
+                    <i class="bi bi-telegram"></i>
                     Invite
                 </button>
                 <button class="btn btn-secondary">
