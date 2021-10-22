@@ -21,7 +21,6 @@ import NonFacebookFriend from "@/classes/nonFacebookFriend.js";
 import InvitesLeftListItem from "./InvitesLeftListItem.vue";
 
     export default {
-       props: ['invites'],
        components: {
            InvitesLeftListItem
        },

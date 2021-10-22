@@ -1,7 +1,13 @@
 <template>
     <div class="container">
         <div class="verticalAlign">
-            <img :src="require('@/assets/images/FriendProfilePics/' + friend.imgSrc)"/>
+            <img v-if="this.friend.imgSrc" :src="require('@/assets/images/FriendProfilePics/' + friend.imgSrc)"/>
+            
+            <!-- If they are an email user -->
+            <i v-else-if="this.friend.email" class="bi bi-envelope"></i>
+
+            <!-- If they are a phone user -->
+            <i v-else class="bi bi-chat-dots"></i>
             <p>{{friend.name}}</p>
         </div>
         <div class="verticalAlign">

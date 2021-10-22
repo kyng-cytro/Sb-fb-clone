@@ -34,6 +34,7 @@ export default {
     padding: 10px;
     display: flex;
     flex-direction: row;
+    justify-content: center;
   }
   #previewBox {
     border-style: solid;
@@ -50,5 +51,6 @@ export default {
 h3 {
   font-weight: bold;
   font-size: 1.4em;
+  margin-right: 350px;
 }
 </style>

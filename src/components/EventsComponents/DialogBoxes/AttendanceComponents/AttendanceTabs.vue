@@ -16,17 +16,17 @@
         </div>
 
         <!-- Content -->
-        <div>
+        <div class="content">
             <div v-if="selectedTitle==='Going (1)'">
                 <AttendanceTabInvitedListItem :friend="user"></AttendanceTabInvitedListItem>
             </div>
             <div v-else-if="selectedTitle==='Maybe (0)'">
             </div>
             <div v-else-if="selectedTitle==='Invited (' + this.numInvited + ')'">
+                <!-- <InvitesLeft /> -->
                <AttendanceTabInvitedList></AttendanceTabInvitedList> 
             </div>
             <div v-else>
-                <AttendanceTabInvitedListItem :friend="user"></AttendanceTabInvitedListItem>
             </div>
         </div>
     </div>
@@ -78,4 +78,7 @@ const user = {
     padding: 4px;
 }
 
+.content {
+    padding: 20px;
+}
 </style>

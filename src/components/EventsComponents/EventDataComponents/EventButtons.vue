@@ -1,6 +1,5 @@
 <template>
     <div>
-        <hr/>
         <div id="container">
             <div id="buttons">
                 <button class="btn btn-secondary" @click="click('friendsTrigger')">

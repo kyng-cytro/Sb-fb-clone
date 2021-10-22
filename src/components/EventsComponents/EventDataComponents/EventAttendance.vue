@@ -24,7 +24,7 @@
             <p id="host">Host</p>
         </div>
         <div v-else>
-            <p>Is this thing on?</p>
+
         </div>
         <PopupDialog v-show="this.popupTriggers['guestsTrigger']" header="Guests" maxHeight="500px" minHeight="300px" :togglePopup="() => togglePopup('guestsTrigger')">
             <template v-slot:content>

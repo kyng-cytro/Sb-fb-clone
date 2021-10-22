@@ -8,6 +8,7 @@
             <p class="placeholder" v-if="event.location === ''">Location</p>
             <p v-else id="location">{{event.location}}</p>
       </div>
+      <hr/>
     </div>
 </template>
 

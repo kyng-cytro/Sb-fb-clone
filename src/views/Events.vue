@@ -4,7 +4,7 @@
         <EventsSidebar :eventState="this.eventState" v-on:stateChange="updateEventState" v-on:nameChange="updateEventName" v-on:dateChange="updateEventDate" v-on:timeChange="updateEventTime" v-on:locationChange="updateEventLocation" v-on:descriptionChange="updateEventDescription"/>
       </div>
 
-      <div>
+      <div class="content">
         <EventDisplay v-if="eventState === 'normal'"/>
         <EventPreview :event="currentEvent" v-else-if="eventState === 'editing'"/>
         <EventData :event="currentEvent" :eventState="eventState" v-else-if="eventState === 'eventCreated'" />
@@ -39,7 +39,6 @@ export default {
     updateEventDate(newDate) {
       this.currentEvent.date = newDate;
       console.log("This is the new date:");
-      console.log(this.currentEvent.date);
     },
     updateEventTime(newTime) {
       let tempDate = new Date(this.currentEvent.date.getTime()); //This is essentially a deep copy of the date
@@ -86,5 +85,9 @@ export default {
   display: flex;
   flex-direction: row;
   background: rgb(244, 246, 247);
+  width: 100%;
+}
+.content {
+  width: 100%;
 }
 </style>

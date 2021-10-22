@@ -5,7 +5,6 @@
       <EventButtons v-if="eventState==='eventCreated'" v-on:buttonClick="togglePopup"/>
       <ButtonsPreview v-else />
     </div>
-    <PopulateFriends />
     <EventDetails :event="this.event" :eventState="this.eventState" />
     <PopupDialog maxHeight="500px" v-show="this.popupTriggers['friendsTrigger']" :togglePopup="() => togglePopup('friendsTrigger')" header="Invite">
       <template v-slot:content>
@@ -58,11 +57,14 @@ export default {
 <style scoped>
 #container {
   margin: 0px;
+  /* width: 900px; */
+  width: 100%;
 }
-div {
-  /* border-radius: 5px; */
-}
+
 .eventCreatedHeader {
   background-color: white;
+  padding-left: 40px;
+  padding-right: 40px;
 }
+
 </style>
