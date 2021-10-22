@@ -26,7 +26,6 @@ import ButtonsPreview from './EventDataComponents/ButtonsPreview.vue'
 import EventButtons from './EventDataComponents/EventButtons.vue'
 import Invite from './DialogBoxes/InviteComponents/Invite.vue'
 import InviteFooter from './DialogBoxes/InviteComponents/InviteFooter.vue'
-import PopulateFriends from './PopulateFriends.vue'
 
 export default {
   name: "Events",
@@ -38,7 +37,6 @@ export default {
     EventButtons,
     Invite,
     InviteFooter,
-    PopulateFriends
   },
   props: ["event", "eventState"],
   data() {
