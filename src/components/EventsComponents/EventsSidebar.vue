@@ -6,6 +6,7 @@
           <PageSidebarButton iconName = "person-circle" text = "Your Events" />
           <PageSidebarButton iconName = "gift" text = "Birthdays" />
           <PageSidebarButton iconName = "bell-fill" text = "Notifications" />
+          <br>
           <button id="createNewEventButton" v-on:click="changeEventState('editing')">＋ Create New Event</button>
         </div>
         <div v-else-if="eventState === 'editing'">
@@ -38,10 +39,16 @@
             </div>
           </div>
           <div v-else-if="stages[stage] === 'Location'">
-              <textarea v-model="eventLocation" v-on:input="updateLocation" placeholder="Location"></textarea>
+              <md-field>
+                <label>Location</label>
+                <md-textarea v-model="eventLocation" v-on:input="updateLocation"></md-textarea>
+              </md-field>
           </div>
           <div v-else-if="stages[stage] === 'Description'">
-              <textarea v-model="eventDescription" v-on:input="updateDescription" placeholder="Description"></textarea>
+              <md-field>
+                <label>Description</label>
+                <md-textarea v-model="eventDescription" v-on:input="updateDescription"></md-textarea>
+              </md-field>
           </div>
         </div>
         <div id="navigationButtons" v-show="eventState === 'editing'">
