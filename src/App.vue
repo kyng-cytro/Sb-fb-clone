@@ -31,12 +31,10 @@ export default {
 <style>
 .App {
   text-align: center;
+  width: 100%;
+  height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
 .App-header {
   background-color: #282c34;
@@ -53,8 +51,9 @@ export default {
   color: #61dafb;
 }
 
-#fillWidth: {
+#fillWidth {
   width: 100%;
+  height: 100%;
 }
 
 

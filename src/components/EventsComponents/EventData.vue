@@ -6,7 +6,7 @@
       <ButtonsPreview v-else />
     </div>
     <EventDetails :event="this.event" :eventState="this.eventState" />
-    <PopupDialog maxHeight="500px" v-show="this.popupTriggers['friendsTrigger']" :togglePopup="() => togglePopup('friendsTrigger')" header="Invite">
+    <PopupDialog minHeight="710px" maxHeight="500px" v-show="this.popupTriggers['friendsTrigger']" :togglePopup="() => togglePopup('friendsTrigger')" header="Invite">
       <template v-slot:content>
         <Invite />
       </template>
@@ -28,6 +28,11 @@ import InviteFooter from './DialogBoxes/InviteComponents/InviteFooter.vue'
 
 export default {
   name: "Events",
+  mounted() {
+    this.$root.$on('sendInvites', () => {
+      this.togglePopup("friendsTrigger");
+    });
+  },
   components: {
     PopupDialog,
     EventDataHeaderInfo,

@@ -2,10 +2,10 @@
   <div id="sidebar">
       <div class="container">
         <div v-if="eventState==='normal' || eventState==='eventCreated'" class = "sidebar-buttons-container">
-          <PageSidebarButton iconName = "home" text = "Home" />
-          <PageSidebarButton iconName = "yourEvents" text = "Your Events" />
-          <PageSidebarButton iconName = "birthdays" text = "Birthdays" />
-          <PageSidebarButton iconName = "notifications" text = "Notifications" />
+          <PageSidebarButton iconName = "calendar-check" text = "Home" />
+          <PageSidebarButton iconName = "person-circle" text = "Your Events" />
+          <PageSidebarButton iconName = "gift" text = "Birthdays" />
+          <PageSidebarButton iconName = "bell-fill" text = "Notifications" />
           <button id="createNewEventButton" v-on:click="changeEventState('editing')">＋ Create New Event</button>
         </div>
         <div v-else-if="eventState === 'editing'">
@@ -128,7 +128,9 @@ export default {
 
 <style scoped>
 #sidebar {
-  height: 100%;
+  /* 55px is the height of the topbar, so this calculates the height the sidebar should be */
+  height: calc(100vh - 55px); 
+
   display: flex;
   align-items: stretch;
   justify-content: space-around;

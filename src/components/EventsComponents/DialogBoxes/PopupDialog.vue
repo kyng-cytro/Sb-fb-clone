@@ -52,6 +52,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+  overflow-y: scroll;
 }
 .popup-inner {
     background-color: white;

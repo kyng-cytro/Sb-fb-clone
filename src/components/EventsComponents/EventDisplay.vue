@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div>
         <p>Events</p>
       </div>
@@ -55,6 +55,9 @@ export default {
 
 
 <style scoped>
+.container {
+  height: 100%;
+}
 .eventDisplay {
   display: flex;
   flex-wrap: wrap;

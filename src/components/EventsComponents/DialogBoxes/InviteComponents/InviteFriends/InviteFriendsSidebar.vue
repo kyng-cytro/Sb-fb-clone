@@ -5,21 +5,25 @@
         <h3>EVENTS I ATTENDED</h3>
         <button v-for="event in eventsAttended" :key="event">{{event}}</button>
         <h3>MY GROUPS</h3>
+        <button v-for="group in groups" :key="group">{{group}}</button>
  </div>
 </template>
 
 <script>
 const eventsAttended = [
-    "Example event 1",
+    "Basket Weaving",
     "Example event 2",
-    "Example event 3",
-    "Example event 4",
-    "Example event 5"
+    "Example event 3"
+]
+const groups = [
+    "Example group 1",
+    "Example group 2"
 ]
     export default {
        data() {
            return {
-               eventsAttended: eventsAttended
+               eventsAttended: eventsAttended,
+               groups: groups
            }
        } 
     }

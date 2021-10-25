@@ -4,24 +4,7 @@
           <table>
             <tr class="sidebar-button">
               <td>
-                <div v-if="iconName == 'home'">
-                <img class = "sidebar-button-icon" :src = "require('@/assets/images/PageSidebarIcons/' + iconName + '.png')" />
-                </div>
-                <div v-else-if="iconName == 'yourEvents'">
-                  <img class= "sidebar-button-icon" style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yi/r/8LdRCFAE7sJ.png'); background-position: 0px -636px; background-size: auto; width: 20px; height: 21px; background-repeat: no-repeat; display: inline-block;">
-                </div>
-                <div v-else-if="iconName == 'birthdays'">
-                  <img class= "sidebar-button-icon" style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yk/r/7hm0iQNUoee.png'); background-position: 0px -874px; background-size: auto; width: 20px; height: 21px; background-repeat: no-repeat; display: inline-block;">
-                </div>
-                <div v-else-if="iconName == 'notifications'">
-                  <img class= "sidebar-button-icon" style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yg/r/YAs-iG3Ba3Q.png'); background-position: 0px -283px; background-size: auto; width: 20px; height: 21px; background-repeat: no-repeat; display: inline-block;">
-                </div>
-                <div v-else-if="iconName == 'friendRequest'">
-                  <img class= "sidebar-button-icon" style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yn/r/PbS2X31JOmQ.png'); background-position: 0px -214px; background-size: 26px 626px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;">
-                </div>
-                <div v-else-if="iconName == 'suggestion'">
-                  <img class= "sidebar-button-icon" style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/yn/r/PbS2X31JOmQ.png'); background-position: 0px -170px; background-size: 26px 626px; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;">
-                </div>
+               <i :class="'bi bi-' + iconName"></i> 
               </td>
               <td>
                <p>{{text}}</p>
@@ -40,20 +23,11 @@ export default {
   computed: {
     getRouterLocation: function() {
         if (this.$props.text == "Home"){
-       
-        //console.log(this.$props.text);
         return "/";
       }
       return "\\"
     },
 
-    // getIconName: function() {
-    //   if(this.$props.iconName == "home" ){
-        
-    //   }
-
-    //   return"";
-    // }
   }
 
 
@@ -90,7 +64,12 @@ p {
   font-size: 0.9em;
   vertical-align: top;
   color:black;
-  padding: 5px 0px 0px 45px;
+  padding: 5px 0px 0px 25px;
+}
+
+i {
+  color: black;
+  font-size: 1.3em;
 }
 
 </style>
