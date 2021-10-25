@@ -34,7 +34,7 @@ import InvitesLeftListItem from "./InvitesLeftListItem.vue";
                return Friend.query().where('selected', true).get();
            },
            remainingInvites() {
-               return this.maxInvites - this.selectedFriends.length;
+               return this.maxInvites - this.selectedFriends.length - this.emailFriends.length - this.phoneFriends.length;
            },
            emailFriends() {
                return NonFacebookFriend.query().where('email', (email) => email !== '').get();

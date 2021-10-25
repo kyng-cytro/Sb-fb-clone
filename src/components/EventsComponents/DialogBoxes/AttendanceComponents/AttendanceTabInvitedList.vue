@@ -12,6 +12,8 @@
         >
         <AttendanceTabInvitedListItem v-bind:friend="friend" />
       </div>
+      <br>
+      <br>
       
       <!-- Email -->
       <p v-show="emailFriends.length">
@@ -24,6 +26,8 @@
       >
         <AttendanceTabInvitedListItem v-bind:friend="emailFriend" />
       </div>
+      <br>
+      <br>
 
       <!-- Phone -->
       <p v-show="phoneFriends.length">
@@ -85,5 +89,10 @@ export default {
 
 .selectRectangle:hover {
   background-color: rgb(242, 242, 242);
+}
+
+p {
+  font-weight: bold;
+  margin-left: -30px;
 }
 </style>

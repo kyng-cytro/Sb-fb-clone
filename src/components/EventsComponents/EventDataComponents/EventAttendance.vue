@@ -31,9 +31,6 @@
                 <AttendanceTabs>
                 </AttendanceTabs>
             </template>
-            <template v-slot:footer>
-                <p>This is the footer</p>
-            </template>
         </PopupDialog>
     </div>
 </template>
