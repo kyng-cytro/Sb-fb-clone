@@ -1,26 +1,45 @@
 <template>
     <div>
-        <label for="jsc_c_11" id="LABEL_1">
-        </label>
-        <div id="DIV_2">
-            <div id="DIV_3">
-                <span id="SPAN_4"></span>
-                <div id="DIV_5">
-                    <div id="DIV_6">
-                        <span id="SPAN_7">Start Time</span>
-                    </div>
-                </div>
-                <div id="DIV_8">
-                    <input id="INPUT_9" type="text" value="4:00 PM" />
-                </div>
-            </div>
-        </div>
+        <p>Start Time</p>
+        <Dropdown
+            :options="timeList"
+            v-on:selected="validateSelection"
+            v-on:filter="getDropdownValues"
+            :disabled="false"
+            name="zipcode"
+            :maxItem="10"
+            placeholder="Please select an option">
+        ></Dropdown>
     </div>
 </template>
 
 <script>
+import Dropdown from 'vue-simple-search-dropdown';
+
     export default {
-        
+        components: {
+            Dropdown
+        },
+        computed: {
+            timeList() {
+                let minutes = ["00", "15", "30", "45"]
+                let times = []
+                let currentId = 1;
+                for (let am in ["AM", "PM"]) {
+                    for (let h = 1; h <=12; h++) {
+                        for (let m in minutes) {
+                            times.push({
+                                id: currentId,
+                                name: h.toString() + ":" + m + " " + am
+                            });
+                            currentId++;
+                        }
+                    }
+                }
+
+                return times;
+            }
+        }
     }
 </script>
 

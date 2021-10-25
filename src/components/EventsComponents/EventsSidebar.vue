@@ -32,7 +32,6 @@
                 </div>
               </datepicker> -->
               <div class="input">
-                <!-- <vue-timepicker id="timePicker" v-model="eventTime" manual-input format="h:mm A" v-on:input="updateTime">Select time</vue-timepicker> -->
                 <EventTimePicker />
 
               </div>
