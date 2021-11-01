@@ -31,7 +31,7 @@
                 <div slot="beforeCalendarHeader" class="calender-header">
                 </div>
               </datepicker> -->
-              <div class="input">
+              <div class="input timePicker">
                 <EventTimePicker />
 
               </div>
@@ -230,5 +230,10 @@ p {
   font-size: 0.8em;
   margin: 0px;
   margin-left: 9px;
+}
+
+.timePicker {
+  width: 140px;
+  z-index: 5;
 }
 </style>
