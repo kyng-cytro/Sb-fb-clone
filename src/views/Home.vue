@@ -1,12 +1,22 @@
 <template>
   <div class="home">
-     <HomeSidebar @change="fbLight($facebookLight)"/>
+     <HomeSidebar />
       <div class = "content">
         <!-- <p>This is where the posts will go!</p> -->
         <PostDisplay />
-        <div v-if="facebookLight">
+        <!-- <div v-if="facebookLight">
           HelloWorld
-        </div>
+        </div> -->
+               
+
+        <!-- <FacebookLiteFilters /> -->
+      </div>
+
+      <div class = "filter">
+        <p>filters</p>
+
+        <FacebookLiteFilters />
+      
       </div>
 
       
@@ -19,23 +29,29 @@
 //import HelloWorld from "@/components/HelloWorld.vue";
 import HomeSidebar from "@/components/HomeComponents/Sidebar/HomeSidebar.vue";
 import PostDisplay from "@/components/HomeComponents/PostDisplay.vue";
+import faceLight from "@/classes/faceLight.js";
+import FacebookLiteFilters from "@/components/HomeComponents/facebookLiteFilters.vue";
 
 export default {
   name: "Home",
-  data() {
+   data() {
+  //   return { deleted: false, accepted: false }
     return {
-    facebookLight: false
+      facebookLight: HomeSidebar.facebookLight,FacebookLiteFilters, //''
     }
-  },
+   },
   components: {
     HomeSidebar,
-    PostDisplay
+    PostDisplay,
+    FacebookLiteFilters
   },
-  methods:{
-    fblight(value){
-      this.facebookLight = value
-    }
-  }
+
+    computed:  {
+      getFaceLight(){
+        return faceLight.find(1).enabled;
+      }
+    },
+
 };
 </script>
 
@@ -62,6 +78,12 @@ export default {
   justify-content: center;
   height: 100%;
   margin-left: 100px;
+}
+
+.filter {
+
+  margin-left: 100px;
+  
 }
 
 

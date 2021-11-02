@@ -8,24 +8,32 @@
         <p>Enable Facebook Lite  </p>
       </td>
       <td>
-        <input type="checkbox" id="checkbox" v-on:click="fbLight" v-model="facebookLight">
+        <input type="checkbox" id="checkbox" v-model="facebookLight" v-on:change="update()">
       </td>
     </tr>
     <SidebarButton type="friends" />
     <SidebarButton type="groups" />
     <SidebarButton type="events" />
-    <SidebarButton v-show="!facebookLight" type="marketplace" />
+    <SidebarButton v-show="!getFaceLight" type="marketplace" />
+    <SidebarButton v-show="!getFaceLight" type="watch" />
+    <SidebarButton v-show="!getFaceLight" type="memories" />
+    <SidebarButton v-show="!getFaceLight" type="saved" />
+    <SidebarButton v-show="!getFaceLight" type="pages" />
+    <SidebarButton v-show="!getFaceLight" type="news" />
+    <!-- <SidebarButton v-show="!facebookLight" type="marketplace" />
     <SidebarButton v-show="!facebookLight" type="watch" />
     <SidebarButton v-show="!facebookLight" type="memories" />
     <SidebarButton v-show="!facebookLight" type="saved" />
     <SidebarButton v-show="!facebookLight" type="pages" />
-    <SidebarButton v-show="!facebookLight" type="news" />
+    <SidebarButton v-show="!facebookLight" type="news" /> -->
     <SidebarButton type="favorites" />
   </div>
 </template>
 
 <script>
   import SidebarButton from "./SidebarButton.vue";
+  import faceLight from "@/classes/faceLight.js";
+ 
   export default {
     name: "Sidebar",
     components: {
@@ -36,11 +44,30 @@
         facebookLight: false,
       }
     },
-    methods: {
-      passToParent(){
-        this.$emit(this.facebookLight)
+    computed:  {
+      getFaceLight(){
+        return faceLight.find(1).enabled;
       }
+    },
+     created () {
+    faceLight.insert({
+      data: { id: 1, enabled: false }
+    })
+    console.log(faceLight.find(1));
+  }, 
+    methods: {
+      update(){
+      faceLight.update({
+        where: 1,
+        data: {
+          enabled: (!this.getFaceLight)
+        }
+      })
+        // console.log(this.getFaceLight);
+
+        // console.log(faceLight.find(1));
     }
+  }
   }
 </script>
 <style scoped>

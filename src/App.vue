@@ -16,11 +16,24 @@
 
 <script>
 import Topbar from "@/components/TopbarComponents/Topbar";
+import faceLight from "@/classes/faceLight.js"
+
 export default {
   name: "App",
   components: {
     Topbar
+
+  },
+  created() {
+    faceLight.insert({
+      data: {enabled: false},
+    }
+    )
   }
+  // computed: {
+  //   faceLightEnable: //ivite friends list item -> inviteFirend listener 
+  // }
+
 }
 </script>
 
