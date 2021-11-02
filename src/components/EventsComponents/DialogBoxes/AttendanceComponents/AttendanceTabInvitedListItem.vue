@@ -1,14 +1,7 @@
 <template>
     <div class="container">
         <div class="verticalAlign">
-            <img v-if="this.friend.imgSrc" :src="require('@/assets/images/FriendProfilePics/' + friend.imgSrc)"/>
-            
-            <!-- If they are an email user -->
-            <i v-else-if="this.friend.email" class="bi bi-envelope"></i>
-
-            <!-- If they are a phone user -->
-            <i v-else class="bi bi-chat-dots"></i>
-            <p>{{friend.name}}</p>
+            <FriendDisplay :friend="friend" :userType="userType" :size="'normal'"></FriendDisplay>
         </div>
         <div class="verticalAlign">
         </div>
@@ -16,9 +9,13 @@
 </template>
 
 <script>
+import FriendDisplay from "@/components/Multipurpose/FriendDisplay.vue"
 
     export default {
-        props: ['friend'],
+        props: ['friend', 'userType'],
+        components: {
+            FriendDisplay
+        }
     }
 </script>
 
@@ -35,19 +32,6 @@
     line-height: 45px;
     text-align: center;
 }
-
-img {
-    width: 37px;
-    height: 37px;
-    object-fit: cover; /*This makes it so the image is cropped instead of squished */
-    border-radius: 50%;
-    margin-top: 5px;
-}
-
-p {
-    margin-left: 10px;
-}
-
 
 .bold {
     font-weight: bold;

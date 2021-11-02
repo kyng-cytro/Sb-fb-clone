@@ -26,9 +26,6 @@
 <script>
 export default {
     props: ['togglePopup', 'header', 'maxHeight', 'minHeight'],
-    created() {
-            console.log(`background-color: white; border-radius: 8px; box-shadow: 0px 0px 16px 8px #dadada; max-height: ` + this.maxHeight);
-    },
     computed: {
         contentStyles() {
             return `overflow-y: scroll;

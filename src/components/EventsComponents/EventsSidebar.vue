@@ -32,7 +32,7 @@
                 </div>
               </datepicker> -->
               <div class="input timePicker">
-                <EventTimePicker />
+                <EventTimePicker v-on:updateTime="updateTime"/>
 
               </div>
             </div>
@@ -81,6 +81,11 @@ export default {
     // VueTimepicker,
     EventTimePicker
   },
+  mounted() {
+    this.$root.$on('timeUpdated', () => {
+      this.togglePopup("friendsTrigger");
+    });
+  },
   methods: {
     changeEventState(newState) {
       this.$emit('stateChange', newState);
@@ -91,8 +96,8 @@ export default {
     updateDate() {
       this.$emit('dateChange', this.eventDate);
     },
-    updateTime() {
-      this.$emit('timeChange', this.eventTime);
+    updateTime(newTime) {
+      this.$emit('timeChange', newTime);
     },
     updateLocation() {
       this.$emit('locationChange', this.eventLocation);

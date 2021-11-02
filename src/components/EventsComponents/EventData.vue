@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import PopupDialog from './DialogBoxes/PopupDialog.vue'
+import PopupDialog from '../Multipurpose/PopupDialog.vue'
 import EventDataHeaderInfo from './EventDataComponents/EventDataHeaderInfo.vue'
 import EventDetails from './EventDataComponents/EventDetails.vue'
 import ButtonsPreview from './EventDataComponents/ButtonsPreview.vue'

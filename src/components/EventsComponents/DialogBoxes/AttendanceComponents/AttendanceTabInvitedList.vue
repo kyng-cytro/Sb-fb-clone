@@ -10,65 +10,71 @@
         :key="friend.id"
         class="selectRectangle"
         >
-        <AttendanceTabInvitedListItem v-bind:friend="friend" />
+        <AttendanceTabInvitedListItem v-bind:friend="friend" :userType="'facebook'"/>
       </div>
       <br>
       <br>
       
       <!-- Email -->
-      <p v-show="emailFriends.length">
-        Invited by email ({{ emailFriends.length }})
+      <p v-show="onlyEmailFriends.length">
+        Invited by email ({{ onlyEmailFriends.length }})
       </p>
       <div
-        v-for="emailFriend in this.emailFriends"
+        v-for="emailFriend in this.onlyEmailFriends"
         :key="emailFriend.id"
         class="selectRectangle"
       >
-        <AttendanceTabInvitedListItem v-bind:friend="emailFriend" />
+        <AttendanceTabInvitedListItem v-bind:friend="emailFriend" :userType="'email'" />
       </div>
       <br>
       <br>
 
       <!-- Phone -->
-      <p v-show="phoneFriends.length">
-        Invited by text ({{ phoneFriends.length }})
+      <p v-show="onlyPhoneFriends.length">
+        Invited by text ({{ onlyPhoneFriends.length }})
       </p>
       <div
-        v-for="phoneFriend in this.phoneFriends"
+        v-for="phoneFriend in this.onlyPhoneFriends"
         :key="phoneFriend.id"
         class="selectRectangle"
       >
-        <AttendanceTabInvitedListItem v-bind:friend="phoneFriend" />
+        <AttendanceTabInvitedListItem v-bind:friend="phoneFriend" :userType="'phone'"/>
       </div>
+      <br>
+      <br>
+
+      <!-- Both -->
+      <p v-show="emailAndPhoneFriends.length">
+        Invited by email and text ({{ emailAndPhoneFriends.length }})
+      </p>
+      <div
+        v-for="bothFriend in this.emailAndPhoneFriends"
+        :key="bothFriend.id"
+        class="selectRectangle"
+      >
+        <AttendanceTabInvitedListItem v-bind:friend="bothFriend" :userType="'both'"/>
+      </div>
+      <br>
+      <br>
     </div>
   </div>
 </template>
 
 <script>
 import AttendanceTabInvitedListItem from "./AttendanceTabInvitedListItem.vue";
-import NonFacebookFriend from "@/classes/nonFacebookFriend.js";
-import Friend from "@/classes/friend.js";
+
+import { friendSorting } from "@/mixins/friendSorting.js"
+
 export default {
   components: {
     AttendanceTabInvitedListItem,
   },
   data() {
     return {
-      // friends: friendExampleList
     };
   },
   methods: {},
-  computed: {
-    selectedFriends() {
-      return Friend.query().where("selected", true).get();
-    },
-    emailFriends() {
-      return NonFacebookFriend.query().where("email", (email) => email !== "").get();
-    },
-    phoneFriends() {
-      return NonFacebookFriend.query().where("phone", (phone) => phone !== "").get();
-    },
-  },
+  mixins: [friendSorting]
 };
 </script>
 

@@ -38,7 +38,7 @@
 <script>
 import NonFacebookFriend from "@/classes/nonFacebookFriend.js";
 import Friend from "@/classes/friend.js";
-import PopupDialog from "@/components/EventsComponents/DialogBoxes/PopupDialog.vue";
+import PopupDialog from "@/components/Multipurpose/PopupDialog.vue";
 import AttendanceTabs from "@/components/EventsComponents/DialogBoxes/AttendanceComponents/AttendanceTabs.vue";
 
 export default {

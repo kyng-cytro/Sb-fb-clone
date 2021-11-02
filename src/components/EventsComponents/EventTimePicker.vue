@@ -2,27 +2,26 @@
     <div>
         <p>Start Time</p>
         <select v-model="timeString" name="timeLabel" id="timeID" class="dropdown">
-            <option value="time" v-for="time in timeList" v-bind:key="time.name">{{time.name}}</option>
+            <option :value="time.name" v-for="time in timeList" v-bind:key="time.id">{{time.name}}</option>
         </select>
-        <p>{{selectedTime}}</p>
-        <!-- <Dropdown
-            :options="timeList"
-            v-on:selected="selectTime"
-            v-model="this.time"
-            :disabled="false"
-            name="Time"
-            :maxItem="24*4"
-            placeholder="Select time"
-        ></Dropdown> -->
+        <!-- <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown button
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div> -->
+        <!-- <p>{{selectedTime}}</p> -->
     </div>
 </template>
 
 <script>
-// import Dropdown from 'vue-simple-search-dropdown';
 
     export default {
         components: {
-            // Dropdown
         },
         methods: {
             selectTime() {
@@ -35,14 +34,33 @@
                 timeString: ""
             }
         },
+        watch: {
+            timeString (newTime) {
+                console.log("You just changed the time!");
+                console.log(newTime);
+                this.$emit('updateTime', newTime);
+            }
+        },
+        // created() {
+        //     let jQuery = document.createElement('script')
+        //     jQuery.setAttribute('src', 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')
+        //     document.head.appendChild(jQuery)
+
+        //     let bootstrapJS = document.createElement('script')
+        //     bootstrapJS.setAttribute('src', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js')
+        //     document.head.appendChild(bootstrapJS)
+        // },
         computed: {
             timeList() {
+                // let today = new Date();
+                // let currentHours = today.getHours();
                 let minutes = ["00", "15", "30", "45"]
                 let times = []
                 let currentId = 1;
                 let AM_PM = ["AM", "PM"]
                 for (let am in AM_PM) {
-                    for (let h = 12; h <=23; h++) {
+                    for (let h = 12; h <= 23; h++) {
+                    // for (let h = currentHours; h <= 23 - currentHours; h++) {
                         console.log(h > 12 ? h % 12 : h);
                         for (let m in minutes) {
                             console.log(m);
@@ -67,7 +85,7 @@ p {
     color: grey;
 }
 
-.dropdown {
+/* .dropdown {
     border: none;
     background-color: white;
     font-size: 1.3em;
@@ -77,7 +95,7 @@ p {
 
 .dropdown:focus {
     border: none;
-}
+} */
 
 
 </style>

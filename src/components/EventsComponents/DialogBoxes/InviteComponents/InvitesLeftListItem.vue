@@ -1,15 +1,7 @@
 <template>
     <div class="container">
         <div class="verticalAlign">
-            <!-- If the user is a facebook user: -->
-            <img v-if="this.isFacebookUser" :src="require('@/assets/images/FriendProfilePics/' + friend.imgSrc)"/>
-
-            <!-- If they are an email user -->
-            <i v-else-if="this.friend.email" class="bi bi-envelope"></i>
-
-            <!-- If they are a phone user -->
-            <i v-else class="bi bi-chat-dots"></i>
-            <p>{{friend.name}}</p>
+            <FriendDisplay :friend="friend" :userType="userType" :size="'small'"></FriendDisplay>
         </div>
         <div class="verticalAlign">
             <i @click="remove" class="bi bi-x-lg delete"></i>
@@ -20,13 +12,17 @@
 <script>
 import Friend from "@/classes/friend.js";
 import NonFacebookFriend from "@/classes/nonFacebookFriend.js";
+import FriendDisplay from "@/components/Multipurpose/FriendDisplay.vue";
 
     export default {
-        props: ['friend', 'isFacebookUser'],
+        props: ['friend', 'userType'],
+        components: {
+            FriendDisplay
+        },
         methods: {
             remove() {
                 //If this is a facebook friend, remove it the normal way
-                if(this.isFacebookUser) {
+                if(this.userType === "facebook") {
                     Friend.update({
                         where: this.friend.id,
                         data: {
@@ -35,7 +31,7 @@ import NonFacebookFriend from "@/classes/nonFacebookFriend.js";
                     });
                 }
                 else { //Otherwise
-                NonFacebookFriend.delete(this.friend.id);
+                    NonFacebookFriend.delete(this.friend.id);
                 }
             }
         },
@@ -59,36 +55,7 @@ import NonFacebookFriend from "@/classes/nonFacebookFriend.js";
     text-align: center;
 }
 
-img {
-    width: 25px;
-    height: 25px;
-    object-fit: cover; /*This makes it so the image is cropped instead of squished */
-    border-radius: 50%;
-    margin-top: 5px;
-}
 
-p i {
-    padding-left: -15px;
-}
-
-p {
-    margin-left: 10px;
-    font-size: 0.9em;
-}
-
-.emptyCircle {
-    border-radius: 50%;
-    border-width: 3px;
-    border-color: black;
-    width: 10px;
-    height: 10px;
-}
-i {
-    /* padding-right: 60px; */
-    color: rgb(137,142,149);
-    font-weight: bold;
-    font-size: 1.6em;
-}
 .selectedCheck {
     color: rgb(5,113,237);
 }

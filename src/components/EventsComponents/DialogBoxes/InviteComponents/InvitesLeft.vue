@@ -3,21 +3,23 @@
         <div>
             <p>{{remainingInvites}} INVITES LEFT</p>
             <div v-for="friend in selectedFriends" :key="friend.key">
-                <InvitesLeftListItem :friend="friend" :isFacebookUser="true"/>
+                <InvitesLeftListItem :friend="friend" :userType="'facebook'"/>
             </div>
-            <div v-for="emailFriend in emailFriends" :key="emailFriend.key">
-                <InvitesLeftListItem :friend="emailFriend" :isFacebookUser="false"/>
+            <div v-for="emailFriend in onlyEmailFriends" :key="emailFriend.key">
+                <InvitesLeftListItem :friend="emailFriend" :userType="'email'"/>
             </div>
-            <div v-for="phoneFriend in phoneFriends" :key="phoneFriend.key">
-                <InvitesLeftListItem :friend="phoneFriend" :isFacebookUser="false"/>
+            <div v-for="phoneFriend in onlyPhoneFriends" :key="phoneFriend.key">
+                <InvitesLeftListItem :friend="phoneFriend" :userType="'phone'"/>
+            </div>
+            <div v-for="bothFriend in emailAndPhoneFriends" :key="bothFriend.key">
+                <InvitesLeftListItem :friend="bothFriend" :userType="'both'"/>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import Friend from "@/classes/friend.js";
-import NonFacebookFriend from "@/classes/nonFacebookFriend.js";
+import { friendSorting } from "@/mixins/friendSorting.js";
 import InvitesLeftListItem from "./InvitesLeftListItem.vue";
 
     export default {
@@ -29,26 +31,7 @@ import InvitesLeftListItem from "./InvitesLeftListItem.vue";
                maxInvites: 500,
            }
        },
-       computed: {
-           selectedFriends() {
-               return Friend.query().where('selected', true).get();
-           },
-           remainingInvites() {
-               return this.maxInvites - this.selectedFriends.length - this.emailFriends.length - this.phoneFriends.length;
-           },
-           emailFriends() {
-               return NonFacebookFriend.query().where('email', (email) => email !== '').get();
-           },
-           phoneFriends() {
-               return NonFacebookFriend.query().where('phone', (phone) => phone !== '').get();
-           },
-           onlyEmailFriends() {
-               return this.emailFriends.filter(x => !this.phoneFriends.includes(x));
-           },
-           onlyPhoneFriends() {
-               return this.phoneFriends.filter(x => !this.emailFriends.includes(x));
-           }
-       }
+       mixins: [friendSorting]
     }
 </script>
 
