@@ -5,7 +5,7 @@ export default class faceLight extends Model {
 
     static fields() {
         return {
-
+            id: this.uid(),
             enabled: this.boolean(false)
         }
     }
