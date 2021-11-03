@@ -9,17 +9,21 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <Topbar />
-    <router-view />
+    <PopulateFriends />
+    <router-view id="fillWidth"/>
   </div>
 
 </template>
 
 <script>
 import Topbar from "@/components/TopbarComponents/Topbar";
+import PopulateFriends from "@/PopulateFriends.vue";
+
 export default {
   name: "App",
   components: {
-    Topbar
+    Topbar,
+    PopulateFriends
   }
 }
 </script>
@@ -27,12 +31,10 @@ export default {
 <style>
 .App {
   text-align: center;
+  width: 100%;
+  height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
 .App-header {
   background-color: #282c34;
@@ -47,6 +49,11 @@ export default {
 
 .App-link {
   color: #61dafb;
+}
+
+#fillWidth {
+  width: 100%;
+  height: 100%;
 }
 
 

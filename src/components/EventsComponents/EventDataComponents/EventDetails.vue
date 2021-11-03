@@ -11,7 +11,7 @@
         <p>{{event.description}}</p>
       </div>
       <div id="previewBox">
-        <EventAttendance :numInvited="numInvited" :eventState="eventState" :invites="this.invites"/>
+        <EventAttendance :eventState="eventState" />
       </div>
     </div>
 </template>
@@ -23,7 +23,7 @@ export default {
     components: {
         EventAttendance
     },
-    props: ['event', 'numInvited', 'eventState', "invites"]
+    props: ['event', 'eventState']
 }
 </script>
 
@@ -34,6 +34,7 @@ export default {
     padding: 10px;
     display: flex;
     flex-direction: row;
+    justify-content: center;
   }
   #previewBox {
     border-style: solid;
@@ -42,8 +43,14 @@ export default {
     border-width: thin;
     margin: 10px;
     outline-color: black;
-    padding: 30px;
+    padding: 20px;
     box-shadow: 0px 2px 4px rgb(214, 211, 211);
     background-color: white;
   }
+
+h3 {
+  font-weight: bold;
+  font-size: 1.4em;
+  margin-right: 350px;
+}
 </style>

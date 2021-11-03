@@ -4,7 +4,7 @@
         <EventsSidebar :eventState="this.eventState" v-on:stateChange="updateEventState" v-on:nameChange="updateEventName" v-on:dateChange="updateEventDate" v-on:timeChange="updateEventTime" v-on:locationChange="updateEventLocation" v-on:descriptionChange="updateEventDescription"/>
       </div>
 
-      <div>
+      <div class="content">
         <EventDisplay v-if="eventState === 'normal'"/>
         <EventPreview :event="currentEvent" v-else-if="eventState === 'editing'"/>
         <EventData :event="currentEvent" :eventState="eventState" v-else-if="eventState === 'eventCreated'" />
@@ -37,7 +37,7 @@ export default {
       console.log("You updated the eventName");
     },
     updateEventDate(newDate) {
-      this.currentEvent.date = newDate;
+      this.currentEvent.date = new Date(newDate); // Here, we convert the string newDate into an actual JS date object.
       console.log("This is the new date:");
       console.log(this.currentEvent.date);
     },
@@ -86,5 +86,11 @@ export default {
   display: flex;
   flex-direction: row;
   background: rgb(244, 246, 247);
+  width: 100%;
+  overflow-y: scroll;
+}
+.content {
+  width: 100%;
+  height: 100%;
 }
 </style>

@@ -36,6 +36,7 @@ export default {
 .topbar {
   display: flex;
   justify-content: space-between;
+  /* height: 5.5vh; */
   height: 55px;
   background-color: white;
   box-shadow: 0px 1px 3px #d8d5d5;
