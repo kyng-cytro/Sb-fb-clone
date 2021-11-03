@@ -37,8 +37,9 @@ export default {
       console.log("You updated the eventName");
     },
     updateEventDate(newDate) {
-      this.currentEvent.date = newDate;
+      this.currentEvent.date = new Date(newDate); // Here, we convert the string newDate into an actual JS date object.
       console.log("This is the new date:");
+      console.log(this.currentEvent.date);
     },
     updateEventTime(newTime) {
       let tempDate = new Date(this.currentEvent.date.getTime()); //This is essentially a deep copy of the date
