@@ -18,13 +18,24 @@
 <script>
 import Topbar from "@/components/TopbarComponents/Topbar";
 import PopulateFriends from "@/PopulateFriends.vue";
+import faceLight from "@/classes/faceLight.js"
 
 export default {
   name: "App",
   components: {
     Topbar,
     PopulateFriends
+  },
+  created() {
+    faceLight.insert({
+      data: {enabled: false},
+    }
+    )
   }
+  // computed: {
+  //   faceLightEnable: //ivite friends list item -> inviteFirend listener 
+  // }
+
 }
 </script>
 
