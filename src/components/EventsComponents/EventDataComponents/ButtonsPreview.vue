@@ -1,22 +1,24 @@
 <template>
     <div class="inviteBox">
         <p><strong>{Username} </strong>invited you</p>
-        <button class="btn btn-secondary">
-          <i class="bi bi-check-circle"></i>
-          Going
-        </button>
-        <button class="btn btn-secondary">
-          <i class="bi bi-question-circle"></i>
-          Maybe
+        <div class="buttonsContainer">
+          <button class="btn btn-secondary">
+            <i class="bi bi-check-circle"></i>
+            Going
           </button>
-        <button class="btn btn-secondary">
-          <i class="bi bi-x-circle"></i>
-          Can't Go
-          </button>
-        <button class="btn btn-secondary">
-          <i class="bi bi-envelope-fill"></i>
-          Invite
-          </button>
+          <button class="btn btn-secondary">
+            <i class="bi bi-question-circle"></i>
+            Maybe
+            </button>
+          <button class="btn btn-secondary">
+            <i class="bi bi-x-circle"></i>
+            Can't Go
+            </button>
+          <button class="btn btn-secondary">
+            <i class="bi bi-envelope-fill"></i>
+            Invite
+            </button>
+        </div>
     </div>
 </template>
 
@@ -29,13 +31,19 @@ export default {
 <style scoped>
   .inviteBox {
     margin: 20px;
-    padding: 10px;
+    padding: 20px;
     background-color: rgb(245, 245, 245);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
   }
   .btn {
     border-color: rgb(235, 235, 235);
     color: black;
     margin: 3px;
+  }
+  .buttonsContainer {
+    width: 450px;
   }
 .btn-secondary {
   color: black;

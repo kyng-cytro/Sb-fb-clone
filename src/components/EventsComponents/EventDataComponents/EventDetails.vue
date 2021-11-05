@@ -29,7 +29,7 @@ export default {
 
 <style scoped>
   #details {
-    background-color: rgb(247, 243, 243);
+    background-color: rgb(240,242,245);
     width: 100%;
     padding: 10px;
     display: flex;
