@@ -33,7 +33,7 @@ import FriendRequest from "@/classes/friendRequest.js";
             return {
                 name: "",
                 numOfMutualFriends: "",
-                daysUntilExpiration: null,
+                daysUntilExpiration: 30,
             }
         },
         methods: {
@@ -50,7 +50,7 @@ import FriendRequest from "@/classes/friendRequest.js";
                 );
                 this.name = "";
                 this.numOfMutualFriends = "";
-                this.daysUntilExpiration = null;
+                this.daysUntilExpiration = 30;
             }
         }
     }
