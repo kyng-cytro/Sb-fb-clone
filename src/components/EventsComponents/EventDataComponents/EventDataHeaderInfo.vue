@@ -2,6 +2,7 @@
     <div id="container">
         <CalendarIcon :date="event.date" />
         <div id="headerInfo">
+            <br/>
             <strong class="dateText">{{event.date.toLocaleDateString("en-US", dateFormatting).toUpperCase() + " AT " + event.date.toLocaleTimeString("en-US", timeFormatting)}}</strong>
             <h1 class="placeholder" v-if="event.name === ''">Event name</h1>
             <h1 v-else>{{event.name}}</h1>
@@ -44,7 +45,8 @@ h1 {
     color: rgb(196, 196, 196);
   }
   .dateText {
-    font-size: 1em;
+    font-size: 1.1em;
+    font-weight: bold;
     color: rgb(243,66,95);
   }
 
