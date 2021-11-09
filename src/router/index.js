@@ -41,6 +41,13 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "Groups" */ "../views/Groups.vue"),
   },
+  {
+    path: "/FriendEntry",
+    name: "FriendEntry",
+
+    component: () =>
+      import(/* webpackChunkName: "FriendEntry" */ "../views/FriendEntry.vue"),
+  },
 ];
 
 const router = new VueRouter({

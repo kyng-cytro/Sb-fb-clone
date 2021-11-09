@@ -4,7 +4,7 @@
         <p>Friend Requests</p>
       </div>
       <div class="friendRequestDisplay">
-        <div class="square" v-for="friend in friends" :key="friend.name">
+        <div class="square" v-for="friend in friendRequests" :key="friend.name">
             <FriendRequestSquare v-bind:friend="friend"/>
         </div>
     </div>
@@ -13,21 +13,7 @@
 
 <script>
 import FriendRequestSquare from './FriendRequestSquare.vue';
-
-const friends = [
-  {
-    imgSrc: "businessMan.jpg",
-    name: "Miles",
-    daysUntilExpiration: 29,
-    numOfMutualFriends: 21,
-  },
-  {
-    imgSrc: "anson.jpg",
-    name: "Anson",
-    daysUntilExpiration: 29,
-    numOfMutualFriends: 21,
-  },
-];
+import FriendRequest from "@/classes/friendRequest.js";
 
 
 
@@ -35,11 +21,12 @@ export default {
   name: "FriendRequestDisplay",
   components: {
     FriendRequestSquare
-
   },
-  data(){
-    return {friends}
-  },
+  computed: {
+    friendRequests() {
+    return FriendRequest.all();
+    }
+  }
 }
 
 </script>

@@ -1,6 +1,8 @@
 <template>
         <div class="friendRequestSquare">
-          <img class="profilePic" :src="require('@/assets/images/FriendProfilePics/' + friend.imgSrc)" />
+          <img v-if="friend.imgSrc" class="profilePic" :src="require('@/assets/images/FriendProfilePics/' + friend.imgSrc)" />
+          <!-- <img v-else class="profilePic" :src=""/> -->
+          <i v-else class="bi bi-person-fill"></i>
           <div class="info">
             <strong>{{friend.name}}</strong>
             <p id="mutualFriends">{{friend.numOfMutualFriends}} mutual friends <p>
@@ -56,6 +58,16 @@ export default {
 </script>
 
 <style scoped>
+.bi {
+  text-align: center;
+  color: rgb(73, 113, 172);
+  font-size: 10em;
+  width: 215px;
+  height: 215px;
+  background-color: rgb(214, 214, 214);
+  border-radius: 10px 10px 0px 0px;
+}
+
 .friendRequestSquare {
   /* box-shadow: 0px 0px 3px; */
   width: 100%;
