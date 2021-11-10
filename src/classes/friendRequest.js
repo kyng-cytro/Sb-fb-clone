@@ -10,6 +10,7 @@ export default class Friend extends Model {
             imgSrc: this.string(''), // this.attr is a generic field which accepts any value.
             daysUntilExpiration: this.attr(0),
             numOfMutualFriends: this.attr(0),
+            state: this.string('pending'), // State might be "pending", "confirmed", or "deleted"
         }
     }
 }

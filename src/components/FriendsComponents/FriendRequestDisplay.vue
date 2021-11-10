@@ -1,11 +1,10 @@
 <template>
   <div>
     <div>
-        <p>Friend Requests</p>
       </div>
       <div class="friendRequestDisplay">
-        <div class="square" v-for="friend in friendRequests" :key="friend.name">
-            <FriendRequestSquare v-bind:friend="friend"/>
+        <div class="square" v-for="friendRequest in this.friendRequests" :key="friendRequest.id">
+            <FriendRequestSquare v-bind:friendRequest="friendRequest"/>
         </div>
     </div>
   </div>
@@ -13,20 +12,15 @@
 
 <script>
 import FriendRequestSquare from './FriendRequestSquare.vue';
-import FriendRequest from "@/classes/friendRequest.js";
 
 
 
 export default {
   name: "FriendRequestDisplay",
+  props: ["friendRequests"],
   components: {
     FriendRequestSquare
   },
-  computed: {
-    friendRequests() {
-    return FriendRequest.all();
-    }
-  }
 }
 
 </script>

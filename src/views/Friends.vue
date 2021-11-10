@@ -4,7 +4,7 @@
         <FriendSidebar />
       </div>
       <div>
-        <FriendRequestDisplay />
+        <FriendRequestDisplay :friendRequests="friendRequests"/>
       </div>
     </div>
 
@@ -14,6 +14,7 @@
 
 import FriendSidebar from "@/components/FriendsComponents/FriendSidebar.vue";
 import FriendRequestDisplay from "@/components/FriendsComponents/FriendRequestDisplay.vue";
+import FriendRequest from "@/classes/friendRequest.js";
 
 export default {
   name: "Friends",
@@ -21,6 +22,11 @@ export default {
     FriendSidebar,
     FriendRequestDisplay
   },
+  computed: {
+    friendRequests() {
+      return FriendRequest.all();
+    }
+  }
 };
 </script>
 

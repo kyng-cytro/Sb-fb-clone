@@ -14,6 +14,18 @@
             <md-input v-model="numOfMutualFriends"></md-input>
         </md-field>
         <button @click="addFriendRequest">Add</button>
+
+        <!-- Show which friend requests were accepted/not -->
+        <div>
+            <strong v-show="confirmedRequests.length">Confirmed Requests</strong>
+            <FriendRequestDisplay :friendRequests="confirmedRequests"/>
+
+            <strong v-show="deletedRequests.length">Deleted Requests</strong>
+            <FriendRequestDisplay :friendRequests="deletedRequests"/>
+
+            <strong v-show="pendingRequests.length">Pending Requests</strong>
+            <FriendRequestDisplay :friendRequests="pendingRequests"/>
+        </div>
     </div>
 </template>
 
@@ -26,9 +38,12 @@ import 'vue-material/dist/theme/default.css'
 Vue.use(VueMaterial)
 
 import FriendRequest from "@/classes/friendRequest.js";
-
+import FriendRequestDisplay from "@/components/FriendsComponents/FriendRequestDisplay.vue";
 
     export default {
+        components: {
+            FriendRequestDisplay
+        },
         data() {
             return {
                 name: "",
@@ -51,6 +66,18 @@ import FriendRequest from "@/classes/friendRequest.js";
                 this.name = "";
                 this.numOfMutualFriends = "";
                 this.daysUntilExpiration = 30;
+            }
+        },
+
+        computed: {
+            pendingRequests() {
+                return FriendRequest.query().where('state', 'pending').get();
+            },
+            confirmedRequests() {
+                return FriendRequest.query().where('state', 'confirmed').get();
+            },
+            deletedRequests() {
+                return FriendRequest.query().where('state', 'deleted').get();
             }
         }
     }
@@ -83,5 +110,11 @@ button:hover {
 
 button::selection {
     outline: none;
+}
+
+.friendRequestDisplay {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 </style>
