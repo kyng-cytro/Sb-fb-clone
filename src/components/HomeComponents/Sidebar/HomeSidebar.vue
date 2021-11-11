@@ -52,8 +52,8 @@
      created () {
     faceLight.insert({
       data: { id: 1, enabled: false }
-    })
-    console.log(faceLight.find(1));
+    }) 
+   // console.log(faceLight.find(1));
   }, 
     methods: {
       update(){
