@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="verticalAlign">
-            <FriendDisplay :friend="friend" :userType="userType" :size="'normal'"></FriendDisplay>
+            <FriendDisplay :friend="friend" :size="'normal'"></FriendDisplay>
         </div>
         <div class="verticalAlign">
         </div>
@@ -12,7 +12,7 @@
 import FriendDisplay from "@/components/Multipurpose/FriendDisplay.vue"
 
     export default {
-        props: ['friend', 'userType'],
+        props: ['friend'],
         components: {
             FriendDisplay
         }

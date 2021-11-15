@@ -1,16 +1,16 @@
 <template>
     <div class="horizontalAlign">
         <!-- If the user is a facebook user: -->
-        <img v-if="this.userType==='facebook'" v-bind:style="imgStyles" :src="require('@/assets/images/FriendProfilePics/' + friend.imgSrc)"/>
+        <img v-if="isFacebookWithImage" v-bind:style="imgStyles" :src="require('@/assets/images/FriendProfilePics/' + friend.imgSrc)"/>
 
         <!-- If they are an email user -->
-        <i v-else-if="this.userType === 'email'" class="bi bi-envelope" :style="iconStyles"></i>
+        <i v-else-if="isEmail" class="bi bi-envelope" :style="iconStyles"></i>
 
         <!-- If they are a phone user -->
-        <i v-else-if="this.userType === 'phone'" class="bi bi-chat-dots" :style="iconStyles"></i>
+        <i v-else-if="isPhone" class="bi bi-chat-dots" :style="iconStyles"></i>
 
-        <!-- If they use both email and phone! -->
-        <i v-else class="bi bi-person" :style="iconStyles"></i>
+        <!-- If they use both email and phone or if they are a facebook user but don't have an image -->
+        <i v-else-if="isBoth || isFacebookWithoutImage" class="bi bi-person" :style="iconStyles"></i>
         <p :style="textStyles" >{{friend.name}}</p>
     </div>
 </template>
@@ -18,10 +18,27 @@
 <script>
     export default {
         // friend is a friend object
-        // userType is either 'facebook' 'email', 'phone', or 'both'
         // size is a value of 'small' or 'normal'
-        props: ['friend', 'userType', 'size'],
+        props: ['friend', 'size'],
         computed: {
+            isFacebookFriend() {
+                return Object.prototype.hasOwnProperty.call(this.friend, 'imgSrc');
+            },
+            isFacebookWithImage() {
+                return this.isFacebookFriend && this.friend.imgSrc !== '';
+            },
+            isFacebookWithoutImage() {
+                return !this.isFacebookWithImage && !this.isEmail && !this.isPhone && !this.isBoth;
+            },
+            isEmail() {
+                return Object.prototype.hasOwnProperty.call(this.friend, 'email') && this.friend.email !=='' && !(this.friend.phone !=='');
+            },
+            isPhone() {
+                return Object.prototype.hasOwnProperty.call(this.friend, 'phone') && this.friend.phone !=='' && !(this.friend.email !=='');
+            },
+            isBoth() {
+                return !this.isFacebookFriend && this.friend.phone !=='' && this.friend.email !=='';
+            },
             imgStyles() {
                 if (this.size === 'small') {
                     return `

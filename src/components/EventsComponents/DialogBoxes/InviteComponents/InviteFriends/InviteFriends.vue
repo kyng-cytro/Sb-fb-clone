@@ -4,7 +4,8 @@
         <div>
             <div class="input-icons">
                 <i class="bi bi-search icon"></i>
-                <input id="searchBox" class="input-field" type="text" placeholder="Search for friends by name">
+                <input id="searchBox" class="input-field" type="text" v-model="form.data" placeholder="Search for friends by name">
+                <!-- <button @click="addFriend" class="btn btn-primary">Add Facebook Friend</button> -->
             </div>
         </div>
         <div id="friendSelectionContainer">
@@ -17,11 +18,27 @@
 <script>
 import InviteFriendsList from "../InviteFriends/InviteFriendsList.vue";
 import InviteFriendsSidebar from "../InviteFriends/InviteFriendsSidebar.vue"
+import Friend from "@/classes/friend.js";
     export default {
+        data() {
+            return {
+                form: {
+                    name: '',
+                    imgSrc: '',
+                    numOfMutualFriends: null,
+                }
+            }
+        },
         props: ['invitedFriends'],
         components: {
             InviteFriendsList,
             InviteFriendsSidebar
+        },
+        methods: {
+            addFriend() {
+                Friend.insert({ data: this.form});
+                        // this.form[name] = "";
+            }
         }
     }
 </script>
@@ -68,6 +85,9 @@ import InviteFriendsSidebar from "../InviteFriends/InviteFriendsSidebar.vue"
 
 #friendSelectionContainer {
     display: flex;
+}
+button {
+    margin-left: 12px;
 }
 /* TODO: adjust the placeholder text such that it looks right */
 
