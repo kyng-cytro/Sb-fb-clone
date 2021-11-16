@@ -67,7 +67,7 @@ export default {
       return FilterValues.find(1); 
     },
     filteredPosts() {
-      return filterPosts(this.posts, this.getFilters)
+      return filterPosts(this.posts, this.getFilters);
     },
   },
   data(){
@@ -84,7 +84,7 @@ export default {
           87,
           2,
           21334,
-          new Filter(true, false)
+          new Filter(true, true)
         ),
         new Post(
           "basket.jpg",

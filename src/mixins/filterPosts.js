@@ -1,4 +1,9 @@
 export default function filterPosts(posts, filter) {// eslint-disable-line no-unused-vars
+    if (filter == null || posts.length < 1) {
+        return;
+    }
+    console.log(posts);
+    console.log(filter);
     function getDifferenceInTime(date1, date2) {
         return Math.abs(date1.getTime() - date2.getTime())
     }
@@ -14,31 +19,32 @@ export default function filterPosts(posts, filter) {// eslint-disable-line no-un
         let post = posts[i];
         if (filter.lastMonth) {
             if (currentDate.getMonth() - post.date.getMonth() <= 1) {
-                newPosts.add(post);
+                newPosts.push(post);
                 continue;
             }
         } else if (filter.lastTwoWeeks) {
             if (getNumDaysBetween(currentDate, post.date) <= 14) {
-                newPosts.add(post);
+                newPosts.push(post);
                 continue;
             }
         } else if (filter.lastWeek) {
             if (getNumDaysBetween(currentDate, post.date) <= 7) {
-                newPosts.add(post);
+                newPosts.push(post);
                 continue;
             }
         } else if (filter.lastThreeDays) {
             if (getNumDaysBetween(currentDate, post.date) <= 3) {
-                newPosts.add(post);
+                newPosts.push(post);
                 continue;
             }
         }
+        console.log("None of the date things are checked");
         if (filter.majorEvents && post.filter.majorEvents) {
-            newPosts.add(post);
+            newPosts.push(post);
             continue;
         }
         else if (filter.family && post.filter.family) {
-            newPosts.add(post);
+            newPosts.push(post);
             continue;
         }
     }
