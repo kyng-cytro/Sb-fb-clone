@@ -7,7 +7,7 @@
           <PageSidebarButton iconName = "gift" text = "Birthdays" />
           <PageSidebarButton iconName = "bell-fill" text = "Notifications" />
           <br>
-          <button id="createNewEventButton" v-on:click="changeEventState('editing')">＋ Create New Event</button>
+          <button class="enabledButton" v-on:click="changeEventState('editing')">＋ Create New Event</button>
         </div>
         <div v-else-if="eventState === 'editing'">
           <p>Event > Create Event</p>
@@ -50,10 +50,14 @@
               </md-field>
           </div>
         </div>
-        <div id="navigationButtons" v-show="eventState === 'editing'">
+
+        <div id="footer">
           <hr />
-          <button v-on:click="regressStage()" class="btn-secondary">Back</button>
-          <button id="nextButton" v-on:click="progressStage()" class="btn-secondary">Next</button>
+          <!-- <EventProgressBar :current="this.stage + 1" :total = "4"/> -->
+          <div id="navigationButtons" v-show="eventState === 'editing'">
+            <button v-on:click="regressStage()" class="btn-secondary">Back</button>
+            <button :class="{enabledButton : this.nextEnabled, disabledButton : !this.nextEnabled}" v-on:click="progressStage()" class="btn-secondary">Next</button>
+          </div>
         </div>
       </div>
   </div>
@@ -63,7 +67,8 @@
 import PageSidebarButton from "@/components/PageSidebarButton.vue";
 // import Datepicker from 'vuejs-datepicker';
 // import VueTimepicker from 'vue2-timepicker/src/vue-timepicker.vue';
-import EventTimePicker from './EventTimePicker.vue';
+import EventTimePicker from './EventsSidebarComponents/EventTimePicker.vue';
+// import EventProgressBar from './EventsSidebarComponents/ProgressBar.vue';
 
 //MATERIAL IMPORTS:
 import Vue from 'vue'
@@ -79,12 +84,27 @@ export default {
     PageSidebarButton,
     // Datepicker,
     // VueTimepicker,
-    EventTimePicker
+    EventTimePicker,
+    // EventProgressBar
   },
   mounted() {
     this.$root.$on('timeUpdated', () => {
       this.togglePopup("friendsTrigger");
     });
+  },
+  computed: {
+    nextEnabled() {
+      if (this.stage == 0) {
+        console.log(this.eventName.length && this.eventTime.length && this.eventDate);
+        return this.eventName.length && this.eventTime.length && this.eventDate;
+      }
+      else if (this.stage == 1) {
+        return this.eventLocation.length > 0;
+      }
+      else {
+        return this.eventDescription.length > 0;
+      }
+    }
   },
   methods: {
     changeEventState(newState) {
@@ -94,9 +114,11 @@ export default {
       this.$emit('nameChange', this.eventName);
     },
     updateDate() { //Here, we simply emit the string representation of the date. Events.vue converts this to a JS Date object
+      console.log("Updating the date!");
       this.$emit('dateChange', this.eventDate);
     },
     updateTime(newTime) {
+      this.eventTime = newTime;
       this.$emit('timeChange', newTime);
     },
     updateLocation() {
@@ -106,10 +128,12 @@ export default {
       this.$emit('descriptionChange', this.eventDescription);
     },
     progressStage() {
-      if (this.stage === this.stages.length - 1) {
-        this.changeEventState("eventCreated");
-      } else {
-        this.stage++;
+      if (this.nextEnabled) {
+        if (this.stage === this.stages.length - 1) {
+          this.changeEventState("eventCreated");
+        } else {
+          this.stage++;
+        }
       }
     },
     regressStage() {
@@ -180,18 +204,30 @@ md-datepicker {
 #timePicker {
   width: 10px;
 }
-#createNewEventButton {
+
+.disabledButton {
+    width: 100%;
+    background-color: rgb(228,230,235);
+    color: rgb(116, 116, 116) !important;
+    cursor: not-allowed;
+}
+.disabledButton:hover {
+    /* Same as parent */
+    background-color: rgb(228,230,235);
+    color: rgb(188,192,196);
+}
+.enabledButton {
   width: 100%;
   height: 40px;
   border: rgba(235, 30, 137, 0);
   border-radius: 5px;
-  background-color: rgb(231,243,255);
+  background-color: rgb(24,119,242) !important;
   font-weight: bold;
-  color: rgb(24,119,242);
+  color: white !important;
 }
 
-#createNewEventButton:hover {
-  background-color: rgb(225, 239, 240);
+#enabledButton:hover {
+  background-color: rgb(41, 112, 204);
   transition: 0.3s;
 }
 

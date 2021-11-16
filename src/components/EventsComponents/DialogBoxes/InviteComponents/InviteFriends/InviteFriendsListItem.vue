@@ -1,8 +1,9 @@
 <template>
     <div class="container" v-on:click="select">
         <div class="verticalAlign">
-            <img :src="require('@/assets/images/FriendProfilePics/' + friend.imgSrc)"/>
-            <p v-bind:class="{bold: this.selected}">{{friend.name}}</p>
+            <FriendDisplay :friend="this.friend" />
+            <!-- <img :src="require('@/assets/images/FriendProfilePics/' + friend.imgSrc)"/>
+            <p v-bind:class="{bold: this.selected}">{{friend.name}}</p> -->
         </div>
         <div class="verticalAlign">
             <i v-if="!this.selected" class="bi bi-circle"></i>    
@@ -13,9 +14,13 @@
 
 <script>
 import Friend from "@/classes/friend.js";
+import FriendDisplay from "@/components/Multipurpose/FriendDisplay";
 
     export default {
         props: ['friend'],
+        components: {
+            FriendDisplay
+        },
         methods: {
             select() {
                 Friend.update({

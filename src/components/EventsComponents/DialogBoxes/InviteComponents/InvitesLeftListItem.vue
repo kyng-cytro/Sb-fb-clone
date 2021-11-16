@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="verticalAlign">
-            <FriendDisplay :friend="friend" :userType="userType" :size="'small'"></FriendDisplay>
+            <FriendDisplay :friend="friend" :size="'small'"></FriendDisplay>
         </div>
         <div class="verticalAlign">
             <i @click="remove" class="bi bi-x-lg delete"></i>
@@ -15,14 +15,14 @@ import NonFacebookFriend from "@/classes/nonFacebookFriend.js";
 import FriendDisplay from "@/components/Multipurpose/FriendDisplay.vue";
 
     export default {
-        props: ['friend', 'userType'],
+        props: ['friend'],
         components: {
             FriendDisplay
         },
         methods: {
             remove() {
                 //If this is a facebook friend, remove it the normal way
-                if(this.userType === "facebook") {
+                if(!this.friend.email && !this.friend.phone) {
                     Friend.update({
                         where: this.friend.id,
                         data: {

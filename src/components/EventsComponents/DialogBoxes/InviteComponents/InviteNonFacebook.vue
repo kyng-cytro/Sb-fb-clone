@@ -16,7 +16,7 @@
                 <label>Email</label>
                 <md-input v-model="form.email"></md-input>
             </md-field>
-            <button @click="addNonFacebookFriend">Add</button>
+            <button class="btn btn-primary" @click="addNonFacebookFriend">Add</button>
         </div>
     </div>
 </template>
@@ -78,25 +78,9 @@ p {
     display: flex;
 }
 button {
-    background-color: rgb(59, 138, 241);
-    color: white;
-    padding: 12px;
-    padding-left: 30px;
-    padding-right: 30px;
-    border-radius: 10px;
-    border-width: 0px;
-    outline: none;
+    height: 40px;
     align-self: flex-end;
-    margin: 20px;
-}
-
-button:hover {
-    background-color: rgb(125, 181, 255);
-    color: rgb(24,119,242);
-    transition: 0.1s;
-}
-
-button::selection {
-    outline: none;
+    margin: 15px;
+    margin-bottom: 20px;
 }
 </style>

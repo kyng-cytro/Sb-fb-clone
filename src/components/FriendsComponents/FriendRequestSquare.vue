@@ -1,10 +1,11 @@
 <template>
         <div class="friendRequestSquare">
-          <img class="profilePic" :src="require('@/assets/images/FriendProfilePics/' + friend.imgSrc)" />
+          <img v-if="friendRequest.imgSrc" class="profilePic" :src="require('@/assets/images/FriendProfilePics/' + friendRequest.imgSrc)" />
+          <i v-else class="bi bi-person-fill"></i>
           <div class="info">
-            <strong>{{friend.name}}</strong>
-            <p id="mutualFriends">{{friend.numOfMutualFriends}} mutual friends <p>
-            <div v-if="deleted">
+            <strong>{{friendRequest.name}}</strong>
+            <p id="mutualFriends">{{friendRequest.numOfMutualFriends}} mutual friends <p>
+            <div v-if="friendRequest.state==='deleted'">
               <div>
                 <button type="button" class="btn btn-secondary invisible" disabled>Invisible</button>
               </div>
@@ -13,7 +14,7 @@
               </div>
               <em class="invisible">Invisible placeholder</em>
             </div>
-            <div v-else-if="accepted">
+            <div v-else-if="friendRequest.state==='confirmed'">
               <div>
                 <button type="button" class="btn btn-secondary invisible" disabled>Invisible</button>
               </div>
@@ -24,44 +25,59 @@
             </div>
             <div v-else>
               <div>
-                <button type="button" v-on:click="handleAcceptClick" class = "btn btn-primary">Confirm</button>
+                <button type="button" v-on:click="handleConfirmClick" class = "btn btn-primary">Confirm</button>
               </div>
               <div>
                 <button type="button" v-on:click="handleDeleteClick" class="btn btn-secondary">Delete</button>
               </div>
-            <em>{{"Expires in " + friend.daysUntilExpiration + " days"}}</em>
+            <em>{{"Expires in " + friendRequest.daysUntilExpiration + " days"}}</em>
             </div>
           </div>
         </div>
 </template>
 
 <script>
+import FriendRequest from "@/classes/friendRequest.js";
+
 export default {
   name: "friend-request-square",
-  props: ["friend"],
-  data() {
-    return { deleted: false, accepted: false }
-  },
+  props: ["friendRequest"],
   methods: {
     handleDeleteClick() {
-      this.deleted = true
+      FriendRequest.update({
+        where: this.friendRequest.id,
+        data: {
+          state: "deleted"
+        }
+      });
     },
-    handleAcceptClick() {
-      this.accepted = true
+    handleConfirmClick() {
+      FriendRequest.update({
+        where: this.friendRequest.id,
+        data: {
+          state: "confirmed"
+        }
+      });
     },
   }
 }
-
-
 </script>
 
 <style scoped>
+.bi {
+  text-align: center;
+  color: rgb(73, 113, 172);
+  font-size: 10em;
+  width: 215px;
+  height: 215px;
+  background-color: rgb(214, 214, 214);
+  border-radius: 10px 10px 0px 0px;
+}
+
 .friendRequestSquare {
-  /* box-shadow: 0px 0px 3px; */
   width: 100%;
   border-radius: 10px;
   margin: 10%;
-  /* padding: 10%; */
   box-shadow: 0px 0px 3px rgb(140, 140, 140);
   display: flex;
   flex-direction: column;

@@ -68,7 +68,7 @@ export default {
   },
   data (){
     return {
-      eventState : "eventCreated", //Options for state include normal, creatingEvent, eventCreated
+      eventState : "normal", //Options for state include normal, creatingEvent, eventCreated
       currentEvent : {
         name: "",
         date: new Date(),

@@ -10,7 +10,7 @@
         :key="friend.id"
         class="selectRectangle"
         >
-        <AttendanceTabInvitedListItem v-bind:friend="friend" :userType="'facebook'"/>
+        <AttendanceTabInvitedListItem v-bind:friend="friend"/>
       </div>
       <br>
       <br>
@@ -24,7 +24,7 @@
         :key="emailFriend.id"
         class="selectRectangle"
       >
-        <AttendanceTabInvitedListItem v-bind:friend="emailFriend" :userType="'email'" />
+        <AttendanceTabInvitedListItem v-bind:friend="emailFriend"/>
       </div>
       <br>
       <br>
@@ -38,7 +38,7 @@
         :key="phoneFriend.id"
         class="selectRectangle"
       >
-        <AttendanceTabInvitedListItem v-bind:friend="phoneFriend" :userType="'phone'"/>
+        <AttendanceTabInvitedListItem v-bind:friend="phoneFriend"/>
       </div>
       <br>
       <br>
@@ -52,7 +52,7 @@
         :key="bothFriend.id"
         class="selectRectangle"
       >
-        <AttendanceTabInvitedListItem v-bind:friend="bothFriend" :userType="'both'"/>
+        <AttendanceTabInvitedListItem v-bind:friend="bothFriend"/>
       </div>
       <br>
       <br>

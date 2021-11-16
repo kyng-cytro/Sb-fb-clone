@@ -4,21 +4,16 @@
         <select v-model="timeString" name="timeLabel" id="timeID" class="dropdown">
             <option :value="time.name" v-for="time in timeList" v-bind:key="time.id">{{time.name}}</option>
         </select>
-        <!-- <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown button
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </div> -->
-        <!-- <p>{{selectedTime}}</p> -->
+
     </div>
 </template>
 
 <script>
+//MATERIAL IMPORTS:
+// import Vue from 'vue'
+// import VueMaterial from 'vue-material'
+// import 'vue-material/dist/vue-material.min.css'
+// import 'vue-material/dist/theme/default.css'
 
     export default {
         components: {

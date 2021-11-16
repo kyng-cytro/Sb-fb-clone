@@ -1,8 +1,5 @@
 <template>
   <div id="nav">
-    <!-- <router-link to="/">Home</outer-link>
-    <router-link to="/Friends">Friends</router-link>
-    <router-link to="/Events">Events</router-link> -->
     <tr>
       <td>
         <p>Enable Facebook Lite  </p>
