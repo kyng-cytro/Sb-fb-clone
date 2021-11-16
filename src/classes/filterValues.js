@@ -6,8 +6,8 @@ export default class FiltersValues extends Model {
   static fields() {
     return {
       id: this.uid(),
-      family: this.boolean(false),
-      majorEvents: this.boolean(false),
+      isFamily: this.boolean(false),
+      isMajorEvent: this.boolean(false),
       lastThreeDays: this.boolean(false),
       lastWeek: this.boolean(false),
       lastTwoWeeks: this.boolean(false),

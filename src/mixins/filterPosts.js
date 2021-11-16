@@ -14,36 +14,30 @@ export default function filterPosts(posts, filter) {// eslint-disable-line no-un
     let newPosts = []
     // In production, you can just create a new date like this: 
     // let currentDate = new Date();
-    let currentDate = new Date('November 16, 2021');
+    let currentDate = new Date('11/16/2021');
     for (let i=0; i < posts.length; i++) {
         let post = posts[i];
+        let addToList = true;
         if (filter.lastMonth) {
             if (currentDate.getMonth() - post.date.getMonth() <= 1) {
-                newPosts.push(post);
-                continue;
             }
         } else if (filter.lastTwoWeeks) {
             if (getNumDaysBetween(currentDate, post.date) <= 14) {
-                newPosts.push(post);
-                continue;
             }
         } else if (filter.lastWeek) {
             if (getNumDaysBetween(currentDate, post.date) <= 7) {
-                newPosts.push(post);
-                continue;
             }
         } else if (filter.lastThreeDays) {
             if (getNumDaysBetween(currentDate, post.date) <= 3) {
-                newPosts.push(post);
-                continue;
+            }
+        } else {
+            console.log("None of the date things are checked");
+            if (filter.isMajorEvent && post.filter.isMajorEvent) {
+            }
+            else if (filter.isFamily && post.friend.isFamily) {
             }
         }
-        console.log("None of the date things are checked");
-        if (filter.majorEvents && post.filter.majorEvents) {
-            newPosts.push(post);
-            continue;
-        }
-        else if (filter.family && post.filter.family) {
+        if (addToList) {
             newPosts.push(post);
             continue;
         }

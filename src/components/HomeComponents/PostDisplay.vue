@@ -74,31 +74,47 @@ export default {
     return {
       posts: [
         new Post(
-          "basket.jpg",
-          {
-            imgSrc: "",
-            name: "Anson",
-          },
-          "I've been weaving baskets",
-          new Date(),
-          87,
-          2,
-          21334,
-          new Filter(true, true)
-        ),
-        new Post(
-          "basket.jpg",
+          "stars.jpg",
           {
             imgSrc: "anson.jpg",
             name: "Anson",
+            isFamily: false,
           },
-          "I've been weaving baskets",
-          new Date(),
+          "The stars from three weeks ago were very beautiful",
+          new Date("11/1/2021"),
           87,
           2,
           21334,
-          new Filter(true, false)
-        )
+          new Filter(false)
+        ),
+        new Post(
+          "birthday.jpg",
+          {
+            imgSrc: "xinru.jpg",
+            name: "Xinru",
+            isFamily: false,
+          },
+          "My friend is having a birthday party this week!",
+          new Date("11/12/2021"),
+          87,
+          2,
+          21334,
+          new Filter(true)
+        ),
+        new Post(
+          "breakfast.jpg",
+          {
+            imgSrc: "businessMan.jpg",
+            name: "Miles",
+            isFamily: true,
+          },
+          "I just ate some good breakfast this morning",
+          new Date("11/16/2021"),
+          87,
+          2,
+          21334,
+          new Filter(false)
+        ),
       ]
     }
   },

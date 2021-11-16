@@ -13,8 +13,6 @@
       </div>
 
       <div class = "filter">
-        <p>filters</p>
-
         <FacebookLiteFilters />
       
       </div>

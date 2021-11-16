@@ -6,7 +6,7 @@
 
     <p id="text">{{post.text}}</p>
 
-    <img v-show="this.post.imgSrc !== ''" class="eventPic" :src="require('@/assets/images/EventImages/' + post.imgSrc)"/>
+    <img v-show="this.post.imgSrc !== ''" class="postPic" :src="require('@/assets/images/PostImages/' + post.imgSrc)"/>
 
     <div class="info" v-if="!getFaceLight">  <!--v-show="!getFaceLight">-->
         <!-- <strong id="date">{{post.date}}</strong>
@@ -76,7 +76,7 @@ export default {
   flex-direction: column;
 }
 
-.eventPic {
+.postPic {
   width: 400px;;
   height: 180px;
   object-fit: cover; /*This makes it so the image is cropped instead of squished */

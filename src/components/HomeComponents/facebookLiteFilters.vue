@@ -1,11 +1,15 @@
 <template>
   <div class="filter" v-show="getFaceLight">
-    <p style="text-align: center">Filters</p>
+    <h3 style="text-align: center">Filters</h3>
     <table>
       <th>People</th>
-
       <tr>
-        <input type="checkbox" id="checkbox" />
+        <input 
+          type="checkbox"
+          id="checkbox"
+          v-model="isFamily"
+          v-on:change="updateFilters()"
+          />
         Family
       </tr>
       <tr>
@@ -55,7 +59,7 @@
         <input
           type="checkbox"
           id="checkbox"
-          v-model="majorEvents"
+          v-model="isMajorEvent"
           v-on:change="updateFilters()"
         />
         Major Event
@@ -77,12 +81,10 @@
         Vacations
       </tr>
     </table>
-    <p v-show="getFilters.majorEvents">Can you see me?</p>
   </div>
 </template>
 
 <script>
-import HomeSidebar from "./Sidebar/HomeSidebar.vue";
 import faceLight from "@/classes/faceLight.js";
 import FiltersValues from "@/classes/filterValues.js";
 
@@ -90,9 +92,9 @@ export default {
   name: "facebookLiteFilters",
   data() {
     return {
-      facebookLight: HomeSidebar.facebookLight,
-      majorEvents: false,
-      last3Days: false,
+      isFamily: true,
+      isMajorEvent: true,
+      last3Days: true,
       lastWeek: false,
       last2Weeks: false,
       lastMonth: false,
@@ -111,13 +113,16 @@ export default {
     FiltersValues.insert({
       data: { id: 1 },
     });
+    this.updateFilters();
   },
   methods: {
     updateFilters() {
+      // TODO: it seems that we might want to store the family filter in the friend object
       FiltersValues.update({
         where: 1,
         data: {
-          majorEvents: this.majorEvents,
+          isFamily: this.isFamily,
+          isMajorEvent: this.isMajorEvent,
           lastThreeDays: this.last3Days,
           lastWeek: this.lastWeek,
           lastTwoWeeks: this.last2Weeks,
@@ -134,13 +139,12 @@ export default {
 
 <style scoped>
 .filter {
-  /* box-shadow: 0px 0px 3px; */
   width: 200px;
   border-radius: 10px;
   margin: 10%;
-  /* padding: 10%; */
   box-shadow: 0px 0px 3px rgb(140, 140, 140);
   display: flex;
   flex-direction: column;
+  padding: 15px;
 }
 </style>
