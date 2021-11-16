@@ -84,7 +84,7 @@
 <script>
 import HomeSidebar from "./Sidebar/HomeSidebar.vue";
 import faceLight from "@/classes/faceLight.js";
-import Filters from "@/classes/filters.js";
+import FiltersValues from "@/classes/filterValues.js";
 
 export default {
   name: "facebookLiteFilters",
@@ -103,18 +103,18 @@ export default {
       return faceLight.find(1).enabled;
     },
     getFilters() {
-      return Filters.find(1); //.enabled;
+      return FiltersValues.find(1); 
     },
   },
 
   created() {
-    Filters.insert({
+    FiltersValues.insert({
       data: { id: 1 },
     });
   },
   methods: {
     updateFilters() {
-      Filters.update({
+      FiltersValues.update({
         where: 1,
         data: {
           majorEvents: this.majorEvents,
@@ -126,7 +126,7 @@ export default {
       });
       console.log(this.getFilters);
 
-      console.log(Filters.find(1));
+      console.log(FiltersValues.find(1));
     },
   },
 };
