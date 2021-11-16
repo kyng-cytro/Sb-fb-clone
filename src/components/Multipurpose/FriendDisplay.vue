@@ -1,4 +1,5 @@
 <template>
+<!-- NOTE: THIS COMPONENT WILL DISPLAY ACCORDING TO THE OBJECT PASSED IN. IF IT HAS AN EMAIL FIELD, IT WILL SHOW AN EMAIL ICON. ETC. -->
     <div class="horizontalAlign">
         <!-- If the user is a facebook user: -->
         <img v-if="isFacebookWithImage" v-bind:style="imgStyles" :src="require('@/assets/images/FriendProfilePics/' + friend.imgSrc)"/>

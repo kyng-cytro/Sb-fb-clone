@@ -114,6 +114,7 @@ export default {
       this.$emit('nameChange', this.eventName);
     },
     updateDate() { //Here, we simply emit the string representation of the date. Events.vue converts this to a JS Date object
+      console.log("Updating the date!");
       this.$emit('dateChange', this.eventDate);
     },
     updateTime(newTime) {
