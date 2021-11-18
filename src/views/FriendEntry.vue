@@ -1,18 +1,21 @@
 <template>
     <div class="container">
+        <h2>{{currentQuestion}}</h2>
         <md-field>
             <label>Name</label>
             <md-input v-model="name"></md-input>
             <span class="md-helper-text">Required</span>
         </md-field>
-        <md-field>
+        <!-- <md-field>
             <label>Number of days until expiration (optional)</label>
             <md-input v-model="daysUntilExpiration"></md-input>
-        </md-field>
-        <md-field>
+        </md-field> -->
+        <!-- <md-field>
             <label>Number of mutual friends</label>
             <md-input v-model="numOfMutualFriends"></md-input>
-        </md-field>
+        </md-field> -->
+        <button @click="previous">Back</button>
+        <button @click="next">Next</button>
         <button @click="addFriendRequest">Add</button>
 
         <!-- Show which friend requests were accepted/not -->
@@ -40,6 +43,28 @@ Vue.use(VueMaterial)
 import FriendRequest from "@/classes/friendRequest.js";
 import FriendRequestDisplay from "@/components/FriendsComponents/FriendRequestDisplay.vue";
 
+const questionFriendList = [
+    {
+        question: "you would not want to connect with",
+        friendData: null
+    },
+    {
+        question: "you would like to connect with",
+        friendData: null
+    },
+    {
+        question: "you would fell pressured to connect with",
+        friendData: null
+    },
+    {
+        question: "you would like to connect with, but you have some sort of concern",
+        friendData: null
+    },
+    {
+        question: "you have already connected with, but you didn't want to",
+        friendData: null
+    },
+]
     export default {
         components: {
             FriendRequestDisplay
@@ -49,6 +74,7 @@ import FriendRequestDisplay from "@/components/FriendsComponents/FriendRequestDi
                 name: "",
                 numOfMutualFriends: "",
                 daysUntilExpiration: 30,
+                index: 0,
             }
         },
         methods: {
@@ -66,6 +92,16 @@ import FriendRequestDisplay from "@/components/FriendsComponents/FriendRequestDi
                 this.name = "";
                 this.numOfMutualFriends = "";
                 this.daysUntilExpiration = 30;
+            },
+            next() {
+                if (this.index < questionFriendList.length - 1) {
+                    this.index++;
+                }
+            },
+            previous() {
+                if (this.index > 0) {
+                    this.index--;
+                }
             }
         },
 
@@ -78,6 +114,9 @@ import FriendRequestDisplay from "@/components/FriendsComponents/FriendRequestDi
             },
             deletedRequests() {
                 return FriendRequest.query().where('state', 'deleted').get();
+            },
+            currentQuestion() {
+                return "Please enter the name of a friend " + questionFriendList.at(this.index).question + ":";
             }
         }
     }
