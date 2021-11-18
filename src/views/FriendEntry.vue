@@ -23,15 +23,6 @@
             <button class="submit" v-show="finished" @click="submit">Submit</button>
         </div>
 
-        <!-- Show which friend requests were accepted/not -->
-        <div>
-            <strong v-show="confirmedRequests.length">Confirmed Requests</strong>
-            <FriendRequestDisplay :friendRequests="confirmedRequests"/>
-            <strong v-show="deletedRequests.length">Deleted Requests</strong>
-            <FriendRequestDisplay :friendRequests="deletedRequests"/>
-            <strong v-show="pendingRequests.length">Pending Requests</strong>
-            <FriendRequestDisplay :friendRequests="pendingRequests"/>
-        </div>
     </div>
 </template>
 
@@ -44,7 +35,6 @@ import 'vue-material/dist/theme/default.css'
 Vue.use(VueMaterial)
 
 import FriendRequest from "@/classes/friendRequest.js";
-import FriendRequestDisplay from "@/components/FriendsComponents/FriendRequestDisplay.vue";
 
 const questionFriendList = [
     {
@@ -69,9 +59,6 @@ const questionFriendList = [
     },
 ]
     export default {
-        components: {
-            FriendRequestDisplay
-        },
         data() {
             return {
                 name: "",
@@ -126,15 +113,6 @@ const questionFriendList = [
         },
 
         computed: {
-            pendingRequests() {
-                return FriendRequest.query().where('state', 'pending').get();
-            },
-            confirmedRequests() {
-                return FriendRequest.query().where('state', 'confirmed').get();
-            },
-            deletedRequests() {
-                return FriendRequest.query().where('state', 'deleted').get();
-            },
             currentQuestion() {
                 return "Please enter the name of a friend " + questionFriendList.at(this.index).question + ":";
             },

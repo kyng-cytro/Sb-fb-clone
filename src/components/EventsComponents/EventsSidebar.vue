@@ -13,24 +13,18 @@
           <p>Event > Create Event</p>
           <h1>{{stages[stage]}}</h1>
           <div v-if="stages[stage] === 'Event Details'">
-            <!-- The following commented out code is how the page looked before using material components -->
             <div class="input">
               <md-field>
                 <label>Event name</label>
                 <md-input v-model="eventName" md-counter="100"></md-input>
               </md-field>
             </div>
-            <!-- <input v-model="eventName" placeholder="Event name" v-on:input="updateName"> -->
             <div id="dateAndTime">
               <div class="input">
                 <md-datepicker style="width: 130px" v-model="eventDate" v-on:input="updateDate">
                   <label>Start Date</label>
                 </md-datepicker>
               </div>
-              <!-- <datepicker v-model="eventDate" :bootstrap-styling="true" v-on:input="updateDate">
-                <div slot="beforeCalendarHeader" class="calender-header">
-                </div>
-              </datepicker> -->
               <div class="input timePicker">
                 <EventTimePicker v-on:updateTime="updateTime"/>
               </div>
@@ -52,7 +46,6 @@
 
         <div id="footer">
           <hr />
-          <!-- <EventProgressBar :current="this.stage + 1" :total = "4"/> -->
           <div id="navigationButtons" v-show="eventState === 'editing'">
             <button v-on:click="regressStage()" class="btn-secondary">Back</button>
             <button :class="{enabledButton : this.nextEnabled, disabledButton : !this.nextEnabled}" v-on:click="progressStage()" class="btn-secondary">Next</button>
@@ -64,10 +57,7 @@
 
 <script>
 import PageSidebarButton from "@/components/PageSidebarButton.vue";
-// import Datepicker from 'vuejs-datepicker';
-// import VueTimepicker from 'vue2-timepicker/src/vue-timepicker.vue';
 import EventTimePicker from './EventsSidebarComponents/EventTimePicker.vue';
-// import EventProgressBar from './EventsSidebarComponents/ProgressBar.vue';
 
 //MATERIAL IMPORTS:
 import Vue from 'vue'
@@ -81,10 +71,7 @@ export default {
   name: "EventsSidebar",
   components: {
     PageSidebarButton,
-    // Datepicker,
-    // VueTimepicker,
     EventTimePicker,
-    // EventProgressBar
   },
   mounted() {
     this.$root.$on('timeUpdated', () => {

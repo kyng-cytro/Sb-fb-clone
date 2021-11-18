@@ -5,7 +5,7 @@
         <router-link to="/" class="title">Facebook Lite</router-link>
       </div>
       <div id="icons">
-        <router-link :to="'/FriendEntry'">
+        <router-link :to="'/ResearcherReview'">
           <button class="invisible">Add Friend Request</button>
         </router-link>
         <CircularIcon type = "plus"/>

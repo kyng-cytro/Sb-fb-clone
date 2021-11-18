@@ -8,7 +8,14 @@
         <input type="checkbox" id="checkbox" v-model="facebookLight" v-on:change="update()">
       </td>
     </tr>
-    <SidebarButton type="friends" />
+    <div v-for="type in this.facebookLightButtons" :key="type">
+      <SidebarButton :type="type"/>
+    </div>
+
+    <div v-for="type in this.facebookButtons" :key="type">
+      <SidebarButton :type="type"/>
+    </div>
+    <!-- <SidebarButton type="friends" />
     <SidebarButton type="groups" />
     <SidebarButton type="events" />
     <SidebarButton v-show="!getFaceLight" type="marketplace" />
@@ -17,19 +24,14 @@
     <SidebarButton v-show="!getFaceLight" type="saved" />
     <SidebarButton v-show="!getFaceLight" type="pages" />
     <SidebarButton v-show="!getFaceLight" type="news" />
-    <!-- <SidebarButton v-show="!facebookLight" type="marketplace" />
-    <SidebarButton v-show="!facebookLight" type="watch" />
-    <SidebarButton v-show="!facebookLight" type="memories" />
-    <SidebarButton v-show="!facebookLight" type="saved" />
-    <SidebarButton v-show="!facebookLight" type="pages" />
-    <SidebarButton v-show="!facebookLight" type="news" /> -->
-    <SidebarButton type="favorites" />
+    <SidebarButton type="favorites" /> -->
   </div>
 </template>
 
 <script>
   import SidebarButton from "./SidebarButton.vue";
   import faceLight from "@/classes/faceLight.js";
+
  
   export default {
     name: "Sidebar",
@@ -39,6 +41,8 @@
     data() {
       return {
         facebookLight: false,
+        facebookLightButtons: null,
+        facebookButtons: null,
       }
     },
     computed:  {
@@ -47,10 +51,11 @@
       }
     },
      created () {
-    faceLight.insert({
-      data: { id: 1, enabled: false }
-    }) 
-   // console.log(faceLight.find(1));
+      faceLight.insert({
+        data: { id: 1, enabled: false }
+      });
+      this.facebookLightButtons = ["friends", "groups", "events", "favorites"];
+      this.facebookButtons = ["marketplace", "watch", "memories", "saved", "pages", "news"];
   }, 
     methods: {
       update(){
@@ -60,9 +65,6 @@
           enabled: (!this.getFaceLight)
         }
       })
-        // console.log(this.getFaceLight);
-
-        // console.log(faceLight.find(1));
     }
   }
   }
