@@ -27,7 +27,7 @@
             <FriendRequestDisplay :friendRequests="deletedRequests"/>
 
             <strong v-show="pendingRequests.length">Pending Requests</strong>
-            <FriendRequestDisplay :friendRequests="pendingRequests"/>
+            <FriendRequestDisplay :friendRequests="pendingRequests"/>Back￼Next￼AddBack￼Next￼Add
         </div>
     </div>
 </template>
