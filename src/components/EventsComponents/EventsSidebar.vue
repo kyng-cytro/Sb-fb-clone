@@ -33,7 +33,6 @@
               </datepicker> -->
               <div class="input timePicker">
                 <EventTimePicker v-on:updateTime="updateTime"/>
-
               </div>
             </div>
           </div>

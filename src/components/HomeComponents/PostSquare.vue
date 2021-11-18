@@ -102,18 +102,16 @@ export default {
 }
 
 button {
-  padding: 13px;
+  padding-left: 13px;
+  padding-right: 13px;
   width: 120px;
   margin: 2%;
   font-weight: bold;
   font-size: .9em;
-  
-  
 }
 
 .btn-secondary {
   color: rgb(78, 78, 78);
-
   background-color: transparent; 
   border: 0px;
   border-radius: 6px;
@@ -129,7 +127,8 @@ button {
 }
 
 .btn-secondary:focus {
-  outline-color: hsl(0, 0%, 92%);
+  outline-color: transparent;
+  border: none;
 }
 
 #data {

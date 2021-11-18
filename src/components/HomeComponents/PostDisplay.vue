@@ -1,7 +1,6 @@
 <template>
   <div>
     <div>
-        <p>Posts</p>
       </div>
       <div class="postDisplay">
         <div class="square" v-for="post in filteredPosts" :key="post.id">
