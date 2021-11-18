@@ -64,7 +64,7 @@
         />
         Major Event
       </tr>
-      <tr>
+      <!-- <tr>
         <input type="checkbox" id="checkbox" />
         wedding
       </tr>
@@ -79,7 +79,7 @@
       <tr>
         <input type="checkbox" id="checkbox" />
         Vacations
-      </tr>
+      </tr> -->
     </table>
   </div>
 </template>
@@ -92,13 +92,20 @@ export default {
   name: "facebookLiteFilters",
   data() {
     return {
-      isFamily: true,
-      isMajorEvent: true,
+      isFamily: false,
+      isMajorEvent: false,
       last3Days: true,
       lastWeek: false,
       last2Weeks: false,
-      lastMonth: false,
+      lastMonth: true,
     };
+  },
+  watch: {
+    getFaceLight: function (isEnabled) {
+      if (!isEnabled) { //If it's now not enabled
+        this.resetFilters();
+      }
+    }
   },
   computed: {
     getFaceLight() {
@@ -130,9 +137,18 @@ export default {
         },
       });
       console.log(this.getFilters);
-
       console.log(FiltersValues.find(1));
     },
+    resetFilters() {
+      console.log("Trying to reset the filters");
+      this.isFamily = false;
+      this.isMajorEvent = false;
+      this.last3Days = false;
+      this.lastWeek = false;
+      this.lastTwoWeeks = false;
+      this.lastMonth = true;
+      this.updateFilters();
+    }
   },
 };
 </script>

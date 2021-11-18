@@ -2,20 +2,14 @@
   <div class="postSquare">
     <div class= "header">
       <FriendDisplay :friend="post.friend" />
+        <p id="date">{{formatDateNoYear(post.date)}}</p>
     </div> 
 
     <p id="text">{{post.text}}</p>
 
     <img v-show="this.post.imgSrc !== ''" class="postPic" :src="require('@/assets/images/PostImages/' + post.imgSrc)"/>
 
-    <div class="info" v-if="!getFaceLight">  <!--v-show="!getFaceLight">-->
-        <!-- <strong id="date">{{post.date}}</strong>
-        <br /> -->
-        <!-- <strong id="name">{{post.name}}</strong>
-        <br /> -->
-        <!-- <img src="https://scontent.xx.fbcdn.net/m1/v/t6/An8ODe1zojZFxtkCySvD_PWHUfwwSqPRWxNfZiVRQtoYgVOHHeQxpmcNcbugcbUbDZvtBac7oXZXBUiZytVCug9oYjJureLV-72SKTQ6uZ2bhOnT.png?ccb=10-5&oh=46181cacd09dafe23b296bbd8368ad2d&oe=6161C011&_nc_sid=55e238" style="height: 20px; width: 20px;"> -->
-    
-        <!--<div v-if="!facebookLight" class= "info"> -->
+    <div class="info" v-if="!getFaceLight">
         <em> {{post.numLikes + " Likes"}}</em>
         <em style="float: right;">{{post.numComments + " comments " + post.numShares + " shares"}}</em>
         <div class="line"></div>
@@ -23,18 +17,15 @@
             <div>         
               <button type="button" class="btn btn-secondary">
                 <i class="bi bi-hand-thumbs-up"></i>
-              <!-- <img  style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png');background-position:0 -320px;background-size:26px 1060px;width:18px;height:18px;background-repeat:no-repeat;display:inline-block"> -->
               Like</button>
             </div>
           <div>
           <button type="button" class="btn btn-secondary">
-            <!-- <img style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png');background-position:0 -280px;background-size:26px 1060px;width:18px;height:18px;background-repeat:no-repeat;display:inline-block"> -->
             <i class="bi bi-chat"></i>
             Comment</button>
           </div>
           <div>
           <button type="button" class="btn btn-secondary">
-            <!-- <img  style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png'); background-position: 0px -340px; background-size: 26px 1060px; width: 18px; height: 18px; background-repeat: no-repeat; display: inline-block;"> -->
             <i id="share" class="bi bi-reply icon-flipped"></i>
             Share</button>
           </div>
@@ -50,6 +41,7 @@
 
 import faceLight from "@/classes/faceLight.js";
 import FriendDisplay from "@/components/Multipurpose/FriendDisplay"
+import { dateProcessing } from '@/mixins/dateProcessing.js';
 
 export default {
   name: "post-square",
@@ -57,12 +49,12 @@ export default {
     FriendDisplay
   },
   props: ["post"], 
-    computed:  {
-      getFaceLight(){
-        return faceLight.find(1).enabled;
-      }
-    },
-
+  mixins: [dateProcessing],
+  computed:  {
+    getFaceLight(){
+      return faceLight.find(1).enabled;
+    }
+  },
 }
 </script>
 
@@ -70,6 +62,7 @@ export default {
 <style scoped>
 .postSquare {
   /* box-shadow: 0px 0px 3px; */
+  background-color: white;
   width: 400px;
   border-radius: 10px;
   margin: 10%;
@@ -137,7 +130,10 @@ button {
 }
 
 #date {
-  font-size: 0.9em;
+  margin-left: 47px;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: rgb(78, 78, 78);
 }
 
 em {
@@ -146,7 +142,9 @@ em {
 }
 
 .header {
-  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
   /*background-color: yellow;*/
   flex-direction: column;
 }

@@ -35,10 +35,14 @@ export default function filterPosts(posts, filter) {// eslint-disable-line no-un
                 continue;
             }
         }
+
+        //TAGS
         if (filter.isMajorEvent && !post.filter.isMajorEvent) {
             continue;
         }
-        else if (filter.isFamily && !post.friend.isFamily) {
+
+        //PEOPLE
+        if (filter.isFamily && !post.friend.isFamily) {
             continue;
         }
         newPosts.push(post);

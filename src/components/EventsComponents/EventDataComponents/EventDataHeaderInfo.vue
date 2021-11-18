@@ -3,7 +3,7 @@
         <CalendarIcon :date="event.date" />
         <div id="headerInfo">
             <br/>
-            <strong class="dateText">{{event.date.toLocaleDateString("en-US", dateFormatting).toUpperCase() + " AT " + event.date.toLocaleTimeString("en-US", timeFormatting)}}</strong>
+            <strong class="dateText">{{formatDateUppercase(event.date)}}</strong>
             <h1 class="placeholder" v-if="event.name === ''">Event name</h1>
             <h1 v-else>{{event.name}}</h1>
             <p class="placeholder" v-if="event.location === ''">Location</p>
@@ -15,18 +15,14 @@
 
 <script>
 import CalendarIcon from './CalendarIcon.vue'
-export default {
-    props:['event'],
-    data() {
-        return {
-            dateFormatting: { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'},
-            timeFormatting: { hour: "numeric", minute: "2-digit"},
-        }
-    },
-    components: {
-        CalendarIcon
-    }
+import { dateProcessing } from '@/mixins/dateProcessing.js';
 
+export default {
+  mixins: [dateProcessing],
+  props:['event'],
+  components: {
+      CalendarIcon
+  }
 }
 </script>
 
