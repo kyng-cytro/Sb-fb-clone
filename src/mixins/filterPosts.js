@@ -17,30 +17,31 @@ export default function filterPosts(posts, filter) {// eslint-disable-line no-un
     let currentDate = new Date('11/16/2021');
     for (let i=0; i < posts.length; i++) {
         let post = posts[i];
-        let addToList = true;
-        if (filter.lastMonth) {
-            if (currentDate.getMonth() - post.date.getMonth() <= 1) {
+        // Here's how this branching works. If the filter is checked but the post doesn't meet any one of those filters, we continue to the next iteration of the loop
+        if (filter.lastMonth) { 
+            if (!(currentDate.getMonth() - post.date.getMonth() <= 1)) {
+                continue;
             }
         } else if (filter.lastTwoWeeks) {
-            if (getNumDaysBetween(currentDate, post.date) <= 14) {
+            if (!(getNumDaysBetween(currentDate, post.date) <= 14)) {
+                continue;
             }
         } else if (filter.lastWeek) {
-            if (getNumDaysBetween(currentDate, post.date) <= 7) {
+            if (!(getNumDaysBetween(currentDate, post.date) <= 7)) {
+                continue;
             }
         } else if (filter.lastThreeDays) {
-            if (getNumDaysBetween(currentDate, post.date) <= 3) {
-            }
-        } else {
-            console.log("None of the date things are checked");
-            if (filter.isMajorEvent && post.filter.isMajorEvent) {
-            }
-            else if (filter.isFamily && post.friend.isFamily) {
+            if (!(getNumDaysBetween(currentDate, post.date) <= 3)) {
+                continue;
             }
         }
-        if (addToList) {
-            newPosts.push(post);
+        if (filter.isMajorEvent && !post.filter.isMajorEvent) {
             continue;
         }
+        else if (filter.isFamily && !post.friend.isFamily) {
+            continue;
+        }
+        newPosts.push(post);
     }
     return newPosts;
 }
