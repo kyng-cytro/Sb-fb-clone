@@ -1,11 +1,13 @@
 <template>
     <div class="container">
         <h2>{{currentQuestion}}</h2>
+
         <md-field>
             <label>Name</label>
             <md-input v-model="name"></md-input>
             <span class="md-helper-text">Required</span>
         </md-field>
+
         <!-- <md-field>
             <label>Number of days until expiration (optional)</label>
             <md-input v-model="daysUntilExpiration"></md-input>
@@ -14,20 +16,21 @@
             <label>Number of mutual friends</label>
             <md-input v-model="numOfMutualFriends"></md-input>
         </md-field> -->
-        <button @click="previous">Back</button>
-        <button @click="next">Next</button>
-        <button @click="addFriendRequest">Add</button>
+
+        <div v-show="!this.submitted">
+            <button class="back" @click="previous">Back</button>
+            <button v-show="!finished" @click="next">Next</button>
+            <button class="submit" v-show="finished" @click="submit">Submit</button>
+        </div>
 
         <!-- Show which friend requests were accepted/not -->
         <div>
             <strong v-show="confirmedRequests.length">Confirmed Requests</strong>
             <FriendRequestDisplay :friendRequests="confirmedRequests"/>
-
             <strong v-show="deletedRequests.length">Deleted Requests</strong>
             <FriendRequestDisplay :friendRequests="deletedRequests"/>
-
             <strong v-show="pendingRequests.length">Pending Requests</strong>
-            <FriendRequestDisplay :friendRequests="pendingRequests"/>Back￼Next￼AddBack￼Next￼Add
+            <FriendRequestDisplay :friendRequests="pendingRequests"/>
         </div>
     </div>
 </template>
@@ -75,31 +78,48 @@ const questionFriendList = [
                 numOfMutualFriends: "",
                 daysUntilExpiration: 30,
                 index: 0,
+                submitted: false,
             }
         },
         methods: {
-            addFriendRequest() {
-                FriendRequest.insert(
-                    {
-                        data: {
-                            name: this.name,
-                            imgSrc: "",
-                            daysUntilExpiration : this.daysUntilExpiration,
-                            numOfMutualFriends: this.numOfMutualFriends
+            submit() {
+                this.setQuestion(this.index); // Basically do what the next function does for the last item
+                for (let i = 0; i < questionFriendList.length; i++) {
+                    FriendRequest.insert(
+                        {
+                            data: {
+                                name: questionFriendList.at(i).friendData.name,
+                                imgSrc: "",
+                                daysUntilExpiration : this.daysUntilExpiration,
+                                numOfMutualFriends: this.numOfMutualFriends
+                            }
                         }
-                    }
-                );
+                    );
+                }
+                this.submitted = true;
+            },
+            resetFields() {
                 this.name = "";
-                this.numOfMutualFriends = "";
-                this.daysUntilExpiration = 30;
+            },
+            setQuestion(index) {
+                questionFriendList.at(index).friendData = {
+                    name: this.name,
+                    numOfMutualFriends: this.numOfMutualFriends,
+                    daysUntilExpiration: this.daysUntilExpiration,
+                }
+                this.resetFields();
             },
             next() {
+                console.log(this.index);
                 if (this.index < questionFriendList.length - 1) {
+                    this.setQuestion(this.index);
                     this.index++;
                 }
             },
             previous() {
+                console.log(this.index);
                 if (this.index > 0) {
+                    this.setQuestion(this.index);
                     this.index--;
                 }
             }
@@ -117,6 +137,9 @@ const questionFriendList = [
             },
             currentQuestion() {
                 return "Please enter the name of a friend " + questionFriendList.at(this.index).question + ":";
+            },
+            finished() {
+                return this.index == questionFriendList.length - 1;
             }
         }
     }
@@ -142,9 +165,17 @@ button {
 }
 
 button:hover {
-    background-color: rgb(125, 181, 255);
-    color: rgb(24,119,242);
+    background-color: rgb(167, 167, 167);
+    color: rgb(185, 185, 185);
     transition: 0.1s;
+}
+
+.back{
+    background-color: grey;
+}
+
+.submit{
+    background-color: rgb(112, 172, 105);
 }
 
 button::selection {
