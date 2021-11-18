@@ -22,17 +22,20 @@
         <div class ="Buttons">
             <div>         
               <button type="button" class="btn btn-secondary">
-              <img  style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png');background-position:0 -320px;background-size:26px 1060px;width:18px;height:18px;background-repeat:no-repeat;display:inline-block">
+                <i class="bi bi-hand-thumbs-up"></i>
+              <!-- <img  style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png');background-position:0 -320px;background-size:26px 1060px;width:18px;height:18px;background-repeat:no-repeat;display:inline-block"> -->
               Like</button>
             </div>
           <div>
           <button type="button" class="btn btn-secondary">
-            <img style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png');background-position:0 -280px;background-size:26px 1060px;width:18px;height:18px;background-repeat:no-repeat;display:inline-block">
+            <!-- <img style="background-image:url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png');background-position:0 -280px;background-size:26px 1060px;width:18px;height:18px;background-repeat:no-repeat;display:inline-block"> -->
+            <i class="bi bi-chat"></i>
             Comment</button>
           </div>
           <div>
           <button type="button" class="btn btn-secondary">
-            <img  style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png'); background-position: 0px -340px; background-size: 26px 1060px; width: 18px; height: 18px; background-repeat: no-repeat; display: inline-block;">
+            <!-- <img  style="background-image: url('https://static.xx.fbcdn.net/rsrc.php/v3/y3/r/z2teZ9fV8q7.png'); background-position: 0px -340px; background-size: 26px 1060px; width: 18px; height: 18px; background-repeat: no-repeat; display: inline-block;"> -->
+            <i id="share" class="bi bi-reply icon-flipped"></i>
             Share</button>
           </div>
         </div>
@@ -99,6 +102,7 @@ export default {
 }
 
 button {
+  padding: 13px;
   width: 120px;
   margin: 2%;
   font-weight: bold;
@@ -106,35 +110,26 @@ button {
   
   
 }
-/*
-.btn-secondary {
-  color: black;
-  background-color: white; /*hsl(0, 0%, 92%);
-  border: 0px
-}
-*/
-.btn-secondary {
-  color: black;
 
-  background-color: hsl(0, 0%, 92%);
+.btn-secondary {
+  color: rgb(78, 78, 78);
+
+  background-color: transparent; 
   border: 0px;
   border-radius: 6px;
   margin: 2%;
   font-weight: bold;
   font-size: .9em;
 }
+
 .btn-secondary:hover {
-  color: black;
-  background-color: hsl(0, 0%, 82%);
+  color: rgb(78, 78, 78);
+  background-color: hsl(0, 0%, 92%);
   transition: 0.3s;
 }
+
 .btn-secondary:focus {
   outline-color: hsl(0, 0%, 92%);
-}
-
-.invisible {
-  color: white;
-  background-color: white;
 }
 
 #data {
@@ -172,21 +167,9 @@ em {
   background-color: #bbb;
 }
 
-.dot {
-  margin-left:10px;
-  margin-top: 10px;
-  height: 25px;
-  width: 25px;
-  background-color: #bbb;
-  border-radius: 50%; 
-  display: inline-block;
-
-  float: left;
-}
 
 .line {
    border-bottom: 1px solid #bbb;
-
    padding: 3px;
 
 
@@ -196,8 +179,18 @@ p#text {
   /*margin:10px;*/
   margin-top: 10px;
   margin-left: 15px; 
-  
+}
 
+.icon-flipped {
+    transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+}
+
+i {
+  font-size: 1.3em;
+  margin: 2px;
 }
 
 </style>
