@@ -9,12 +9,6 @@
 </template>
 
 <script>
-//MATERIAL IMPORTS:
-// import Vue from 'vue'
-// import VueMaterial from 'vue-material'
-// import 'vue-material/dist/vue-material.min.css'
-// import 'vue-material/dist/theme/default.css'
-
     export default {
         components: {
         },
@@ -36,15 +30,6 @@
                 this.$emit('updateTime', newTime);
             }
         },
-        // created() {
-        //     let jQuery = document.createElement('script')
-        //     jQuery.setAttribute('src', 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')
-        //     document.head.appendChild(jQuery)
-
-        //     let bootstrapJS = document.createElement('script')
-        //     bootstrapJS.setAttribute('src', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js')
-        //     document.head.appendChild(bootstrapJS)
-        // },
         computed: {
             timeList() {
                 // let today = new Date();

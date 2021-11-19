@@ -1,21 +1,11 @@
 <template>
     <div class="container">
-        <h2>{{currentQuestion}}</h2>
-
-        <md-field>
-            <label>Name</label>
-            <md-input v-model="name"></md-input>
-            <span class="md-helper-text">Required</span>
-        </md-field>
-
-        <!-- <md-field>
-            <label>Number of days until expiration (optional)</label>
-            <md-input v-model="daysUntilExpiration"></md-input>
-        </md-field> -->
-        <!-- <md-field>
-            <label>Number of mutual friends</label>
-            <md-input v-model="numOfMutualFriends"></md-input>
-        </md-field> -->
+    <form>
+        <div class="form-group">
+            <label for="nameInput">{{currentQuestion}}</label>
+            <input v-model="name" type="text" class="form-control" id="nameInput" placeholder="Name">
+        </div>
+    </form>
 
         <div v-show="!this.submitted">
             <button class="back" @click="previous">Back</button>
@@ -27,12 +17,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import VueMaterial from 'vue-material'
-import 'vue-material/dist/vue-material.min.css'
-import 'vue-material/dist/theme/default.css'
-
-Vue.use(VueMaterial)
 
 import FriendRequest from "@/classes/friendRequest.js";
 

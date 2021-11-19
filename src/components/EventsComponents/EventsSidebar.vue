@@ -20,17 +20,23 @@
               </md-field>
             </div>
             <div id="dateAndTime">
-              <div class="input">
+              <input type="date" id="startDate" name="startDate" />
+              <input type="date" data-date="" data-date-format="MMMM YYYY" value="2015-08-09">
+              <!-- <div class="input">
                 <md-datepicker style="width: 130px" v-model="eventDate" v-on:input="updateDate">
                   <label>Start Date</label>
                 </md-datepicker>
-              </div>
+              </div> -->
               <div class="input timePicker">
                 <EventTimePicker v-on:updateTime="updateTime"/>
               </div>
             </div>
           </div>
           <div v-else-if="stages[stage] === 'Location'">
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Example textarea</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
               <md-field>
                 <label>Location</label>
                 <md-textarea v-model="eventLocation" v-on:input="updateLocation"></md-textarea>
@@ -60,12 +66,12 @@ import PageSidebarButton from "@/components/PageSidebarButton.vue";
 import EventTimePicker from './EventsSidebarComponents/EventTimePicker.vue';
 
 //MATERIAL IMPORTS:
-import Vue from 'vue'
-import VueMaterial from 'vue-material'
-import 'vue-material/dist/vue-material.min.css'
-import 'vue-material/dist/theme/default.css'
+// import Vue from 'vue'
+// import VueMaterial from 'vue-material'
+// import 'vue-material/dist/vue-material.min.css'
+// import 'vue-material/dist/theme/default.css'
 
-Vue.use(VueMaterial)
+// Vue.use(VueMaterial)
 
 export default {
   name: "EventsSidebar",
