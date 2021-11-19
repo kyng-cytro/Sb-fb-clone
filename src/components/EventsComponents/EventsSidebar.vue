@@ -20,8 +20,11 @@
               </md-field>
             </div>
             <div id="dateAndTime">
-              <input type="date" id="startDate" name="startDate" />
-              <input type="date" data-date="" data-date-format="MMMM YYYY" value="2015-08-09">
+              <!-- <input type="date" id="startDate" name="startDate" /> -->
+              <!-- <input type="date" data-date="" data-date-format="MMMM YYYY" value="2015-08-09"> -->
+              <label for="example-datepicker">Choose a date</label>
+              <b-form-datepicker id="example-datepicker" v-model="value" class="mb-2"></b-form-datepicker>
+              <p>Value: '{{ value }}'</p>
               <!-- <div class="input">
                 <md-datepicker style="width: 130px" v-model="eventDate" v-on:input="updateDate">
                   <label>Start Date</label>
