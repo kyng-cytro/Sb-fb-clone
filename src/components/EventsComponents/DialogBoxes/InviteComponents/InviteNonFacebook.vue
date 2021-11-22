@@ -1,37 +1,31 @@
 <template>
     <div class="container">
         <p>Want to invite friends not on Facebook? No problem!</p>
-        <md-field>
-            <label>Name</label>
-            <md-input v-model="form.name"></md-input>
-            <span class="md-helper-text">Required</span>
-        </md-field>
+
+        <div class="form-group">
+            <input placeholder="Name" v-model="form.name" class="form-control"/>
+        </div>
+
+
         <div class="info">
-            <md-field>
-                <label>Phone number</label>
-                <md-input v-model="form.phone"></md-input>
-            </md-field>
+            <div class="form-group">
+                <input placeholder="Phone number" v-model="form.phone" class="form-control"/>
+            </div>
+
             <p id="orText"> or </p>
-            <md-field>
-                <label>Email</label>
-                <md-input v-model="form.email"></md-input>
-            </md-field>
+            
+            <div class="form-group">
+                <input placeholder="Email" v-model="form.email" class="form-control"/>
+            </div>
             <button class="btn btn-primary" @click="addNonFacebookFriend">Add</button>
         </div>
     </div>
 </template>
 
 <script>
-// import Vue from 'vue'
-// import VueMaterial from 'vue-material'
-// import 'vue-material/dist/vue-material.min.css'
-// import 'vue-material/dist/theme/default.css'
 
 import NonFacebookFriend from "@/classes/nonFacebookFriend.js"
-
-// Vue.use(VueMaterial)
-
-    export default {
+export default {
         data() {
             return {
                 form: {
@@ -74,11 +68,11 @@ p {
 }
 
 .info {
-    padding-left: 30px;
     display: flex;
 }
 button {
-    height: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
     align-self: flex-end;
     margin: 15px;
     margin-bottom: 20px;

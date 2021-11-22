@@ -1,18 +1,35 @@
 <template>
     <div>
-        <p>Start Time</p>
-        <select v-model="timeString" name="timeLabel" id="timeID" class="dropdown">
+        <!-- <p>Start Time</p> -->
+        <!-- <select v-model="timeString" name="timeLabel" id="timeID" class="dropdown">
             <option :value="time.name" v-for="time in timeList" v-bind:key="time.id">{{time.name}}</option>
-        </select>
+        </select> -->
+        <b-dropdown v-model="timeString" boundary="scrollParent" id="dropdown-1" text="Time" variant="light" class="m-md-2 my-class">
+            <b-dropdown-item
+            :value="time.name"
+            v-for="time in timeList"
+            @click="setTime(time.name)"
+            v-bind:key="time.id">{{time.name}}
+            </b-dropdown-item>
+        </b-dropdown>
+        <p>{{timeString}}</p>
 
     </div>
 </template>
 
 <script>
     export default {
+          mounted() {
+            this.$root.$on('bv::dropdown::show', bvEvent => {
+                console.log('Dropdown is about to be shown', bvEvent)
+            })
+        },
         components: {
         },
         methods: {
+            setTime(time) {
+                this.timeString = time;
+            },
             selectTime() {
                 console.log(this.time);
                 console.log("Selected!");
@@ -32,15 +49,13 @@
         },
         computed: {
             timeList() {
-                // let today = new Date();
-                // let currentHours = today.getHours();
-                let minutes = ["00", "15", "30", "45"]
+                let today = new Date();
+                let minutes = ["00", "30"]
                 let times = []
                 let currentId = 1;
-                let AM_PM = ["AM", "PM"]
+                let AM_PM = today.getHours() >= 12 ? ["PM"] : ["AM", "PM"]
                 for (let am in AM_PM) {
-                    for (let h = 12; h <= 23; h++) {
-                    // for (let h = currentHours; h <= 23 - currentHours; h++) {
+                    for (let h = today.getHours(); h <= 23; h++) {
                         console.log(h > 12 ? h % 12 : h);
                         for (let m in minutes) {
                             console.log(m);
@@ -65,17 +80,8 @@ p {
     color: grey;
 }
 
-/* .dropdown {
-    border: none;
-    background-color: white;
-    font-size: 1.3em;
-    font-weight: 300;
-    color: #0e0e0e;
-}
-
-.dropdown:focus {
-    border: none;
-} */
-
-
+  .my-class /deep/ .dropdown-menu {
+    max-height: 200px;
+    overflow-y: auto;
+  }
 </style>

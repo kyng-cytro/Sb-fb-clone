@@ -11,48 +11,54 @@
         </div>
         <div v-else-if="eventState === 'editing'">
           <p>Event > Create Event</p>
+
           <h1>{{stages[stage]}}</h1>
+
+          <!-- EVENT NAME -->
           <div v-if="stages[stage] === 'Event Details'">
-            <div class="input">
-              <md-field>
-                <label>Event name</label>
-                <md-input v-model="eventName" md-counter="100"></md-input>
-              </md-field>
-            </div>
-            <div id="dateAndTime">
-              <!-- <input type="date" id="startDate" name="startDate" /> -->
-              <!-- <input type="date" data-date="" data-date-format="MMMM YYYY" value="2015-08-09"> -->
-              <label for="example-datepicker">Choose a date</label>
-              <b-form-datepicker id="example-datepicker" v-model="value" class="mb-2"></b-form-datepicker>
-              <p>Value: '{{ value }}'</p>
-              <!-- <div class="input">
-                <md-datepicker style="width: 130px" v-model="eventDate" v-on:input="updateDate">
-                  <label>Start Date</label>
-                </md-datepicker>
-              </div> -->
-              <div class="input timePicker">
-                <EventTimePicker v-on:updateTime="updateTime"/>
+            <form>
+              <div class="form-group">
+                <input type="text" v-model="eventName" class="form-control" id="eventNameInput" aria-describedby="emailHelp" placeholder="Event name">
               </div>
+            </form>
+
+
+            <!-- DATE AND TIME -->
+            <div id="dateAndTime">
+              <!-- Date -->
+              <b-form-datepicker
+              id="example-datepicker"
+              v-model="eventDate"
+              v-on:input="updateDate"
+              class="mb-2"
+              :date-format-options="{ year: 'numeric', month: 'short', day: 'numeric'}"
+              placeholder=""
+              ></b-form-datepicker>
+
+              <!-- Time -->
+              <EventTimePicker v-on:updateTime="updateTime"/>
             </div>
           </div>
+
+
+          <!-- LOCATION -->
           <div v-else-if="stages[stage] === 'Location'">
               <div class="form-group">
-                <label for="exampleFormControlTextarea1">Example textarea</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea v-model="eventLocation" v-on:input="updateLocation" class="form-control" rows="3"></textarea>
               </div>
-              <md-field>
-                <label>Location</label>
-                <md-textarea v-model="eventLocation" v-on:input="updateLocation"></md-textarea>
-              </md-field>
           </div>
+
+
+          <!-- DESCRIPTION -->
           <div v-else-if="stages[stage] === 'Description'">
-              <md-field>
-                <label>Description</label>
-                <md-textarea v-model="eventDescription" v-on:input="updateDescription"></md-textarea>
-              </md-field>
+              <div class="form-group">
+                <textarea v-model="eventDescription" v-on:input="updateDescription" class="form-control" rows="3"></textarea>
+              </div>
           </div>
         </div>
 
+
+        <!-- FOOTER -->
         <div id="footer">
           <hr />
           <div id="navigationButtons" v-show="eventState === 'editing'">
@@ -67,14 +73,6 @@
 <script>
 import PageSidebarButton from "@/components/PageSidebarButton.vue";
 import EventTimePicker from './EventsSidebarComponents/EventTimePicker.vue';
-
-//MATERIAL IMPORTS:
-// import Vue from 'vue'
-// import VueMaterial from 'vue-material'
-// import 'vue-material/dist/vue-material.min.css'
-// import 'vue-material/dist/theme/default.css'
-
-// Vue.use(VueMaterial)
 
 export default {
   name: "EventsSidebar",
@@ -191,6 +189,7 @@ export default {
 
 #dateAndTime {
   display: flex;
+  flex-direction: row;
 }
 
 md-datepicker {

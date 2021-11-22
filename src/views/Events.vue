@@ -39,7 +39,6 @@ export default {
     updateEventDate(newDate) {
       let timeString = newDate + "T00:00:00.000-07:00"; // Mountain Staindard Time 
       this.currentEvent.date = new Date(timeString); // Here, we convert the string newDate into an actual JS date object.
-      updateEventTime(this.eventTime)
     },
     updateEventTime(newTime) {
       let tempDate = new Date(this.currentEvent.date.getTime()); //This is essentially a deep copy of the date
