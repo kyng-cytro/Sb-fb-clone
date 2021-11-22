@@ -155,7 +155,8 @@ export default {
 
 <style scoped>
 .filter {
-  width: 200px;
+  background-color: white;
+  width: 13vw;
   border-radius: 10px;
   margin: 10%;
   box-shadow: 0px 0px 3px rgb(140, 140, 140);
