@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import EventData from "./EventData.vue";
+import EventData from "./EventCurrentDisplay.vue";
 
 export default {
   name: "Events",

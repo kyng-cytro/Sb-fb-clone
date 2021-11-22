@@ -5,7 +5,7 @@
       </div>
 
       <div class="content">
-        <EventDisplay v-if="eventState === 'normal'"/>
+        <EventExampleHolder v-if="eventState === 'normal'"/>
         <EventPreview :event="currentEvent" v-else-if="eventState === 'editing'"/>
         <EventData :event="currentEvent" :eventState="eventState" v-else-if="eventState === 'eventCreated'" />
       </div>
@@ -16,15 +16,15 @@
 <script>
 
 import EventsSidebar from "@/components/EventsComponents/EventsSidebar.vue";
-import EventDisplay from "@/components/EventsComponents/EventDisplay.vue"
+import EventExampleHolder from "@/components/EventsComponents/EventExampleHolder.vue"
 import EventPreview from "@/components/EventsComponents/EventPreview.vue"
-import EventData from "@/components/EventsComponents/EventData.vue"
+import EventData from "@/components/EventsComponents/EventCurrentDisplay.vue"
 
 export default {
   name: "Events",
   components: {
     EventsSidebar,
-    EventDisplay,
+    EventExampleHolder,
     EventPreview,
     EventData
   },
