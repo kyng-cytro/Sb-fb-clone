@@ -1,6 +1,7 @@
 # Instructions for Annie and Jane:
 ```
 git clone https://github.com/BYU-STAPL/Sb-fb-clone.git
+cd Sb-fb-clone
 npm install
 npm run serve
 ```
