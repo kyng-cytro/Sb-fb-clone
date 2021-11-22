@@ -5,7 +5,7 @@ cd Sb-fb-clone
 npm install
 npm run serve
 ```
-Go to ```localhost:8080```
+Go to ```localhost:8080``` in your browser
 
 # sb-fb-clone
 
