@@ -21,6 +21,7 @@ import HomeSidebar from "@/components/HomeComponents/Sidebar/HomeSidebar.vue";
 import PostDisplay from "@/components/HomeComponents/PostDisplay.vue";
 import faceLight from "@/classes/faceLight.js";
 import FacebookLiteFilters from "@/components/HomeComponents/facebookLiteFilters.vue";
+import 
 
 export default {
   name: "Home",

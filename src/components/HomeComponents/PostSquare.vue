@@ -68,7 +68,6 @@ export default {
 
 <style scoped>
 .postSquare {
-  /* box-shadow: 0px 0px 3px; */
   background-color: white;
   width: 40vw;
   border-radius: 10px;
