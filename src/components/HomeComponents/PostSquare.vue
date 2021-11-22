@@ -8,32 +8,34 @@
     <p id="text">{{post.text}}</p>
 
     <!-- Only show if it has an image source. If it has one, pull it from the PostImages folder -->
-    <img v-show="this.post.imgSrc !== ''" class="postPic" :src="require('@/assets/images/PostImages/' + post.imgSrc)"/>
+    <img v-show="this.post.imgSrc !== ''" :class="{ postPic : !isFaceLight, postPicNoButtons : isFaceLight && isViewOnly}"  :src="require('@/assets/images/PostImages/' + post.imgSrc)"/>
 
-    <div class="info" v-if="!getFaceLight">
+    <div class="info" v-show="!isFaceLight">
         <em> {{post.numLikes + " Likes"}}</em>
         <em style="float: right;">{{post.numComments + " comments " + post.numShares + " shares"}}</em>
         <div class="line"></div>
-        <div class ="Buttons">
-            <div>         
-              <button type="button" class="btn btn-secondary">
-                <i class="bi bi-hand-thumbs-up"></i>
-              Like</button>
-            </div>
-          <div>
+    </div>
+    <div class="info" v-if="!isViewOnly || !isFaceLight">
+      <div class ="Buttons">
+          <div>         
+            <button type="button" class="btn btn-secondary">
+              <i class="bi bi-hand-thumbs-up"></i>
+            Like
+          </button>
+          </div>
+        <div>
           <button type="button" class="btn btn-secondary">
             <i class="bi bi-chat"></i>
-            Comment</button>
-          </div>
-          <div>
+            Comment
+          </button>
+        </div>
+        <div>
           <button type="button" class="btn btn-secondary">
             <i id="share" class="bi bi-reply icon-flipped"></i>
-            Share</button>
-          </div>
+            Share
+          </button>
         </div>
-    </div>
-
-    <div class= "info" v-if="getFaceLight">
+      </div>
     </div>
   </div>
 </template>
@@ -43,6 +45,7 @@
 import faceLight from "@/classes/faceLight.js";
 import FriendDisplay from "@/components/Multipurpose/FriendDisplay"
 import { dateProcessing } from '@/mixins/dateProcessing.js';
+import FiltersValues from "@/classes/filterValues.js";
 
 export default {
   name: "post-square",
@@ -52,8 +55,11 @@ export default {
   props: ["post"], 
   mixins: [dateProcessing],
   computed:  {
-    getFaceLight(){
+    isFaceLight(){
       return faceLight.find(1).enabled;
+    },
+    isViewOnly() {
+      return FiltersValues.find(1).isViewOnly;
     }
   },
 }
@@ -76,7 +82,9 @@ export default {
   width: 40vw;
   height: 40vh;
   object-fit: cover; /*This makes it so the image is cropped instead of squished */
-  /*border-radius: 10px 10px 0px 0px;*/
+}
+.postPicNoButtons {
+  border-radius: 0px 0px 10px 10px;
 }
 
 .info {
