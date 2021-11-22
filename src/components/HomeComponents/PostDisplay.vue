@@ -1,11 +1,9 @@
 <template>
   <div>
-    <div>
+    <div class="postDisplay">
+      <div class="square" v-for="post in filteredPosts" :key="post.id">
+          <PostSquare v-bind:post="post"/> 
       </div>
-      <div class="postDisplay">
-        <div class="square" v-for="post in filteredPosts" :key="post.id">
-           <PostSquare v-bind:post="post"/> 
-        </div>
     </div>
   </div>
 </template>
@@ -124,15 +122,16 @@ export default {
 
 <style scoped>
 .postDisplay {
+  padding-left: 28%;
   justify-content: left;
   align-items: left;
-  width: inherit;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
 }
-.square {
 
+.square {
   float: left;
   padding: 5px;
 }

@@ -7,6 +7,7 @@
 
     <p id="text">{{post.text}}</p>
 
+    <!-- Only show if it has an image source. If it has one, pull it from the PostImages folder -->
     <img v-show="this.post.imgSrc !== ''" class="postPic" :src="require('@/assets/images/PostImages/' + post.imgSrc)"/>
 
     <div class="info" v-if="!getFaceLight">
@@ -63,18 +64,17 @@ export default {
 .postSquare {
   /* box-shadow: 0px 0px 3px; */
   background-color: white;
-  width: 400px;
+  width: 40vw;
   border-radius: 10px;
-  margin: 10%;
-  /* padding: 10%; */
+  margin: 1%;
   box-shadow: 0px 0px 3px rgb(140, 140, 140);
   display: flex;
   flex-direction: column;
 }
 
 .postPic {
-  width: 400px;;
-  height: 180px;
+  width: 40vw;
+  height: 40vh;
   object-fit: cover; /*This makes it so the image is cropped instead of squished */
   /*border-radius: 10px 10px 0px 0px;*/
 }
