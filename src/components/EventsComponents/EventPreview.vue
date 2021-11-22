@@ -1,10 +1,12 @@
 <template>
+<div class="container">
   <div id="preview">
     <strong>Desktop Preview</strong>
     <div id="previewBox">
       <EventData :event="event" />
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -20,6 +22,11 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  padding-left: 5vw;
+  padding-right: 2vw;
+  padding-top: 1vh;
+}
 div {
   border-radius: 5px;
 }

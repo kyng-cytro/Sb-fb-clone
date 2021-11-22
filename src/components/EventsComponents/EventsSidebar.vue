@@ -18,7 +18,7 @@
           <div v-if="stages[stage] === 'Event Details'">
             <form>
               <div class="form-group">
-                <input type="text" v-model="eventName" class="form-control" id="eventNameInput" aria-describedby="emailHelp" placeholder="Event name">
+                <input type="text" v-on:input="updateName" v-model="eventName" class="form-control" id="eventNameInput" aria-describedby="emailHelp" placeholder="Event name">
               </div>
             </form>
 
