@@ -19,7 +19,8 @@
 
 button {
     width: 100%;
-    margin: 10%;
+    margin-top: 3%;
+    margin-bottom: 3%;
 }
 
 </style>

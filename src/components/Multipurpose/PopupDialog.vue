@@ -34,6 +34,7 @@ export default {
     props: ['togglePopup', 'header', 'minWidth', 'maxHeight', 'minHeight'],
     computed: {
         contentStyles() {
+            //  TODO: figure out how to make it so the scroll bar only appears when necessary
             let styles = "overflow-y: scroll;";
             styles += `
             max-height: ` + this.maxHeight + ';' + 
