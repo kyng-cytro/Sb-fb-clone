@@ -36,7 +36,7 @@
               ></b-form-datepicker>
 
               <!-- Time -->
-              <EventTimePicker v-on:updateTime="updateTime"/>
+              <EventTimePicker v-on:updateTime="updateTime" :chosenDate="new Date(this.eventDate + 'T00:00:00.000-07:00')"/>
             </div>
           </div>
 
