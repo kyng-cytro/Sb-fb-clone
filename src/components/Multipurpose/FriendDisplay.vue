@@ -12,7 +12,9 @@
 
         <!-- If they use both email and phone or if they are a facebook user but don't have an image -->
         <i v-else-if="isBoth || isFacebookWithoutImage" class="bi bi-person" :style="iconStyles"></i>
-        <p :style="textStyles" >{{friend.name}}</p>
+
+
+        <p v-show="!onlyImage" :style="textStyles" >{{friend.name}}</p>
     </div>
 </template>
 
@@ -20,7 +22,7 @@
     export default {
         // friend is a friend object
         // size is a value of 'small' or 'normal'
-        props: ['friend', 'size'],
+        props: ['friend', 'size', 'onlyImage'],
         computed: {
             isFacebookFriend() {
                 return Object.prototype.hasOwnProperty.call(this.friend, 'imgSrc');

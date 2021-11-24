@@ -74,6 +74,7 @@
   display: flex;
   flex-direction: column;
   margin: 10px;
+  width: 20vw;
 }
 
 input {

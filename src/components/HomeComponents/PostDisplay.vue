@@ -14,38 +14,6 @@ import Post from "@/mixins/Post.js";
 import Filter from "@/mixins/Filter.js";
 import filterPosts from "@/mixins/filterPosts.js";
 import FilterValues from "@/classes/filterValues.js";
-  // {
-  //   imgSrc: "basket.jpg",
-  //   friend: {
-
-  //   },
-  //   text: "I've been Weaving Basket",
-  //   date: new Date(),
-  //   numComments: 21,
-  //   numShares: 2,
-  //   numLikes: 52
-  // },
-  // {
-  //   imgSrc: "chiliCookOff.jpg",
-  //   name: "Jane Smith",
-  //  // name: "Chili Cookoff",
-  //   text: " Come get warm by our chili",
-  //   date: "FRI, DEC 24 AT 5PM MST",
-  //   numComments: 20,
-  //   numShares: 5,
-  //   numLikes: 523
-  // },
-  // {
-  //   imgSrc: "library.jpg",
-  //   name: "Reading Club",
-  //   text: " Read your book in our nook",
-  //   date: "FRI, DEC 24 AT 5PM MST",
-  //   numComments: 23,
-  //   numShares: 7,
-  //   numLikes: "9.3k"
-  // },
-
-
 
 export default {
   name: "postDisplay",
@@ -122,7 +90,6 @@ export default {
 
 <style scoped>
 .postDisplay {
-  padding-left: 28%;
   justify-content: left;
   align-items: left;
   width: 100%;
@@ -133,7 +100,6 @@ export default {
 
 .square {
   float: left;
-  padding: 5px;
 }
 
 </style>
