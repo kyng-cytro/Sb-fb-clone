@@ -22,7 +22,7 @@
     export default {
         // friend is a friend object
         // size is a value of 'small' or 'normal'
-        props: ['friend', 'size', 'onlyImage'],
+        props: ['friend', 'size', 'onlyImage', 'bold'],
         computed: {
             isFacebookFriend() {
                 return Object.prototype.hasOwnProperty.call(this.friend, 'imgSrc');
@@ -42,6 +42,7 @@
             isBoth() {
                 return !this.isFacebookFriend && this.friend.phone !=='' && this.friend.email !=='';
             },
+
             imgStyles() {
                 if (this.size === 'small') {
                     return `
@@ -56,31 +57,42 @@
                     height: 37px;`;
                 }
             },
+
             textStyles() {
+                let styles = "";
                 if (this.size === 'small') {
-                    return `
-                    margin-left: 10px;
-                    font-size: 0.9em;`;
+                    styles += `
+                        margin-left: 10px;
+                        font-size: 0.9em;`;
                 }
                 else {
-                    return `
-                    margin-left: 10px;
-                    margin-top: 7px;
-                    font-size: 1em;`;
+                    styles += `
+                        margin-left: 10px;
+                        margin-top: 7px;
+                        font-size: 1em;`;
                 }
+                if (this.bold) {
+                    styles += `
+                        font-weight: bold;
+                        `;
+                }
+                return styles;
             },
+
             iconStyles() {
+                let styles = "";
                 if (this.size === 'small') {
-                    return `
-                    padding-top: 2px;
-                    font-size: 1.6em;
-                    `;
+                    styles += `
+                        padding-top: 2px;
+                        font-size: 1.6em;
+                        `;
                 }
                 else {
-                    return `
-                    padding-top: 6px;
-                    font-size: 2em;`;
+                    styles += `
+                        padding-top: 6px;
+                        font-size: 2em;`;
                 }
+                return styles;
             }
         },
     }

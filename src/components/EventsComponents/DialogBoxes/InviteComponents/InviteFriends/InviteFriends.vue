@@ -37,7 +37,6 @@ import Friend from "@/classes/friend.js";
         methods: {
             addFriend() {
                 Friend.insert({ data: this.form});
-                        // this.form[name] = "";
             }
         }
     }

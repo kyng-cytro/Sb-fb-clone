@@ -1,20 +1,48 @@
 <template>
+  <div>
+    <!-- POST PROMPT -->
     <div class="createPostSquare">
-      <div class="header">
-        <FriendDisplay :friend="user" onlyImage=true></FriendDisplay>
-        <div @click="clickTextBox" class="roundTextBox">
-          <p>What's on your mind, {{user.name}}?</p>
-        </div>
+    <div class="header">
+      <FriendDisplay :friend="user" onlyImage=true></FriendDisplay>
+      <div @click="clickTextBox" class="roundTextBox">
+        <p>What's on your mind, {{user.name}}?</p>
       </div>
     </div>
+
+
+    <!-- POPUP -->
+    <PopupDialog
+        minHeight="40vh"
+        maxHeight="500px"
+        v-show="true"
+        :togglePopup="() => togglePopup('friendsTrigger')"
+        header="Create post">
+
+      <template v-slot:content>
+        <CreatePostDialogContent :user="user"/>
+      </template>
+
+      <template v-slot:footer>
+        <CreatePostDialogFooter />
+      </template>
+
+    </PopupDialog>
+    </div>
+  </div>
 </template>
 
 <script>
 import FriendDisplay from "@/components/Multipurpose/FriendDisplay"
+import PopupDialog from "@/components/Multipurpose/PopupDialog"
+import CreatePostDialogContent from "./DialogBoxComponents/CreatePostDialogContent"
+import CreatePostDialogFooter from "./DialogBoxComponents/CreatePostDialogFooter"
 
     export default {
       components: {
-        FriendDisplay
+        FriendDisplay,
+        PopupDialog,
+        CreatePostDialogContent,
+        CreatePostDialogFooter,
       },
 
       methods: {
@@ -57,6 +85,13 @@ import FriendDisplay from "@/components/Multipurpose/FriendDisplay"
     border: 0px solid #ccc;
     box-sizing: border-box;
     background-color: rgb(240,242,245);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.roundTextBox:hover {
+  background-color: rgb(230, 230, 230);
+  transition: 0.3s;
 }
 
 p {
