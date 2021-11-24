@@ -8,6 +8,7 @@
         <router-link :to="'/ResearcherReview'">
           <button class="invisible">Add Friend Request</button>
         </router-link>
+        <router-link :to="'/FriendEntry'"><button class="btn btn-primary">Friend Entry</button></router-link>
         <CircularIcon type = "plus"/>
         <CircularIcon type = "messenger"/>
         <CircularIcon type = "notifications"/>
@@ -29,6 +30,10 @@ export default {
 
 
 <style scoped>
+button {
+  margin-top: 5px;
+  margin-right: 10px;
+}
 .title {
   font-size: 1.4em;
 }
