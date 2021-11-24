@@ -1,6 +1,8 @@
 <template>
     <div class="popup">
         <div class="popup-inner">
+
+            <!-- HEADER -->
             <div class="header">
                 <div id="headerContainer">
                     <h2>{{header}}</h2>
@@ -12,10 +14,14 @@
                 </div>
             </div>
             <hr />
+
+            <!-- CONTENT -->
             <div v-bind:style="contentStyles">
                 <slot name="content"> </slot>
             </div>
             <hr />
+
+            <!-- FOOTER -->
             <div>
                 <slot name="footer"></slot>
             </div>
@@ -25,12 +31,16 @@
 
 <script>
 export default {
-    props: ['togglePopup', 'header', 'maxHeight', 'minHeight'],
+    props: ['togglePopup', 'header', 'minWidth', 'maxHeight', 'minHeight'],
     computed: {
         contentStyles() {
-            return `overflow-y: scroll;
+            let styles = "overflow-y: scroll;";
+            styles += `
             max-height: ` + this.maxHeight + ';' + 
-            `min-height: ` + this.minHeight;
+            `min-height: ` + this.minHeight + ';' +
+            `min-width: ` + this.minWidth + ';';
+            
+            return styles;
         }
     }
 }
@@ -83,10 +93,13 @@ button {
 h2 {
     margin: auto;
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 hr {
     margin: 0px;
+    height:1px;
+    background-color: rgb(107, 107, 107);
+    border: none;
 }
 </style>

@@ -12,9 +12,10 @@
 
     <!-- POPUP -->
     <PopupDialog
-        minHeight="40vh"
-        maxHeight="500px"
-        v-show="true"
+        minWidth="30vw"
+        minHeight="30vh"
+        maxHeight="50vh"
+        v-show="popupEnabled"
         :togglePopup="() => togglePopup('friendsTrigger')"
         header="Create post">
 
@@ -44,10 +45,17 @@ import CreatePostDialogFooter from "./DialogBoxComponents/CreatePostDialogFooter
         CreatePostDialogContent,
         CreatePostDialogFooter,
       },
-
+      data() {
+        return {
+          popupEnabled: false,
+        }
+      },
       methods: {
         clickTextBox() {
-          console.log("Hi!");
+          this.togglePopup();
+        },
+        togglePopup() {
+          this.popupEnabled = !this.popupEnabled;
         }
       },
       computed: {
