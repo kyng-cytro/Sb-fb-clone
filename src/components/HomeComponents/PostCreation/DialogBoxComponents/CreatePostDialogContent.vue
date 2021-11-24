@@ -17,9 +17,11 @@
     <!-- CHECKBOXES -->
     <div class="optionsContainer">
       <div>
-        <p v-b-toggle.collapse-1>See posting options <i class="bi bi-box-arrow-in-down-right"></i></p>
+        <p v-b-toggle.collapse-1>
+          See posting options <i class="bi bi-box-arrow-in-down-right"></i>
+        </p>
       </div>
-      <div class=checkboxesContainer>
+      <div class="checkboxesContainer">
         <b-collapse id="collapse-1" class="mt-2">
           <tr
             v-b-tooltip.hover
@@ -53,12 +55,28 @@
         </b-collapse>
       </div>
     </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <button v-if="ableToPost" @click="post()" class="btn btn-primary">
+        Post
+      </button>
+      <button v-else id="bootstrap-override" class="btn btn-secondary" disabled>
+        Post
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
   import FriendDisplay from "@/components/Multipurpose/FriendDisplay";
+  import Post from "@/mixins/Post.js";
+  import Filter from "@/mixins/Filter.js";
   export default {
+    mixins: {
+      Post,
+      Filter,
+    },
     data() {
       return {
         postBeingCreated: {
@@ -85,8 +103,26 @@
       focusInput() {
         this.$refs.postText.focus();
       },
+      post() {
+        let post = new Post(
+          "", // No image (yet)
+          this.user,
+          this.postBeingCreated.text,
+          new Date(),
+          0,
+          0,
+          0,
+          new Filter(
+              this.postBeingCreated.filter.isMajorEvent
+          )
+        );
+        
+      },
     },
     computed: {
+      ableToPost() {
+        return this.postBeingCreated.text.length > 0;
+      },
       textAreaStyles() {
         let styles = `
                     width: 100%;
@@ -115,14 +151,14 @@
     border-radius: 6px;
     padding: 2%;
     display: flex;
-    justify-content:center;
+    justify-content: center;
   }
   .checkboxesContainer {
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
   }
   tr {
-      padding-right: 500px;
+    padding-right: 500px;
   }
   td > p {
     text-align: right;
@@ -131,5 +167,22 @@
   td > input {
     margin: 80%;
     padding-right: 50px;
+  }
+
+  .footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  button {
+    width: 100%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    font-weight: bold;
+  }
+  .btn-secondary {
+    background-color: rgb(228, 230, 235) !important;
+    border: none !important;
+    color: grey !important;
   }
 </style>
