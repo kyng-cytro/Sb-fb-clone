@@ -12,6 +12,7 @@ export default class FiltersValues extends Model {
       lastWeek: this.boolean(false),
       lastTwoWeeks: this.boolean(false),
       lastMonth: this.boolean(false),
+      isViewOnly: this.boolean(true),
     }
   }
 }

@@ -1,16 +1,19 @@
 <template>
     <div class="container">
-    <form>
-        <div class="form-group">
-            <label for="nameInput">{{currentQuestion}}</label>
-            <input v-model="name" type="text" class="form-control" id="nameInput" placeholder="Name">
-        </div>
-    </form>
+        <div v-if="!this.submitted">
+            <form>
+                <div class="form-group">
+                    <label for="nameInput">{{currentQuestion}}</label>
+                    <input v-model="name" type="text" class="form-control" id="nameInput" placeholder="Name">
+                </div>
+            </form>
 
-        <div v-show="!this.submitted">
             <button class="back" @click="previous">Back</button>
             <button v-show="!finished" @click="next">Next</button>
             <button class="submit" v-show="finished" @click="submit">Submit</button>
+        </div>
+        <div v-else>
+            <p>Thank you.</p>
         </div>
 
     </div>
@@ -68,6 +71,10 @@ const questionFriendList = [
                     );
                 }
                 this.submitted = true;
+                this.goHome();
+            },
+            goHome() {
+                this.$router.push('/');
             },
             resetFields() {
                 this.name = "";
