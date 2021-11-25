@@ -70,12 +70,12 @@
 
 <script>
   import FriendDisplay from "@/components/Multipurpose/FriendDisplay";
-  import Post from "@/mixins/Post.js";
-  import Filter from "@/mixins/Filter.js";
+  import Post from "@/mixins/classes/Post.js";
+  import PostTags from "@/mixins/classes/PostTags.js";
   export default {
     mixins: {
       Post,
-      Filter,
+      PostTags,
     },
     data() {
       return {
@@ -104,18 +104,19 @@
         this.$refs.postText.focus();
       },
       post() {
-        let post = new Post(
-          "", // No image (yet)
-          this.user,
-          this.postBeingCreated.text,
-          new Date(),
-          0,
-          0,
-          0,
-          new Filter(
-              this.postBeingCreated.filter.isMajorEvent
-          )
-        );
+        // let post = new Post(
+        //   "", // No image (yet)
+        //   this.user,
+        //   this.postBeingCreated.text,
+        //   new Date(),
+        //   0,
+        //   0,
+        //   0,
+        //   new PostTags (
+        //       this.postBeingCreated.filter.isMajorEvent,
+        //       this.postBeingCreated.filter.isPostViewOnly
+        //   )
+        // );
         
       },
     },

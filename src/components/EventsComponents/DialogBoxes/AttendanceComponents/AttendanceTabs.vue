@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import NonFacebookFriend from "@/classes/nonFacebookFriend.js";
-import Friend from "@/classes/friend.js";
+import NonFacebookFriend from "@/vuex-orm_models/NonFacebookFriendModel.js";
+import Friend from "@/vuex-orm_models/FriendModel.js";
 import AttendanceTab from "./AttendanceTab.vue";
 import AttendanceTabInvitedListItem from "./AttendanceTabInvitedListItem.vue";
 import AttendanceTabInvitedList from "./AttendanceTabInvitedList.vue";

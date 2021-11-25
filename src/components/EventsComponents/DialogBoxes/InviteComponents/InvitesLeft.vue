@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { friendSorting } from "@/mixins/friendSorting.js";
+import { friendSorting } from "@/mixins/FriendSorting.js";
 import InvitesLeftListItem from "./InvitesLeftListItem.vue";
 
     export default {

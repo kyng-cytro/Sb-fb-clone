@@ -21,7 +21,7 @@
 
 <script>
 
-import FriendRequest from "@/classes/friendRequest.js";
+import FriendRequest from "@/vuex-orm_models/FriendRequestModel.js";
 
 const questionFriendList = [
     {

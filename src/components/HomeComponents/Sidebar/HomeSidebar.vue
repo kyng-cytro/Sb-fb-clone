@@ -18,19 +18,19 @@
     <!-- <SidebarButton type="friends" />
     <SidebarButton type="groups" />
     <SidebarButton type="events" />
-    <SidebarButton v-show="!getFaceLight" type="marketplace" />
-    <SidebarButton v-show="!getFaceLight" type="watch" />
-    <SidebarButton v-show="!getFaceLight" type="memories" />
-    <SidebarButton v-show="!getFaceLight" type="saved" />
-    <SidebarButton v-show="!getFaceLight" type="pages" />
-    <SidebarButton v-show="!getFaceLight" type="news" />
+    <SidebarButton v-show="!getFacebookLite" type="marketplace" />
+    <SidebarButton v-show="!getFacebookLite" type="watch" />
+    <SidebarButton v-show="!getFacebookLite" type="memories" />
+    <SidebarButton v-show="!getFacebookLite" type="saved" />
+    <SidebarButton v-show="!getFacebookLite" type="pages" />
+    <SidebarButton v-show="!getFacebookLite" type="news" />
     <SidebarButton type="favorites" /> -->
   </div>
 </template>
 
 <script>
   import SidebarButton from "./SidebarButton.vue";
-  import faceLight from "@/classes/faceLight.js";
+  import FacebookLite from "@/vuex-orm_models/FacebookLiteModel.js";
 
  
   export default {
@@ -46,12 +46,12 @@
       }
     },
     computed:  {
-      getFaceLight(){
-        return faceLight.find(1).enabled;
+      getFacebookLite(){
+        return FacebookLite.find(1).enabled;
       }
     },
      created () {
-      faceLight.insert({
+      FacebookLite.insert({
         data: { id: 1, enabled: false }
       });
       this.facebookLightButtons = ["friends", "groups", "events", "favorites"];
@@ -59,10 +59,10 @@
   }, 
     methods: {
       update(){
-      faceLight.update({
+      FacebookLite.update({
         where: 1,
         data: {
-          enabled: (!this.getFaceLight)
+          enabled: (!this.getFacebookLite)
         }
       })
     }

@@ -1,28 +1,39 @@
 <template>
   <div class="postSquare">
-    <div class= "header">
+    <div class="header">
       <FriendDisplay :friend="post.friend" />
-        <p id="date">{{formatDateNoYear(post.date)}}</p>
-    </div> 
+      <p id="date">{{ formatDateNoYear(post.date) }}</p>
+    </div>
 
-    <p id="text">{{post.text}}</p>
+    <p id="text">{{ post.text }}</p>
 
     <!-- Only show if it has an image source. If it has one, pull it from the PostImages folder -->
-    <img v-show="this.post.imgSrc !== ''" :class="{ postPic : !isFaceLight, postPicNoButtons : isFaceLight && isViewOnly}"  :src="require('@/assets/images/PostImages/' + post.imgSrc)"/>
+    <img
+      v-show="this.post.imgSrc !== ''"
+      :class="{
+        postPic: !isFacebookLite,
+        postPicNoButtons: isFacebookLite && isUserViewOnly,
+      }"
+      :src="require('@/assets/images/PostImages/' + post.imgSrc)"
+    />
 
-    <div class="info" v-show="!isFaceLight">
-        <em> {{post.numLikes + " Likes"}}</em>
-        <em style="float: right;">{{post.numComments + " comments " + post.numShares + " shares"}}</em>
-        <div class="line"></div>
+    <div class="info" v-show="!isFacebookLite">
+      <em> {{ post.numLikes + " Likes" }}</em>
+      <em style="float: right">{{
+        post.numComments + " comments " + post.numShares + " shares"
+      }}</em>
+      <div class="line"></div>
     </div>
-    <div class="info" v-if="!isViewOnly || !isFaceLight">
-      <div class ="Buttons">
-          <div>         
-            <button type="button" class="btn btn-secondary">
-              <i class="bi bi-hand-thumbs-up"></i>
+
+    <!-- In the boolean logic below, putting isFacebookLite first prevents a null access exception due to short circuit evaluation  -->
+    <div class="info" v-if="!isFacebookLite || !isUserViewOnly">
+      <div class="Buttons">
+        <div>
+          <button type="button" class="btn btn-secondary">
+            <i class="bi bi-hand-thumbs-up"></i>
             Like
           </button>
-          </div>
+        </div>
         <div>
           <button type="button" class="btn btn-secondary">
             <i class="bi bi-chat"></i>
@@ -41,160 +52,152 @@
 </template>
 
 <script>
+  import FacebookLite from "@/vuex-orm_models/FacebookLiteModel.js";
+  import FriendDisplay from "@/components/Multipurpose/FriendDisplay";
+  import { dateProcessing } from "@/mixins/DateProcessing.js";
+  import FiltersValues from "@/vuex-orm_models/FilterModel.js";
 
-import faceLight from "@/classes/faceLight.js";
-import FriendDisplay from "@/components/Multipurpose/FriendDisplay"
-import { dateProcessing } from '@/mixins/dateProcessing.js';
-import FiltersValues from "@/classes/filterValues.js";
-
-export default {
-  name: "post-square",
-  components: {
-    FriendDisplay
-  },
-  props: ["post"], 
-  mixins: [dateProcessing],
-  computed:  {
-    isFaceLight(){
-      return faceLight.find(1).enabled;
+  export default {
+    name: "post-square",
+    components: {
+      FriendDisplay,
     },
-    isViewOnly() {
-      return FiltersValues.find(1).isViewOnly;
-    }
-  },
-}
+    props: ["post"],
+    mixins: [dateProcessing],
+    computed: {
+      isFacebookLite() {
+        return FacebookLite.find(1).enabled;
+      },
+      isUserViewOnly() {
+        return FiltersValues.find(1).isUserViewOnly;
+      },
+    },
+  };
 </script>
 
-
 <style scoped>
-.postSquare {
-  background-color: white;
-  width: 40vw;
-  border-radius: 10px;
-  box-shadow: 0px 0px 3px rgb(140, 140, 140);
-  margin-top: 2%;
-  display: flex;
-  flex-direction: column;
-}
+  .postSquare {
+    background-color: white;
+    width: 40vw;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px rgb(140, 140, 140);
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+  }
 
-.postPic {
-  width: 40vw;
-  height: 40vh;
-  object-fit: cover; /*This makes it so the image is cropped instead of squished */
-}
-.postPicNoButtons {
-  border-radius: 0px 0px 10px 10px;
-}
+  .postPic {
+    width: 40vw;
+    height: 40vh;
+    object-fit: cover; /*This makes it so the image is cropped instead of squished */
+  }
+  .postPicNoButtons {
+    border-radius: 0px 0px 10px 10px;
+  }
 
-.info {
-  margin:10px;
-}
+  .info {
+    margin: 10px;
+  }
 
-#name:hover {
-  text-decoration: underline;
-}
+  #name:hover {
+    text-decoration: underline;
+  }
 
-.Buttons{
-  display: flex;
-   flex-direction: row;
-   flex: 33%;
-   justify-content: space-between;
-}
+  .Buttons {
+    display: flex;
+    flex-direction: row;
+    flex: 33%;
+    justify-content: space-between;
+  }
 
-button {
-  padding-left: 13px;
-  padding-right: 13px;
-  width: 120px;
-  margin: 2%;
-  font-weight: bold;
-  font-size: .9em;
-}
+  button {
+    padding-left: 13px;
+    padding-right: 13px;
+    width: 120px;
+    margin: 2%;
+    font-weight: bold;
+    font-size: 0.9em;
+  }
 
-.btn-secondary {
-  color: rgb(78, 78, 78);
-  background-color: transparent; 
-  border: 0px;
-  border-radius: 6px;
-  margin: 2%;
-  font-weight: bold;
-  font-size: .9em;
-}
+  .btn-secondary {
+    color: rgb(78, 78, 78);
+    background-color: transparent;
+    border: 0px;
+    border-radius: 6px;
+    margin: 2%;
+    font-weight: bold;
+    font-size: 0.9em;
+  }
 
-.btn-secondary:hover {
-  color: rgb(78, 78, 78);
-  background-color: hsl(0, 0%, 92%);
-  transition: 0.3s;
-}
+  .btn-secondary:hover {
+    color: rgb(78, 78, 78);
+    background-color: hsl(0, 0%, 92%);
+    transition: 0.3s;
+  }
 
-.btn-secondary:focus {
-  outline-color: transparent;
-  border: none;
-}
+  .btn-secondary:focus {
+    outline-color: transparent;
+    border: none;
+  }
 
-#data {
-  color: rgb(111, 111, 111);
-  font-size: .9em;
-}
+  #data {
+    color: rgb(111, 111, 111);
+    font-size: 0.9em;
+  }
 
-#date {
-  margin-left: 47px;
-  font-size: 0.8em;
-  font-weight: bold;
-  color: rgb(78, 78, 78);
-}
+  #date {
+    margin-left: 47px;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: rgb(78, 78, 78);
+  }
 
-em {
-  color: rgb(111, 111, 111);
-  font-size: .9em;
-}
+  em {
+    color: rgb(111, 111, 111);
+    font-size: 0.9em;
+  }
 
-.header {
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 10px;
-  /*background-color: yellow;*/
-  flex-direction: column;
-}
+  .header {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    flex-direction: column;
+  }
 
-#nameHeader {
-  text-align: center;
-  /*background-color: green;*/
-  margin: 10px;
-}
+  #nameHeader {
+    text-align: center;
+    margin: 10px;
+  }
 
-#personPic {
-  flex-direction: inherit;
-  margin: 10px;
-  height: 25px;
-  width: 25px;
-  
-  background-color: #bbb;
-}
+  #personPic {
+    flex-direction: inherit;
+    margin: 10px;
+    height: 25px;
+    width: 25px;
 
+    background-color: #bbb;
+  }
 
-.line {
-   border-bottom: 1px solid #bbb;
-   padding: 3px;
+  .line {
+    border-bottom: 1px solid #bbb;
+    padding: 3px;
+  }
 
+  p#text {
+    /*margin:10px;*/
+    margin-top: 10px;
+    margin-left: 15px;
+  }
 
-}
-
-p#text {
-  /*margin:10px;*/
-  margin-top: 10px;
-  margin-left: 15px; 
-}
-
-.icon-flipped {
+  .icon-flipped {
     transform: scaleX(-1);
     -moz-transform: scaleX(-1);
     -webkit-transform: scaleX(-1);
     -ms-transform: scaleX(-1);
-}
+  }
 
-i {
-  font-size: 1.3em;
-  margin: 2px;
-}
-
+  i {
+    font-size: 1.3em;
+    margin: 2px;
+  }
 </style>

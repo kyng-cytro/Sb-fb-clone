@@ -19,30 +19,17 @@
 // @ is an alias to /src
 import HomeSidebar from "@/components/HomeComponents/Sidebar/HomeSidebar.vue";
 import PostDisplay from "@/components/HomeComponents/PostDisplay.vue";
-import faceLight from "@/classes/faceLight.js";
 import CreatePost from "@/components/HomeComponents/PostCreation/CreatePost.vue";
-import FacebookLiteFilters from "@/components/HomeComponents/facebookLiteFilters.vue";
+import FacebookLiteFilters from "@/components/HomeComponents/FacebookLiteFilters.vue";
 
 export default {
   name: "Home",
-   data() {
-    return {
-      facebookLight: HomeSidebar.facebookLight,FacebookLiteFilters, 
-    }
-   },
   components: {
     HomeSidebar,
     PostDisplay,
     FacebookLiteFilters,
     CreatePost
   },
-
-    computed:  {
-      getFaceLight(){
-        return faceLight.find(1).enabled;
-      }
-    },
-
 };
 </script>
 

@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import Friend from "@/classes/friend.js";
-import NonFacebookFriend from "@/classes/nonFacebookFriend.js";
+import Friend from "@/vuex-orm_models/FriendModel.js";
+import NonFacebookFriend from "@/vuex-orm_models/NonFacebookFriendModel.js";
 import FriendDisplay from "@/components/Multipurpose/FriendDisplay.vue";
 
     export default {

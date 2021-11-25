@@ -14,7 +14,7 @@
 
 import FriendSidebar from "@/components/FriendsComponents/FriendSidebar.vue";
 import FriendRequestDisplay from "@/components/FriendsComponents/FriendRequestDisplay.vue";
-import FriendRequest from "@/classes/friendRequest.js";
+import FriendRequest from "@/vuex-orm_models/FriendRequestModel.js";
 
 export default {
   name: "Friends",

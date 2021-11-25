@@ -1,7 +1,7 @@
 import { Model } from '@vuex-orm/core';
 
-export default class faceLight extends Model {
-    static entity = 'faceLight';
+export default class FacebookLite extends Model {
+    static entity = 'FacebookLite';
 
     static fields() {
         return {

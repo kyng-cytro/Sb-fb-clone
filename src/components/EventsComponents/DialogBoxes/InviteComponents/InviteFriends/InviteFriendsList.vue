@@ -14,7 +14,7 @@
 
 <script>
 import InviteFriendsListItem from './InviteFriendsListItem.vue';
-import Friend from "@/classes/friend.js";
+import Friend from "@/vuex-orm_models/FriendModel.js";
 
     export default {
         components: {

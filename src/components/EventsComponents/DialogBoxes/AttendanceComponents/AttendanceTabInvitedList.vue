@@ -63,7 +63,7 @@
 <script>
 import AttendanceTabInvitedListItem from "./AttendanceTabInvitedListItem.vue";
 
-import { friendSorting } from "@/mixins/friendSorting.js"
+import { friendSorting } from "@/mixins/FriendSorting.js"
 
 export default {
   components: {

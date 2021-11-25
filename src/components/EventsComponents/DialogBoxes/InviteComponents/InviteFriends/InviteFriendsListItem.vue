@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Friend from "@/classes/friend.js";
+import Friend from "@/vuex-orm_models/FriendModel.js";
 import FriendDisplay from "@/components/Multipurpose/FriendDisplay";
 
     export default {
