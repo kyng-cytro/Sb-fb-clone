@@ -12,11 +12,11 @@
       <img
         :class="{
           postPic: !isFacebookLite,
-          postPicNoButtons: isFacebookLite && isUserViewOnly,
+          postPicNoButtons: !isViewOnly,
         }"
         :src="this.post.imgSrc.length > 0 ? require('@/assets/images/PostImages/' + post.imgSrc) : require('@/assets/images/PostImages/' + 'birthday.jpg')"
       />
-      <!-- Above is a weird bug that, even though the image will be hidden if the imgSrc doesn't have a length, the :src component must still point to a valid image. So, we point to the birthday one.-->
+      <!-- Above is a weird bug. Even though the image will be hidden if the imgSrc doesn't have a length, the :src component must still point to a valid image. So, we point to the birthday one.-->
     </div>
 
     <div class="info" v-show="!isFacebookLite">
@@ -28,7 +28,7 @@
     </div>
 
     <!-- In the boolean logic below, putting isFacebookLite first prevents a null access exception due to short circuit evaluation  -->
-    <div class="info" v-if="!isFacebookLite || !isUserViewOnly">
+    <div class="info" v-if="isViewOnly">
       <div class="Buttons">
         <div>
           <button type="button" class="btn btn-secondary">
@@ -73,6 +73,9 @@
       isUserViewOnly() {
         return FiltersValues.find(1).isUserViewOnly;
       },
+      isViewOnly() {
+        return (!this.isFacebookLite || !this.isUserViewOnly) && !this.post.filter.isPostViewOnly;
+      }
     },
   };
 </script>
@@ -94,6 +97,9 @@
     object-fit: cover; /*This makes it so the image is cropped instead of squished */
   }
   .postPicNoButtons {
+    width: 40vw;
+    height: 40vh;
+    object-fit: cover; /*This makes it so the image is cropped instead of squished */
     border-radius: 0px 0px 10px 10px;
   }
 
@@ -187,7 +193,7 @@
 
   p#text {
     /*margin:10px;*/
-    margin-top: 10px;
+    margin-top: 0px;
     margin-left: 15px;
   }
 

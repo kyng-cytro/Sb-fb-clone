@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="postDisplay">
-      <p>I'm the post display</p>
       <div
         class="square"
         v-for="post in filterPosts(posts, filters)"
@@ -93,6 +92,7 @@
   export default {
     name: "PostDisplay",
     created() {
+      // POPULATE THE VUEX-ORM DATABASE WITH POSTS
       for (let i = 0; i < localPosts.length; i++) {
         Post.insert({ data: localPosts[i] });
       }
