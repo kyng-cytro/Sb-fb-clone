@@ -6,6 +6,7 @@ import FriendRequest from "@/vuex-orm_models/FriendRequestModel.js"
 import NonFacebookFriend from "@/vuex-orm_models/NonFacebookFriendModel.js"
 import FacebookLite from "@/vuex-orm_models/FacebookLiteModel.js"
 import Filter from "@/vuex-orm_models/FilterModel.js"
+import Post from "@/vuex-orm_models/PostModel.js"
 
 
 Vue.use(Vuex);
@@ -17,6 +18,7 @@ database.register(FriendRequest);
 database.register(NonFacebookFriend);
 database.register(FacebookLite);
 database.register(Filter);
+database.register(Post);
 
 export default new Vuex.Store({
     plugins: [VuexORM.install(database)]

@@ -8,14 +8,16 @@
     <p id="text">{{ post.text }}</p>
 
     <!-- Only show if it has an image source. If it has one, pull it from the PostImages folder -->
-    <img
-      v-show="this.post.imgSrc !== ''"
-      :class="{
-        postPic: !isFacebookLite,
-        postPicNoButtons: isFacebookLite && isUserViewOnly,
-      }"
-      :src="require('@/assets/images/PostImages/' + post.imgSrc)"
-    />
+    <div v-show="this.post.imgSrc.length > 0">
+      <img
+        :class="{
+          postPic: !isFacebookLite,
+          postPicNoButtons: isFacebookLite && isUserViewOnly,
+        }"
+        :src="this.post.imgSrc.length > 0 ? require('@/assets/images/PostImages/' + post.imgSrc) : require('@/assets/images/PostImages/' + 'birthday.jpg')"
+      />
+      <!-- Above is a weird bug that, even though the image will be hidden if the imgSrc doesn't have a length, the :src component must still point to a valid image. So, we point to the birthday one.-->
+    </div>
 
     <div class="info" v-show="!isFacebookLite">
       <em> {{ post.numLikes + " Likes" }}</em>

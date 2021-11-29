@@ -2,7 +2,11 @@
   <div>
     <div class="postDisplay">
       <p>I'm the post display</p>
-      <div class="square" v-for="post in filterPosts(posts, getFilters)" :key="post.id">
+      <div
+        class="square"
+        v-for="post in filterPosts(posts, filters)"
+        :key="post.id"
+      >
         <PostSquare v-bind:post="post" />
       </div>
     </div>
@@ -11,144 +15,103 @@
 
 <script>
   import PostSquare from "./PostSquare.vue";
-  // import Post from "@/mixins/classes/Post.js";
-  // import PostTags from "@/mixins/classes/PostTags";
-  // import { PostFiltering } from "@/mixins/PostFiltering.js";
+  import Post from "@/vuex-orm_models/PostModel.js";
   import { PostFiltering } from "@/mixins/PostFiltering.js";
   import Filter from "@/vuex-orm_models/FilterModel.js";
 
+  const localPosts = [
+    {
+      imgSrc: "",
+      friend: {
+        imgSrc: "anson.jpg",
+        name: "Anson Savage",
+        isFamily: false,
+      },
+      text: "The stars from three weeks ago were very beautiful",
+      date: "11/1/2021",
+      numComments: 87,
+      numShares: 34,
+      numLikes: 1231,
+      filter: {
+        isMajorEvent: false,
+        isPostViewOnly: false,
+      },
+    },
+    {
+      imgSrc: "stars.jpg",
+      friend: {
+        imgSrc: "anson.jpg",
+        name: "Anson Savage",
+        isFamily: false,
+      },
+      text: "The stars from three weeks ago were very beautiful",
+      date: "11/1/2021",
+      numComments: 87,
+      numShares: 34,
+      numLikes: 1231,
+      filter: {
+        isMajorEvent: false,
+        isPostViewOnly: false,
+      },
+    },
+    {
+      imgSrc: "birthday.jpg",
+      friend: {
+        imgSrc: "xinru.jpg",
+        name: "Xinru",
+        isFamily: false,
+      },
+      text: "We are going to have a birthday party! It is a major event.",
+      date: "11/12/2021",
+      numComments: 87,
+      numShares: 34,
+      numLikes: 1231,
+      filter: {
+        isMajorEvent: true,
+        isPostViewOnly: false,
+      },
+    },
+    {
+      imgSrc: "breakfast.jpg",
+      friend: {
+        imgSrc: "businessMan.jpg",
+        name: "Miles",
+        isFamily: true,
+      },
+      text: "I ate some breakfast this morning, but I don't care what you think, so I'm going to set my post to View Only.",
+      date: "11/16/2021",
+      numComments: 87,
+      numShares: 34,
+      numLikes: 1231,
+      filter: {
+        isMajorEvent: false,
+        isPostViewOnly: true,
+      },
+    },
+  ];
+
   export default {
     name: "PostDisplay",
-    onCreated() {
-      console.log(this.posts[0]);
+    created() {
+      for (let i = 0; i < localPosts.length; i++) {
+        Post.insert({ data: localPosts[i] });
+      }
     },
-    // mixins: [Post],//, PostTags], //, PostFiltering],
     mixins: [PostFiltering],
     components: {
       PostSquare,
     },
     computed: {
-      getFilters() {
+      filters() {
         return Filter.find(1);
       },
-      // filteredPosts() {
-      //   return filterPosts(this.posts, this.getFilters);
-      // }
+      posts() {
+        return Post.all();
+      }
     },
     data() {
-      return {
-        posts: [
-          {
-            imgSrc: "stars.jpg",
-            friend: {
-              imgSrc: "anson.jpg",
-              name: "Anson Savage",
-              isFamily: false,
-            },
-            text: "The stars from three weeks ago were very beautiful",
-            date: new Date("11/1/2021"),
-            numComments: 87,
-            numShares: 34,
-            numLikes: 1231,
-            filter: {
-              isMajorEvent: false,
-              isPostViewOnly: false,
-            },
-          },
-          {
-            imgSrc: "birthday.jpg",
-            friend: {
-              imgSrc: "xinru.jpg",
-              name: "Xinru",
-              isFamily: false,
-            },
-            text: "We are going to have a birthday party! It is a major event.",
-            date: new Date("11/12/2021"),
-            numComments: 87,
-            numShares: 34,
-            numLikes: 1231,
-            filter: {
-              isMajorEvent: true,
-              isPostViewOnly: false,
-            },
-          },
-          {
-            imgSrc: "breakfast.jpg",
-            friend: {
-              imgSrc: "businessMan.jpg",
-              name: "Miles",
-              isFamily: true,
-            },
-            text: "I ate some breakfast this morning, but I don't care what you think, so I'm going to set my post to View Only.",
-            date: new Date("11/16/2021"),
-            numComments: 87,
-            numShares: 34,
-            numLikes: 1231,
-            filter: {
-              isMajorEvent: false,
-              isPostViewOnly: true,
-            },
-          },
-        ],
-      };
+      return {};
     },
-    // data() {
-    //   return {
-    //     posts: [
-    //       new Post(
-    //         "stars.jpg",
-    //         {
-    //           imgSrc: "anson.jpg",
-    //           name: "Anson",
-    //           isFamily: false,
-    //         },
-    //         "The stars from three weeks ago were very beautiful",
-    //         new Date("11/1/2021"),
-    //         87,
-    //         2,
-    //         21334,
-    //         {
-    //           isMajorEvent: false,
-    //           isPostViewOnly: false
-    //         }
-    //       ),
-    //       new Post(
-    //         "birthday.jpg",
-    //         {
-    //           imgSrc: "xinru.jpg",
-    //           name: "Xinru",
-    //           isFamily: false,
-    //         },
-    //         "My friend is having a birthday party this week!",
-    //         new Date("11/12/2021"),
-    //         87,
-    //         2,
-    //         21334,
-    //         {
-    //           isMajorEvent: true,
-    //           isPostViewOnly: false
-    //         }
-    //       ),
-    //       new Post(
-    //         "breakfast.jpg",
-    //         {
-    //           imgSrc: "businessMan.jpg",
-    //           name: "Miles",
-    //           isFamily: true,
-    //         },
-    //         "I just ate some good breakfast this morning",
-    //         new Date("11/16/2021"),
-    //         87,
-    //         2,
-    //         21334,
-    //         {
-    //           isMajorEvent: true,
-    //           isPostViewOnly: false
-    //         }
-    //       ),
-    //     ],
-    //   };
-    // },
   };
 </script>
 

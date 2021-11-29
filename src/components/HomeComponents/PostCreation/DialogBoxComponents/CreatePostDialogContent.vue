@@ -70,13 +70,14 @@
 
 <script>
   import FriendDisplay from "@/components/Multipurpose/FriendDisplay";
-  import Post from "@/mixins/classes/Post.js";
-  import PostTags from "@/mixins/classes/PostTags.js";
+  import Post from "@/vuex-orm_models/PostModel.js";
+  // import Post from "@/mixins/classes/Post.js";
+  // import PostTags from "@/mixins/classes/PostTags.js";
   export default {
-    mixins: {
-      Post,
-      PostTags,
-    },
+    // mixins: {
+    //   Post,
+    //   PostTags,
+    // },
     data() {
       return {
         postBeingCreated: {
@@ -104,20 +105,21 @@
         this.$refs.postText.focus();
       },
       post() {
-        // let post = new Post(
-        //   "", // No image (yet)
-        //   this.user,
-        //   this.postBeingCreated.text,
-        //   new Date(),
-        //   0,
-        //   0,
-        //   0,
-        //   new PostTags (
-        //       this.postBeingCreated.filter.isMajorEvent,
-        //       this.postBeingCreated.filter.isPostViewOnly
-        //   )
-        // );
-        
+        let post = {
+          imgSrc: "", // No image (yet)
+          friend: this.user,
+          text: this.postBeingCreated.text,
+          date: new Date().toString(),
+          numComments: 0,
+          numShares: 0,
+          numLikes: 0,
+          filter: {
+              isMajorEvent: this.postBeingCreated.filter.isMajorEvent,
+              isPostViewOnly: this.postBeingCreated.filter.isPostViewOnly
+          }
+        };
+        console.log(post.friend.imgSrc);
+        Post.insert({ data: post });
       },
     },
     computed: {
