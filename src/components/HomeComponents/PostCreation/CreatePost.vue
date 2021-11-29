@@ -15,7 +15,7 @@
         minHeight="30vh"
         maxHeight="50vh"
         v-show="popupEnabled"
-        :togglePopup="() => togglePopup('friendsTrigger')"
+        :togglePopup="() => togglePopup()"
         header="Create post"
       >
         <template v-slot:content>
@@ -38,6 +38,12 @@
   // import CreatePostDialogFooter from "./DialogBoxComponents/CreatePostDialogFooter"
 
   export default {
+    mounted() {
+      this.$root.$on("closeCreatePostDialog", () => {
+        this.togglePopup();
+        console.log("Trying to close the post popup");
+      });
+    },
     components: {
       FriendDisplay,
       PopupDialog,

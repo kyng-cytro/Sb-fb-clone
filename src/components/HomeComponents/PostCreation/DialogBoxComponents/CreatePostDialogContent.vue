@@ -104,6 +104,14 @@
       focusInput() {
         this.$refs.postText.focus();
       },
+      closeDialog() {
+        this.$root.$emit("closeCreatePostDialog");
+      },
+      resetFields() {
+        this.postBeingCreated.text = "";
+        this.postBeingCreated.filter.isMajorEvent = false;
+        this.postBeingCreated.filter.isPostViewOnly = false;
+      },
       post() {
         let post = {
           imgSrc: "", // No image (yet)
@@ -114,12 +122,13 @@
           numShares: 0,
           numLikes: 0,
           filter: {
-              isMajorEvent: this.postBeingCreated.filter.isMajorEvent,
-              isPostViewOnly: this.postBeingCreated.filter.isPostViewOnly
-          }
+            isMajorEvent: this.postBeingCreated.filter.isMajorEvent,
+            isPostViewOnly: this.postBeingCreated.filter.isPostViewOnly,
+          },
         };
-        console.log(post.friend.imgSrc);
+        this.resetFields();
         Post.insert({ data: post });
+        this.closeDialog();
       },
     },
     computed: {
