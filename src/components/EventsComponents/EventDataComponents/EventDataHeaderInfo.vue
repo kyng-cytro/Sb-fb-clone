@@ -15,7 +15,7 @@
 
 <script>
 import CalendarIcon from './CalendarIcon.vue'
-import { dateProcessing } from '@/mixins/dateProcessing.js';
+import { dateProcessing } from '@/mixins/DateProcessing.js';
 
 export default {
   mixins: [dateProcessing],

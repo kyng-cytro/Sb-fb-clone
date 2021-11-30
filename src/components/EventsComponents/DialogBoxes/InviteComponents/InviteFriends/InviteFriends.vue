@@ -18,7 +18,7 @@
 <script>
 import InviteFriendsList from "../InviteFriends/InviteFriendsList.vue";
 import InviteFriendsSidebar from "../InviteFriends/InviteFriendsSidebar.vue"
-import Friend from "@/classes/friend.js";
+import Friend from "@/vuex-orm_models/FriendModel.js";
     export default {
         data() {
             return {
@@ -37,7 +37,6 @@ import Friend from "@/classes/friend.js";
         methods: {
             addFriend() {
                 Friend.insert({ data: this.form});
-                        // this.form[name] = "";
             }
         }
     }

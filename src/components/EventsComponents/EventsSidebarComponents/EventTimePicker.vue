@@ -19,6 +19,7 @@
 
 <script>
     export default {
+        props: ['chosenDate'],
           mounted() {
             this.$root.$on('bv::dropdown::show', bvEvent => {
                 console.log('Dropdown is about to be shown', bvEvent)
@@ -49,16 +50,30 @@
         },
         computed: {
             timeList() {
+                console.log(this.chosenDate);
                 let today = new Date();
-                let minutes = ["00", "30"]
-                let times = []
+                let minutes = ["00", "15", "30", "45"];
+                let times = [];
                 let currentId = 1;
-                let AM_PM = today.getHours() >= 12 ? ["PM"] : ["AM", "PM"]
+                let AM_PM = [];
+                let startHours = 0;
+                if (today.getDate() === this.chosenDate.getDate() && today.getMonth() === this.chosenDate.getMonth()) {
+                    console.log(today);
+                    console.log("Is THE SAME");
+                    console.log(this.chosenDate);
+                    AM_PM = today.getHours() >= 12 ? ["PM"] : ["AM", "PM"];
+                    startHours = today.getHours() + 1;
+                }
+                else {
+                    console.log(today);
+                    console.log("Is not the same as ");
+                    console.log(this.chosenDate);
+                    AM_PM = ["AM", "PM"];
+                    startHours = 12;
+                }
                 for (let am in AM_PM) {
-                    for (let h = today.getHours(); h <= 23; h++) {
-                        console.log(h > 12 ? h % 12 : h);
+                    for (let h = startHours; h <= 23; h++) {
                         for (let m in minutes) {
-                            console.log(m);
                             times.push({
                                 id: currentId,
                                 name: (h > 12 ? h % 12 : h).toString() + ":" + minutes.at(m) + " " + AM_PM.at(am)

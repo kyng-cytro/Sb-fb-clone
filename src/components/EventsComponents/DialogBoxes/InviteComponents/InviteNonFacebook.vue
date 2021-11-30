@@ -24,7 +24,7 @@
 
 <script>
 
-import NonFacebookFriend from "@/classes/nonFacebookFriend.js"
+import NonFacebookFriend from "@/vuex-orm_models/NonFacebookFriendModel.js"
 export default {
         data() {
             return {

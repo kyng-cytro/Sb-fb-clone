@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Friend from "@/classes/friend.js";
+import Friend from "@/vuex-orm_models/FriendModel.js";
 
 const friendExampleList = [
   {
