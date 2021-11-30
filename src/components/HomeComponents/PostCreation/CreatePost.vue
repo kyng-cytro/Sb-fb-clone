@@ -82,7 +82,7 @@
     background-color: white;
     width: 40vw;
     border-radius: 10px;
-    margin: 1%;
+    margin-bottom: 1%;
     padding: 2%;
     box-shadow: 0px 0px 3px rgb(140, 140, 140);
     display: flex;
@@ -90,7 +90,7 @@
   }
 
   .roundTextBox {
-    margin: 1%;
+    margin: 2%;
     border-radius: 30px;
     width: 95%;
     height: 90%;
