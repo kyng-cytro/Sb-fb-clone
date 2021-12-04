@@ -93,10 +93,11 @@
 p {
     font-size: 0.9em;
     color: grey;
+    margin-left: 17px;
 }
 
   .my-class /deep/ .dropdown-menu {
-    max-height: 200px;
+    max-height: 300px;
     overflow-y: auto;
   }
 </style>
