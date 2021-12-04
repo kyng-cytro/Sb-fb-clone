@@ -172,9 +172,7 @@
   }
 
   .header {
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
+    padding: 15px;
     flex-direction: column;
   }
 

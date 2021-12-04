@@ -3,31 +3,33 @@
     <!-- POST PROMPT -->
     <div class="createPostSquare">
       <div class="header">
-        <FriendDisplay :friend="user" onlyImage="true"></FriendDisplay>
+        <div class="profilePic">
+          <FriendDisplay :friend="user" onlyImage="true"></FriendDisplay>
+        </div>
         <div @click="clickTextBox" class="roundTextBox">
           <p>What's on your mind, {{ user.name }}?</p>
         </div>
       </div>
+    </div>
 
-      <!-- POPUP -->
-      <PopupDialog
-        minWidth="30vw"
-        minHeight="30vh"
-        maxHeight="50vh"
-        v-show="popupEnabled"
-        :togglePopup="() => togglePopup()"
-        header="Create post"
-      >
-        <template v-slot:content>
-          <CreatePostDialogContent :user="user" />
-        </template>
+    <!-- POPUP -->
+    <PopupDialog
+      minWidth="30vw"
+      minHeight="30vh"
+      maxHeight="50vh"
+      v-show="popupEnabled"
+      :togglePopup="() => togglePopup()"
+      header="Create post"
+    >
+      <template v-slot:content>
+        <CreatePostDialogContent :user="user" />
+      </template>
 
-        <!-- We have a manual footer in the Dialog Content for the sake of code simplicity and formatting -->
-        <!-- <template v-slot:footer>
+      <!-- We have a manual footer in the Dialog Content for the sake of code simplicity and formatting -->
+      <!-- <template v-slot:footer>
         <CreatePostDialogFooter />
       </template> -->
-      </PopupDialog>
-    </div>
+    </PopupDialog>
   </div>
 </template>
 
@@ -81,19 +83,21 @@
   .createPostSquare {
     background-color: white;
     width: 40vw;
+    height: 80px;
     border-radius: 10px;
-    margin-bottom: 1%;
-    padding: 2%;
+    margin-bottom: 3%;
+    padding: 15px;
     box-shadow: 0px 0px 3px rgb(140, 140, 140);
     display: flex;
     flex-direction: column;
   }
 
   .roundTextBox {
-    margin: 2%;
+    margin: 5px;
     border-radius: 30px;
     width: 95%;
-    height: 90%;
+    height: 40px;
+    line-height: 30px;
     display: inline-block;
     border: 0px solid #ccc;
     box-sizing: border-box;
