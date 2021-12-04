@@ -11,24 +11,24 @@
     <div v-show="this.post.imgSrc.length > 0">
       <img
         :class="{
-          postPic: !isFacebookLite,
+          postPic: isViewOnly,
           postPicNoButtons: !isViewOnly,
         }"
-        :src="this.post.imgSrc.length > 0 ? require('@/assets/images/PostImages/' + post.imgSrc) : require('@/assets/images/PostImages/' + 'birthday.jpg')"
+        :src="
+          this.post.imgSrc.length > 0
+            ? require('@/assets/images/PostImages/' + post.imgSrc)
+            : require('@/assets/images/PostImages/' + 'birthday.jpg')
+        "
       />
       <!-- Above is a weird bug. Even though the image will be hidden if the imgSrc doesn't have a length, the :src component must still point to a valid image. So, we point to the birthday one.-->
     </div>
 
-    <div class="info" v-show="!isFacebookLite">
+    <div class="info" v-if="isViewOnly">
       <em> {{ post.numLikes + " Likes" }}</em>
       <em style="float: right">{{
         post.numComments + " comments " + post.numShares + " shares"
       }}</em>
       <div class="line"></div>
-    </div>
-
-    <!-- In the boolean logic below, putting isFacebookLite first prevents a null access exception due to short circuit evaluation  -->
-    <div class="info" v-if="isViewOnly">
       <div class="Buttons">
         <div>
           <button type="button" class="btn btn-secondary">
@@ -74,8 +74,13 @@
         return FiltersValues.find(1).isUserViewOnly;
       },
       isViewOnly() {
-        return (!this.isFacebookLite || !this.isUserViewOnly) && !this.post.filter.isPostViewOnly;
-      }
+        // it's view only if it's not facebook light and the post is view only, or it's not UserViewonly and it is postViewOnly
+        // In the boolean logic below, putting isFacebookLite first prevents a null access exception due to short circuit evaluation
+        return (
+          (!this.isFacebookLite || !this.isUserViewOnly) &&
+          !this.post.filter.isPostViewOnly
+        );
+      },
     },
   };
 </script>
@@ -87,6 +92,7 @@
     border-radius: 10px;
     box-shadow: 0px 0px 3px rgb(140, 140, 140);
     margin-top: 2%;
+    margin-bottom: 3%;
     display: flex;
     flex-direction: column;
   }
@@ -194,7 +200,8 @@
   p#text {
     /*margin:10px;*/
     margin-top: 0px;
-    margin-left: 15px;
+    margin-left: 2%;
+    margin-right: 2%;
   }
 
   .icon-flipped {

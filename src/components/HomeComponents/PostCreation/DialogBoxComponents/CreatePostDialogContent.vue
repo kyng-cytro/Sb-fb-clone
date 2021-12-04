@@ -170,14 +170,15 @@
     margin: 0% 1% 0% 1%;
     outline: 0 !important;
     border-width: 0px;
-    border-radius: 3px;
+    border-radius: 4px;
     cursor: pointer;
     color: #ffffff;
     font-family: Arial;
     font-size: 0.8125em;
-    padding: 0px 0px 0px 0px;
+    line-height: 10%;
+    padding: -5% 3% -5% 3% !important;
     width: fit-content;
-    height: 3vh;
+    height: 2vh;
   }
   .footer {
     width: 100%;
