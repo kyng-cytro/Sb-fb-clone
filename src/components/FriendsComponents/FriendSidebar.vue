@@ -3,10 +3,10 @@
       <nav>
         <div class="container">
           <div class = "sidebar-buttons-container">
-            <PageSidebarButton iconName="home" text="Home" />
-            <PageSidebarButton iconName="friendRequest" text="Friend Request" />
-            <PageSidebarButton iconName="suggestion" text="Suggestions" />
-            <PageSidebarButton iconName="birthdays" text="Birthdays" />
+            <PageSidebarButton iconName="people-fill" text="Home" />
+            <PageSidebarButton iconName="file-person" text="Friend Requests" />
+            <PageSidebarButton iconName="file-plus" text="Suggestions" />
+            <PageSidebarButton iconName="gift" text="Birthdays" />
           </div>
         </div>
       </nav>
@@ -29,6 +29,9 @@ export default {
 <style scoped>
 .container {
   background-color: white;
-  box-shadow: 3px 3px 3px rgb(232, 232, 232);
+  box-shadow: 0px 0px 7px rgb(187, 185, 185);
+  width: 22vw;
+  /* 55px is the height of the topbar, so this calculates the height the sidebar should be */
+  height: calc(100vh - 55px); 
 }
 </style>
