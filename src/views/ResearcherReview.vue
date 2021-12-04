@@ -1,6 +1,6 @@
 <template>
     <!-- Show which friend requests were accepted/not -->
-    <div>
+    <div class="container">
         <strong v-show="confirmedRequests.length">Confirmed Requests</strong>
         <FriendRequestDisplay :friendRequests="confirmedRequests"/>
         <strong v-show="deletedRequests.length">Deleted Requests</strong>
@@ -32,5 +32,7 @@ import FriendRequestDisplay from "@/components/FriendsComponents/FriendRequestDi
 </script>
 
 <style scoped>
-
+.container {
+    padding: 5%;
+}
 </style>

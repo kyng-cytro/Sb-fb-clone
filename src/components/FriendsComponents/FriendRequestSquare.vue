@@ -4,7 +4,9 @@
           <i v-else class="bi bi-person-fill"></i>
           <div class="info">
             <strong>{{friendRequest.name}}</strong>
-            <p id="mutualFriends">{{friendRequest.numOfMutualFriends}} mutual friends <p>
+            <!-- <p id="mutualFriends">{{friendRequest.numOfMutualFriends}} mutual friends <p> -->
+              <br />
+            <em id="expireMessage">{{"Expires in " + friendRequest.daysUntilExpiration + " days"}}</em>
             <div v-if="friendRequest.state==='deleted'">
               <div>
                 <button type="button" class="btn btn-secondary invisible" disabled>Invisible</button>
@@ -30,7 +32,6 @@
               <div>
                 <button type="button" v-on:click="handleDeleteClick" class="btn btn-secondary">Delete</button>
               </div>
-            <em>{{"Expires in " + friendRequest.daysUntilExpiration + " days"}}</em>
             </div>
           </div>
         </div>
@@ -67,6 +68,7 @@ export default {
 .bi {
   text-align: center;
   color: rgb(73, 113, 172);
+  /* color: rgb(0,123,255); */
   font-size: 10em;
   width: 215px;
   height: 215px;
@@ -115,6 +117,10 @@ button {
 #mutualFriends {
   color: rgb(111, 111, 111);
   font-size: .9em;
+}
+
+#expireMessage {
+  color: rgb(73, 113, 172);
 }
 
 em {

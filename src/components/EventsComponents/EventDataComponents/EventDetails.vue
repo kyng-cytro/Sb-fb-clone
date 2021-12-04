@@ -7,7 +7,6 @@
           1 person going, including {you}
           </p>
         <strong>{{event.location}}</strong>
-        <p>Todo: potentially include privacy</p>
         <p>{{event.description}}</p>
       </div>
       <div id="previewBox">
