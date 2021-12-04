@@ -2,11 +2,11 @@
     <!-- Show which friend requests were accepted/not -->
     <div class="container">
         <strong v-show="confirmedRequests.length">Confirmed Requests</strong>
-        <FriendRequestDisplay :friendRequests="confirmedRequests"/>
+        <FriendRequestDisplay :friendRequests="confirmedRequests" :showFriendQuestion="true"/>
         <strong v-show="deletedRequests.length">Deleted Requests</strong>
-        <FriendRequestDisplay :friendRequests="deletedRequests"/>
+        <FriendRequestDisplay :friendRequests="deletedRequests" :showFriendQuestion="true"/>
         <strong v-show="pendingRequests.length">Pending Requests</strong>
-        <FriendRequestDisplay :friendRequests="pendingRequests"/>
+        <FriendRequestDisplay :friendRequests="pendingRequests" :showFriendQuestion="true"/>
     </div>
 </template>
 

@@ -11,6 +11,7 @@ export default class Friend extends Model {
             daysUntilExpiration: this.attr(0),
             numOfMutualFriends: this.attr(0),
             state: this.string('pending'), // State might be "pending", "confirmed", or "deleted"
+            friendQuestion: this.string('')
         }
     }
 }

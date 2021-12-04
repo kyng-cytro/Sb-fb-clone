@@ -25,23 +25,23 @@ import FriendRequest from "@/vuex-orm_models/FriendRequestModel.js";
 
 const questionFriendList = [
     {
-        question: "you would not want to connect with",
+        question: "would not want to connect with",
         friendData: null
     },
     {
-        question: "you would like to connect with",
+        question: "would like to connect with",
         friendData: null
     },
     {
-        question: "you would fell pressured to connect with",
+        question: "would feel pressured to connect with",
         friendData: null
     },
     {
-        question: "you would like to connect with, but you have some sort of concern",
+        question: "would like to connect with, but you have some sort of concern",
         friendData: null
     },
     {
-        question: "you have already connected with, but you didn't want to",
+        question: "have already connected with, but you didn't want to",
         friendData: null
     },
 ]
@@ -65,7 +65,8 @@ const questionFriendList = [
                                 name: questionFriendList.at(i).friendData.name,
                                 imgSrc: "",
                                 daysUntilExpiration : this.daysUntilExpiration,
-                                numOfMutualFriends: this.numOfMutualFriends
+                                numOfMutualFriends: this.numOfMutualFriends,
+                                friendQuestion: questionFriendList.at(i).question
                             }
                         }
                     );
@@ -105,7 +106,7 @@ const questionFriendList = [
 
         computed: {
             currentQuestion() {
-                return "Please enter the name of a friend " + questionFriendList.at(this.index).question + ":";
+                return "Please enter the name of a friend you " + questionFriendList.at(this.index).question + ":";
             },
             finished() {
                 return this.index == questionFriendList.length - 1;
