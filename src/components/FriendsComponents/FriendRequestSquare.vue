@@ -120,7 +120,8 @@ button {
 }
 
 #expireMessage {
-  color: rgb(73, 113, 172);
+  /* color: rgb(73, 113, 172); */
+  color: rgb(192, 65, 65);
 }
 
 em {

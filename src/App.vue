@@ -20,17 +20,22 @@
   import Topbar from "@/components/TopbarComponents/Topbar";
   import PopulateFriends from "@/PopulateFriends.vue";
   import FacebookLite from "@/vuex-orm_models/FacebookLiteModel.js";
+  import { DataPopulation } from "@/mixins/DataPopulation.js";
 
   export default {
     name: "App",
+    mixins: [DataPopulation],
     components: {
       Topbar,
       PopulateFriends,
     },
     created() {
+      // POPULATE VUEX-ORM DATA
       FacebookLite.insert({
         data: { enabled: false },
       });
+
+      this.populatePosts();
     },
   };
 </script>
