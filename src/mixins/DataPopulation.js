@@ -1,4 +1,5 @@
 import Post from "@/vuex-orm_models/PostModel.js";
+import FacebookLite from "@/vuex-orm_models/FacebookLiteModel.js";
 
 export const DataPopulation = {
   data() {
@@ -82,5 +83,10 @@ export const DataPopulation = {
         Post.insert({ data: this.localPosts[i] });
       }
     },
+    setFaceookLite() {
+      FacebookLite.insert({
+        data: { enabled: false },
+      });
+    }
   },
 };
