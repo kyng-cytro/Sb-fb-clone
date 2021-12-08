@@ -6,7 +6,8 @@
       <ButtonsPreview v-else />
     </div>
     <EventDetails :event="this.event" :eventState="this.eventState" />
-    <PopupDialog minHeight="710px" maxHeight="500px" v-show="this.popupTriggers['friendsTrigger']" :togglePopup="() => togglePopup('friendsTrigger')" header="Invite">
+    <!-- <PopupDialog minHeight="710px" maxHeight="500px" v-show="this.popupTriggers['friendsTrigger']" :togglePopup="() => togglePopup('friendsTrigger')" header="Invite"> -->
+    <PopupDialog minHeight="60vh" maxHeight="70vh" minWidth="40vw" v-show="this.popupTriggers['friendsTrigger']" :togglePopup="() => togglePopup('friendsTrigger')" header="Invite">
       <template v-slot:content>
         <Invite />
       </template>
