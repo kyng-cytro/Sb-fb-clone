@@ -1,7 +1,9 @@
 <template>
-  <div>
+  <div class="container">
     <div v-if="!userLoggedIn">
-      <LoginPage />
+      <div id="loginPageContainer">
+        <LoginPage />
+      </div>
     </div>
     <div v-else class="home">
       <HomeSidebar />
@@ -43,11 +45,19 @@
 </script>
 
 <style scoped>
+  .container {
+    width: 100vw;
+  }
+  #loginPageContainer {
+    background-color: rgb(240,242,245);
+    height: 100vh;
+    width: 99vw;
+    margin-left: -9vw;
+      }
   .home {
     width: 100%;
     display: flex;
     flex-flow: row;
-    background: rgb(244, 246, 247);
   }
 
   .content {
