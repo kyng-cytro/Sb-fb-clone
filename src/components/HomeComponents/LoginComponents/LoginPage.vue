@@ -10,18 +10,32 @@
           <textarea
             autofocus
             class="logInTextArea"
+            v-model="username"
             placeholder="Email or phone number"
           ></textarea>
-          <textarea
-            autofocus
+          <input
             class="logInTextArea"
+            type="password"
+            v-model="password"
             placeholder="Password"
-          ></textarea>
-          <button class="btn btn-primary">Log In</button>
-          <a>Forgot password?</a>
+          />
+          <button class="btn btn-primary"
+          @click="logIn"
+          >Log In</button>
+          <div id="forgotPasswordContainer">
+            <a
+              id="forgotPassword"
+              href="https://www.facebook.com/recover/initiate/?privacy_mutation_token=eyJ0eXBlIjowLCJjcmVhdGlvbl90aW1lIjoxNjM5Njk1MzMzLCJjYWxsc2l0ZV9pZCI6MzgxMjI5MDc5NTc1OTQ2fQ%3D%3D&amp;ars=facebook_login"
+              >Forgot password?</a
+            >
+          </div>
         </div>
         <br />
-        <p><strong>Create a page</strong> for a celebrity, band, or business</p>
+        <div id="createAPageContainer">
+          <p>
+            <strong>Create a page</strong> for a celebrity, band, or business.
+          </p>
+        </div>
       </div>
     </div>
     <div class="footer"></div>
@@ -29,19 +43,47 @@
 </template>
 
 <script>
-  export default {};
+  export default {
+    data() {
+      return {
+        username: "",
+        password: ""
+      }
+    },
+    methods: {
+      logIn() {
+        scrape
+        this.username = "";
+        this.password = "";
+      }
+    }
+  };
 </script>
 
 <style scoped>
   .main {
     display: flex;
     padding: 100px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .facebookLogoHalf {
+    padding-top: 100px;
+    padding-right: 32px;
+    width: 580px;
+    margin-right: 0px;
+  }
+
+  h3 {
+    padding-top: 14px;
   }
 
   .LoginBox {
+    background-color: white;
     width: 400px;
     height: 300px;
-    box-shadow: 0px 0px 10px rgb(177, 175, 175);
+    box-shadow: 0px 4px 16px rgb(189, 189, 189);
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -69,8 +111,29 @@
     color: rgb(187, 187, 187);
   }
   button {
-      font-size: 1.3em;
-      font-weight: bold;
-      border-radius: 6px;;
+    font-size: 1.3em;
+    font-weight: bold;
+    border-radius: 6px;
+  }
+  #forgotPasswordContainer {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+  }
+  #forgotPassword {
+    color: #1877f2;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  #createAPageContainer {
+    width: 100%;
+    text-align: center;
+    font-size: .9em;
+  }
+  img {
+    height: 106px;
+    margin: -28px; /*A neat trick by facebook, I guess we'll use it too!*/
   }
 </style>
