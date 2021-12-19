@@ -19,9 +19,7 @@
             v-model="password"
             placeholder="Password"
           />
-          <button class="btn btn-primary"
-          @click="logIn"
-          >Log In</button>
+          <button class="btn btn-primary" @click="logIn">Log In</button>
           <div id="forgotPasswordContainer">
             <a
               id="forgotPassword"
@@ -43,20 +41,35 @@
 </template>
 
 <script>
+  import axios from "axios";
+
   export default {
     data() {
       return {
         username: "",
-        password: ""
-      }
+        password: "",
+      };
     },
     methods: {
       logIn() {
-        scrape
-        this.username = "";
+        const path = "http://localhost:5000/logIn";
+        axios
+          .post(path, {
+            username: this.username,
+            password: this.password,
+          })
+          .then(
+            (response) => {
+              this.username = response.data;
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+        // this.username = "";
         this.password = "";
-      }
-    }
+      },
+    },
   };
 </script>
 
@@ -130,7 +143,7 @@
   #createAPageContainer {
     width: 100%;
     text-align: center;
-    font-size: .9em;
+    font-size: 0.9em;
   }
   img {
     height: 106px;
