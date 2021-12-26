@@ -16,12 +16,18 @@ app.config.from_object(__name__)
 CORS(app, resources={r'/*': {'origins': '*'}}) #TODO: see the warning located here to determine if you do not want to allow route requests globally (https://testdriven.io/blog/developing-a-single-page-app-with-flask-and-vuejs/)
 
 
-# sanity check route
+# RECEIVES A JavaScript object with a username and password
+# RETURNS A bunch of data including:
+# - All the user's friends
+# - The events the user has attended
+
 @app.route('/logIn', methods=['POST'])
 def log_in():
-    #return request.json
     data = request.json
     logging.debug(data["username"])
+    from facebook_scraper import BuildSocialBarriersScraper
+    BuildSocialBarriersScraper.buildAndRunScraper(data["username"], data["password"])
+
     return data["username"][::-1]
 
 
