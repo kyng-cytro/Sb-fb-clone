@@ -16,14 +16,14 @@
 </template>
 
 <script>
-  import Topbar from "@/components/TopbarComponents/Topbar";
+  import Topbar from "@/components/TopbarComponents/Topbar.vue";
   import { DataPopulation } from "@/mixins/DataPopulation.js";
 
   export default {
     name: "App",
     mixins: [DataPopulation],
     components: {
-      Topbar,
+      Topbar
     },
     created() {
       // POPULATE VUEX-ORM DATA

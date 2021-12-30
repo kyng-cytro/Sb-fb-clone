@@ -1,6 +1,6 @@
 <template>
         <div class="friendRequestSquare">
-          <img v-if="friendRequest.imgSrc" class="profilePic" :src="require('@/assets/images/FriendProfilePics/' + friendRequest.imgSrc)" />
+          <img v-if="friendRequest.imageSource" class="profilePic" :src="require('@/assets/images/FriendProfilePics/' + friendRequest.imageSource)" />
           <i v-else class="bi bi-person-fill"></i>
           <div class="info">
             <strong>{{friendRequest.name}}</strong>

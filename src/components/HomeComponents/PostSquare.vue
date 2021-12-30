@@ -8,19 +8,19 @@
     <p id="text">{{ post.text }}</p>
 
     <!-- Only show if it has an image source. If it has one, pull it from the PostImages folder -->
-    <div v-show="this.post.imgSrc.length > 0">
+    <div v-show="this.post.imageSource.length > 0">
       <img
         :class="{
           postPic: isViewOnly,
           postPicNoButtons: !isViewOnly,
         }"
         :src="
-          this.post.imgSrc.length > 0
-            ? require('@/assets/images/PostImages/' + post.imgSrc)
+          this.post.imageSource.length > 0
+            ? require('@/assets/images/PostImages/' + post.imageSource)
             : require('@/assets/images/PostImages/' + 'birthday.jpg')
         "
       />
-      <!-- Above is a weird bug. Even though the image will be hidden if the imgSrc doesn't have a length, the :src component must still point to a valid image. So, we point to the birthday one.-->
+      <!-- Above is a weird bug. Even though the image will be hidden if the imageSource doesn't have a length, the :src component must still point to a valid image. So, we point to the birthday one.-->
     </div>
 
     <div class="info" v-if="isViewOnly">

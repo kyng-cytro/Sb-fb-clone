@@ -5,7 +5,7 @@
     <img
       v-if="isFacebookWithImage"
       v-bind:style="imgStyles"
-      :src="require('@/assets/images/FriendProfilePics/' + friend.imgSrc)"
+      :src="require('@/assets/images/FriendProfilePics/' + friend.imageSource)"
     />
 
     <!-- If they are an email user -->
@@ -42,10 +42,10 @@
     props: ["friend", "size", "onlyImage", "bold", "slotBelowText"],
     computed: {
       isFacebookFriend() {
-        return Object.prototype.hasOwnProperty.call(this.friend, "imgSrc");
+        return Object.prototype.hasOwnProperty.call(this.friend, "imageSource");
       },
       isFacebookWithImage() {
-        return this.isFacebookFriend && this.friend.imgSrc !== "";
+        return this.isFacebookFriend && this.friend.imageSource !== "";
       },
       isFacebookWithoutImage() {
         return (

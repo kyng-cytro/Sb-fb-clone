@@ -109,7 +109,7 @@
       },
       post() {
         let post = {
-          imgSrc: "", // No image (yet)
+          imageSource: "", // No image (yet)
           friend: this.user,
           text: this.postBeingCreated.text,
           date: new Date().toString(),

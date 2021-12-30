@@ -69,7 +69,7 @@
       user() {
         return {
           name: "Anson",
-          imgSrc: "anson.jpg",
+          imageSource: "anson.jpg",
         };
       },
     },

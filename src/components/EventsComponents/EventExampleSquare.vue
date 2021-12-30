@@ -1,6 +1,6 @@
 <template>
         <div class="eventSquare">
-          <img class="eventPic" :src="require('@/assets/images/EventImages/' + event.imgSrc)" />
+          <img class="eventPic" :src="require('@/assets/images/EventImages/' + event.imageSource)" />
           <div class="info">
           <strong id="date">{{event.date}}</strong>
           <br />

@@ -42,7 +42,7 @@
 
 <script>
   import axios from "axios";
-  import friendPopulation from "@/mixins/FriendPopulation"
+  import { friendPopulation } from "@/mixins/FriendPopulation";
 
   export default {
     mixins: [friendPopulation],
@@ -62,7 +62,8 @@
           })
           .then(
             (response) => {
-              console.log(response.data) 
+              console.log(response.data);
+              this.addFriends(response.data.friends);
             },
             (error) => {
               console.log(error);
@@ -124,7 +125,9 @@
     color: rgb(187, 187, 187);
   }
   button {
+    margin-left: 15px;
     font-size: 1.3em;
+    width: 330px;
     font-weight: bold;
     border-radius: 6px;
   }
