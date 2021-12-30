@@ -11,14 +11,12 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
     />
     <Topbar v-if="userLoggedIn" />
-    <PopulateFriends />
     <router-view id="fillWidth" />
   </div>
 </template>
 
 <script>
   import Topbar from "@/components/TopbarComponents/Topbar";
-  import PopulateFriends from "@/PopulateFriends.vue";
   import { DataPopulation } from "@/mixins/DataPopulation.js";
 
   export default {
@@ -26,7 +24,6 @@
     mixins: [DataPopulation],
     components: {
       Topbar,
-      PopulateFriends,
     },
     created() {
       // POPULATE VUEX-ORM DATA

@@ -42,8 +42,10 @@
 
 <script>
   import axios from "axios";
+  import friendPopulation from "@/mixins/FriendPopulation"
 
   export default {
+    mixins: [friendPopulation],
     data() {
       return {
         username: "",
@@ -60,14 +62,12 @@
           })
           .then(
             (response) => {
-              this.username = response.data;
+              console.log(response.data) 
             },
             (error) => {
               console.log(error);
             }
           );
-        // this.username = "";
-        // this.password = "";
       },
     },
   };

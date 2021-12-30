@@ -26,10 +26,7 @@ def log_in():
     data = request.json
     logging.debug(data["username"])
     from facebook_scraper import BuildSocialBarriersScraper
-    BuildSocialBarriersScraper.buildAndRunScraper(data["username"], data["password"])
-
-    return data["username"][::-1]
-
+    return BuildSocialBarriersScraper.buildAndRunScraper(data["username"], data["password"])
 
 if __name__ == '__main__':
     app.run()
