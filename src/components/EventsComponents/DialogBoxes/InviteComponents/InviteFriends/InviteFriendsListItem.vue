@@ -1,7 +1,7 @@
 <template>
     <div class="container" v-on:click="select">
         <div class="verticalAlign">
-            <FriendDisplay :friend="this.friend" />
+            <FriendDisplay :friend="this.friend" :bold="this.selected"/>
             <!-- <img :src="require('@/assets/images/FriendProfilePics/' + friend.imageSource)"/>
             <p v-bind:class="{bold: this.selected}">{{friend.name}}</p> -->
         </div>

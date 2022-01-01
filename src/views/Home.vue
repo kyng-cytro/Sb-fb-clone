@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div v-if="!userLoggedIn">
+    <div v-if="!isUserLoggedIn">
       <div id="loginPageContainer">
         <LoginPage />
       </div>
@@ -26,20 +26,17 @@
   import CreatePost from "@/components/HomeComponents/PostCreation/CreatePost.vue";
   import FacebookLiteFilters from "@/components/HomeComponents/FacebookLiteFilters.vue";
   import LoginPage from "@/components/HomeComponents/LoginComponents/LoginPage";
+  import { UserPopulation } from "@/mixins/UserPopulation";
 
   export default {
     name: "Home",
+    mixins: [UserPopulation],
     components: {
       LoginPage,
       HomeSidebar,
       PostDisplay,
       FacebookLiteFilters,
       CreatePost,
-    },
-    computed: {
-      userLoggedIn() {
-        return false;
-      },
     },
   };
 </script>

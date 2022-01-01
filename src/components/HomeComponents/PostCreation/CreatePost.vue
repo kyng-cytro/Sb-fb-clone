@@ -7,7 +7,7 @@
           <FriendDisplay :friend="user" onlyImage="true"></FriendDisplay>
         </div>
         <div @click="clickTextBox" class="roundTextBox">
-          <p>What's on your mind, {{ user.name }}?</p>
+          <p>What's on your mind, {{ userFirstname }}?</p>
         </div>
       </div>
     </div>
@@ -37,9 +37,11 @@
   import FriendDisplay from "@/components/Multipurpose/FriendDisplay";
   import PopupDialog from "@/components/Multipurpose/PopupDialog";
   import CreatePostDialogContent from "./DialogBoxComponents/CreatePostDialogContent";
+  import { UserPopulation } from "@/mixins/UserPopulation";
   // import CreatePostDialogFooter from "./DialogBoxComponents/CreatePostDialogFooter"
 
   export default {
+    mixins: [UserPopulation],
     mounted() {
       this.$root.$on("closeCreatePostDialog", () => {
         this.togglePopup();
@@ -63,14 +65,6 @@
       },
       togglePopup() {
         this.popupEnabled = !this.popupEnabled;
-      },
-    },
-    computed: {
-      user() {
-        return {
-          name: "Anson",
-          imageSource: "anson.jpg",
-        };
       },
     },
   };

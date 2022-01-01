@@ -42,15 +42,23 @@
 
 <script>
   import axios from "axios";
-  import { friendPopulation } from "@/mixins/FriendPopulation";
+  import { FriendPopulation } from "@/mixins/FriendPopulation";
+  import { UserPopulation } from "@/mixins/UserPopulation";
 
   export default {
-    mixins: [friendPopulation],
+    mixins: [FriendPopulation, UserPopulation],
     data() {
       return {
         username: "",
         password: "",
+        scrape: true,
       };
+    },
+    created() {
+      if (!this.scrape) {
+        this.addUser(this.userTestData);
+        this.addFriends(this.friendsTestData);
+      }
     },
     methods: {
       logIn() {
@@ -64,6 +72,7 @@
             (response) => {
               console.log(response.data);
               this.addFriends(response.data.friends);
+              this.addUser(response.data.user);
             },
             (error) => {
               console.log(error);

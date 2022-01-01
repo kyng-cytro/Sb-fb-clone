@@ -10,7 +10,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
     />
-    <Topbar v-if="userLoggedIn" />
+    <Topbar v-if="isUserLoggedIn" />
     <router-view id="fillWidth" />
   </div>
 </template>
@@ -18,10 +18,11 @@
 <script>
   import Topbar from "@/components/TopbarComponents/Topbar.vue";
   import { DataPopulation } from "@/mixins/DataPopulation.js";
+  import { UserPopulation } from "@/mixins/UserPopulation";
 
   export default {
     name: "App",
-    mixins: [DataPopulation],
+    mixins: [DataPopulation, UserPopulation],
     components: {
       Topbar
     },
@@ -29,11 +30,6 @@
       // POPULATE VUEX-ORM DATA
       this.setFaceookLite();
       this.populatePosts();
-    },
-    computed: {
-      userLoggedIn() {
-        return false;
-      },
     },
   };
 </script>
