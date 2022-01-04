@@ -2,6 +2,7 @@
 node_modules
 /dist
 
+login.json
 
 # local env files
 .env.local

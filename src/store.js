@@ -8,12 +8,16 @@ import FacebookLite from "@/vuex-orm_models/FacebookLiteModel.js";
 import Filter from "@/vuex-orm_models/FilterModel.js";
 import Post from "@/vuex-orm_models/PostModel.js";
 import User from "@/vuex-orm_models/UserModel.js";
+import EventFriendModel from "@/vuex-orm_models/EventFriendModel.js";
+import GroupFriendModel from "@/vuex-orm_models/GroupFriendModel.js";
 
 Vue.use(Vuex);
 
 const database = new VuexORM.Database();
 
 database.register(Friend);
+database.register(EventFriendModel);
+database.register(GroupFriendModel);
 database.register(FriendRequest);
 database.register(NonFacebookFriend);
 database.register(FacebookLite);

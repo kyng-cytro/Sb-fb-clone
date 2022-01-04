@@ -51,16 +51,21 @@
       return {
         username: "",
         password: "",
-        scrape: true,
+        scrape: false,
       };
     },
     created() {
       if (!this.scrape) {
-        this.addUser(this.userTestData);
-        this.addFriends(this.friendsTestData);
+        this.addData(this.userTestData, this.friendsTestData, this.friendsByGroupTestData, []);
       }
     },
     methods: {
+      addData(user, friends, friendsByGroup, friendsByEvent) {
+        this.addUser(user);
+        this.addFriends(friends);
+        this.addAllGroupFriends(friendsByGroup)
+        this.addAllEventFriends(friendsByEvent)
+      },
       logIn() {
         const path = "http://localhost:5000/logIn";
         axios
@@ -71,8 +76,8 @@
           .then(
             (response) => {
               console.log(response.data);
-              this.addFriends(response.data.friends);
-              this.addUser(response.data.user);
+              let result = response.data;
+              this.addData(result.friends, result.user, result.friendsByGroup, result.friendsByEvent);
             },
             (error) => {
               console.log(error);

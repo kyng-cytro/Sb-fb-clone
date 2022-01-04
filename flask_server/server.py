@@ -20,12 +20,20 @@ CORS(app, resources={r'/*': {'origins': '*'}}) #TODO: see the warning located he
 # RETURNS A bunch of data including:
 # - All the user's friends
 # - The events the user has attended
+from facebook_scraper import BuildSocialBarriersScraper
+TESTING = False
+if (TESTING):
+    import json
+    file = open('login.json')
+    login = json.load(file)
+    username = login["username"]
+    password = login["password"]
+    BuildSocialBarriersScraper.buildAndRunScraper(username, password)
 
 @app.route('/logIn', methods=['POST'])
 def log_in():
     data = request.json
     logging.debug(data["username"])
-    from facebook_scraper import BuildSocialBarriersScraper
     return BuildSocialBarriersScraper.buildAndRunScraper(data["username"], data["password"])
 
 if __name__ == '__main__':

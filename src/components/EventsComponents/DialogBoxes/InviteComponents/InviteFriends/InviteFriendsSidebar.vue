@@ -1,50 +1,56 @@
 <template>
-    <div class="container">
-        <button id="selected">Suggested</button>
-        <button>All Friends</button>
-        <h3>EVENTS I ATTENDED</h3>
-        <button v-for="event in eventsAttended" :key="event">{{event}}</button>
-        <h3>MY GROUPS</h3>
-        <button v-for="group in groups" :key="group">{{group}}</button>
- </div>
+  <div class="container">
+    <button id="selected">Suggested</button>
+    <button>All Friends</button>
+    <h3>EVENTS I ATTENDED</h3>
+    <button v-for="event in eventsAttended" :key="event">{{ event }}</button>
+    <h3>MY GROUPS</h3>
+    <button v-for="group in groups" :key="group">{{ group }}</button>
+  </div>
 </template>
 
 <script>
-const eventsAttended = [
-    "Basket Weaving",
-    "Example event 2",
-    "Example event 3"
-]
-const groups = [
-    "Example group 1",
-    "Example group 2"
-]
-    export default {
-       data() {
-           return {
-               eventsAttended: eventsAttended,
-               groups: groups
-           }
-       } 
-    }
+  import GroupFriend from "@/vuex-orm_models/GroupFriendModel.js";
+  import EventFriend from "@/vuex-orm_models/EventFriendModel.js";
+
+  export default {
+    computed: {
+      events() {
+        let EventFriends = EventFriend.all();
+        let eventNames = [];
+        for (let i = 0; i < EventFriends.length; i++) {
+          eventNames.push(EventFriends[i].eventName);
+        }
+        return eventNames;
+      },
+      groups() {
+        let GroupFriends = GroupFriend.all();
+        let groupNames = [];
+        for (let i = 0; i < GroupFriends.length; i++) {
+          groupNames.push(GroupFriends[i].groupName);
+        }
+        return groupNames;
+      },
+    },
+  };
 </script>
 
 <style scoped>
-.container {
+  .container {
     display: flex;
     flex-direction: column;
     width: 300px;
-}
+  }
 
-h3 {
-    color: rgb(101,103,107);
+  h3 {
+    color: rgb(101, 103, 107);
     font-weight: bold;
     font-size: 0.85em;
-    margin-top:9px;
-    margin-bottom:9px;
-}
+    margin-top: 9px;
+    margin-bottom: 9px;
+  }
 
-button {
+  button {
     color: grey;
     border: 0px;
     padding: 6px;
@@ -52,20 +58,20 @@ button {
     background-color: transparent;
     text-align: left;
     border-radius: 7px;
-}
+  }
 
-button:hover {
+  button:hover {
     background-color: rgb(245, 245, 245);
-}
+  }
 
-button:focus {
-    color:rgb(26,119,242);
-    background-color: rgb(229,229,229);
+  button:focus {
+    color: rgb(26, 119, 242);
+    background-color: rgb(229, 229, 229);
     outline: none;
-}
-#selected {
-    color:rgb(26,119,242);
-    background-color: rgb(229,229,229);
+  }
+  #selected {
+    color: rgb(26, 119, 242);
+    background-color: rgb(229, 229, 229);
     outline: none;
-}
+  }
 </style>
