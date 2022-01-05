@@ -1,4 +1,4 @@
-# Instructions for Annie and Jane:
+# Instructions to start:
 ```
 git clone https://github.com/BYU-STAPL/Sb-fb-clone.git
 cd Sb-fb-clone
