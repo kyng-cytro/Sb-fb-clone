@@ -51,7 +51,7 @@
       return {
         username: "",
         password: "",
-        scrape: false,
+        scrape: true,
       };
     },
     created() {
@@ -77,7 +77,9 @@
             (response) => {
               console.log(response.data);
               let result = response.data;
-              this.addData(result.friends, result.user, result.friendsByGroup, result.friendsByEvent);
+              console.log(result.friendsByGroup)
+              console.log(result.friendsByEvent)
+              this.addData(result.friends, result.user, result.friendsByGroup, []);
             },
             (error) => {
               console.log(error);
