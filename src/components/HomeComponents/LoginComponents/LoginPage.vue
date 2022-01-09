@@ -17,6 +17,7 @@
             class="logInTextArea"
             type="password"
             v-model="password"
+            v-on:keyup.enter="logIn"
             placeholder="Password"
           />
           <button class="btn btn-primary" @click="logIn">Log In</button>
@@ -68,6 +69,7 @@
       },
       logIn() {
         const path = "http://localhost:5000/logIn";
+        console.log("We are waiting for a response from the server...")
         axios
           .post(path, {
             username: this.username,
@@ -75,6 +77,7 @@
           })
           .then(
             (response) => {
+              console.log("We have received a response from the server!")
               console.log(response.data);
               let result = response.data;
               console.log(result.friendsByGroup)
