@@ -57,7 +57,7 @@
     },
     created() {
       if (!this.scrape) {
-        this.addData(this.userTestData, this.friendsTestData, this.friendsByGroupTestData, []);
+        // If desired, you can put teste code here so you don't have to worry about clicking the button. It will run if the scrape flag is set to false
       }
     },
     methods: {
@@ -78,11 +78,8 @@
           .then(
             (response) => {
               console.log("We have received a response from the server!")
-              console.log(response.data);
               let result = response.data;
-              console.log(result.friendsByGroup)
-              console.log(result.friendsByEvent)
-              this.addData(result.friends, result.user, result.friendsByGroup, []);
+              this.addData(result.friends, result.user, result.friendsByGroup, result.friendsByEvent) // Okay, Lucas: this is where basically you can start figuring out how to maniupate the data that comes from the scraper
             },
             (error) => {
               console.log(error);
