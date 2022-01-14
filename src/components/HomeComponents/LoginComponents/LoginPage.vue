@@ -52,7 +52,7 @@
       return {
         username: "",
         password: "",
-        scrape: true,
+        scrape: false,
       };
     },
     created() {
@@ -64,27 +64,38 @@
       addData(user, friends, friendsByGroup, friendsByEvent) {
         this.addUser(user);
         this.addFriends(friends);
-        this.addAllGroupFriends(friendsByGroup)
-        this.addAllEventFriends(friendsByEvent)
+        this.addAllGroupFriends(friendsByGroup);
+        this.addAllEventFriends(friendsByEvent);
       },
       logIn() {
-        const path = "http://localhost:5000/logIn";
-        console.log("We are waiting for a response from the server...")
-        axios
-          .post(path, {
-            username: this.username,
-            password: this.password,
-          })
-          .then(
-            (response) => {
-              console.log("We have received a response from the server!")
-              let result = response.data;
-              this.addData(result.friends, result.user, result.friendsByGroup, result.friendsByEvent) // Okay, Lucas: this is where basically you can start figuring out how to maniupate the data that comes from the scraper
-            },
-            (error) => {
-              console.log(error);
-            }
-          );
+        if (this.scrape) {
+          const path = "http://localhost:5000/logIn";
+          console.log("We are waiting for a response from the server...");
+          axios
+            .post(path, {
+              username: this.username,
+              password: this.password,
+            })
+            .then(
+              (response) => {
+                console.log("We have received a response from the server!");
+                let result = response.data;
+                console.log(result);
+                this.addData(
+                  result.friends,
+                  result.user,
+                  result.friendsByGroup,
+                  result.friendsByEvent
+                ); // Okay, Lucas: this is where basically you can start figuring out how to maniupate the data that comes from the scraper
+              },
+              (error) => {
+                console.log(error);
+              }
+            );
+        }
+        else {
+
+        }
       },
     },
   };
