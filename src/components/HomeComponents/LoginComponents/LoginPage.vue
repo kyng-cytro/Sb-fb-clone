@@ -82,8 +82,8 @@
                 let result = response.data;
                 console.log(result);
                 this.addData(
-                  result.friends,
                   result.user,
+                  result.friends,
                   result.friendsByGroup,
                   result.friendsByEvent
                 ); // Okay, Lucas: this is where basically you can start figuring out how to maniupate the data that comes from the scraper
