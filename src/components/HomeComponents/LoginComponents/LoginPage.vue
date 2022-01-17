@@ -52,7 +52,7 @@
       return {
         username: "",
         password: "",
-        scrape: false,
+        scrape: true,
       };
     },
     created() {
@@ -94,7 +94,7 @@
             );
         }
         else {
-
+          console.log("Not scraping data")
         }
       },
     },
