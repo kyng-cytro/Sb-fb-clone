@@ -35,7 +35,7 @@
       return {
         form: {
           name: "",
-          imgSrc: "",
+          imageSource: "",
           numOfMutualFriends: null,
         },
       };

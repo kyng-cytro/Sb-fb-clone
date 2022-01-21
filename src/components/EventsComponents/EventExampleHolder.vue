@@ -13,21 +13,21 @@
 
   const events = [
     {
-      imgSrc: "basket.jpg",
+      imageSource: "basket.jpg",
       name: "Basket Weaving",
       date: "FRI, DEC 24 AT 5PM MST",
       numInterested: 21,
       numGoing: 52,
     },
     {
-      imgSrc: "chiliCookOff.jpg",
+      imageSource: "chiliCookOff.jpg",
       name: "Chili Cookoff",
       date: "FRI, DEC 24 AT 5PM MST",
       numInterested: "9.3K",
       numGoing: 523,
     },
     {
-      imgSrc: "library.jpg",
+      imageSource: "library.jpg",
       name: "Reading Club",
       date: "FRI, DEC 24 AT 5PM MST",
       numInterested: 23,

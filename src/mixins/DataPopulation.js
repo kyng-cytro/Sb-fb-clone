@@ -6,9 +6,9 @@ export const DataPopulation = {
     return {
       localPosts: [
         {
-          imgSrc: "stars.jpg",
+          imageSource: "stars.jpg",
           friend: {
-            imgSrc: "anson.jpg",
+            imageSource: "anson.jpg",
             name: "Anson Savage",
             isFamily: false,
           },
@@ -23,9 +23,9 @@ export const DataPopulation = {
           },
         },
         {
-          imgSrc: "birthday.jpg",
+          imageSource: "birthday.jpg",
           friend: {
-            imgSrc: "xinru.jpg",
+            imageSource: "xinru.jpg",
             name: "Xinru",
             isFamily: false,
           },
@@ -40,9 +40,9 @@ export const DataPopulation = {
           },
         },
         {
-          imgSrc: "breakfast.jpg",
+          imageSource: "breakfast.jpg",
           friend: {
-            imgSrc: "businessMan.jpg",
+            imageSource: "businessMan.jpg",
             name: "Miles",
             isFamily: true,
           },
@@ -57,9 +57,9 @@ export const DataPopulation = {
           },
         },
         {
-          imgSrc: "",
+          imageSource: "",
           friend: {
-            imgSrc: "businessMan.jpg",
+            imageSource: "businessMan.jpg",
             name: "Miles",
             isFamily: true,
           },

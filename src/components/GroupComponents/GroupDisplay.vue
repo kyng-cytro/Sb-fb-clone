@@ -16,7 +16,7 @@
 
 const posts = [
   {
-    imgSrc: "basket.jpg",
+    imageSource: "basket.jpg",
     name: "John Smith",
     //name: "Basket Waaving",
     text: "I've been Weaving Basket",
@@ -26,7 +26,7 @@ const posts = [
     numLikes: 52
   },
   {
-    imgSrc: "chiliCookOff.jpg",
+    imageSource: "chiliCookOff.jpg",
     name: "Jane Smith",
    // name: "Chili Cookoff",
     text: " Come get warm by our chili",
@@ -36,7 +36,7 @@ const posts = [
     numLikes: 523
   },
   {
-    imgSrc: "library.jpg",
+    imageSource: "library.jpg",
     name: "Reading Club",
     text: " Read your book in our nook",
     date: "FRI, DEC 24 AT 5PM MST",

@@ -7,7 +7,7 @@
           <FriendDisplay :friend="user" onlyImage="true"></FriendDisplay>
         </div>
         <div @click="clickTextBox" class="roundTextBox">
-          <p>What's on your mind, {{ user.name }}?</p>
+          <p id="whatOnMind">What's on your mind, {{ userFirstname }}?</p>
         </div>
       </div>
     </div>
@@ -37,9 +37,11 @@
   import FriendDisplay from "@/components/Multipurpose/FriendDisplay";
   import PopupDialog from "@/components/Multipurpose/PopupDialog";
   import CreatePostDialogContent from "./DialogBoxComponents/CreatePostDialogContent";
+  import { UserPopulation } from "@/mixins/UserPopulation";
   // import CreatePostDialogFooter from "./DialogBoxComponents/CreatePostDialogFooter"
 
   export default {
+    mixins: [UserPopulation],
     mounted() {
       this.$root.$on("closeCreatePostDialog", () => {
         this.togglePopup();
@@ -63,14 +65,6 @@
       },
       togglePopup() {
         this.popupEnabled = !this.popupEnabled;
-      },
-    },
-    computed: {
-      user() {
-        return {
-          name: "Anson",
-          imgSrc: "anson.jpg",
-        };
       },
     },
   };
@@ -97,13 +91,22 @@
     border-radius: 30px;
     width: 95%;
     height: 40px;
-    line-height: 30px;
+    line-height: 2vh;
     display: inline-block;
     border: 0px solid #ccc;
     box-sizing: border-box;
     background-color: rgb(240, 242, 245);
     cursor: pointer;
     transition: 0.3s;
+  }
+
+  #whatOnMind {
+    /* This is done to avoid the text moving to weird places dependent on the screen size */
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    padding-top: 10px;
+    padding-left: 18px;
   }
 
   .roundTextBox:hover {

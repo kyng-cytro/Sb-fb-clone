@@ -41,7 +41,7 @@ import AttendanceTabInvitedList from "./AttendanceTabInvitedList.vue";
 
 const user = {
     name: "Anson Savage",
-    imgSrc: "anson.jpg",
+    imageSource: "anson.jpg",
 }
 
 

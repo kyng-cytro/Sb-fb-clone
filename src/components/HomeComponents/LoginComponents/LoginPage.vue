@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="container">
     <div class="main">
       <div class="facebookLogoHalf">
         <img src="@/assets/images/LoginImages/Long_Logo.svg" />
         <h3>Connect with friends and the world around you on Facebook.</h3>
       </div>
       <div class="LoginHalf">
-        <div class="LoginBox">
+        <div class="LoginBox" v-show="scrape">
           <textarea
             autofocus
             class="logInTextArea"
@@ -34,6 +34,14 @@
           <p>
             <strong>Create a page</strong> for a celebrity, band, or business.
           </p>
+          <br />
+          <button
+            id="smallButton"
+            class="btn btn-secondary"
+            @click="usePrototypeWithoutData"
+          >
+            Use prototype without scraping data
+          </button>
         </div>
       </div>
     </div>
@@ -61,6 +69,11 @@
       }
     },
     methods: {
+      usePrototypeWithoutData() {
+        this.addUser({
+          name: "Your Name",
+        });
+      },
       addData(user, friends, friendsByGroup, friendsByEvent) {
         this.addUser(user);
         this.addFriends(friends);
@@ -92,9 +105,8 @@
                 console.log(error);
               }
             );
-        }
-        else {
-          console.log("Not scraping data")
+        } else {
+          console.log("Not scraping data");
         }
       },
     },
@@ -102,17 +114,20 @@
 </script>
 
 <style scoped>
+  .container {
+    width: 100vw;
+  }
   .main {
     display: flex;
     padding: 100px;
-    width: 100%;
+    width: 100vw;
     justify-content: center;
   }
 
   .facebookLogoHalf {
     padding-top: 100px;
     padding-right: 32px;
-    width: 580px;
+    width: 530px;
     margin-right: 0px;
   }
 
@@ -128,14 +143,15 @@
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    align-items: center;
+    padding: 7px;
   }
 
   .logInTextArea {
     border-radius: 6px;
     font-size: 17px;
     padding: 14px 16px;
-    width: 330px;
+    width: 360px;
     border: 1px solid #dddfe2;
     color: #1d2129;
     height: 55px;
@@ -152,12 +168,16 @@
     color: rgb(187, 187, 187);
   }
   button {
-    margin-left: 15px;
     font-size: 1.3em;
-    width: 330px;
+    width: 360px;
     font-weight: bold;
     border-radius: 6px;
   }
+  #smallButton {
+    font-weight: normal;
+    font-size: 0.9em;
+  }
+
   #forgotPasswordContainer {
     width: 100%;
     text-align: center;

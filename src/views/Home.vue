@@ -1,60 +1,75 @@
 <template>
-  <div class="home">
-     <HomeSidebar />
-      <div class = "content">
+  <div class="container">
+    <div v-if="!isUserLoggedIn">
+      <div id="loginPageContainer">
+        <LoginPage />
+      </div>
+    </div>
+    <div v-else class="home">
+      <HomeSidebar />
+      <div class="content">
         <CreatePost />
         <PostDisplay />
       </div>
 
-      <div class = "filter">
+      <div class="filter">
         <FacebookLiteFilters />
       </div>
-
-      
+    </div>
   </div>
-
 </template>
 
 <script>
-// @ is an alias to /src
-import HomeSidebar from "@/components/HomeComponents/Sidebar/HomeSidebar.vue";
-import PostDisplay from "@/components/HomeComponents/PostDisplay.vue";
-import CreatePost from "@/components/HomeComponents/PostCreation/CreatePost.vue";
-import FacebookLiteFilters from "@/components/HomeComponents/FacebookLiteFilters.vue";
+  // @ is an alias to /src
+  import HomeSidebar from "@/components/HomeComponents/Sidebar/HomeSidebar.vue";
+  import PostDisplay from "@/components/HomeComponents/PostDisplay.vue";
+  import CreatePost from "@/components/HomeComponents/PostCreation/CreatePost.vue";
+  import FacebookLiteFilters from "@/components/HomeComponents/FacebookLiteFilters.vue";
+  import LoginPage from "@/components/HomeComponents/LoginComponents/LoginPage";
+  import { UserPopulation } from "@/mixins/UserPopulation";
 
-export default {
-  name: "Home",
-  components: {
-    HomeSidebar,
-    PostDisplay,
-    FacebookLiteFilters,
-    CreatePost
-  },
-};
+  export default {
+    name: "Home",
+    mixins: [UserPopulation],
+    components: {
+      LoginPage,
+      HomeSidebar,
+      PostDisplay,
+      FacebookLiteFilters,
+      CreatePost,
+    },
+  };
 </script>
 
-
 <style scoped>
-.home {
-  width: 100%;
-  display: flex;
-  flex-flow: row;
-  background: rgb(244, 246, 247);
-}
+  .container {
+    width: 100vw;
+    padding: 0px;
+    margin: 0px;
+  }
+  #loginPageContainer {
+    background-color: rgb(240, 242, 245);
+    width: 100vw;
+    height: 100vh;
+  }
+  .home {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+  }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  width: 60vw;
-  padding-top: 3vh;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  margin-left: 100px;
-}
+  .content {
+    display: flex;
+    flex-direction: column;
+    width: 60vw;
+    padding-top: 3vh;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-left: 100px;
+  }
 
-.filter {
-  /* margin-left: 9vw; */
-  margin-right: 2vw;
-}
+  .filter {
+    margin-right: 2vw;
+  }
 </style>

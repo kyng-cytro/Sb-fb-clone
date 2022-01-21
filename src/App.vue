@@ -10,23 +10,21 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
     />
-    <Topbar />
-    <PopulateFriends />
+    <Topbar v-if="isUserLoggedIn" />
     <router-view id="fillWidth" />
   </div>
 </template>
 
 <script>
-  import Topbar from "@/components/TopbarComponents/Topbar";
-  import PopulateFriends from "@/PopulateFriends.vue";
+  import Topbar from "@/components/TopbarComponents/Topbar.vue";
   import { DataPopulation } from "@/mixins/DataPopulation.js";
+  import { UserPopulation } from "@/mixins/UserPopulation";
 
   export default {
     name: "App",
-    mixins: [DataPopulation],
+    mixins: [DataPopulation, UserPopulation],
     components: {
-      Topbar,
-      PopulateFriends,
+      Topbar
     },
     created() {
       // POPULATE VUEX-ORM DATA
@@ -40,7 +38,7 @@
   .App {
     text-align: center;
     width: 100%;
-    height: 100%;
+    height: 100vw;
   }
 
   .App-header {
@@ -59,7 +57,7 @@
   }
 
   #fillWidth {
-    width: 100%;
+    width: 100vw;
     height: 100%;
   }
 </style>

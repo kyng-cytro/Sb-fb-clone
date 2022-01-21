@@ -5,8 +5,9 @@
     <img
       v-if="isFacebookWithImage"
       v-bind:style="imgStyles"
-      :src="require('@/assets/images/FriendProfilePics/' + friend.imgSrc)"
+      :src="(friend.imageSource.slice(friend.imageSource.length - 3) == 'jpg') ? require('@/assets/images/FriendProfilePics/' + friend.imageSource) : friend.imageSource"
     />
+    <!-- That last line there says that if it ends with jpg, look in the FriendProfilePics folder for the image. Otherwise, assume it's a public URL -->
 
     <!-- If they are an email user -->
     <i v-else-if="isEmail" class="bi bi-envelope" :style="iconStyles"></i>
@@ -41,11 +42,11 @@
     // size is a value of 'small' or 'normal'
     props: ["friend", "size", "onlyImage", "bold", "slotBelowText"],
     computed: {
-      isFacebookFriend() {
-        return Object.prototype.hasOwnProperty.call(this.friend, "imgSrc");
+      isFacebookFriend() { // Assumed to be a Facebook friend if the friend object has an image source
+        return Object.prototype.hasOwnProperty.call(this.friend, "imageSource");
       },
       isFacebookWithImage() {
-        return this.isFacebookFriend && this.friend.imgSrc !== "";
+        return this.isFacebookFriend && this.friend.imageSource !== "";
       },
       isFacebookWithoutImage() {
         return (

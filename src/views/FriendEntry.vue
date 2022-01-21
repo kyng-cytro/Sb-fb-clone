@@ -63,7 +63,7 @@ const questionFriendList = [
                         {
                             data: {
                                 name: questionFriendList.at(i).friendData.name,
-                                imgSrc: "",
+                                imageSource: "",
                                 daysUntilExpiration : this.daysUntilExpiration,
                                 numOfMutualFriends: this.numOfMutualFriends,
                                 friendQuestion: questionFriendList.at(i).question

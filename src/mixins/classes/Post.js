@@ -7,9 +7,9 @@ function uuidv4() {
 
 // Including lint command so that function doesn't have to be used
 export default class Post {
-    constructor(imgSrc, friend, text, date, numComments, numShares, numLikes, filter) { // eslint-disable-line no-unused-vars
+    constructor(imageSource, friend, text, date, numComments, numShares, numLikes, filter) { // eslint-disable-line no-unused-vars
         this.id = uuidv4();
-        this.imgSrc = imgSrc;
+        this.imageSource = imageSource;
         this.friend = friend;
         this.text = text;
         this.date = date;
