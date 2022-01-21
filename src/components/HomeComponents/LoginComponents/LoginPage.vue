@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div class="main">
       <div class="facebookLogoHalf">
         <img src="@/assets/images/LoginImages/Long_Logo.svg" />
@@ -34,8 +34,12 @@
           <p>
             <strong>Create a page</strong> for a celebrity, band, or business.
           </p>
-          <br/>
-          <button id="smallButton" class="btn btn-secondary" @click="usePrototypeWithoutData">
+          <br />
+          <button
+            id="smallButton"
+            class="btn btn-secondary"
+            @click="usePrototypeWithoutData"
+          >
             Use prototype without scraping data
           </button>
         </div>
@@ -67,7 +71,7 @@
     methods: {
       usePrototypeWithoutData() {
         this.addUser({
-          "name" : "Your Name"
+          name: "Your Name",
         });
       },
       addData(user, friends, friendsByGroup, friendsByEvent) {
@@ -110,17 +114,20 @@
 </script>
 
 <style scoped>
+  .container {
+    width: 100vw;
+  }
   .main {
     display: flex;
     padding: 100px;
-    width: 100%;
+    width: 100vw;
     justify-content: center;
   }
 
   .facebookLogoHalf {
     padding-top: 100px;
     padding-right: 32px;
-    width: 580px;
+    width: 530px;
     margin-right: 0px;
   }
 
@@ -136,14 +143,15 @@
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    align-items: center;
+    padding: 7px;
   }
 
   .logInTextArea {
     border-radius: 6px;
     font-size: 17px;
     padding: 14px 16px;
-    width: 330px;
+    width: 360px;
     border: 1px solid #dddfe2;
     color: #1d2129;
     height: 55px;
@@ -160,9 +168,8 @@
     color: rgb(187, 187, 187);
   }
   button {
-    margin-left: 15px;
     font-size: 1.3em;
-    width: 330px;
+    width: 360px;
     font-weight: bold;
     border-radius: 6px;
   }

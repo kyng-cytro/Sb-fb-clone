@@ -44,13 +44,14 @@
 <style scoped>
   .container {
     width: 100vw;
+    padding: 0px;
+    margin: 0px;
   }
   #loginPageContainer {
-    background-color: rgb(240,242,245);
+    background-color: rgb(240, 242, 245);
+    width: 100vw;
     height: 100vh;
-    width: 99vw;
-    margin-left: -9vw;
-      }
+  }
   .home {
     width: 100%;
     display: flex;
@@ -69,7 +70,6 @@
   }
 
   .filter {
-    /* margin-left: 9vw; */
     margin-right: 2vw;
   }
 </style>

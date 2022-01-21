@@ -38,7 +38,7 @@
   .App {
     text-align: center;
     width: 100%;
-    height: 100%;
+    height: 100vw;
   }
 
   .App-header {
@@ -57,7 +57,7 @@
   }
 
   #fillWidth {
-    width: 100%;
+    width: 100vw;
     height: 100%;
   }
 </style>
