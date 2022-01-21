@@ -177,6 +177,7 @@
     font-weight: normal;
     font-size: 0.9em;
   }
+
   #forgotPasswordContainer {
     width: 100%;
     text-align: center;
