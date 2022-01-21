@@ -6,7 +6,7 @@
         <h3>Connect with friends and the world around you on Facebook.</h3>
       </div>
       <div class="LoginHalf">
-        <div class="LoginBox">
+        <div class="LoginBox" v-show="scrape">
           <textarea
             autofocus
             class="logInTextArea"
@@ -34,6 +34,10 @@
           <p>
             <strong>Create a page</strong> for a celebrity, band, or business.
           </p>
+          <br/>
+          <button id="smallButton" class="btn btn-secondary" @click="usePrototypeWithoutData">
+            Use prototype without scraping data
+          </button>
         </div>
       </div>
     </div>
@@ -61,6 +65,11 @@
       }
     },
     methods: {
+      usePrototypeWithoutData() {
+        this.addUser({
+          "name" : "Your Name"
+        });
+      },
       addData(user, friends, friendsByGroup, friendsByEvent) {
         this.addUser(user);
         this.addFriends(friends);
@@ -92,9 +101,8 @@
                 console.log(error);
               }
             );
-        }
-        else {
-          console.log("Not scraping data")
+        } else {
+          console.log("Not scraping data");
         }
       },
     },
@@ -157,6 +165,10 @@
     width: 330px;
     font-weight: bold;
     border-radius: 6px;
+  }
+  #smallButton {
+    font-weight: normal;
+    font-size: 0.9em;
   }
   #forgotPasswordContainer {
     width: 100%;
