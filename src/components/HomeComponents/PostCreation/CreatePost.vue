@@ -7,7 +7,7 @@
           <FriendDisplay :friend="user" onlyImage="true"></FriendDisplay>
         </div>
         <div @click="clickTextBox" class="roundTextBox">
-          <p>What's on your mind, {{ userFirstname }}?</p>
+          <p id="whatOnMind">What's on your mind, {{ userFirstname }}?</p>
         </div>
       </div>
     </div>
@@ -91,13 +91,22 @@
     border-radius: 30px;
     width: 95%;
     height: 40px;
-    line-height: 30px;
+    line-height: 2vh;
     display: inline-block;
     border: 0px solid #ccc;
     box-sizing: border-box;
     background-color: rgb(240, 242, 245);
     cursor: pointer;
     transition: 0.3s;
+  }
+
+  #whatOnMind {
+    /* This is done to avoid the text moving to weird places dependent on the screen size */
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    padding-top: 10px;
+    padding-left: 18px;
   }
 
   .roundTextBox:hover {
