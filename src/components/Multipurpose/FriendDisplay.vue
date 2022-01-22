@@ -109,7 +109,6 @@
                         line-height: 15px;
                         word-wrap:break-word;`;
           if (this.friend.name.length > 15) { // Chances are that it had to wrap around (although not for sure)
-            console.log("Your friend has a really big name.");
             styles += "padding-top: 2px;";
           }
         } else {
