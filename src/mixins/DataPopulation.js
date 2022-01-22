@@ -27,25 +27,7 @@ export const DataPopulation = {
     localPosts() {
       let posts = [];
       let currentPostDate = new Date();
-      posts.push({
-        imageSource: "shopping_cart.jpg",
-        friend: {
-          name: "Mom",
-          isFamily: true,
-        },
-        text: "Just picked up from some groceries from the new store! The prices here are great!",
-        date: currentPostDate.toISOString(), // For some reason, dates have to be stored as strings in these objects otherwise the DateProcessing gets mad
-        numComments: this.getRandomInt(1, 10),
-        numShares: this.getRandomInt(0, 5),
-        numLikes: this.getRandomInt(5, 30),
-        filter: {
-          isMajorEvent: false,
-          isPostViewOnly: false,
-        },
-      });
 
-      currentPostDate.setDate(currentPostDate.getDate() - 2); // Set the date to two days earlier
-      currentPostDate.setHours(this.getRandomInt(7, 24), this.getRandomInt(0, 60));
       posts.push({
         imageSource: "",
         friend: {
@@ -57,6 +39,25 @@ export const DataPopulation = {
         numComments: this.getRandomInt(1, 10),
         numShares: this.getRandomInt(0, 2),
         numLikes: this.getRandomInt(1, 7),
+        filter: {
+          isMajorEvent: false,
+          isPostViewOnly: false,
+        },
+      });
+
+      currentPostDate.setDate(currentPostDate.getDate() - 2); // Set the date to two days earlier
+      currentPostDate.setHours(this.getRandomInt(7, 24), this.getRandomInt(0, 60));
+      posts.push({
+        imageSource: "grandparents_shopping.jpg",
+        friend: {
+          name: "Grandma",
+          isFamily: true,
+        },
+        text: "Jim and I just picked up from some groceries from the local farmers' market! The prices here are great and the people are beautiful.",
+        date: currentPostDate.toISOString(), // For some reason, dates have to be stored as strings in these objects otherwise the DateProcessing gets mad
+        numComments: this.getRandomInt(1, 10),
+        numShares: this.getRandomInt(0, 5),
+        numLikes: this.getRandomInt(5, 30),
         filter: {
           isMajorEvent: false,
           isPostViewOnly: false,

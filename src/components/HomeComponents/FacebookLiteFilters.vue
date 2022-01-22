@@ -91,7 +91,7 @@
         last2Weeks: false,
         lastMonth: true,
         isUserViewOnly: true,
-        dropDownTimeSelection: "Last three days"
+        dropDownTimeSelection: "Last month"
       };
     },
     watch: {

@@ -1,7 +1,7 @@
 <template>
   <div class="postSquare">
     <div class="header">
-      <FriendDisplay :friend="post.friend" />
+      <FriendDisplay :friend="post.friend" :bold="true" :slotBelowText="true"/>
       <p id="date">{{ formatDateNoYear(post.date) }}</p>
     </div>
 
@@ -103,7 +103,7 @@
   }
   .postPicNoButtons {
     width: 40vw;
-    height: 40vh;
+    /* height: 40vh; */
     object-fit: cover; /*This makes it so the image is cropped instead of squished */
     border-radius: 0px 0px 10px 10px;
   }
@@ -159,10 +159,11 @@
   }
 
   #date {
-    margin-left: 47px;
-    font-size: 0.8em;
+    margin-left: 42px;
+    margin-top: -5px;
+    font-size: 0.75em;
     font-weight: bold;
-    color: rgb(78, 78, 78);
+    color: rgb(136, 136, 136);
   }
 
   em {
@@ -196,9 +197,9 @@
 
   p#text {
     /*margin:10px;*/
-    margin-top: 0px;
-    margin-left: 2%;
-    margin-right: 2%;
+    margin-top: -20px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
   .icon-flipped {
