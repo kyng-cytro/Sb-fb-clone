@@ -38,7 +38,7 @@ import InvitesLeftListItem from "./InvitesLeftListItem.vue";
 <style scoped>
 .list {
     background-color: rgb(240,242,245);
-    height: 500px;
+    height: 100%;
     width: 240px;
     padding: 15px;
 }

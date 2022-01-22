@@ -1,34 +1,36 @@
 <template>
-    <div id="details">
-      <div id="previewBox">
-        <h3>Details</h3>
-        <p>
-          <i class="bi bi-people-fill" style="color: grey"></i>
-          1 person going, including {you}
-          </p>
-        <strong>{{event.location}}</strong>
-        <p>{{event.description}}</p>
-      </div>
-      <div id="previewBox">
-        <EventAttendance :eventState="eventState" />
-      </div>
+  <div id="details">
+    <div id="previewBox">
+      <h3>Details</h3>
+      <p>
+        <i class="bi bi-people-fill" style="color: grey"></i>
+        1 person going, including {{ this.userName }}
+      </p>
+      <strong>{{ event.location }}</strong>
+      <p>{{ event.description }}</p>
     </div>
+    <div id="previewBox">
+      <EventAttendance :eventState="eventState" />
+    </div>
+  </div>
 </template>
 
 <script>
-import EventAttendance from "./EventAttendance.vue"
+  import EventAttendance from "./EventAttendance.vue";
 
-export default {
+  import { UserPopulation } from "@/mixins/UserPopulation";
+  export default {
+    mixins: [UserPopulation],
     components: {
-        EventAttendance
+      EventAttendance,
     },
-    props: ['event', 'eventState']
-}
+    props: ["event", "eventState"],
+  };
 </script>
 
 <style scoped>
   #details {
-    background-color: rgb(240,242,245);
+    background-color: rgb(240, 242, 245);
     width: 100%;
     padding: 10px;
     display: flex;
@@ -47,9 +49,9 @@ export default {
     background-color: white;
   }
 
-h3 {
-  font-weight: bold;
-  font-size: 1.4em;
-  margin-right: 350px;
-}
+  h3 {
+    font-weight: bold;
+    font-size: 1.4em;
+    margin-right: 350px;
+  }
 </style>
