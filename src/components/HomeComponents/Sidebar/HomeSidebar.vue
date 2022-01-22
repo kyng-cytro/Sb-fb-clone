@@ -9,7 +9,7 @@
           class="toggle"
           :value="true"
           v-model="facebookLight"
-          height=27
+          :height=27
           color="#1877F2"
         />
       </td>
@@ -42,6 +42,7 @@
         facebookLight: false,
         facebookLightButtons: null,
         facebookButtons: null,
+        toggleButtonHeight: 27,
       };
     },
     computed: {
