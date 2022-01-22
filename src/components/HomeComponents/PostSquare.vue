@@ -99,7 +99,6 @@
 
   .postPic {
     width: 40vw;
-    height: 40vh;
     object-fit: cover; /*This makes it so the image is cropped instead of squished */
   }
   .postPicNoButtons {

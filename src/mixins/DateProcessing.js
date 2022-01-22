@@ -7,11 +7,20 @@ export const dateProcessing = {
         }
     },
     methods: {
+        formatTime(time, prefix = "") {
+            console.log(typeof time);
+            console.log(time.toString());
+            return typeof time == "object" ? prefix + time.toLocaleDateString() : "";
+        },
         formatDateUppercase(date) {
-            return date.toLocaleDateString("en-US", this.dateFormatting).toUpperCase() + " AT " + date.toLocaleTimeString("en-US", this.timeFormatting)
+            // return this.formatTime(date);
+            // return date;
+            return new Date(date).toLocaleDateString("en-US", this.dateFormatting).toUpperCase() + " AT " + new Date(date).toLocaleTimeString("en-US", this.timeFormatting)
         },
         formatDateNoYear(date) {
-            return date.toLocaleDateString("en-US", this.dateNoYearFormatting) + " at " + date.toLocaleTimeString("en-US", this.timeFormatting)
+            // return this.formatTime(date);
+            // return date;
+            return new Date(date).toLocaleDateString("en-US", this.dateNoYearFormatting) + " at " + new Date(date).toLocaleTimeString("en-US", this.timeFormatting)
         },
     }
 }

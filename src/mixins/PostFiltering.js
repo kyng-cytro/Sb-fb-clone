@@ -1,7 +1,12 @@
+import FacebookLite from "@/vuex-orm_models/FacebookLiteModel.js";
 export const PostFiltering = {
   name: "PostFiltering",
   methods: {
     filterPosts(posts, filter) {
+      if (!FacebookLite.find(1).enabled) { // If FacebookLite is disabled, you don't need to do any filtering
+        console.log("Facebook lite isn't enabled, so we're not filtering the posts.")
+        return posts;
+      }
       if (filter == null || posts.length < 1) {
         return [];
       }
@@ -17,8 +22,7 @@ export const PostFiltering = {
 
       let newPosts = [];
       // In production, you can just create a new date like this:
-      // let currentDate = new Date();
-      let currentDate = new Date("11/16/2021");
+      let currentDate = new Date();
       for (let i = 0; i < posts.length; i++) {
         let post = posts[i];
         post.date = new Date(post.date); // Convert the string date to a js date object

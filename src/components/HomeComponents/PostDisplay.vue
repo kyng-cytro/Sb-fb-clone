@@ -25,6 +25,11 @@
     components: {
       PostSquare,
     },
+    created() {
+      let bob = this.posts;
+      console.log(bob);
+      console.log(this.filters);
+    },
     computed: {
       filters() {
         return Filter.find(1);
