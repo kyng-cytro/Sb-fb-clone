@@ -2,8 +2,6 @@
     <div class="container" v-on:click="select">
         <div class="verticalAlign">
             <FriendDisplay :friend="this.friend" :bold="this.selected"/>
-            <!-- <img :src="require('@/assets/images/FriendProfilePics/' + friend.imageSource)"/>
-            <p v-bind:class="{bold: this.selected}">{{friend.name}}</p> -->
         </div>
         <div class="verticalAlign">
             <i v-if="!this.selected" class="bi bi-circle"></i>    

@@ -2,7 +2,7 @@
     <div id="invite">
         <div>
             <InviteFriends />
-            <!-- <hr /> -->
+            <hr />
             <InviteNonFacebook />
         </div>
         <div>
@@ -33,5 +33,8 @@ import InvitesLeft from "./InvitesLeft.vue";
 <style scoped>
 #invite {
     display: flex;
+}
+hr {
+    margin: 0px;
 }
 </style>

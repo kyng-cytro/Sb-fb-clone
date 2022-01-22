@@ -56,6 +56,7 @@
 <style scoped>
   .container {
     padding: 15px;
+    padding-bottom: 0px;
   }
 
   #searchBox {
