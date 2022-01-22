@@ -51,13 +51,7 @@
 <script>
   import FriendDisplay from "@/components/Multipurpose/FriendDisplay";
   import Post from "@/vuex-orm_models/PostModel.js";
-  // import Post from "@/mixins/classes/Post.js";
-  // import PostTags from "@/mixins/classes/PostTags.js";
   export default {
-    // mixins: {
-    //   Post,
-    //   PostTags,
-    // },
     data() {
       return {
         postBeingCreated: {
