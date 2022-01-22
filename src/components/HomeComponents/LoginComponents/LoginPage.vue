@@ -65,13 +65,13 @@
     },
     created() {
       if (!this.scrape) {
-        // If desired, you can put teste code here so you don't have to worry about clicking the button. It will run if the scrape flag is set to false
+        // If desired, you can put test code here so you don't have to worry about clicking the button. It will run if the scrape flag is set to false
       }
     },
     methods: {
       usePrototypeWithoutData() {
         this.addUser({
-          name: "Your Name",
+          name: "FirstName LastName",
         });
       },
       addData(user, friends, friendsByGroup, friendsByEvent) {
