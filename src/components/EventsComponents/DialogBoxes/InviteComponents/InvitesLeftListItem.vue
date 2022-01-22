@@ -45,7 +45,7 @@ import FriendDisplay from "@/components/Multipurpose/FriendDisplay.vue";
     padding: 0px;
     height: 20px;
     margin-top: 20px;
-    width: 210px;
+    width: 170px;
 }
 .verticalAlign {
     display: flex;

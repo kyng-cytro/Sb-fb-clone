@@ -99,7 +99,10 @@
   .input-field {
     width: 100%;
     padding: 10px;
-    text-align: center;
+    text-align: left;
+    /* Below makes it so that there's room for the search bar icon */
+    padding-left: 43px; 
+    font-size: .9em;;
   }
 
   #friendSelectionContainer {
