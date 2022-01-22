@@ -5,7 +5,11 @@
     <img
       v-if="isFacebookWithImage"
       v-bind:style="imgStyles"
-      :src="(friend.imageSource.slice(friend.imageSource.length - 3) == 'jpg') ? require('@/assets/images/FriendProfilePics/' + friend.imageSource) : friend.imageSource"
+      :src="
+        friend.imageSource.slice(friend.imageSource.length - 3) == 'jpg'
+          ? require('@/assets/images/FriendProfilePics/' + friend.imageSource)
+          : friend.imageSource
+      "
     />
     <!-- That last line there says that if it ends with jpg, look in the FriendProfilePics folder for the image. Otherwise, assume it's a public URL -->
 
@@ -42,7 +46,8 @@
     // size is a value of 'small' or 'normal'
     props: ["friend", "size", "onlyImage", "bold", "slotBelowText"],
     computed: {
-      isFacebookFriend() { // Assumed to be a Facebook friend if the friend object has an image source
+      isFacebookFriend() {
+        // Assumed to be a Facebook friend if the friend object has an image source
         return Object.prototype.hasOwnProperty.call(this.friend, "imageSource");
       },
       isFacebookWithImage() {
@@ -96,8 +101,17 @@
         let styles = "";
         if (this.size === "small") {
           styles += `
-                        margin-left: 10px;
-                        font-size: 0.9em;`;
+                        margin-left: 3px;
+                        font-size: 0.9em;;
+                        width: 120px;
+                        text-align: left;
+                        padding-top: 10px;
+                        line-height: 15px;
+                        word-wrap:break-word;`;
+          if (this.friend.name.length > 15) { // Chances are that it had to wrap around (although not for sure)
+            console.log("Your friend has a really big name.");
+            styles += "padding-top: 2px;";
+          }
         } else {
           styles += `
                         margin-left: 10px;
@@ -143,7 +157,7 @@
     display: flex;
     padding: 0px;
     height: 30px;
-    line-height: 30px;
+    line-height: 35px;
     text-align: center;
   }
 
