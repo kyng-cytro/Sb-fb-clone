@@ -2,7 +2,7 @@
     <div id="invite">
         <div>
             <InviteFriends />
-            <hr />
+            <!-- <hr /> -->
             <InviteNonFacebook />
         </div>
         <div>

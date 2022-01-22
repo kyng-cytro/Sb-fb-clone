@@ -41,6 +41,7 @@ import InvitesLeftListItem from "./InvitesLeftListItem.vue";
     height: 100%;
     width: 210px;
     padding: 15px;
+    overflow-y: auto;
 }
 
 p {

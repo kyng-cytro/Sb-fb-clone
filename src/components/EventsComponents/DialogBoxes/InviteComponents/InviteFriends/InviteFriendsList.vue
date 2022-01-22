@@ -51,6 +51,9 @@
 <style scoped>
   .container {
     width: 350px;
+    height: 350px;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   .selectRectangle {
     background-color: transparent;
@@ -61,6 +64,7 @@
     text-decoration: none;
     width: 100%;
     padding: 8px;
+    height: 60px;
   }
 
   #selectAll {
