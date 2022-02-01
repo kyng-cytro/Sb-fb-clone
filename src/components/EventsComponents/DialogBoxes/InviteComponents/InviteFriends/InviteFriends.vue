@@ -17,6 +17,13 @@
           v-model="form.data"
           placeholder="Search for friends by name"
         />
+        <button
+          id="nonFacebookButton"
+          class="btn btn-primary"
+          @click="this.emitToggleNonFacebookVisibility"
+        >
+          Invite someone not on Facebook
+        </button>
       </div>
     </div>
     <div id="friendSelectionContainer">
@@ -40,7 +47,6 @@
         },
       };
     },
-    props: ["invitedFriends"],
     components: {
       InviteFriendsList,
       InviteFriendsSidebar,
@@ -48,6 +54,9 @@
     methods: {
       addFriend() {
         Friend.insert({ data: this.form });
+      },
+      emitToggleNonFacebookVisibility() {
+        this.$emit("toggleNonFacebookVisibility");
       },
     },
   };
@@ -102,8 +111,12 @@
     padding: 10px;
     text-align: left;
     /* Below makes it so that there's room for the search bar icon */
-    padding-left: 43px; 
-    font-size: .9em;;
+    padding-left: 43px;
+    font-size: 0.9em;
+  }
+
+  #searchBox {
+    width: 370px;
   }
 
   #friendSelectionContainer {
@@ -111,6 +124,9 @@
   }
   button {
     margin-left: 12px;
+  }
+  #nonFacebookButton {
+    margin-left: 20px;
   }
   /* TODO: adjust the placeholder text such that it looks right */
 
