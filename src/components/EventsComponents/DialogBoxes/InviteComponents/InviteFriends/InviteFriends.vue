@@ -10,19 +10,33 @@
             <i class="bi bi-search icon"></i>
           </div>
         </div>
-        <input
+        <div id="searchBoxContainer">
+          <label>
+            <span id="placeholderText">
+              Search for friend by name, <strong>email address</strong> or
+              <strong>phone number</strong>
+            </span>
+            <input
+              type="text"
+              id="searchBox2"
+              @input="updateQuery"
+              v-model="searchQuery"
+            />
+          </label>
+        </div>
+        <!-- <input
           id="searchBox"
           class="input-field"
           type="text"
           v-model="form.data"
           placeholder="Search for friends by name"
-        />
-        <button
+        /> -->
+        <button v-show="buttonText"
           id="nonFacebookButton"
           class="btn btn-primary"
           @click="this.emitToggleNonFacebookVisibility"
         >
-          Invite someone not on Facebook
+          {{buttonText}}
         </button>
       </div>
     </div>
@@ -45,6 +59,8 @@
           imageSource: "",
           numOfMutualFriends: null,
         },
+        searchQuery: "",
+        buttonText: "",
       };
     },
     components: {
@@ -58,6 +74,24 @@
       emitToggleNonFacebookVisibility() {
         this.$emit("toggleNonFacebookVisibility");
       },
+      updateQuery() {
+        if (this.searchQuery) { // Make the placeholder appear or disappear depending on whether the searchQuery has text
+          document.getElementById("placeholderText").style.display = "none";
+        } else {
+          document.getElementById("placeholderText").style.display = "inline-block";
+        }
+        if (this.searchQuery.includes("@")) {
+          console.log("They're entering an email!")
+          this.buttonText = "Invite friend by email";
+        //eslint-disable-next-line
+        } else if (/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(this.searchQuery)) { // If phone number (see https://stackoverflow.com/questions/4338267/validate-phone-number-with-javascript)
+          this.buttonText = "Invite friend by phone number";
+          console.log("They're entering a phone number!")
+        } else {
+          this.buttonText = "";
+          console.log("They're still entering data.")
+        }
+      },
     },
   };
 </script>
@@ -66,6 +100,40 @@
   .container {
     padding: 15px;
     padding-bottom: 0px;
+  }
+
+  #placeholderText {
+    position: absolute;
+    margin-left: 50px;
+    margin-top: 8px;
+    color: rgb(77, 72, 72);
+  }
+
+  #searchBoxContainer {
+    border-radius: 30px;
+    width: 600px;
+    height: 40px;
+    display: inline-block;
+    border: 0px solid #ccc;
+    box-sizing: border-box;
+    background-color: rgb(240, 242, 245);
+  }
+
+  #searchBox2 {
+    position: relative;
+    padding-left: 50px;
+    background: none;
+    border-radius: 30px;
+    width: 600px;
+    height: 40px;
+    display: inline-block;
+    border: 0px solid #ccc;
+    box-sizing: border-box;
+    /* background-color: rgb(240, 242, 245); */
+  }
+
+  #searchBox2:focus {
+    outline: 0px;
   }
 
   #searchBox {
