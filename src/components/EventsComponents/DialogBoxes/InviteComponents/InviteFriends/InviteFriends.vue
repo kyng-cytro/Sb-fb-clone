@@ -13,7 +13,7 @@
         <div id="searchBoxContainer">
           <label>
             <span id="placeholderText">
-              Search for friend by name, <strong>email address</strong> or
+              Invite friends by name, <strong>email address</strong> or
               <strong>phone number</strong>
             </span>
             <input
