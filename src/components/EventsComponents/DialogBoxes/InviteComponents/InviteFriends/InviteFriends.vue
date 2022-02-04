@@ -4,26 +4,36 @@
     <div>
       <div class="input-icons">
         <!-- I use the following two divs/classes as described here: https://stackoverflow.com/questions/17656623/position-absolute-scrolling-->
-        <!-- For the purpose of having an absolutely position search icon that still scrolls in the dialog box -->
+        <!-- For the purpose of having an absolutely positioned search icon that still scrolls in the dialog box -->
         <div class="inner">
           <div class="full-height">
             <i class="bi bi-search icon"></i>
+            <div id="searchBoxContainer">
+              <b-tooltip
+                ref="tooltip"
+                target="searchBoxContainer"
+                placement="top"
+              >
+                You can add friends who don't use facebook by entering their
+                email or phone number.
+              </b-tooltip>
+              <label>
+                <span id="placeholderText">
+                  Invite friends by name, <strong>email address</strong> or
+                  <strong>phone number</strong>
+                </span>
+                <input
+                  type="text"
+                  id="searchBox2"
+                  @input="updateQuery"
+                  v-model="searchQuery"
+                />
+              </label>
+            </div>
+            <b-button class="px-1" @click="onOpen">Open</b-button>
           </div>
         </div>
-        <div id="searchBoxContainer">
-          <label>
-            <span id="placeholderText">
-              Invite friends by name, <strong>email address</strong> or
-              <strong>phone number</strong>
-            </span>
-            <input
-              type="text"
-              id="searchBox2"
-              @input="updateQuery"
-              v-model="searchQuery"
-            />
-          </label>
-        </div>
+
         <!-- <input
           id="searchBox"
           class="input-field"
@@ -31,12 +41,13 @@
           v-model="form.data"
           placeholder="Search for friends by name"
         /> -->
-        <button v-show="buttonText"
+        <button
+          v-show="buttonText"
           id="nonFacebookButton"
           class="btn btn-primary"
           @click="this.emitToggleNonFacebookVisibility"
         >
-          {{buttonText}}
+          {{ buttonText }}
         </button>
       </div>
     </div>
@@ -61,13 +72,25 @@
         },
         searchQuery: "",
         buttonText: "",
+        showToolTip: false,
       };
     },
     components: {
       InviteFriendsList,
       InviteFriendsSidebar,
     },
+    mounted() {
+      this.sleep(3000).then(this.onOpen());
+    },
     methods: {
+      sleep(ms) {
+        console.log("I'm sleeping");
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      },
+      onOpen() {
+        console.log("Trying to open tooltip!");
+        this.$refs.tooltip.$emit("open");
+      },
       addFriend() {
         Friend.insert({ data: this.form });
       },
@@ -75,21 +98,31 @@
         this.$emit("toggleNonFacebookVisibility");
       },
       updateQuery() {
-        if (this.searchQuery) { // Make the placeholder appear or disappear depending on whether the searchQuery has text
+        if (this.searchQuery) {
+          // Make the placeholder appear or disappear depending on whether the searchQuery has text
           document.getElementById("placeholderText").style.display = "none";
+          this.showToolTip = false;
         } else {
-          document.getElementById("placeholderText").style.display = "inline-block";
+          // Placeholder is empty
+          this.showToolTip = true;
+          document.getElementById("placeholderText").style.display =
+            "inline-block";
         }
         if (this.searchQuery.includes("@")) {
-          console.log("They're entering an email!")
+          console.log("They're entering an email!");
           this.buttonText = "Invite friend by email";
-        //eslint-disable-next-line
-        } else if (/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(this.searchQuery)) { // If phone number (see https://stackoverflow.com/questions/4338267/validate-phone-number-with-javascript)
+        } else if (
+          //eslint-disable-next-line
+          /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(
+            this.searchQuery
+          )
+        ) {
+          // If phone number (see https://stackoverflow.com/questions/4338267/validate-phone-number-with-javascript)
           this.buttonText = "Invite friend by phone number";
-          console.log("They're entering a phone number!")
+          console.log("They're entering a phone number!");
         } else {
           this.buttonText = "";
-          console.log("They're still entering data.")
+          console.log("They're still entering data.");
         }
       },
     },

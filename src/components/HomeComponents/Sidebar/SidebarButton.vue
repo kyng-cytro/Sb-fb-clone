@@ -78,7 +78,7 @@
   height: 100%;
   padding: 8px;
   transition: 0.3s;
-  border-radius: 5%;
+  border-radius: 7px;
 }
 .sidebar-button:hover {
   background: rgb(225, 225, 225);
