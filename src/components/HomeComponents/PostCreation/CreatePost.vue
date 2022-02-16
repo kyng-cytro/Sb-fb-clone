@@ -45,7 +45,6 @@
     mounted() {
       this.$root.$on("closeCreatePostDialog", () => {
         this.togglePopup();
-        console.log("Trying to close the post popup");
       });
     },
     components: {

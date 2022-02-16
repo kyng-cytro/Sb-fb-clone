@@ -30,7 +30,6 @@
                 />
               </label>
             </div>
-            <b-button class="px-1" @click="onOpen">Open</b-button>
           </div>
         </div>
 
@@ -80,15 +79,15 @@
       InviteFriendsSidebar,
     },
     mounted() {
-      this.sleep(3000).then(this.onOpen());
+      this.$root.$on("triggerInviteFriendsTooltip", () => {
+        // Sleep for 700 miliseconds before opening popup
+        setTimeout(() => { // Note that a fat-arrow function is used here to preserve the scope of 'this' (see https://forum.vuejs.org/t/is-not-a-function/12444)
+          this.onOpen();
+        }, 700);
+      });
     },
     methods: {
-      sleep(ms) {
-        console.log("I'm sleeping");
-        return new Promise((resolve) => setTimeout(resolve, ms));
-      },
       onOpen() {
-        console.log("Trying to open tooltip!");
         this.$refs.tooltip.$emit("open");
       },
       addFriend() {

@@ -24,6 +24,7 @@ export default {
     methods: {
         click(trigger) {
             this.$emit('buttonClick', trigger);
+            this.$root.$emit("triggerInviteFriendsTooltip");
         }
     },
 }
