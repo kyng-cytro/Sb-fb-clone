@@ -50,153 +50,160 @@
 </template>
 
 <script>
-  import axios from "axios";
-  import { FriendPopulation } from "@/mixins/FriendPopulation";
-  import { UserPopulation } from "@/mixins/UserPopulation";
+import axios from "axios";
+import { FriendPopulation } from "@/mixins/FriendPopulation";
+import { UserPopulation } from "@/mixins/UserPopulation";
 
-  export default {
-    mixins: [FriendPopulation, UserPopulation],
-    data() {
-      return {
-        username: "",
-        password: "",
-        scrape: true,
-      };
+export default {
+  mixins: [FriendPopulation, UserPopulation],
+  data() {
+    return {
+      username: "",
+      password: "",
+      scrape: true,
+    };
+  },
+  created() {
+    if (!this.scrape) {
+      // If desired, you can put test code here so you don't have to worry about clicking the button. It will run if the scrape flag is set to false
+    }
+  },
+  methods: {
+    usePrototypeWithoutData() {
+      this.scrape = false;
+      this.logIn();
     },
-    created() {
-      if (!this.scrape) {
-        // If desired, you can put test code here so you don't have to worry about clicking the button. It will run if the scrape flag is set to false
+    addData(user, friends, friendsByGroup, friendsByEvent) {
+      this.addUser(user);
+      this.addFriends(friends);
+      this.addAllGroupFriends(friendsByGroup);
+      this.addAllEventFriends(friendsByEvent);
+    },
+    async logIn() {
+      if (this.scrape) {
+        const path = "http://localhost:5000/logIn";
+
+        try {
+          const { data } = await axios.post(path, {
+            username: this.username,
+            password: this.password,
+          });
+
+          console.log(data);
+
+          this.addData(
+            data.user,
+            data.friends,
+            data.friendsByGroup,
+            data.friendsByEvent
+          );
+        } catch (err) {
+          console.error(err.message);
+        }
+      } else {
+        try {
+          const response = await fetch("/fixture.json");
+          const data = await response.json();
+
+          this.addData(
+            data.user,
+            data.friends,
+            data.friendsByGroup,
+            data.friendsByEvent
+          );
+        } catch (err) {
+          console.error(err.message);
+        }
       }
     },
-    methods: {
-      usePrototypeWithoutData() {
-        this.addUser({
-          name: "FirstName LastName",
-        });
-      },
-      addData(user, friends, friendsByGroup, friendsByEvent) {
-        this.addUser(user);
-        this.addFriends(friends);
-        this.addAllGroupFriends(friendsByGroup);
-        this.addAllEventFriends(friendsByEvent);
-      },
-      logIn() {
-        if (this.scrape) {
-          const path = "http://localhost:5000/logIn";
-          console.log("We are waiting for a response from the server...");
-          axios
-            .post(path, {
-              username: this.username,
-              password: this.password,
-            })
-            .then(
-              (response) => {
-                console.log("We have received a response from the server!");
-                let result = response.data;
-                console.log(result);
-                this.addData(
-                  result.user,
-                  result.friends,
-                  result.friendsByGroup,
-                  result.friendsByEvent
-                ); // Okay, Lucas: this is where basically you can start figuring out how to maniupate the data that comes from the scraper
-              },
-              (error) => {
-                console.log(error);
-              }
-            );
-        } else {
-          console.log("Not scraping data");
-        }
-      },
-    },
-  };
+  },
+};
 </script>
 
 <style scoped>
-  .container {
-    width: 100vw;
-  }
-  .main {
-    display: flex;
-    padding: 100px;
-    width: 100vw;
-    justify-content: center;
-  }
+.container {
+  width: 100vw;
+}
+.main {
+  display: flex;
+  padding: 100px;
+  width: 100vw;
+  justify-content: center;
+}
 
-  .facebookLogoHalf {
-    padding-top: 100px;
-    padding-right: 32px;
-    width: 530px;
-    margin-right: 0px;
-  }
+.facebookLogoHalf {
+  padding-top: 100px;
+  padding-right: 32px;
+  width: 530px;
+  margin-right: 0px;
+}
 
-  h3 {
-    padding-top: 14px;
-  }
+h3 {
+  padding-top: 14px;
+}
 
-  .LoginBox {
-    background-color: white;
-    width: 400px;
-    height: 300px;
-    box-shadow: 0px 4px 16px rgb(189, 189, 189);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 7px;
-  }
+.LoginBox {
+  background-color: white;
+  width: 400px;
+  height: 300px;
+  box-shadow: 0px 4px 16px rgb(189, 189, 189);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 7px;
+}
 
-  .logInTextArea {
-    border-radius: 6px;
-    font-size: 17px;
-    padding: 14px 16px;
-    width: 360px;
-    border: 1px solid #dddfe2;
-    color: #1d2129;
-    height: 55px;
-    line-height: 25px;
-    vertical-align: middle;
-    outline: 0.5px solid rgb(230, 230, 230);
-    margin: 15px;
-    resize: none;
-  }
-  .logInTextArea:focus {
-    border: 1px solid #81b3ff;
-  }
-  .logInTextArea:focus::placeholder {
-    color: rgb(187, 187, 187);
-  }
-  button {
-    font-size: 1.3em;
-    width: 360px;
-    font-weight: bold;
-    border-radius: 6px;
-  }
-  #smallButton {
-    font-weight: normal;
-    font-size: 0.9em;
-  }
+.logInTextArea {
+  border-radius: 6px;
+  font-size: 17px;
+  padding: 14px 16px;
+  width: 360px;
+  border: 1px solid #dddfe2;
+  color: #1d2129;
+  height: 55px;
+  line-height: 25px;
+  vertical-align: middle;
+  outline: 0.5px solid rgb(230, 230, 230);
+  margin: 15px;
+  resize: none;
+}
+.logInTextArea:focus {
+  border: 1px solid #81b3ff;
+}
+.logInTextArea:focus::placeholder {
+  color: rgb(187, 187, 187);
+}
+button {
+  font-size: 1.3em;
+  width: 360px;
+  font-weight: bold;
+  border-radius: 6px;
+}
+#smallButton {
+  font-weight: normal;
+  font-size: 0.9em;
+}
 
-  #forgotPasswordContainer {
-    width: 100%;
-    text-align: center;
-    padding: 10px;
-  }
-  #forgotPassword {
-    color: #1877f2;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  #createAPageContainer {
-    width: 100%;
-    text-align: center;
-    font-size: 0.9em;
-  }
-  img {
-    height: 106px;
-    margin: -28px; /*A neat trick by facebook, I guess we'll use it too!*/
-  }
+#forgotPasswordContainer {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+#forgotPassword {
+  color: #1877f2;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+}
+#createAPageContainer {
+  width: 100%;
+  text-align: center;
+  font-size: 0.9em;
+}
+img {
+  height: 106px;
+  margin: -28px; /*A neat trick by facebook, I guess we'll use it too!*/
+}
 </style>

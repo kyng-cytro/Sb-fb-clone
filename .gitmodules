@@ -1,3 +1,0 @@
-[submodule "facebook_scraper"]
-	path = flask_server/facebook_scraper
-	url = https://github.com/BYU-STAPL/facebook-scraper.git

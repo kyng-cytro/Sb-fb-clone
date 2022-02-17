@@ -13,7 +13,7 @@ export const FriendPopulation = {
      * @param {string} imageSource A string representing the image source of a friend's profile picture. Note that this uniquely identifies a friend
      * @returns {object} Returns a JS Object from the VUEX-ORM database representing the friend associated with that image source
      */
-    getFriendByImageSource(imageSource) { 
+    getFriendByImageSource(imageSource) {
       let friends = this.friends;
       for (let i = 0; i < friends.length; i++) {
         if (friends[i].imageSource == imageSource) {
@@ -36,19 +36,24 @@ export const FriendPopulation = {
       console.log(categoryName);
       for (let i = 0; i < friendList.length; i++) {
         let friend = this.getFriendByImageSource(friendList[i].imageSource);
+
+        if (!friend) {
+          continue;
+        }
+
         friendIDs.push(friend.id);
       }
       if (category === "group") {
-      GroupFriend.insert({
-        data: {
-          groupName: categoryName,
-          friends: friendIDs,
-        },
-      });
+        GroupFriend.insert({
+          data: {
+            groupName: categoryName,
+            friends: friendIDs,
+          },
+        });
       }
       else if (category === "event") {
         EventFriend.insert({
-          data: { 
+          data: {
             eventName: category,
             friends: friendIDs,
           }
