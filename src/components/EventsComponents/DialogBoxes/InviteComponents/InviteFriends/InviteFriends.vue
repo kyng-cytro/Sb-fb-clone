@@ -4,25 +4,49 @@
     <div>
       <div class="input-icons">
         <!-- I use the following two divs/classes as described here: https://stackoverflow.com/questions/17656623/position-absolute-scrolling-->
-        <!-- For the purpose of having an absolutely position search icon that still scrolls in the dialog box -->
+        <!-- For the purpose of having an absolutely positioned search icon that still scrolls in the dialog box -->
         <div class="inner">
           <div class="full-height">
             <i class="bi bi-search icon"></i>
+            <div id="searchBoxContainer">
+              <b-tooltip
+                ref="tooltip"
+                target="searchBoxContainer"
+                placement="top"
+              >
+                You can add friends who don't use facebook by entering their
+                email or phone number.
+              </b-tooltip>
+              <label>
+                <span id="placeholderText">
+                  Invite friends by name, <strong>email address</strong> or
+                  <strong>phone number</strong>
+                </span>
+                <input
+                  type="text"
+                  id="searchBox2"
+                  @input="updateQuery"
+                  v-model="searchQuery"
+                />
+              </label>
+            </div>
           </div>
         </div>
-        <input
+
+        <!-- <input
           id="searchBox"
           class="input-field"
           type="text"
           v-model="form.data"
           placeholder="Search for friends by name"
-        />
+        /> -->
         <button
+          v-show="buttonText"
           id="nonFacebookButton"
           class="btn btn-primary"
           @click="this.emitToggleNonFacebookVisibility"
         >
-          Invite someone not on Facebook
+          {{ buttonText }}
         </button>
       </div>
     </div>
@@ -45,18 +69,60 @@
           imageSource: "",
           numOfMutualFriends: null,
         },
+        searchQuery: "",
+        buttonText: "",
+        showToolTip: false,
       };
     },
     components: {
       InviteFriendsList,
       InviteFriendsSidebar,
     },
+    mounted() {
+      this.$root.$on("triggerInviteFriendsTooltip", () => {
+        // Sleep for 700 miliseconds before opening popup
+        setTimeout(() => { // Note that a fat-arrow function is used here to preserve the scope of 'this' (see https://forum.vuejs.org/t/is-not-a-function/12444)
+          this.onOpen();
+        }, 700);
+      });
+    },
     methods: {
+      onOpen() {
+        this.$refs.tooltip.$emit("open");
+      },
       addFriend() {
         Friend.insert({ data: this.form });
       },
       emitToggleNonFacebookVisibility() {
         this.$emit("toggleNonFacebookVisibility");
+      },
+      updateQuery() {
+        if (this.searchQuery) {
+          // Make the placeholder appear or disappear depending on whether the searchQuery has text
+          document.getElementById("placeholderText").style.display = "none";
+          this.showToolTip = false;
+        } else {
+          // Placeholder is empty
+          this.showToolTip = true;
+          document.getElementById("placeholderText").style.display =
+            "inline-block";
+        }
+        if (this.searchQuery.includes("@")) {
+          console.log("They're entering an email!");
+          this.buttonText = "Invite friend by email";
+        } else if (
+          //eslint-disable-next-line
+          /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(
+            this.searchQuery
+          )
+        ) {
+          // If phone number (see https://stackoverflow.com/questions/4338267/validate-phone-number-with-javascript)
+          this.buttonText = "Invite friend by phone number";
+          console.log("They're entering a phone number!");
+        } else {
+          this.buttonText = "";
+          console.log("They're still entering data.");
+        }
       },
     },
   };
@@ -66,6 +132,40 @@
   .container {
     padding: 15px;
     padding-bottom: 0px;
+  }
+
+  #placeholderText {
+    position: absolute;
+    margin-left: 50px;
+    margin-top: 8px;
+    color: rgb(77, 72, 72);
+  }
+
+  #searchBoxContainer {
+    border-radius: 30px;
+    width: 600px;
+    height: 40px;
+    display: inline-block;
+    border: 0px solid #ccc;
+    box-sizing: border-box;
+    background-color: rgb(240, 242, 245);
+  }
+
+  #searchBox2 {
+    position: relative;
+    padding-left: 50px;
+    background: none;
+    border-radius: 30px;
+    width: 600px;
+    height: 40px;
+    display: inline-block;
+    border: 0px solid #ccc;
+    box-sizing: border-box;
+    /* background-color: rgb(240, 242, 245); */
+  }
+
+  #searchBox2:focus {
+    outline: 0px;
   }
 
   #searchBox {
