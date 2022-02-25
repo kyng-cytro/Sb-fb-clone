@@ -16,11 +16,11 @@
     </button>
     <h3>EVENTS I ATTENDED</h3>
     <button
-      v-for="event in eventsAttended"
+      v-for="event in events"
       :key="event"
       :id="event"
       :class="selected === event ? 'selected' : ''"
-      @click="select"
+      @click="selectEvent"
     >
       {{ event }}
     </button>
@@ -30,7 +30,7 @@
       :key="group"
       :id="group"
       :class="selected === group ? 'selected' : ''"
-      @click="select"
+      @click="selectGroup"
     >
       {{ group }}
     </button>
@@ -69,6 +69,17 @@ export default {
     select(event) {
       const id = event.currentTarget.id;
       this.selected = id;
+      this.$emit("selected", id);
+    },
+    selectEvent(event) {
+      const id = event.currentTarget.id;
+      this.selected = id;
+      this.$emit("event", id);
+    },
+    selectGroup(event) {
+      const id = event.currentTarget.id;
+      this.selected = id;
+      this.$emit("group", id);
     },
   },
 };
