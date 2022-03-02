@@ -10,6 +10,7 @@
           ? require('@/assets/images/FriendProfilePics/' + friend.imageSource)
           : friend.imageSource
       "
+      @error="setAltImg"
     />
     <!-- That last line there says that if it ends with jpg, look in the FriendProfilePics folder for the image. Otherwise, assume it's a public URL -->
 
@@ -148,6 +149,11 @@
         return styles;
       },
     },
+    methods: {
+      setAltImg(event) {
+        event.target.src = `https://ui-avatars.com/api/?name=${this.friend.name.split(' ').join('+')}`;
+      }
+    }
   };
 </script>
 

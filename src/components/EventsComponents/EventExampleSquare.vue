@@ -25,7 +25,7 @@ export default {
   methods: {
     handleInterestedClick() {
       console.log("You're intererested!");
-    },
+    }
   }
 }
 

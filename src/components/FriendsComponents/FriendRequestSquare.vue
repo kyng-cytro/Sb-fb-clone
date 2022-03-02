@@ -1,6 +1,6 @@
 <template>
         <div class="friendRequestSquare">
-          <img v-if="friendRequest.imageSource" class="profilePic" :src="require('@/assets/images/FriendProfilePics/' + friendRequest.imageSource)" />
+          <img v-if="friendRequest.imageSource" class="profilePic" :src="require('@/assets/images/FriendProfilePics/' + friendRequest.imageSource)" @error="setAltImg"/>
           <i v-else class="bi bi-person-fill"></i>
           <div class="info">
             <strong>{{friendRequest.name}}</strong>
@@ -51,6 +51,9 @@ export default {
           state: "deleted"
         }
       });
+    },
+    setAltImg(event) {
+      event.target.src = `https://ui-avatars.com/api/?name=${this.friendRequest.name.split(' ').join('+')}`;
     },
     handleConfirmClick() {
       FriendRequest.update({
