@@ -6,7 +6,7 @@
             <strong>{{friendRequest.name}}</strong>
             <!-- <p id="mutualFriends">{{friendRequest.numOfMutualFriends}} mutual friends <p> -->
               <br />
-            <em id="expireMessage">{{"Expires in " + friendRequest.daysUntilExpiration + " days"}}</em>
+            <em id="expireMessage" v-show="this.$root.$data.fbLiteEnabled">{{"Expires in " + friendRequest.daysUntilExpiration + " days"}}</em>
             <div v-if="friendRequest.state==='deleted'">
               <div>
                 <button type="button" class="btn btn-secondary invisible" disabled>Invisible</button>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import FacebookLite from "@/vuex-orm_models/FacebookLiteModel.js";
 import FriendRequest from "@/vuex-orm_models/FriendRequestModel.js";
 
 export default {
@@ -62,6 +63,19 @@ export default {
           state: "confirmed"
         }
       });
+    },
+    watch: {
+      getFacebookLite: function (isEnabled) {
+        if (!isEnabled) {
+          //If it's now not enabled
+          this.resetFilters();
+        }
+      },
+    },
+    computed: {
+      getFacebookLite() {
+        return FacebookLite.find(1).enabled;
+      },
     },
   }
 }
