@@ -54,6 +54,7 @@
       FacebookLite.insert({
         data: { id: 1, enabled: false },
       });
+      this.$root.$data.fbLiteEnabled = false;
       this.facebookLightButtons = ["friends", "groups", "events", "favorites"];
       this.facebookButtons = [
         "marketplace",
@@ -72,6 +73,7 @@
             enabled: !this.getFacebookLite,
           },
         });
+        this.$root.$data.fbLiteEnabled = this.getFacebookLite;
       },
     },
   };

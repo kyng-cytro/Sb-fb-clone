@@ -8,7 +8,20 @@
         <div class="inner">
           <div class="full-height">
             <i class="bi bi-search icon"></i>
-            <div id="searchBoxContainer">
+            <div v-if="!this.$root.$data.fbLiteEnabled" id="searchBoxContainer">
+              <label>
+                <span id="placeholderText">
+                  Search for people by name, email address or phone number
+                </span>
+                <input
+                  type="text"
+                  id="searchBox2"
+                  @input="updateQuery"
+                  v-model="searchQuery"
+                />
+              </label>
+            </div>
+            <div v-else id="searchBoxContainer">
               <b-tooltip
                 ref="tooltip"
                 target="searchBoxContainer"
@@ -19,7 +32,7 @@
               </b-tooltip>
               <label>
                 <span id="placeholderText">
-                  Invite friends by name, <strong>email address</strong> or
+                  Search for people by name, <strong>email address</strong> or
                   <strong>phone number</strong>
                 </span>
                 <input
@@ -40,18 +53,25 @@
           v-model="form.data"
           placeholder="Search for friends by name"
         /> -->
-        <button
-          v-show="buttonText"
-          id="nonFacebookButton"
-          class="btn btn-primary"
-          @click="this.emitToggleNonFacebookVisibility"
-        >
-          {{ buttonText }}
-        </button>
+
+        <div v-show="this.$root.$data.fbLiteEnabled">
+          <button
+            v-show="buttonText"
+            id="nonFacebookButton"
+            class="btn btn-primary"
+            @click="this.emitToggleNonFacebookVisibility"
+          >
+            {{ buttonText }}
+          </button>
+        </div>
       </div>
     </div>
     <div id="friendSelectionContainer">
-      <InviteFriendsSidebar v-on:selected="applySelectedList" v-on:event="applySelectedEvent" v-on:group="applySelectedGroup" />
+      <InviteFriendsSidebar
+        v-on:selected="applySelectedList"
+        v-on:event="applySelectedEvent"
+        v-on:group="applySelectedGroup"
+      />
       <InviteFriendsList :friendsList="friendsList" />
     </div>
   </div>
@@ -83,28 +103,34 @@ export default {
     InviteFriendsSidebar,
   },
   mounted() {
-    this.$root.$on("triggerInviteFriendsTooltip", () => {
-      // Sleep for 700 miliseconds before opening popup
-      setTimeout(() => {
-        // Note that a fat-arrow function is used here to preserve the scope of 'this' (see https://forum.vuejs.org/t/is-not-a-function/12444)
-        this.onOpen();
-      }, 700);
-    });
+    if (this.$root.$data.fbLiteEnabled) {
+      this.$root.$on("triggerInviteFriendsTooltip", () => {
+        // Sleep for 700 miliseconds before opening popup
+        setTimeout(() => {
+          // Note that a fat-arrow function is used here to preserve the scope of 'this' (see https://forum.vuejs.org/t/is-not-a-function/12444)
+          this.onOpen();
+        }, 700);
+      });
+    }
   },
   methods: {
     applySelectedList(list) {
-      if (list === 'all') {
+      if (list === "all") {
         this.friendsList = Friend.all();
       } else {
         this.friendsList = Friend.all().slice(0, 100);
       }
     },
     applySelectedGroup(group) {
-      const groupFriends = GroupFriend.all().find((friend) => friend.groupName === group).friends;
+      const groupFriends = GroupFriend.all().find(
+        (friend) => friend.groupName === group
+      ).friends;
       this.friendsList = Friend.findIn(groupFriends);
     },
     applySelectedEvent(event) {
-      const eventFriends = EventFriend.all().find((friend) => friend.eventName === event).friends;
+      const eventFriends = EventFriend.all().find(
+        (friend) => friend.eventName === event
+      ).friends;
       this.friendsList = Friend.findIn(eventFriends);
     },
     onOpen() {

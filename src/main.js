@@ -18,5 +18,8 @@ Vue.use(IconsPlugin)
 new Vue({
   router,
   store,
+  data: {
+    fbLiteEnabled: null,
+  },
   render: (h) => h(App),
 }).$mount("#app");
