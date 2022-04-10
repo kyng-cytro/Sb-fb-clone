@@ -64,18 +64,18 @@ export default {
         }
       });
     },
-    watch: {
-      getFacebookLite: function (isEnabled) {
-        if (!isEnabled) {
-          //If it's now not enabled
-          this.resetFilters();
-        }
-      },
+  },
+  watch: {
+    getFacebookLite: function (isEnabled) {
+      if (!isEnabled) {
+        //If it's now not enabled
+        this.resetFilters();
+      }
     },
-    computed: {
-      getFacebookLite() {
-        return FacebookLite.find(1).enabled;
-      },
+  },
+  computed: {
+    getFacebookLite() {
+      return FacebookLite.find(1).enabled;
     },
   }
 }

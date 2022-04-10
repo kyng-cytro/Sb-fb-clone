@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div v-if="!this.submitted">
-            <form>
+            <form @submit.prevent="enter">
                 <div class="form-group">
                     <label for="nameInput">{{currentQuestion}}</label>
                     <input v-model="name" type="text" class="form-control" id="nameInput" placeholder="Name">
@@ -9,8 +9,8 @@
             </form>
 
             <button class="back" @click="previous">Back</button>
-            <button v-show="!finished" @click="next">Next</button>
-            <button class="submit" v-show="finished" @click="submit">Submit</button>
+            <button v-show="!finished" @click="enter">Next</button>
+            <button class="submit" v-show="finished" @click="enter">Submit</button>
         </div>
         <div v-else>
             <p>Thank you.</p>
@@ -56,6 +56,12 @@ const questionFriendList = [
             }
         },
         methods: {
+            enter() { 
+                if (this.finished)
+                    this.submit();
+                else
+                    this.next();
+            },
             submit() {
                 this.setQuestion(this.index); // Basically do what the next function does for the last item
                 for (let i = 0; i < questionFriendList.length; i++) {
