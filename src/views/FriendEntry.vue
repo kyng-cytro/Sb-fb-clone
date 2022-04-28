@@ -59,6 +59,12 @@ export default {
       submitted: false,
     };
   },
+  created() {
+    // Reset Friend Request entry array to empty (start with a fresh set of friend requests)
+    FriendRequest.delete((friend) => {
+      return friend.id;
+    });
+  },
   methods: {
     enter() {
       if (this.finished) this.submit();
