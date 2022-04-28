@@ -19,6 +19,7 @@
   import Topbar from "@/components/TopbarComponents/Topbar.vue";
   import { DataPopulation } from "@/mixins/DataPopulation.js";
   import { UserPopulation } from "@/mixins/UserPopulation";
+  import FacebookLite from "@/vuex-orm_models/FacebookLiteModel.js";
 
   export default {
     name: "App",
@@ -30,6 +31,10 @@
       // POPULATE VUEX-ORM DATA
       this.setFaceookLite();
       this.populatePosts();
+      
+      FacebookLite.insert({
+        data: { id: 1, enabled: false },
+      });
     },
   };
 </script>

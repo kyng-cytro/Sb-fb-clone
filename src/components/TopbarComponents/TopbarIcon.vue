@@ -1,14 +1,17 @@
 <template>
   <div class="circle">
-    <img class="imageIcon" :src="require('@/assets/images/TopbarIcons/' + type + 'Icon.png')" />
+    <img
+      class="imageIcon"
+      :src="require('@/assets/images/TopbarIcons/' + type + 'Icon.png')"
+    />
   </div>
 </template>
 
 <script>
 export default {
   name: "CircularIcon",
-  props: ['type']
-}
+  props: ["type"],
+};
 </script>
 
 <style scoped>
@@ -29,7 +32,6 @@ export default {
 
 .imageIcon {
   height: 24px;
-  width: 24px
+  width: 24px;
 }
-
 </style>

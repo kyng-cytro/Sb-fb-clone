@@ -19,7 +19,7 @@ new Vue({
   router,
   store,
   data: {
-    fbLiteEnabled: null,
+    fbLiteEnabled: null, // Global variable to track if Facebook Lite is enabled or not.
   },
   render: (h) => h(App),
 }).$mount("#app");
