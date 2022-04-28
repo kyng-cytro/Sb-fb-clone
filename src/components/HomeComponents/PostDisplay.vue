@@ -13,48 +13,47 @@
 </template>
 
 <script>
-  import PostSquare from "./PostSquare.vue";
-  import Post from "@/vuex-orm_models/PostModel.js";
-  import { PostFiltering } from "@/mixins/PostFiltering.js";
-  import Filter from "@/vuex-orm_models/FilterModel.js";
+import PostSquare from "./PostSquare.vue";
+import Post from "@/vuex-orm_models/PostModel.js";
+import { PostFiltering } from "@/mixins/PostFiltering.js";
+import Filter from "@/vuex-orm_models/FilterModel.js";
 
-
-  export default {
-    name: "PostDisplay",
-    mixins: [PostFiltering],
-    components: {
-      PostSquare,
+export default {
+  name: "PostDisplay",
+  mixins: [PostFiltering],
+  components: {
+    PostSquare,
+  },
+  created() {
+    let bob = this.posts;
+    console.log(bob);
+    console.log(this.filters);
+  },
+  computed: {
+    filters() {
+      return Filter.find(1);
     },
-    created() {
-      let bob = this.posts;
-      console.log(bob);
-      console.log(this.filters);
+    posts() {
+      return Post.all();
     },
-    computed: {
-      filters() {
-        return Filter.find(1);
-      },
-      posts() {
-        return Post.all();
-      }
-    },
-    data() {
-      return {};
-    },
-  };
+  },
+  data() {
+    return {};
+  },
+};
 </script>
 
 <style scoped>
-  .postDisplay {
-    justify-content: left;
-    align-items: left;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-  }
+.postDisplay {
+  justify-content: left;
+  align-items: left;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
 
-  .square {
-    float: left;
-  }
+.square {
+  float: left;
+}
 </style>

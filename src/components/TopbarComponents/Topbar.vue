@@ -1,31 +1,35 @@
 <template>
-    <nav class="topbar">
-      <div>
-        <img id="logo" src = "@/assets/images/facebook.png" />
-        <router-link to="/" class="title">Facebook Lite</router-link>
-      </div>
-      <div id="icons">
-        <router-link :to="'/ResearcherReview'">
-          <button class="invisible">Add Friend Request</button>
-        </router-link>
-        <router-link :to="'/FriendEntry'"><button class="btn btn-primary">Friend Entry</button></router-link>
-        <CircularIcon type = "plus"/>
-        <CircularIcon type = "messenger"/>
-        <CircularIcon type = "notifications"/>
-        <CircularIcon type = "triangle"/>
-      </div>
-    </nav>
+  <nav class="topbar">
+    <div>
+      <img id="logo" src="@/assets/images/facebook.png" />
+      <router-link to="/" class="title">
+        <span v-if="this.$root.$data.fbLiteEnabled">Facebook Lite</span>
+        <span v-else>Facebook</span>
+      </router-link>
+    </div>
+    <div id="icons">
+      <router-link :to="'/ResearcherReview'">
+        <button class="invisible">Add Friend Request</button>
+      </router-link>
+      <router-link :to="'/FriendEntry'"
+        ><button class="btn btn-primary">Friend Entry</button></router-link
+      >
+      <CircularIcon type="plus" />
+      <CircularIcon type="messenger" />
+      <CircularIcon type="notifications" />
+      <CircularIcon type="triangle" />
+    </div>
+  </nav>
 </template>
 
 <script>
-
-import CircularIcon from "./TopbarIcon"
+import CircularIcon from "./TopbarIcon";
 export default {
   name: "Topbar",
   components: {
-    CircularIcon
-  }
-}
+    CircularIcon,
+  },
+};
 </script>
 
 
@@ -50,7 +54,7 @@ button {
   box-shadow: 0px 1px 3px #d8d5d5;
   padding: 5px 5px 5px 14px;
   position: relative; /*This is done so that the shadow will appear above the Home component*/
-  z-index: 10
+  z-index: 10;
 }
 
 #icons {

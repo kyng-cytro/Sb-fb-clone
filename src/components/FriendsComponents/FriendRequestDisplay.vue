@@ -35,34 +35,34 @@
 </template>
 
 <script>
-  import FriendRequestSquare from "./FriendRequestSquare.vue";
+import FriendRequestSquare from "./FriendRequestSquare.vue";
 
-  export default {
-    name: "FriendRequestDisplay",
-    props: ["friendRequests", "showFriendQuestion"],
-    components: {
-      FriendRequestSquare,
+export default {
+  name: "FriendRequestDisplay",
+  props: ["friendRequests", "showFriendQuestion"],
+  components: {
+    FriendRequestSquare,
+  },
+  computed: {
+    showFriendQuestionNotNull() {
+      return this.showFriendQuestion != null && this.showFriendQuestion;
     },
-    computed: {
-      showFriendQuestionNotNull() {
-        return this.showFriendQuestion != null && this.showFriendQuestion;
-      },
-    },
-  };
+  },
+};
 </script>
 
 <style scoped>
-  .friendRequestDisplay {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-  }
-  .square {
-    padding: 5px;
-  }
+.friendRequestDisplay {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.square {
+  padding: 5px;
+}
 
-  #friendQuestion {
-    width: 20vw;
-    padding-left: 10%;
-  }
+#friendQuestion {
+  width: 20vw;
+  padding-left: 10%;
+}
 </style>
