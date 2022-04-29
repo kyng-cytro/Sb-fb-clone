@@ -1,0 +1,229 @@
+{
+    "friends": [
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Mom"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Dad"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Grandma"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Grandpa"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Son"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Daughter"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Brother"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Sister"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Grandson"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Granddaughter"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Uncle"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Aunt"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Nephew"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Neice"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Cousin"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Husband"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Wife"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Father-in-law"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Mother-in-law"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Son-in-law"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Daughter-in-law"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Step Mom"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Step Dad"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Brother-in-law"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Sister-in-law"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Fiancé"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Fiancée"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Great-grandpa"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Great-grandma"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Great-great grandpa"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Great-great grandma"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Half-brother"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Half-sister"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Great-uncle"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Great-aunt"
+        }
+    ],
+    "friendsByEvent": [],
+    "friendsByGroup": [
+        {
+            "friends": [
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Mom"
+                },
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Dad"
+                },
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Brother"
+                },
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Sister"
+                }
+            ],
+            "groupName": "Immediate Family"
+        },
+        {
+            "friends": [
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Grandpa"
+                },
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Grandma"
+                },
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Aunt"
+                },
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Uncle"
+                },
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Neice"
+                },
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Nephew"
+                },
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Cousin"
+                },
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Great-Aunt"
+                },
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Great-Uncle"
+                },
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Great-Grandpa"
+                },
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Great-Grandma"
+                }
+            ],
+            "groupName": "Extended Family"
+        }
+    ],
+    "phone_number": "researchers@stapl.com",
+    "suggestedFriends": [
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "John Doe"
+        }
+    ],
+    "user": {
+        "imageSource": "",
+        "name": "STaPL Researcher",
+        "total_number_of_friends": 35
+    }
+}

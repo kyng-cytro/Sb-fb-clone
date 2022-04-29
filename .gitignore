@@ -25,4 +25,4 @@ pnpm-debug.log*
 *.sw?
 
 # Mock files
-public/*.json
+public/fixture.json
