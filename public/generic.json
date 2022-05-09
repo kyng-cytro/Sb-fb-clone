@@ -139,6 +139,38 @@
         {
             "imageSource": "generic-profile-picture.jpg",
             "name": "Great-aunt"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Neighbor"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Coworker"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Friend"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Best Friend"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Coach"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Teammate"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Schoolmate"
+        },
+        {
+            "imageSource": "generic-profile-picture.jpg",
+            "name": "Workout Buddy"
         }
     ],
     "friendsByEvent": [],
@@ -212,6 +244,43 @@
                 }
             ],
             "groupName": "Extended Family"
+        },
+        {
+            "friends": [
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Neighbor"
+                },
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Coworker"
+                },
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Schoolmate"
+                },
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Friend"
+                },
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Best Friend"
+                },
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Coach"
+                },
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Teammate"
+                },
+                {
+                    "imageSource": "generic-profile-picture.jpg",
+                    "name": "Workout Buddy"
+                }
+            ],
+            "groupName": "Friends"
         }
     ],
     "phone_number": "researchers@stapl.com",
@@ -223,7 +292,7 @@
     ],
     "user": {
         "imageSource": "",
-        "name": "STaPL Researcher",
+        "name": "",
         "total_number_of_friends": 35
     }
 }

@@ -1,4 +1,4 @@
-// This model file references from an event name to a list of FriendModel objects
+// This model file references from a group name to a list of FriendModel objects
 import { Model } from '@vuex-orm/core';
 
 export default class GroupFriend extends Model {

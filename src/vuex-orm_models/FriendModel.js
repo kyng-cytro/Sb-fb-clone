@@ -3,6 +3,8 @@ import { Model } from '@vuex-orm/core';
 export default class Friend extends Model {
     static entity = 'friends'; // This is the table name for the local database
 
+    static primaryKey = 'id';
+
     static fields() { // These are like columns for the database table
         return {
             id: this.uid(), // id is assumeed to be the primary key (can be overridden) uid generates a unique ID for single client (not UUID)

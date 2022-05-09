@@ -102,7 +102,7 @@ export default {
         }
       } else {
         try {
-          const response = await fetch("/fixture.json");
+          const response = await fetch("/generic.json");
           const data = await response.json();
 
           this.addData(

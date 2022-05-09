@@ -24,6 +24,22 @@ export const FriendPopulation = {
     },
 
     /**
+     * A method that can be used to retrieve a friend from the local database using the friend's imageSource
+     * 
+     * @param {string} name A string of the friend's name. Note that this uniquely identifies a friend (when using the generic.json file)
+     * @returns {object} Returns a JS Object from the VUEX-ORM database representing the friend associated with that image source
+     */
+     getFriendByName(name) {
+      let friends = this.friends;
+      for (let i = 0; i < friends.length; i++) {
+        if (friends[i].name === name) {
+          return friends[i];
+        }
+      }
+      console.log("WE COULD NOT FIND THE FRIEND YOU WERE LOOKING FOR!");
+    },
+
+    /**
      * Adds a friend to the database given the name of the group or event 
      * 
      * @param {string} categoryName the name of the group or event
@@ -33,11 +49,15 @@ export const FriendPopulation = {
     addFriendWithCategory(categoryName, friendList, category) {
       // Note, this code depends on the Friend model already having been updated
       let friendIDs = [];
-      console.log(categoryName);
-      for (let i = 0; i < friendList.length; i++) {
-        let friend = this.getFriendByImageSource(friendList[i].imageSource);
 
-        if (!friend) {
+      // For every friend in our supplied list, search for them in the Friend model (db)
+      // so we can get their uid and then add them to our friendID [] array
+      for (let i = 0; i < friendList.length; i++) {
+        // If using generic profile photos, you need unique names; however,
+        // if using unique profile photos, use the `getFriendsByImageSource`
+        let friend = this.getFriendByName(friendList[i].name); 
+
+        if (!friend) { // Friend was not found
           continue;
         }
 

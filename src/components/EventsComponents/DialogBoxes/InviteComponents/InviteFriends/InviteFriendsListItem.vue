@@ -1,10 +1,10 @@
 <template>
-    <div class="container" v-on:click="select">
+    <div class="container" @click="select">
         <div class="verticalAlign">
-            <FriendDisplay :friend="this.friend" :bold="this.selected"/>
+            <FriendDisplay :friend="this.friend"/>
         </div>
         <div class="verticalAlign">
-            <i v-if="!this.selected" class="bi bi-circle"></i>    
+            <i v-if="!isSelected(this.friend.id)" class="bi bi-circle"></i>    
             <i v-else class="bi bi-check-circle-fill selectedCheck"></i>
         </div>
     </div>
@@ -24,16 +24,14 @@ import FriendDisplay from "@/components/Multipurpose/FriendDisplay";
                 Friend.update({
                     where: this.friend.id,
                     data: {
-                        selected: !this.selected
+                        selected: !this.isSelected(this.friend.id),
                     }
                 });
+            },
+            isSelected(userID) {
+                return Friend.find(userID).selected;
             }
         },
-        computed: {
-            selected() {
-                return this.friend.selected;
-            }
-        }
     }
 </script>
 

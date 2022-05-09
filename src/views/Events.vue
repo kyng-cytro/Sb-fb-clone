@@ -44,12 +44,6 @@ export default {
     EventPreview,
     EventData,
   },
-  created() {
-    if (!this.userLoggedIn) {
-      this.addUser(this.userTestData);
-      this.addFriends(this.friendsTestData);
-    }
-  },
   methods: {
     updateEventState(newState) {
       this.eventState = newState;
