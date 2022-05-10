@@ -6,7 +6,7 @@
       </div>
     </div>
     <div v-else class="home">
-      <HomeSidebar />
+      <HomeSidebar id="sidebar"/>
       <div class="content">
         <CreatePost />
         <PostDisplay />
@@ -51,6 +51,10 @@ export default {
   background-color: rgb(240, 242, 245);
   width: 100vw;
   height: 100vh;
+}
+#sidebar {
+  position: fixed;
+  margin: 20px 10px;
 }
 .home {
   width: 100%;

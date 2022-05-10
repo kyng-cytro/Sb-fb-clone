@@ -10,7 +10,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
     />
-    <Topbar v-if="isUserLoggedIn" />
+    <Topbar v-if="isUserLoggedIn" id="topbar" />
     <router-view id="fillWidth" />
   </div>
 </template>
@@ -63,6 +63,11 @@
 
   #fillWidth {
     width: 100vw;
-    height: 100%;
+  }
+
+  #topbar { 
+    position: sticky;
+    top: 0;
+    width: 100vw;
   }
 </style>
