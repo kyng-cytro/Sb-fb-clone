@@ -1,5 +1,5 @@
 <template>
-  <div class="filter" v-show="getFacebookLite">
+  <div class="filter">
     <h3 style="text-align: center">Filters</h3>
     <table>
       <th>People</th>
@@ -77,7 +77,6 @@
 </template>
 
 <script>
-import FacebookLite from "@/vuex-orm_models/FacebookLiteModel.js";
 import FiltersValues from "@/vuex-orm_models/FilterModel.js";
 
 export default {
@@ -103,9 +102,6 @@ export default {
     },
   },
   computed: {
-    getFacebookLite() {
-      return FacebookLite.find(1).enabled;
-    },
     getFilters() {
       return FiltersValues.find(1);
     },
@@ -185,9 +181,8 @@ export default {
 <style scoped>
 .filter {
   background-color: white;
-  width: 13vw;
   border-radius: 10px;
-  margin: 10%;
+  margin: 3vh 3vh 3vh 0;
   box-shadow: 0px 0px 3px rgb(140, 140, 140);
   display: flex;
   flex-direction: column;

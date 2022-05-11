@@ -11,7 +11,7 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
     />
     <Topbar v-if="isUserLoggedIn" id="topbar" />
-    <router-view id="fillWidth" />
+    <router-view />
   </div>
 </template>
 
@@ -59,10 +59,6 @@
 
   .App-link {
     color: #61dafb;
-  }
-
-  #fillWidth {
-    width: 100vw;
   }
 
   #topbar { 

@@ -59,6 +59,7 @@ button {
 
 #icons {
   display: flex;
+  margin-right: 2vw;
 }
 
 #logo {

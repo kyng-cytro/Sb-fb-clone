@@ -65,7 +65,6 @@ export default {
 <style scoped>
 .postDisplay {
   justify-content: left;
-  align-items: left;
   width: inherit;
   display: flex;
   flex-wrap: wrap;

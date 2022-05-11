@@ -163,7 +163,7 @@
     padding: 0px;
     height: 30px;
     line-height: 35px;
-    text-align: center;
+    text-align: flex-start;
   }
 
   img {
