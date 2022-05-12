@@ -63,6 +63,18 @@ export const DataPopulation = {
           isPostViewOnly: false,
         },
       });
+      
+      posts.push({
+        imageSource: "rei.png",
+        friend: {
+          name: "REI"
+        },
+        text: "Members can now buy a Co-op Cycles kids' bike today and trade it in for a gift card later. Terms apply.",
+        date: currentPostDate.toISOString(), // For some reason, dates have to be stored as strings in these objects otherwise the DateProcessing gets mad
+        numComments: this.getRandomInt(1, 10),
+        numShares: this.getRandomInt(0, 5),
+        numLikes: this.getRandomInt(5, 30),
+      });
 
       currentPostDate.setDate(currentPostDate.getDate() - 3);
       currentPostDate.setHours(this.getRandomInt(7, 24), this.getRandomInt(0, 60));
@@ -143,6 +155,17 @@ export const DataPopulation = {
         },
       });
       
+      posts.push({
+      imageSource: "market.png",
+      friend: {
+        name: "Jasper's Market"
+      },
+      text: "Out on a grocery run? Make sure to stock up on our fresh, in-season fruits and veggies.",
+      date: currentPostDate.toISOString(), // For some reason, dates have to be stored as strings in these objects otherwise the DateProcessing gets mad
+      numComments: this.getRandomInt(1, 10),
+      numShares: this.getRandomInt(0, 5),
+      numLikes: this.getRandomInt(5, 30),
+      });
 
       currentPostDate.setDate(currentPostDate.getDate() - 6);
       currentPostDate.setHours(this.getRandomInt(7, 24), this.getRandomInt(0, 60));
@@ -181,6 +204,18 @@ export const DataPopulation = {
           isMajorEvent: true,
           isPostViewOnly: false,
         },
+      });
+      
+      posts.push({
+      imageSource: "ikea.png",
+      friend: {
+        name: "IKEA"
+      },
+      text: "Get your sprintime vibes in check with affordable prices to keep you in season.",
+      date: currentPostDate.toISOString(), // For some reason, dates have to be stored as strings in these objects otherwise the DateProcessing gets mad
+      numComments: this.getRandomInt(1, 10),
+      numShares: this.getRandomInt(0, 5),
+      numLikes: this.getRandomInt(5, 30),
       });
 
       currentPostDate.setDate(currentPostDate.getDate() - 6);
