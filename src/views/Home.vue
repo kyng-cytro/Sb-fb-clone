@@ -63,12 +63,10 @@ export default {
 <style scoped>
 #loginPageContainer {
   background-color: rgb(240, 242, 245);
-  width: 100vw;
-  height: 100vh;
 }
 #sidebar {
   position: sticky;
-  margin: 20px 10px;
+  margin: 1.5rem 0;
 }
 .home {
   width: 100%;

@@ -64,6 +64,6 @@
   #topbar { 
     position: sticky;
     top: 0;
-    width: 100vw;
+    width: 100%;
   }
 </style>
