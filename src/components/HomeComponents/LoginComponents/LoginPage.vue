@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-fluid d-flex justify-content-center align-items-center">
     <div class="main">
       <div class="facebookLogoHalf">
         <img src="@/assets/images/LoginImages/Long_Logo.svg" />
@@ -121,13 +121,13 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  width: 100vw;
+.container-fluid {
+  width: 100vh;
+  height: 100vh;
 }
+
 .main {
   display: flex;
-  padding: 100px;
-  width: 100vw;
   justify-content: center;
 }
 
