@@ -37,9 +37,9 @@
           </button>
         </div>
         <div>
-          <button type="button" class="btn btn-secondary">
+          <button type="button" class="btn btn-secondary d-flex align-items-center">
             <i class="bi bi-chat"></i>
-            Comment
+            <span class="pl-2">Comment</span>
           </button>
         </div>
         <div>

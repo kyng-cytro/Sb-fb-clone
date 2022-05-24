@@ -7,12 +7,6 @@ export const PostFiltering = {
         console.log("Facebook lite isn't enabled, so we're not filtering the posts.")
         return posts;
       }
-      if (filter == null || posts.length < 1) {
-        return [];
-      }
-      for (let i = 0; i < posts.length; i++) {
-        console.log(posts[i].date);
-      }
       function getDifferenceInTime(date1, date2) {
         return Math.abs(date1.getTime() - date2.getTime());
       }
