@@ -35,13 +35,31 @@
             <strong>Create a page</strong> for a celebrity, band, or business.
           </p>
           <br />
-          <button
-            id="smallButton"
-            class="btn btn-secondary"
-            @click="usePrototypeWithoutData"
-          >
-            Use prototype without scraping data
-          </button>
+          <hr />
+          <form>
+            <div class="form-group">
+              <label for="nameInput">Use Generic Data</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nameInput"
+                aria-describedby="nameHelp"
+                placeholder="Enter Your Name"
+                v-model="usersName"
+              />
+              <small id="nameHelp" class="form-text text-muted"
+                >We'll never share any information shared on this
+                prototype.</small
+              >
+            </div>
+            <button
+              id="smallButton"
+              class="btn btn-secondary"
+              @click="usePrototypeWithoutData"
+            >
+              Use prototype without scraping data
+            </button>
+          </form>
         </div>
       </div>
     </div>
@@ -61,6 +79,7 @@ export default {
       username: "",
       password: "",
       scrape: true,
+      usersName: "",
     };
   },
   created() {
@@ -70,6 +89,10 @@ export default {
   },
   methods: {
     usePrototypeWithoutData() {
+      let user = {
+        name: this.usersName,
+      }
+      this.addUser(user)
       this.scrape = false;
       this.logIn();
     },

@@ -6,7 +6,7 @@
         v-for="post in filterPosts(posts, filters)"
         :key="post.id"
       >
-        <PostSquare v-bind:post="post" />
+        <PostSquare :post="post" />
       </div>
     </div>
   </div>
@@ -34,7 +34,7 @@ export default {
       return Filter.find(1);
     },
     posts() {
-      return Post.all();
+      return Post.query().orderBy('date', 'desc').get();
     },
   },
   data() {

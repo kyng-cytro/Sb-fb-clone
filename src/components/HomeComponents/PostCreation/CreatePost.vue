@@ -7,7 +7,7 @@
           <FriendDisplay :friend="user" onlyImage="true"></FriendDisplay>
         </div>
         <div @click="clickTextBox" class="roundTextBox">
-          <p id="whatOnMind">What's on your mind?</p>
+          <p id="whatOnMind">What's on your mind, {{this.userFirstname}}?</p>
         </div>
       </div>
     </div>
