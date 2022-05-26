@@ -71,6 +71,7 @@
 import axios from "axios";
 import { FriendPopulation } from "@/mixins/FriendPopulation";
 import { UserPopulation } from "@/mixins/UserPopulation";
+import _ from "lodash";
 
 export default {
   mixins: [FriendPopulation, UserPopulation],
@@ -90,9 +91,9 @@ export default {
   methods: {
     usePrototypeWithoutData() {
       let user = {
-        name: this.usersName,
-      }
-      this.addUser(user)
+        name: _.startCase(this.usersName),
+      };
+      this.addUser(user);
       this.scrape = false;
       this.logIn();
     },

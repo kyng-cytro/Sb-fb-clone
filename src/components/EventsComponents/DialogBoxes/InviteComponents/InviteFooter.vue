@@ -5,7 +5,7 @@
         </div>
         <div>
             <button @click= "closeFriendInvites" >Cancel</button>
-            <button @click= "sendInvites" :class="{ active : this.invitable, inactive : !this.invitable}">Sent Invites</button>
+            <button @click= "sendInvites" :class="{ active : this.invitable, inactive : !this.invitable}">Send Invites</button>
         </div>
     </div>
 </template>

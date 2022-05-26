@@ -1,6 +1,15 @@
 <template>
   <div id="invite">
-    <div>
+    <div class="inviteDiv">
+      <div v-show="collapseNonFacebook">
+        <b-collapse
+          id="collapse-non-facebook"
+          v-model="collapseNonFacebook"
+          class="mt-2"
+        >
+          <InviteNonFacebook />
+        </b-collapse>
+      </div>
       <InviteFriends @toggleNonFacebookVisibility = "toggleVisibility"/>
       <!-- <b-button
         :class="collapseNonFacebook ? null : 'collapsed'"
@@ -10,16 +19,6 @@
       >
         Toggle Collapse
       </b-button> -->
-      <div v-show="collapseNonFacebook">
-        <hr />
-        <b-collapse
-          id="collapse-non-facebook"
-          v-model="collapseNonFacebook"
-          class="mt-2"
-        >
-          <InviteNonFacebook />
-        </b-collapse>
-      </div>
     </div>
     <div>
       <InvitesLeft />
@@ -54,6 +53,10 @@
 <style scoped>
   #invite {
     display: flex;
+  }
+  .inviteDiv {
+    overflow-y: auto;
+    max-height: 70vh;
   }
   hr {
     margin: 0px;

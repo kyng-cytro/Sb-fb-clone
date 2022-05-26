@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container p-0">
     <div>
       <button
         v-if="!selectAll"
@@ -60,7 +60,7 @@ export default {
 <style scoped>
 .container {
   width: 350px;
-  height: 350px;
+  height: 60vh;
   overflow-x: hidden;
   overflow-y: auto;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid p-0">
     <div v-if="!isUserLoggedIn">
       <div id="loginPageContainer">
         <LoginPage />

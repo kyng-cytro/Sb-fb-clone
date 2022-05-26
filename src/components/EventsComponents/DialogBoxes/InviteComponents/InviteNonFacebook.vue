@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" id="nonFacebookForm">
     <p>Want to invite friends not on Facebook? No problem!</p>
 
     <div class="form-group">
