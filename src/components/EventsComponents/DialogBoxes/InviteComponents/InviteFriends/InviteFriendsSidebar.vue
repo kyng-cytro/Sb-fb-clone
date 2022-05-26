@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container p-0">
     <button
       id="suggested"
       :class="selected === 'suggested' ? 'selected' : ''"

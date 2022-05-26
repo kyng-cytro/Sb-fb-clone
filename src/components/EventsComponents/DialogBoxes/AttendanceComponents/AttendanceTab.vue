@@ -24,7 +24,7 @@ button {
     color: rgb(94, 94, 94);
     background-color: transparent;
     border-width: 0px;
-    padding: 16px;
+    padding: 12px;
 }
 button:hover {
     border-radius: 7px;
@@ -41,9 +41,5 @@ button:focus {
 .selected:hover {
     background-color: transparent;
     border-radius: 0px;
-}
-
-.tabContent {
-    padding: 15px;
 }
 </style>

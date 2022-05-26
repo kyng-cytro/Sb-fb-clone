@@ -85,10 +85,8 @@
 <style scoped>
   .tabs {
     display: flex;
-    padding: 4px;
   }
-
   .content {
-    padding: 20px;
+    margin-top: 1.25rem;
   }
 </style>

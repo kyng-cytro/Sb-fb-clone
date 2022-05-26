@@ -1,11 +1,11 @@
 <template>
-  <div class="container">
+  <div class="container" id="nonFacebookFriends">
     <!-- The following div is the search bar -->
     <div>
       <div class="input-icons">
         <!-- I use the following two divs/classes as described here: https://stackoverflow.com/questions/17656623/position-absolute-scrolling-->
         <!-- For the purpose of having an absolutely positioned search icon that still scrolls in the dialog box -->
-        <div class="inner">
+        <div class="inner mb-3">
           <div class="full-height">
             <i class="bi bi-search icon"></i>
             <div v-if="!this.$root.$data.fbLiteEnabled" id="searchBoxContainer">
@@ -45,20 +45,11 @@
             </div>
           </div>
         </div>
-
-        <!-- <input
-          id="searchBox"
-          class="input-field"
-          type="text"
-          v-model="form.data"
-          placeholder="Search for friends by name"
-        /> -->
-
         <div v-show="this.$root.$data.fbLiteEnabled">
           <button
             v-show="buttonText"
             id="nonFacebookButton"
-            class="btn btn-primary"
+            class="btn btn-primary mb-2"
             @click="this.emitToggleNonFacebookVisibility"
           >
             {{ buttonText }}
@@ -155,7 +146,7 @@ export default {
       }
       if (this.searchQuery.includes("@")) {
         console.log("They're entering an email!");
-        this.buttonText = "Invite friend by email";
+        this.buttonText = "Invite friends off Facebook through email";
       } else if (
         //eslint-disable-next-line
         /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(
@@ -163,7 +154,7 @@ export default {
         )
       ) {
         // If phone number (see https://stackoverflow.com/questions/4338267/validate-phone-number-with-javascript)
-        this.buttonText = "Invite friend by phone number";
+        this.buttonText = "Invite friends off Facebook by phone number";
         console.log("They're entering a phone number!");
       } else {
         this.buttonText = "";
@@ -270,9 +261,6 @@ export default {
 }
 button {
   margin-left: 12px;
-}
-#nonFacebookButton {
-  margin-left: 20px;
 }
 /* TODO: adjust the placeholder text such that it looks right */
 

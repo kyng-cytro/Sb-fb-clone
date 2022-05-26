@@ -39,6 +39,7 @@ import InvitesLeftListItem from "./InvitesLeftListItem.vue";
 .list {
     background-color: rgb(240,242,245);
     height: 100%;
+    max-height: 70vh;
     width: 210px;
     padding: 15px;
     overflow-y: auto;
