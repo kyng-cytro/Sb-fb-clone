@@ -2,9 +2,9 @@
   <div>
     <!-- POST PROMPT -->
     <div class="createPostSquare">
-      <div class="header">
-        <div class="profilePic">
-          <FriendDisplay :friend="user" onlyImage="true"></FriendDisplay>
+      <div class="header justify-content-center">
+        <div class="profilePic d-flex">
+          <FriendDisplay :friend="user" slotBelowText="false"></FriendDisplay>
         </div>
         <div @click="clickTextBox" class="roundTextBox">
           <p id="whatOnMind">What's on your mind, {{this.userFirstname}}?</p>
@@ -81,8 +81,6 @@
     margin-bottom: 3%;
     padding: 15px;
     box-shadow: 0px 0px 3px rgb(140, 140, 140);
-    display: flex;
-    flex-direction: column;
   }
 
   .roundTextBox {

@@ -4,28 +4,35 @@
     <div class="header">
       <FriendDisplay :friend="this.user" :bold="true" :slotBelowText="true">
         <!-- CHECKBOX BUTTONS -->
-        <button
-          class="checkboxButton"
-          :style="viewOnlyButtonStyles"
-          @click="toggleViewOnly"
-          v-b-tooltip.hover
-          title="Friends can see your post but not interact with it"
-        >
-          View only
-        </button>
-        <button
-          class="checkboxButton"
-          :style="majorEventButtonStyles"
-          @click="toggleMajorEvent"
-          v-b-tooltip.hover
-          title="Mark post as a major event so friends with the major event filter can view post"
-        >
-          Major Event
-        </button>
+        <div v-if="getFacebookLite">
+          <button
+            class="checkboxButton"
+            :style="viewOnlyButtonStyles"
+            @click="toggleViewOnly"
+            v-b-tooltip.hover
+            title="Friends can see your post but not interact with it"
+          >
+            View only
+          </button>
+          <button
+            class="checkboxButton"
+            :style="majorEventButtonStyles"
+            @click="toggleMajorEvent"
+            v-b-tooltip.hover
+            title="Mark post as a major event so friends with the major event filter can view post"
+          >
+            Major Event
+          </button>
+        </div>
+        <div v-else class="lineHeight">
+          <button
+            class="checkboxButton"
+          >
+            Public
+          </button>
+        </div>
       </FriendDisplay>
     </div>
-    <!--  -->
-    <br />
     <!-- TEXT ENTRY -->
     <div class="textarea">
       <textarea
@@ -51,8 +58,10 @@
 </template>
 
 <script>
+import FacebookLite from "@/vuex-orm_models/FacebookLiteModel.js";
 import FriendDisplay from "@/components/Multipurpose/FriendDisplay";
 import Post from "@/vuex-orm_models/PostModel.js";
+
 export default {
   data() {
     return {
@@ -140,6 +149,9 @@ export default {
           : "font-size: 1em;";
       return styles;
     },
+    getFacebookLite() {
+      return FacebookLite.find(1).enabled;
+    },
   },
 };
 </script>
@@ -157,7 +169,7 @@ export default {
 }
 .checkboxButton {
   background-color: black;
-  margin: 0% 1% 0% 1%;
+  margin: 0;
   outline: 0 !important;
   border-width: 0px;
   border-radius: 4px;
@@ -166,7 +178,6 @@ export default {
   font-family: Arial;
   font-size: 0.8125em;
   line-height: 10%;
-  padding: -5% 3% -5% 3% !important;
   width: fit-content;
   height: 2vh;
 }
@@ -180,10 +191,15 @@ button {
   margin-top: 3%;
   margin-bottom: 3%;
   font-weight: bold;
+  line-height: normal;
 }
 .btn-secondary {
   background-color: rgb(228, 230, 235) !important;
   border: none !important;
   color: grey !important;
+}
+
+.lineHeight {
+  line-height: normal;
 }
 </style>

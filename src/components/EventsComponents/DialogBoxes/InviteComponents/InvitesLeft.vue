@@ -31,7 +31,7 @@ import InvitesLeftListItem from "./InvitesLeftListItem.vue";
                maxInvites: 500,
            }
        },
-       mixins: [friendSorting]
+       mixins: [friendSorting],
     }
 </script>
 

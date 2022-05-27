@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="verticalAlign">
+        <div class="verticalAlign pl-4">
             <FriendDisplay :friend="friend" :size="'normal'"></FriendDisplay>
         </div>
         <div class="verticalAlign">

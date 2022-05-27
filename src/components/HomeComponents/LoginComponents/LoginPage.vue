@@ -91,7 +91,7 @@ export default {
   methods: {
     usePrototypeWithoutData() {
       let user = {
-        name: _.startCase(this.usersName),
+        name: _.startCase(this.usersName.toLowerCase()),
       };
       this.addUser(user);
       this.scrape = false;

@@ -19,7 +19,6 @@ export default {
 
 <style scoped>
 .contact {
-  display: flex;
   align-items: baseline;
   padding: 15px 0 15px 10px;
   width: 100%;

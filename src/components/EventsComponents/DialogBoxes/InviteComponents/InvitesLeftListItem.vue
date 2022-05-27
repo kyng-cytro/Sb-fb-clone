@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" :class="{marginx: isLongName(friend)}">
         <div class="verticalAlign">
             <FriendDisplay :friend="friend" :size="'small'"></FriendDisplay>
         </div>
@@ -33,7 +33,8 @@ import FriendDisplay from "@/components/Multipurpose/FriendDisplay.vue";
                 else { //Otherwise
                     NonFacebookFriend.delete(this.friend.id);
                 }
-            }
+            },
+           isLongName(friend) { return friend.name.length > 15}
         },
     }
 </script>
@@ -64,4 +65,6 @@ import FriendDisplay from "@/components/Multipurpose/FriendDisplay.vue";
 .delete {
     font-size: .9em;
 }
+.marginx { margin: 50px 0px; }
+
 </style>
