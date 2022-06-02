@@ -7,6 +7,7 @@
         <div v-if="getFacebookLite">
           <button
             class="checkboxButton"
+            style="margin-right: 8px;"
             :style="viewOnlyButtonStyles"
             @click="toggleViewOnly"
             v-b-tooltip.hover
