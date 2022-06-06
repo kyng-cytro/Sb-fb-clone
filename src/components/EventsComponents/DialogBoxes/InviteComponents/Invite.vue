@@ -7,10 +7,10 @@
           v-model="collapseNonFacebook"
           class="mt-2"
         >
-          <InviteNonFacebook />
+          <InviteNonFacebook :method="this.externalInviteMethod" @toggleNonFacebookVisibility="toggleVisibility" />
         </b-collapse>
       </div>
-      <InviteFriends @toggleNonFacebookVisibility = "toggleVisibility"/>
+      <InviteFriends @toggleNonFacebookVisibility="toggleVisibility" />
       <!-- <b-button
         :class="collapseNonFacebook ? null : 'collapsed'"
         :aria-expanded="collapseNonFacebook ? 'true' : 'false'"
@@ -40,10 +40,13 @@
     data() {
       return {
         collapseNonFacebook: false,
+        externalInviteMethod: null,
       };
     },
     methods: {
-      toggleVisibility() {
+      toggleVisibility(method) {
+        console.log("METHOD:", method)
+        this.externalInviteMethod = method;
         this.collapseNonFacebook = !this.collapseNonFacebook;
       },
     },

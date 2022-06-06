@@ -2,6 +2,7 @@
   <div class="container p-0">
     <button
       id="suggested"
+      class="indent"
       :class="selected === 'suggested' ? 'selected' : ''"
       @click="select"
     >
@@ -9,6 +10,7 @@
     </button>
     <button
       id="all"
+      class="indent"
       :class="selected === 'all' ? 'selected' : ''"
       @click="select"
     >
@@ -19,6 +21,7 @@
       v-for="event in events"
       :key="event"
       :id="event"
+      class="indent"
       :class="selected === event ? 'selected' : ''"
       @click="selectEvent"
     >
@@ -29,11 +32,26 @@
       v-for="group in groups"
       :key="group"
       :id="group"
+      class="indent"
       :class="selected === group ? 'selected' : ''"
       @click="selectGroup"
     >
       {{ group }}
     </button>
+    <div v-show="this.$root.$data.fbLiteEnabled" class="externalInvites">
+      <button
+        class="p-0 w-100"
+        @click="$emit('toggleNonFacebookVisibility', 'email')"
+      >
+        <h3>Invite via Email</h3>
+      </button>
+      <button
+        class="p-0 w-100"
+        @click="$emit('toggleNonFacebookVisibility', 'phone')"
+      >
+        <h3>Invite via Phone Number</h3>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -98,13 +116,13 @@ h3 {
   font-size: 0.85em;
   margin-top: 9px;
   margin-bottom: 9px;
+  text-transform: uppercase;
 }
 
 button {
   color: grey;
   border: 0px;
   padding: 6px;
-  padding-left: 8px;
   background-color: transparent;
   text-align: left;
   border-radius: 7px;
@@ -118,6 +136,10 @@ button:focus {
   color: rgb(26, 119, 242);
   background-color: rgb(229, 229, 229);
   outline: none;
+}
+
+.indent {
+  padding-left: 8px;
 }
 
 .selected {
