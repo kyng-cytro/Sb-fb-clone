@@ -62,6 +62,7 @@
         v-on:selected="applySelectedList"
         v-on:event="applySelectedEvent"
         v-on:group="applySelectedGroup"
+        @toggleNonFacebookVisibility="(n) => $emit('toggleNonFacebookVisibility', n)"
       />
       <InviteFriendsList :friendsList="friendsList" />
     </div>
@@ -180,7 +181,7 @@ export default {
 
 #searchBoxContainer {
   border-radius: 30px;
-  width: 600px;
+  width: 100%;
   height: 40px;
   display: inline-block;
   border: 0px solid #ccc;
