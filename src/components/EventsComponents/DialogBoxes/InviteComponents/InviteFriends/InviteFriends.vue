@@ -11,7 +11,7 @@
             <div v-if="!this.$root.$data.fbLiteEnabled" id="searchBoxContainer">
               <label>
                 <span id="placeholderText">
-                  Search for people by name, email address or phone number
+                  Search for people to invite
                 </span>
                 <input
                   type="text"
@@ -32,8 +32,8 @@
               </b-tooltip>
               <label>
                 <span id="placeholderText">
-                  Search for people by name, <strong>email address</strong> or
-                  <strong>phone number</strong>
+                  Search to invite via Facebook, <strong>email</strong>, or
+                  <strong>text</strong>
                 </span>
                 <input
                   type="text"
