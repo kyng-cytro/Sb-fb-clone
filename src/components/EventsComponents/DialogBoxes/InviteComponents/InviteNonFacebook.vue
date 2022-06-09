@@ -5,7 +5,7 @@
     id="nonFacebookForm"
   >
     <div class="formCol">
-      <p>Want to invite friends not on Facebook? No problem!</p>
+      <p>Want to invite friends not through Facebook? No problem!</p>
 
       <div class="form-group">
         <input placeholder="Name" v-model="form.name" class="form-control" />
