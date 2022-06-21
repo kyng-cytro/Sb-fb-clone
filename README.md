@@ -29,6 +29,26 @@ npm run build
 npm run lint
 ```
 
+## Project Build
+Build your public files:
+
+```
+cd Sb-fb-clone
+npm i
+npm run build
+```
+
+If you encounter the following error:
+`Error: error:0308010C:digital envelope routines::unsupported`
+
+then run this line of code `export NODE_OPTIONS=--openssl-legacy-provider` and rebuild your project.
+
+Now copy your public files to `/var/www/html/fb-lite`. For example:
+
+```
+cp -rp dist/* /var/www/html/fb-lite
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
