@@ -126,7 +126,8 @@ export default {
         }
       } else {
         try {
-          const response = await fetch("/generic.json");
+          const genericURL = process.env.NODE_ENV === 'production' ? '/fb-lite/generic.json' : '/'
+          const response = await fetch(genericURL);
           const data = await response.json();
 
           this.addData(
