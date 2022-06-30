@@ -10,9 +10,7 @@
             <i class="bi bi-search icon"></i>
             <div v-if="!this.$root.$data.fbLiteEnabled" id="searchBoxContainer">
               <label>
-                <span id="placeholderText">
-                  Search for people to invite
-                </span>
+                <span id="placeholderText"> Search for people to invite </span>
                 <input
                   type="text"
                   id="searchBox2"
@@ -62,7 +60,9 @@
         v-on:selected="applySelectedList"
         v-on:event="applySelectedEvent"
         v-on:group="applySelectedGroup"
-        @toggleNonFacebookVisibility="(n) => $emit('toggleNonFacebookVisibility', n)"
+        @toggleNonFacebookVisibility="
+          (n) => $emit('toggleNonFacebookVisibility', n)
+        "
       />
       <InviteFriendsList :friendsList="friendsList" />
     </div>

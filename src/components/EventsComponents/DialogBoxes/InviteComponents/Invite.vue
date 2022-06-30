@@ -7,7 +7,10 @@
           v-model="collapseNonFacebook"
           class="mt-2"
         >
-          <InviteNonFacebook :method="this.externalInviteMethod" @toggleNonFacebookVisibility="toggleVisibility" />
+          <InviteNonFacebook
+            :method="this.externalInviteMethod"
+            @toggleNonFacebookVisibility="toggleVisibility"
+          />
         </b-collapse>
       </div>
       <InviteFriends @toggleNonFacebookVisibility="toggleVisibility" />
@@ -27,41 +30,44 @@
 </template>
 
 <script>
-  import InviteFriends from "./InviteFriends/InviteFriends.vue";
-  import InviteNonFacebook from "./InviteNonFacebook.vue";
-  import InvitesLeft from "./InvitesLeft.vue";
+import InviteFriends from "./InviteFriends/InviteFriends.vue";
+import InviteNonFacebook from "./InviteNonFacebook.vue";
+import InvitesLeft from "./InvitesLeft.vue";
 
-  export default {
-    components: {
-      InviteFriends,
-      InviteNonFacebook,
-      InvitesLeft,
-    },
-    data() {
-      return {
-        collapseNonFacebook: false,
-        externalInviteMethod: null,
-      };
-    },
-    methods: {
-      toggleVisibility(method) {
-        console.log("METHOD:", method)
+export default {
+  components: {
+    InviteFriends,
+    InviteNonFacebook,
+    InvitesLeft,
+  },
+  data() {
+    return {
+      collapseNonFacebook: false,
+      externalInviteMethod: null,
+    };
+  },
+  methods: {
+    toggleVisibility(method) {
+      if (method === null) {
+        this.collapseNonFacebook = false;
+      } else {
+        this.collapseNonFacebook = true;
         this.externalInviteMethod = method;
-        this.collapseNonFacebook = !this.collapseNonFacebook;
-      },
+      }
     },
-  };
+  },
+};
 </script>
 
 <style scoped>
-  #invite {
-    display: flex;
-  }
-  .inviteDiv {
-    overflow-y: auto;
-    max-height: 70vh;
-  }
-  hr {
-    margin: 0px;
-  }
+#invite {
+  display: flex;
+}
+.inviteDiv {
+  overflow-y: auto;
+  max-height: 70vh;
+}
+hr {
+  margin: 0px;
+}
 </style>
