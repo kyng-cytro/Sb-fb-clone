@@ -1,69 +1,7 @@
 <template>
-  <div class="container" id="nonFacebookFriends">
-    <!-- The following div is the search bar -->
-    <div>
-      <div class="input-icons">
-        <!-- I use the following two divs/classes as described here: https://stackoverflow.com/questions/17656623/position-absolute-scrolling-->
-        <!-- For the purpose of having an absolutely positioned search icon that still scrolls in the dialog box -->
-        <div class="inner mb-3">
-          <div class="full-height">
-            <i class="bi bi-search icon"></i>
-            <div v-if="!this.$root.$data.fbLiteEnabled" id="searchBoxContainer">
-              <label>
-                <span id="placeholderText"> Search for people to invite </span>
-                <input
-                  type="text"
-                  id="searchBox2"
-                  @input="updateQuery"
-                  v-model="searchQuery"
-                />
-              </label>
-            </div>
-            <div v-else id="searchBoxContainer">
-              <b-tooltip
-                ref="tooltip"
-                target="searchBoxContainer"
-                placement="top"
-              >
-                You can add friends who don't use facebook by entering their
-                email or phone number.
-              </b-tooltip>
-              <label>
-                <span id="placeholderText">
-                  Search to invite via Facebook, <strong>email</strong>, or
-                  <strong>text</strong>
-                </span>
-                <input
-                  type="text"
-                  id="searchBox2"
-                  @input="updateQuery"
-                  v-model="searchQuery"
-                />
-              </label>
-            </div>
-          </div>
-        </div>
-        <div v-show="this.$root.$data.fbLiteEnabled">
-          <button
-            v-show="buttonText"
-            id="nonFacebookButton"
-            class="btn btn-primary mb-2"
-            @click="this.emitToggleNonFacebookVisibility"
-          >
-            {{ buttonText }}
-          </button>
-        </div>
-      </div>
-    </div>
+  <div class="container p-0" id="nonFacebookFriends">
     <div id="friendSelectionContainer">
-      <InviteFriendsSidebar
-        v-on:selected="applySelectedList"
-        v-on:event="applySelectedEvent"
-        v-on:group="applySelectedGroup"
-        @toggleNonFacebookVisibility="
-          (n) => $emit('toggleNonFacebookVisibility', n)
-        "
-      />
+      
       <InviteFriendsList :friendsList="friendsList" />
     </div>
   </div>
@@ -71,7 +9,6 @@
 
 <script>
 import InviteFriendsList from "../InviteFriends/InviteFriendsList.vue";
-import InviteFriendsSidebar from "../InviteFriends/InviteFriendsSidebar.vue";
 import Friend from "@/vuex-orm_models/FriendModel.js";
 import GroupFriend from "@/vuex-orm_models/GroupFriendModel.js";
 import EventFriend from "@/vuex-orm_models/EventFriendModel.js";
@@ -92,7 +29,6 @@ export default {
   },
   components: {
     InviteFriendsList,
-    InviteFriendsSidebar,
   },
   mounted() {
     if (this.$root.$data.fbLiteEnabled) {
@@ -171,7 +107,7 @@ export default {
   padding: 15px;
   padding-bottom: 0px;
 }
-
+/* 
 #placeholderText {
   position: absolute;
   margin-left: 50px;
@@ -199,7 +135,6 @@ export default {
   display: inline-block;
   border: 0px solid #ccc;
   box-sizing: border-box;
-  /* background-color: rgb(240, 242, 245); */
 }
 
 #searchBox2:focus {
@@ -248,7 +183,6 @@ export default {
   width: 100%;
   padding: 10px;
   text-align: left;
-  /* Below makes it so that there's room for the search bar icon */
   padding-left: 43px;
   font-size: 0.9em;
 }
@@ -262,7 +196,7 @@ export default {
 }
 button {
   margin-left: 12px;
-}
+} */
 /* TODO: adjust the placeholder text such that it looks right */
 
 /* #searchBox::placeholder {

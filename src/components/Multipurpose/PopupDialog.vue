@@ -65,6 +65,7 @@ export default {
   overflow-y: scroll;
 }
 .popup-inner {
+  width: 60vw;
   background-color: white;
   border-radius: 8px;
   box-shadow: 0px 0px 16px 8px #dadada;

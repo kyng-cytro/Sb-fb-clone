@@ -1,5 +1,14 @@
 <template>
   <div id="invite">
+    <InviteFriendsSidebar
+        v-on:selected="applySelectedList"
+        v-on:event="applySelectedEvent"
+        v-on:group="applySelectedGroup"
+        @toggleNonFacebookVisibility="
+          (n) => $emit('toggleNonFacebookVisibility', n)
+        "
+      />
+      <InviteFriends @toggleNonFacebookVisibility="toggleVisibility" />
     <div class="inviteDiv">
       <div v-show="collapseNonFacebook">
         <b-collapse
@@ -13,7 +22,6 @@
           />
         </b-collapse>
       </div>
-      <InviteFriends @toggleNonFacebookVisibility="toggleVisibility" />
       <!-- <b-button
         :class="collapseNonFacebook ? null : 'collapsed'"
         :aria-expanded="collapseNonFacebook ? 'true' : 'false'"
@@ -31,12 +39,14 @@
 
 <script>
 import InviteFriends from "./InviteFriends/InviteFriends.vue";
+import InviteFriendsSidebar from "./InviteFriends/InviteFriendsSidebar.vue";
 import InviteNonFacebook from "./InviteNonFacebook.vue";
 import InvitesLeft from "./InvitesLeft.vue";
 
 export default {
   components: {
     InviteFriends,
+    InviteFriendsSidebar,
     InviteNonFacebook,
     InvitesLeft,
   },
