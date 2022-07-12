@@ -44,6 +44,9 @@ export default {
   },
   methods: {
     addNonFacebookFriend() {
+      if (this.form.name === "" || (this.form.phone === "" && this.form.email === ""))
+        return;
+        
       // Insert a new nonFacebookFriend into the Vuex database
       NonFacebookFriend.insert({
         data: this.form,

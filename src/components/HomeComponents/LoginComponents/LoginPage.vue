@@ -90,6 +90,8 @@ export default {
   },
   methods: {
     usePrototypeWithoutData() {
+      if (this.usersName === "")
+        this.usersName = "User Test"
       let user = {
         name: _.startCase(this.usersName.toLowerCase()),
       };

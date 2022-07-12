@@ -2,12 +2,15 @@
   <div class="d-flex w-100" id="invite">
     <InviteFriendsSidebar
       class="w-25"
-      v-on:selected="applySelectedList"
-      v-on:event="applySelectedEvent"
-      v-on:group="applySelectedGroup"
+      @selected="(n) => applySelectedList(n)"
+      @event="(n) => applySelectedEvent(n)"
+      @group="(n) => applySelectedGroup(n)"
       @toggleNonFacebookVisibility="toggleVisibility"
     />
-    <InviteFriends class="w-50" @toggleNonFacebookVisibility="toggleVisibility" />
+    <InviteFriends
+      class="w-50"
+      @toggleNonFacebookVisibility="toggleVisibility"
+    />
     <InvitesLeft class="w-25" />
   </div>
 </template>
@@ -16,6 +19,9 @@
 import InviteFriends from "./InviteFriends/InviteFriends.vue";
 import InviteFriendsSidebar from "./InviteFriends/InviteFriendsSidebar.vue";
 import InvitesLeft from "./InvitesLeft.vue";
+import Friend from "@/vuex-orm_models/FriendModel.js";
+import GroupFriend from "@/vuex-orm_models/GroupFriendModel.js";
+import EventFriend from "@/vuex-orm_models/EventFriendModel.js";
 
 export default {
   components: {
@@ -27,6 +33,7 @@ export default {
     return {
       collapseNonFacebook: false,
       externalInviteMethod: null,
+      friendsList: Friend.all().slice(0, 100),
     };
   },
   methods: {
@@ -35,6 +42,25 @@ export default {
       else this.collapseNonFacebook = true;
 
       this.externalInviteMethod = method;
+    },
+    applySelectedList(list) {
+      if (list === "all") {
+        this.friendsList = Friend.all();
+      } else {
+        this.friendsList = Friend.all().slice(0, 100);
+      }
+    },
+    applySelectedGroup(group) {
+      const groupFriends = GroupFriend.all().find(
+        (friend) => friend.groupName === group
+      ).friends;
+      this.friendsList = Friend.findIn(groupFriends);
+    },
+    applySelectedEvent(event) {
+      const eventFriends = EventFriend.all().find(
+        (friend) => friend.eventName === event
+      ).friends;
+      this.friendsList = Friend.findIn(eventFriends);
     },
   },
 };

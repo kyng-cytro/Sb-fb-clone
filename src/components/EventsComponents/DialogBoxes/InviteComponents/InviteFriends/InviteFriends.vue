@@ -2,13 +2,15 @@
   <div class="container p-0" id="nonFacebookFriends">
     <div id="friendSelectionContainer">
       <InviteFriendsList
-        :friendsList="friendsList"
+        :friendsList="this.$parent.friendsList"
         v-if="this.$parent.externalInviteMethod === null"
       />
       <InviteNonFacebook
         v-else
         :method="this.$parent.externalInviteMethod"
-        @toggleNonFacebookVisibility="(n) => $emit('toggleNonFacebookVisibility', n)"
+        @toggleNonFacebookVisibility="
+          (n) => $emit('toggleNonFacebookVisibility', n)
+        "
       />
     </div>
   </div>
@@ -18,8 +20,6 @@
 import InviteFriendsList from "../InviteFriends/InviteFriendsList.vue";
 import InviteNonFacebook from "../InviteNonFacebook.vue";
 import Friend from "@/vuex-orm_models/FriendModel.js";
-import GroupFriend from "@/vuex-orm_models/GroupFriendModel.js";
-import EventFriend from "@/vuex-orm_models/EventFriendModel.js";
 
 export default {
   data() {
@@ -31,47 +31,13 @@ export default {
       },
       buttonText: "",
       showToolTip: false,
-      friendsList: Friend.all().slice(0, 100),
     };
   },
   components: {
     InviteFriendsList,
     InviteNonFacebook,
   },
-  mounted() {
-    if (this.$root.$data.fbLiteEnabled) {
-      this.$root.$on("triggerInviteFriendsTooltip", () => {
-        // Sleep for 700 miliseconds before opening popup
-        setTimeout(() => {
-          // Note that a fat-arrow function is used here to preserve the scope of 'this' (see https://forum.vuejs.org/t/is-not-a-function/12444)
-          this.onOpen();
-        }, 700);
-      });
-    }
-  },
   methods: {
-    applySelectedList(list) {
-      if (list === "all") {
-        this.friendsList = Friend.all();
-      } else {
-        this.friendsList = Friend.all().slice(0, 100);
-      }
-    },
-    applySelectedGroup(group) {
-      const groupFriends = GroupFriend.all().find(
-        (friend) => friend.groupName === group
-      ).friends;
-      this.friendsList = Friend.findIn(groupFriends);
-    },
-    applySelectedEvent(event) {
-      const eventFriends = EventFriend.all().find(
-        (friend) => friend.eventName === event
-      ).friends;
-      this.friendsList = Friend.findIn(eventFriends);
-    },
-    onOpen() {
-      this.$refs.tooltip.$emit("open");
-    },
     addFriend() {
       Friend.insert({ data: this.form });
     },
