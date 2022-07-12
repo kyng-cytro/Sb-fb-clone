@@ -20,15 +20,13 @@
         </div>
       </table>
     </div>
-    <div v-else>
-      <div class="friendRequestDisplay">
-        <div
-          class="square"
-          v-for="friendRequest in this.friendRequests"
-          :key="friendRequest.id"
-        >
-          <FriendRequestSquare v-bind:friendRequest="friendRequest" />
-        </div>
+    <div v-else class="friendRequestDisplay">
+      <div
+        class="square"
+        v-for="friendRequest in this.friendRequests"
+        :key="friendRequest.id"
+      >
+        <FriendRequestSquare :friendRequest="friendRequest" />
       </div>
     </div>
   </div>
@@ -58,6 +56,7 @@ export default {
   flex-direction: row;
 }
 .square {
+  margin: 10px;
   padding: 5px;
 }
 

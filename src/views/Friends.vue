@@ -1,11 +1,7 @@
 <template>
   <div class="Friends">
-    <div>
-      <FriendSidebar />
-    </div>
-    <div>
-      <FriendRequestDisplay :friendRequests="friendRequests" />
-    </div>
+    <FriendSidebar />
+    <FriendRequestDisplay :friendRequests="friendRequests" />
   </div>
 </template>
 

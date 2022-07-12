@@ -1,28 +1,65 @@
 <template>
-  <div class="container p-0">
+  <div class="d-flex flex-column">
+    <!-- The following div is the search bar -->
     <div>
-      <button
-        v-if="!selectAll"
-        id="selectAll"
-        class="selectRectangle"
-        @click="selectAllFriends"
-      >
-        Select All
-      </button>
-      <button
-        v-else
-        id="selectAll"
-        class="selectRectangle"
-        @click="deselectAllFriends"
-      >
-        Deselect All
-      </button>
-      <div
-        v-for="friend in friendsList"
-        :key="friend.id"
-        class="selectRectangle"
-      >
-        <InviteFriendsListItem v-bind:friend="friend" />
+      <div class="input-icons">
+        <!-- I use the following two divs/classes as described here: https://stackoverflow.com/questions/17656623/position-absolute-scrolling-->
+        <!-- For the purpose of having an absolutely positioned search icon that still scrolls in the dialog box -->
+        <div class="inner mb-3">
+          <div class="full-height">
+            <div v-if="!this.$root.$data.fbLiteEnabled" id="searchBoxContainer">
+              <div class="form-group m-0 w-100">
+                <input
+                  type="text"
+                  id="searchBox2"
+                  v-model="searchQuery"
+                  style="width: 95%"
+                  placeholder="  Search for people to invite"
+                />
+              </div>
+            </div>
+            <div v-else id="searchBoxContainer">
+              <div class="form-group m-0 w-100">
+                <input
+                  type="text"
+                  id="searchBox2"
+                  class="rounded"
+                  v-model="searchQuery"
+                  style="width: 95%"
+                  placeholder="  Search for friends to invite via Facebook"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Friend List here -->
+    <div class="container m-0 p-0">
+      <div>
+        <button
+          v-if="!selectAll"
+          id="selectAll"
+          class="selectRectangle"
+          @click="selectAllFriends"
+        >
+          Select All
+        </button>
+        <button
+          v-else
+          id="selectAll"
+          class="selectRectangle"
+          @click="deselectAllFriends"
+        >
+          Deselect All
+        </button>
+        <div
+          v-for="friend in friendsList"
+          :key="friend.id"
+          class="selectRectangle"
+        >
+          <InviteFriendsListItem v-bind:friend="friend" />
+        </div>
       </div>
     </div>
   </div>
@@ -42,6 +79,7 @@ export default {
     return {
       selectedFriends: [],
       selectAll: false,
+      searchQuery: "",
     };
   },
   methods: {
@@ -59,7 +97,6 @@ export default {
 
 <style scoped>
 .container {
-  width: 350px;
   height: 60vh;
   overflow-x: hidden;
   overflow-y: auto;
@@ -86,6 +123,16 @@ export default {
 
 .selectRectangle:hover {
   background-color: rgb(242, 242, 242);
+}
+
+#searchBoxContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+#searchBox2 {
+  border: 1px solid rgb(228, 230, 235);
 }
 /* .selectRectangle:active {
 	position:relative;
