@@ -15,7 +15,7 @@
       <hr />
 
       <!-- CONTENT -->
-      <div class="content" v-bind:style="contentStyles">
+      <div class="content d-flex" v-bind:style="contentStyles">
         <slot name="content"> </slot>
       </div>
       <hr />

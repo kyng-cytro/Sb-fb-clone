@@ -12,7 +12,6 @@
                 <input
                   type="text"
                   id="searchBox2"
-                  @input="updateQuery"
                   v-model="searchQuery"
                   style="width: 95%"
                   placeholder="  Search for people to invite"
@@ -20,20 +19,11 @@
               </div>
             </div>
             <div v-else id="searchBoxContainer">
-              <b-tooltip
-                ref="tooltip"
-                target="searchBoxContainer"
-                placement="top"
-              >
-                You can add friends who don't use facebook by entering their
-                email or phone number.
-              </b-tooltip>
               <div class="form-group m-0 w-100">
                 <input
                   type="text"
                   id="searchBox2"
                   class="rounded"
-                  @input="updateQuery"
                   v-model="searchQuery"
                   style="width: 95%"
                   placeholder="  Search for friends to invite via Facebook"
@@ -89,6 +79,7 @@ export default {
     return {
       selectedFriends: [],
       selectAll: false,
+      searchQuery: "",
     };
   },
   methods: {

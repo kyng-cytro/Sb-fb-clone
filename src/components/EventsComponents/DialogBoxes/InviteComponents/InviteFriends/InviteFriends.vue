@@ -1,14 +1,22 @@
 <template>
   <div class="container p-0" id="nonFacebookFriends">
     <div id="friendSelectionContainer">
-      
-      <InviteFriendsList :friendsList="friendsList" />
+      <InviteFriendsList
+        :friendsList="friendsList"
+        v-if="this.$parent.externalInviteMethod === null"
+      />
+      <InviteNonFacebook
+        v-else
+        :method="this.$parent.externalInviteMethod"
+        @toggleNonFacebookVisibility="(n) => $emit('toggleNonFacebookVisibility', n)"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import InviteFriendsList from "../InviteFriends/InviteFriendsList.vue";
+import InviteNonFacebook from "../InviteNonFacebook.vue";
 import Friend from "@/vuex-orm_models/FriendModel.js";
 import GroupFriend from "@/vuex-orm_models/GroupFriendModel.js";
 import EventFriend from "@/vuex-orm_models/EventFriendModel.js";
@@ -21,7 +29,6 @@ export default {
         imageSource: "",
         numOfMutualFriends: null,
       },
-      searchQuery: "",
       buttonText: "",
       showToolTip: false,
       friendsList: Friend.all().slice(0, 100),
@@ -29,6 +36,7 @@ export default {
   },
   components: {
     InviteFriendsList,
+    InviteNonFacebook,
   },
   mounted() {
     if (this.$root.$data.fbLiteEnabled) {
@@ -69,34 +77,6 @@ export default {
     },
     emitToggleNonFacebookVisibility() {
       this.$emit("toggleNonFacebookVisibility");
-    },
-    updateQuery() {
-      if (this.searchQuery) {
-        // Make the placeholder appear or disappear depending on whether the searchQuery has text
-        document.getElementById("placeholderText").style.display = "none";
-        this.showToolTip = false;
-      } else {
-        // Placeholder is empty
-        this.showToolTip = true;
-        document.getElementById("placeholderText").style.display =
-          "inline-block";
-      }
-      if (this.searchQuery.includes("@")) {
-        console.log("They're entering an email!");
-        this.buttonText = "Invite friends off Facebook through email";
-      } else if (
-        //eslint-disable-next-line
-        /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(
-          this.searchQuery
-        )
-      ) {
-        // If phone number (see https://stackoverflow.com/questions/4338267/validate-phone-number-with-javascript)
-        this.buttonText = "Invite friends off Facebook by phone number";
-        console.log("They're entering a phone number!");
-      } else {
-        this.buttonText = "";
-        console.log("They're still entering data.");
-      }
     },
   },
 };

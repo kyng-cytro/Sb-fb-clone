@@ -1,11 +1,11 @@
 <template>
   <div class="container p-2">
     <div v-show="this.$root.$data.fbLiteEnabled" class="externalInvites">
-      <h3>Invite via...</h3>
+      <h5 class="h5 font-weight-bold text-secondary">Invite via...</h5>
       <form @submit.prevent>
         <div
           class="form-check"
-          @click="$emit('toggleNonFacebookVisibility', null)"
+          @click="$emit('toggleNonFacebookVisibility', null), inviteVia = 'Facebook'"
         >
           <input
             class="form-check-input"
@@ -15,13 +15,13 @@
             v-model="inviteVia"
             value="Facebook"
           />
-          <label class="form-check-label" for="flexRadioDefault0">
+          <label class="form-check-label h5" for="flexRadioDefault0" :style="isSelected('Facebook')">
             Facebook
           </label>
         </div>
         <div
           class="form-check"
-          @click="$emit('toggleNonFacebookVisibility', 'email')"
+          @click="$emit('toggleNonFacebookVisibility', 'email'), inviteVia = 'Email'"
         >
           <input
             class="form-check-input"
@@ -31,13 +31,13 @@
             v-model="inviteVia"
             value="Email"
           />
-          <label class="form-check-label" for="flexRadioDefault1">
+          <label class="form-check-label h5" for="flexRadioDefault1" :style="isSelected('Email')">
             Email
           </label>
         </div>
         <div
           class="form-check"
-          @click="$emit('toggleNonFacebookVisibility', 'phone')"
+          @click="$emit('toggleNonFacebookVisibility', 'phone'), inviteVia = 'Phone'"
         >
           <input
             class="form-check-input"
@@ -47,7 +47,7 @@
             v-model="inviteVia"
             value="Phone"
           />
-          <label class="form-check-label" for="flexRadioDefault2">
+          <label class="form-check-label h5" for="flexRadioDefault2" :style="isSelected('Phone')">
             Phone Number
           </label>
         </div>
@@ -142,6 +142,11 @@ export default {
       this.selected = id;
       this.$emit("group", id);
     },
+    isSelected(value) {
+      if (this.inviteVia === value) {
+        return "font-weight: bold";
+      } else return "font-weight: 300";
+    },
   },
 };
 </script>
@@ -150,7 +155,6 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
-  width: 400px;
 }
 
 h3 {

@@ -4,7 +4,7 @@
     style="justify-content: space-evenly"
     id="nonFacebookForm"
   >
-    <div class="formCol">
+    <form @submit.prevent="addNonFacebookFriend">
       <p>Want to invite friends not through Facebook? No problem!</p>
 
       <div class="form-group">
@@ -25,12 +25,7 @@
       <button class="btn btn-primary" @click="addNonFacebookFriend">
         Add non-Facebook friend
       </button>
-    </div>
-    <i
-      class="bi bi-x-circle-fill text-end"
-      style="font-size: 1.5rem; height: fit-content"
-      @click="$emit('toggleNonFacebookVisibility', null)"
-    ></i>
+    </form>
   </div>
 </template>
 
