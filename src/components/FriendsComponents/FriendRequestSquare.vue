@@ -9,14 +9,23 @@
       "
       @error="setAltImg"
     />
-    <i v-else class="bi bi-person-fill"></i>
+    <i v-else class="bi bi-person-fill profilePic"></i>
     <div class="info">
       <strong>{{ friendRequest.name }}</strong>
-      <!-- <p id="mutualFriends">{{friendRequest.numOfMutualFriends}} mutual friends <p> -->
       <br />
-      <em id="expireMessage" v-show="this.$root.$data.fbLiteEnabled">{{
-        "Expires in " + friendRequest.daysUntilExpiration + " days"
-      }}</em>
+      <div
+        v-if="this.$root.$data.fbLiteEnabled"
+        class="d-flex align-items-center"
+      >
+        <em id="expireMessage">{{
+          "Expires in " + friendRequest.daysUntilExpiration + " days"
+        }}</em>
+        <i
+          class="bi bi-question-circle tip"
+          v-b-tooltip.hover.v-dark
+          :title="tooltip"
+        ></i>
+      </div>
       <div v-if="friendRequest.state === 'deleted'">
         <div>
           <button type="button" class="btn btn-secondary invisible" disabled>
@@ -114,12 +123,15 @@ export default {
     getFacebookLite() {
       return FacebookLite.find(1).enabled;
     },
+    tooltip() {
+      return `After ${this.friendRequest.daysUntilExpiration} days this request will be automatically deleted. The sender will not be notified.`;
+    },
   },
 };
 </script>
 
 <style scoped>
-.bi {
+.profilePic {
   text-align: center;
   color: rgb(73, 113, 172);
   /* color: rgb(0,123,255); */
@@ -128,6 +140,11 @@ export default {
   height: 215px;
   background-color: rgb(214, 214, 214);
   border-radius: 10px 10px 0px 0px;
+}
+
+.tip {
+  color: rgb(192, 65, 65);
+  margin-left: 10px;
 }
 
 .friendRequestSquare {
