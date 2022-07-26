@@ -30,7 +30,9 @@ npm run lint
 ```
 
 ## Project Build
-Build your public files:
+Build your public files. The build can be done in your ssh connection to the hciresearch server; however, it is faster to build it on your local machine and copy the public files from `dist` to the remote server:
+
+### Builds public files
 
 ```
 cd Sb-fb-clone
@@ -38,15 +40,26 @@ npm i
 npm run build
 ```
 
+#### Note:
 If you encounter the following error:
 `Error: error:0308010C:digital envelope routines::unsupported`
 
 then run this line of code `export NODE_OPTIONS=--openssl-legacy-provider` and rebuild your project.
 
-Now copy your public files to `/var/www/html/fb-lite`. For example:
+### Copy public files to server
+
+Now copy your public files to `/var/www/html/fb-lite`.
+
+If you built the files on the remote server:
 
 ```
 cp -rp dist/* /var/www/html/fb-lite
+```
+
+If you built the files on your local machine (recommended):
+
+```
+scp -rp dist/* [username]@hciresearch.byu.edu:/var/www/html/fb-lite
 ```
 
 ### Customize configuration
