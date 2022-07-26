@@ -26,6 +26,7 @@
 
 <script>
 import FriendRequest from "@/vuex-orm_models/FriendRequestModel.js";
+import _ from "lodash";
 
 const questionFriendList = [
   {
@@ -75,7 +76,7 @@ export default {
       for (let i = 0; i < questionFriendList.length; i++) {
         FriendRequest.insert({
           data: {
-            name: questionFriendList.at(i).friendData.name,
+            name: _.startCase(questionFriendList.at(i).friendData.name.toLowerCase()),
             imageSource: "",
             daysUntilExpiration: this.daysUntilExpiration,
             numOfMutualFriends: this.numOfMutualFriends,
