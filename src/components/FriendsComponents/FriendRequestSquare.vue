@@ -15,11 +15,11 @@
       <br />
       <div
         v-if="this.$root.$data.fbLiteEnabled"
-        class="d-flex align-items-center"
+        class="d-flex align-content-center"
       >
-        <em id="expireMessage">{{
+        <p id="expireMessage">{{
           "Expires in " + friendRequest.daysUntilExpiration + " days"
-        }}</em>
+        }}</p>
         <i
           class="bi bi-question-circle tip"
           v-b-tooltip.hover.v-dark
@@ -143,7 +143,7 @@ export default {
 }
 
 .tip {
-  color: rgb(192, 65, 65);
+  color: grey;
   margin-left: 10px;
 }
 
@@ -191,8 +191,9 @@ button {
 }
 
 #expireMessage {
-  /* color: rgb(73, 113, 172); */
-  color: rgb(192, 65, 65);
+  margin: 0;
+  font-size: 00.9em;
+  color: grey;
 }
 
 em {
