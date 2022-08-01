@@ -1,31 +1,39 @@
 <template>
-    <div id="container">
-        <CalendarIcon :date="event.date" />
-        <div id="headerInfo">
-            <br/>
-            <strong class="dateText">{{formatDateUppercase(event.date)}}</strong>
-            <h1 class="holder" v-if="event.name === ''">Event name</h1>
-            <h1 v-else>{{event.name}}</h1>
-            <p class="holder" v-if="event.location === ''">Location</p>
-            <p id="location">{{event.location}}</p>
-      </div>
-      <hr/>
+  <div id="container">
+    <CalendarIcon :date="event.date" />
+    <div id="headerInfo">
+      <br />
+      <strong class="dateText">{{
+        event.date
+          .toLocaleString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })
+          .toUpperCase()
+      }}</strong>
+      <h1 class="holder" v-if="event.name === ''">Event name</h1>
+      <h1 v-else>{{ event.name }}</h1>
+      <p class="holder" v-if="event.location === ''">Location</p>
+      <p id="location">{{ event.location }}</p>
     </div>
+    <hr />
+  </div>
 </template>
 
 <script>
 import CalendarIcon from './CalendarIcon.vue'
-import { dateProcessing } from '@/mixins/DateProcessing.js';
+import { dateProcessing } from '@/mixins/DateProcessing.js'
 
 export default {
   mixins: [dateProcessing],
-  props:['event'],
+  props: ['event'],
   components: {
-      CalendarIcon
-  }
+    CalendarIcon,
+  },
 }
 </script>
-
 
 <style scoped>
 #container {
@@ -44,7 +52,6 @@ h1 {
 .dateText {
   font-size: 1.1em;
   font-weight: bold;
-  color: rgb(243,66,95);
+  color: rgb(243, 66, 95);
 }
-
 </style>

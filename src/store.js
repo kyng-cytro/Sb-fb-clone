@@ -10,6 +10,7 @@ import Post from "@/vuex-orm_models/PostModel.js";
 import User from "@/vuex-orm_models/UserModel.js";
 import EventFriendModel from "@/vuex-orm_models/EventFriendModel.js";
 import GroupFriendModel from "@/vuex-orm_models/GroupFriendModel.js";
+import EventModel from "@/vuex-orm_models/EventModel.js";
 
 Vue.use(Vuex);
 
@@ -24,6 +25,7 @@ database.register(FacebookLite);
 database.register(Filter);
 database.register(Post);
 database.register(User);
+database.register(EventModel);
 
 export default new Vuex.Store({
   plugins: [VuexORM.install(database)],
