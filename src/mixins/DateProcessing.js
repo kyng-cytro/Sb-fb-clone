@@ -22,5 +22,9 @@ export const dateProcessing = {
             // return date;
             return new Date(date).toLocaleDateString("en-US", this.dateNoYearFormatting) + " at " + new Date(date).toLocaleTimeString("en-US", this.timeFormatting)
         },
+        // Function to keep everything before the second colon in a string
+        getTime(time) {
+            return time.split(":")[0] + ":" + time.split(":")[1] + " " + time.split(" ")[1];
+        }
     }
 }
