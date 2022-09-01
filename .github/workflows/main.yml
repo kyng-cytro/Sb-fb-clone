@@ -31,8 +31,11 @@ jobs:
       - name: Build files
         run: npm run build
 
-      - name: Deploy
-        env: 
-          SCP_URL: ${{ secrets.SCP_URL }}
-          SCP_PASSWORD: ${{ secrets.SCP_PASSWORD }}
-        run: sshpass -p "$SCP_PASSWORD" scp -rp ./dist/* $SCP_URL
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@master
+        with:
+          host: hciresearch.byu.edu
+          username: braeden
+          password: ${{ secrets.SCP_PASSWORD }}
+          source: "./dist/*"
+          target: "/var/www/html/fb-lite"
