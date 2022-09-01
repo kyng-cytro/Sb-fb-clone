@@ -37,5 +37,6 @@ jobs:
           host: hciresearch.byu.edu
           username: braeden
           password: ${{ secrets.SCP_PASSWORD }}
-          source: "./dist/*"
+          source: "./dist/"
           target: "/var/www/html/fb-lite"
+          strip_components: 1
