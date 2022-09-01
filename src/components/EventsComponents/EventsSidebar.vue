@@ -112,6 +112,7 @@
 
 <script>
 import PageSidebarButton from '@/components/PageSidebarButton.vue'
+import UserEvent from '@/vuex-orm_models/EventModel.js'
 
 export default {
 	name: 'EventsSidebar',
@@ -132,6 +133,9 @@ export default {
 			} else {
 				return this.eventDescription.length > 0
 			}
+		},
+		hasCustomEvent() {
+			return UserEvent.query().last() // Most recent event created
 		},
 	},
 	methods: {
@@ -164,7 +168,11 @@ export default {
 		},
 		regressStage() {
 			if (this.stage === 0) {
-				this.changeEventState('normal')
+				if (this.hasCustomEvent) {
+					this.changeEventState('eventCreated')
+				} else {
+					this.changeEventState('normal')
+				}
 			} else {
 				this.stage--
 			}
