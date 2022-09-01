@@ -26,10 +26,13 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Install Packages
-        run: npm ci --legacy-peer-deps && sudo apt-get install sshpass -y
+        run: npm ci --legacy-peer-deps
 
       - name: Build files
         run: npm run build
 
       - name: Deploy
-        run: sshpass -p "${{secrets.SCP_PASSWORD}}" scp -rp ./dist/* ${{secrets.SCP_URL}}
+        env: 
+          SCP_URL: ${{ secrets.SCP_URL }}
+          SCP_PASSWORD: ${{ secrets.SCP_PASSWORD }}
+        run: sshpass -p "$SCP_PASSWORD" scp -rp ./dist/* $SCP_URL
