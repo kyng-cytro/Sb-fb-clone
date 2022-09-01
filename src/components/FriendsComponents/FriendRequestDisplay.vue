@@ -33,20 +33,20 @@
 </template>
 
 <script>
-import FriendRequestSquare from "./FriendRequestSquare.vue";
+import FriendRequestSquare from './FriendRequestSquare.vue'
 
 export default {
-  name: "FriendRequestDisplay",
-  props: ["friendRequests", "showFriendQuestion"],
+  name: 'FriendRequestDisplay',
+  props: ['friendRequests', 'showFriendQuestion'],
   components: {
     FriendRequestSquare,
   },
   computed: {
     showFriendQuestionNotNull() {
-      return this.showFriendQuestion != null && this.showFriendQuestion;
+      return this.showFriendQuestion != null && this.showFriendQuestion
     },
   },
-};
+}
 </script>
 
 <style scoped>

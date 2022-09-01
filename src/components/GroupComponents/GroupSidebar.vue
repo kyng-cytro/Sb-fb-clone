@@ -1,30 +1,28 @@
 <template>
   <div>
-      <nav>
-        <div class="container">
-          <div class = "sidebar-buttons-container">
-          <PageSidebarButton iconName = "home" text = "Home" />
-          <PageSidebarButton iconName = "yourEvents" text = "Your Events" />
-          <PageSidebarButton iconName = "birthdays" text = "Birthdays" />
-          <PageSidebarButton iconName = "notifications" text = "Notifications" />
-          </div>
+    <nav>
+      <div class="container">
+        <div class="sidebar-buttons-container">
+          <PageSidebarButton iconName="home" text="Home" />
+          <PageSidebarButton iconName="yourEvents" text="Your Events" />
+          <PageSidebarButton iconName="birthdays" text="Birthdays" />
+          <PageSidebarButton iconName="notifications" text="Notifications" />
         </div>
-      </nav>
+      </div>
+    </nav>
   </div>
 </template>
 
 <script>
-import PageSidebarButton from "@/components/PageSidebarButton.vue";
+import PageSidebarButton from '@/components/PageSidebarButton.vue'
 
 export default {
-  name: "GroupSidebar",
+  name: 'GroupSidebar',
   components: {
-    PageSidebarButton
-  }
-
+    PageSidebarButton,
+  },
 }
 </script>
-
 
 <style scoped>
 .container {

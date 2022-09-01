@@ -25,17 +25,17 @@
 </template>
 
 <script>
-import ToggleButton from "vue-js-toggle-button";
-import SidebarButton from "./SidebarButton.vue";
-import Vue from "vue";
-import FacebookLite from "@/vuex-orm_models/FacebookLiteModel.js";
-import FriendRequest from "@/vuex-orm_models/FriendRequestModel.js";
-import Friend from "@/vuex-orm_models/FriendModel.js";
+import ToggleButton from 'vue-js-toggle-button'
+import SidebarButton from './SidebarButton.vue'
+import Vue from 'vue'
+import FacebookLite from '@/vuex-orm_models/FacebookLiteModel.js'
+import FriendRequest from '@/vuex-orm_models/FriendRequestModel.js'
+import Friend from '@/vuex-orm_models/FriendModel.js'
 
-Vue.use(ToggleButton);
+Vue.use(ToggleButton)
 
 export default {
-  name: "Sidebar",
+  name: 'Sidebar',
   components: {
     SidebarButton,
   },
@@ -45,24 +45,24 @@ export default {
       facebookLightButtons: null,
       facebookButtons: null,
       toggleButtonHeight: 27,
-    };
+    }
   },
   computed: {
     getFacebookLite() {
-      return FacebookLite.find(1).enabled;
+      return FacebookLite.find(1).enabled
     },
   },
   created() {
-    this.$root.$data.fbLiteEnabled = this.getFacebookLite;
-    this.facebookLightButtons = ["friends", "groups", "events", "favorites"];
+    this.$root.$data.fbLiteEnabled = this.getFacebookLite
+    this.facebookLightButtons = ['friends', 'groups', 'events', 'favorites']
     this.facebookButtons = [
-      "marketplace",
-      "watch",
-      "memories",
-      "saved",
-      "pages",
-      "news",
-    ];
+      'marketplace',
+      'watch',
+      'memories',
+      'saved',
+      'pages',
+      'news',
+    ]
   },
   methods: {
     updateFacebookLite() {
@@ -72,31 +72,31 @@ export default {
         data: {
           enabled: !this.getFacebookLite,
         },
-      });
+      })
 
       // Reset Friend Requests to pending (so we can reuse our entered friends)
       FriendRequest.update({
         where: (friend) => {
-          return friend.id;
+          return friend.id
         },
         data: {
-          state: "pending",
+          state: 'pending',
         },
-      });
+      })
 
       Friend.update({
         where: (friend) => {
-          return friend.id;
+          return friend.id
         },
         data: {
           selected: false,
         },
-      });
+      })
 
-      this.$root.$data.fbLiteEnabled = this.getFacebookLite;
+      this.$root.$data.fbLiteEnabled = this.getFacebookLite
     },
   },
-};
+}
 </script>
 <style scoped>
 #nav {

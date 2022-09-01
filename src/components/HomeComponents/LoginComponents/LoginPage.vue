@@ -68,20 +68,20 @@
 </template>
 
 <script>
-import axios from "axios";
-import { FriendPopulation } from "@/mixins/FriendPopulation";
-import { UserPopulation } from "@/mixins/UserPopulation";
-import _ from "lodash";
+import axios from 'axios'
+import { FriendPopulation } from '@/mixins/FriendPopulation'
+import { UserPopulation } from '@/mixins/UserPopulation'
+import _ from 'lodash'
 
 export default {
   mixins: [FriendPopulation, UserPopulation],
   data() {
     return {
-      username: "",
-      password: "",
+      username: '',
+      password: '',
       scrape: true,
-      usersName: "",
-    };
+      usersName: '',
+    }
   },
   created() {
     if (!this.scrape) {
@@ -90,61 +90,61 @@ export default {
   },
   methods: {
     usePrototypeWithoutData() {
-      if (this.usersName === "")
-        this.usersName = "User Test"
+      if (this.usersName === '') this.usersName = 'User Test'
       let user = {
         name: _.startCase(this.usersName.toLowerCase()),
-      };
-      this.addUser(user);
-      this.scrape = false;
-      this.logIn();
+      }
+      this.addUser(user)
+      this.scrape = false
+      this.logIn()
     },
     addData(user, friends, friendsByGroup, friendsByEvent) {
-      this.addUser(user);
-      this.addFriends(friends);
-      this.addAllGroupFriends(friendsByGroup);
-      this.addAllEventFriends(friendsByEvent);
+      this.addUser(user)
+      this.addFriends(friends)
+      this.addAllGroupFriends(friendsByGroup)
+      this.addAllEventFriends(friendsByEvent)
     },
     async logIn() {
       if (this.scrape) {
-        const path = "http://localhost:5000/logIn";
+        const path = 'http://localhost:5000/logIn'
 
         try {
           const { data } = await axios.post(path, {
             username: this.username,
             password: this.password,
-          });
+          })
 
-          console.log(data);
+          console.log(data)
 
           this.addData(
             data.user,
             data.friends,
             data.friendsByGroup,
-            data.friendsByEvent
-          );
+            data.friendsByEvent,
+          )
         } catch (err) {
-          console.error(err.message);
+          console.error(err.message)
         }
       } else {
         try {
-          const genericURL = process.env.NODE_ENV === 'production' ? '/fb-lite' : ''
-          const response = await fetch(`${genericURL}/generic.json`);
-          const data = await response.json();
+          const genericURL =
+            process.env.NODE_ENV === 'production' ? '/fb-lite' : ''
+          const response = await fetch(`${genericURL}/generic.json`)
+          const data = await response.json()
 
           this.addData(
             data.user,
             data.friends,
             data.friendsByGroup,
-            data.friendsByEvent
-          );
+            data.friendsByEvent,
+          )
         } catch (err) {
-          console.error(err.message);
+          console.error(err.message)
         }
       }
     },
   },
-};
+}
 </script>
 
 <style scoped>

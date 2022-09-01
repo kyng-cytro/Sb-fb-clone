@@ -5,7 +5,9 @@
       <form @submit.prevent>
         <div
           class="form-check"
-          @click="$emit('toggleNonFacebookVisibility', null), inviteVia = 'Facebook'"
+          @click="
+            $emit('toggleNonFacebookVisibility', null), (inviteVia = 'Facebook')
+          "
         >
           <input
             class="form-check-input"
@@ -15,13 +17,19 @@
             v-model="inviteVia"
             value="Facebook"
           />
-          <label class="form-check-label h5" for="flexRadioDefault0" :style="isSelected('Facebook')">
+          <label
+            class="form-check-label h5"
+            for="flexRadioDefault0"
+            :style="isSelected('Facebook')"
+          >
             Facebook
           </label>
         </div>
         <div
           class="form-check"
-          @click="$emit('toggleNonFacebookVisibility', 'email'), inviteVia = 'Email'"
+          @click="
+            $emit('toggleNonFacebookVisibility', 'email'), (inviteVia = 'Email')
+          "
         >
           <input
             class="form-check-input"
@@ -31,13 +39,19 @@
             v-model="inviteVia"
             value="Email"
           />
-          <label class="form-check-label h5" for="flexRadioDefault1" :style="isSelected('Email')">
+          <label
+            class="form-check-label h5"
+            for="flexRadioDefault1"
+            :style="isSelected('Email')"
+          >
             Email
           </label>
         </div>
         <div
           class="form-check"
-          @click="$emit('toggleNonFacebookVisibility', 'phone'), inviteVia = 'Phone'"
+          @click="
+            $emit('toggleNonFacebookVisibility', 'phone'), (inviteVia = 'Phone')
+          "
         >
           <input
             class="form-check-input"
@@ -47,7 +61,11 @@
             v-model="inviteVia"
             value="Phone"
           />
-          <label class="form-check-label h5" for="flexRadioDefault2" :style="isSelected('Phone')">
+          <label
+            class="form-check-label h5"
+            for="flexRadioDefault2"
+            :style="isSelected('Phone')"
+          >
             Phone Number
           </label>
         </div>
@@ -98,57 +116,57 @@
 </template>
 
 <script>
-import GroupFriend from "@/vuex-orm_models/GroupFriendModel.js";
-import EventFriend from "@/vuex-orm_models/EventFriendModel.js";
+import GroupFriend from '@/vuex-orm_models/GroupFriendModel.js'
+import EventFriend from '@/vuex-orm_models/EventFriendModel.js'
 
 export default {
   data() {
     return {
-      selected: "suggested",
-      inviteVia: "Facebook",
-    };
+      selected: 'suggested',
+      inviteVia: 'Facebook',
+    }
   },
   computed: {
     events() {
-      let EventFriends = EventFriend.all();
-      let eventNames = [];
+      let EventFriends = EventFriend.all()
+      let eventNames = []
       for (let i = 0; i < EventFriends.length; i++) {
-        eventNames.push(EventFriends[i].eventName);
+        eventNames.push(EventFriends[i].eventName)
       }
-      return eventNames;
+      return eventNames
     },
     groups() {
-      let GroupFriends = GroupFriend.all();
-      let groupNames = [];
+      let GroupFriends = GroupFriend.all()
+      let groupNames = []
       for (let i = 0; i < GroupFriends.length; i++) {
-        groupNames.push(GroupFriends[i].groupName);
+        groupNames.push(GroupFriends[i].groupName)
       }
-      return groupNames;
+      return groupNames
     },
   },
   methods: {
     select(event) {
-      const id = event.currentTarget.id;
-      this.selected = id;
-      this.$emit("selected", id);
+      const id = event.currentTarget.id
+      this.selected = id
+      this.$emit('selected', id)
     },
     selectEvent(event) {
-      const id = event.currentTarget.id;
-      this.selected = id;
-      this.$emit("event", id);
+      const id = event.currentTarget.id
+      this.selected = id
+      this.$emit('event', id)
     },
     selectGroup(event) {
-      const id = event.currentTarget.id;
-      this.selected = id;
-      this.$emit("group", id);
+      const id = event.currentTarget.id
+      this.selected = id
+      this.$emit('group', id)
     },
     isSelected(value) {
       if (this.inviteVia === value) {
-        return "font-weight: bold";
-      } else return "font-weight: 300";
+        return 'font-weight: bold'
+      } else return 'font-weight: 300'
     },
   },
-};
+}
 </script>
 
 <style scoped>

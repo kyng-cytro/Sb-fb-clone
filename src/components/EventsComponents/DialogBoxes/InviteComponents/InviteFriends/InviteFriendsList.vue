@@ -66,33 +66,33 @@
 </template>
 
 <script>
-import InviteFriendsListItem from "./InviteFriendsListItem.vue";
-import { FriendPopulation } from "@/mixins/FriendPopulation.js";
+import InviteFriendsListItem from './InviteFriendsListItem.vue'
+import { FriendPopulation } from '@/mixins/FriendPopulation.js'
 
 export default {
   mixins: [FriendPopulation],
   components: {
     InviteFriendsListItem,
   },
-  props: ["friendsList"],
+  props: ['friendsList'],
   data() {
     return {
       selectedFriends: [],
       selectAll: false,
-      searchQuery: "",
-    };
+      searchQuery: '',
+    }
   },
   methods: {
     selectAllFriends() {
-      this.selectOrDeselectAllFriends(true);
-      this.selectAll = true;
+      this.selectOrDeselectAllFriends(true)
+      this.selectAll = true
     },
     deselectAllFriends() {
-      this.selectOrDeselectAllFriends(false);
-      this.selectAll = false;
+      this.selectOrDeselectAllFriends(false)
+      this.selectAll = false
     },
   },
-};
+}
 </script>
 
 <style scoped>

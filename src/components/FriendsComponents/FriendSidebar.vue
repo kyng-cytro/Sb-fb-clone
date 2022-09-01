@@ -10,16 +10,15 @@
 </template>
 
 <script>
-import PageSidebarButton from "@/components/PageSidebarButton.vue";
+import PageSidebarButton from '@/components/PageSidebarButton.vue'
 
 export default {
-  name: "FriendSidebar",
+  name: 'FriendSidebar',
   components: {
     PageSidebarButton,
   },
-};
+}
 </script>
-
 
 <style scoped>
 .container {

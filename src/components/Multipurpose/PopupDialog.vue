@@ -30,27 +30,27 @@
 
 <script>
 export default {
-  props: ["togglePopup", "header", "minWidth", "maxHeight", "minHeight"],
+  props: ['togglePopup', 'header', 'minWidth', 'maxHeight', 'minHeight'],
   computed: {
     innerStyles() {
-      let styles = "";
+      let styles = ''
 
-      if (this.header === "Create post") styles += "width: 40vw;";
-      else styles += "width: 60vw;";
+      if (this.header === 'Create post') styles += 'width: 40vw;'
+      else styles += 'width: 60vw;'
 
-      return styles;
+      return styles
     },
     contentStyles() {
-      let styles = "";
+      let styles = ''
 
-      if (this.minWidth) styles += `min-width: ${this.minWidth};`;
-      if (this.maxHeight) styles += `max-height: ${this.maxHeight};`;
-      if (this.minHeight) styles += `min-height: ${this.minHeight};`;
+      if (this.minWidth) styles += `min-width: ${this.minWidth};`
+      if (this.maxHeight) styles += `max-height: ${this.maxHeight};`
+      if (this.minHeight) styles += `min-height: ${this.minHeight};`
 
-      return styles;
+      return styles
     },
   },
-};
+}
 </script>
 
 <style scoped>

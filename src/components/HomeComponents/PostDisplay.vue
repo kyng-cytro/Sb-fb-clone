@@ -13,34 +13,34 @@
 </template>
 
 <script>
-import PostSquare from "./PostSquare.vue";
-import Post from "@/vuex-orm_models/PostModel.js";
-import { PostFiltering } from "@/mixins/PostFiltering.js";
-import Filter from "@/vuex-orm_models/FilterModel.js";
+import PostSquare from './PostSquare.vue'
+import Post from '@/vuex-orm_models/PostModel.js'
+import { PostFiltering } from '@/mixins/PostFiltering.js'
+import Filter from '@/vuex-orm_models/FilterModel.js'
 
 export default {
-  name: "PostDisplay",
+  name: 'PostDisplay',
   mixins: [PostFiltering],
   components: {
     PostSquare,
   },
   created() {
-    let bob = this.posts;
-    console.log(bob);
-    console.log(this.filters);
+    let bob = this.posts
+    console.log(bob)
+    console.log(this.filters)
   },
   computed: {
     filters() {
-      return Filter.find(1);
+      return Filter.find(1)
     },
     posts() {
-      return Post.query().orderBy('date', 'desc').get();
+      return Post.query().orderBy('date', 'desc').get()
     },
   },
   data() {
-    return {};
+    return {}
   },
-};
+}
 </script>
 
 <style scoped>

@@ -30,37 +30,40 @@
 </template>
 
 <script>
-import NonFacebookFriend from "@/vuex-orm_models/NonFacebookFriendModel.js";
+import NonFacebookFriend from '@/vuex-orm_models/NonFacebookFriendModel.js'
 export default {
   props: { method: String },
   data() {
     return {
       form: {
-        name: "",
-        phone: "",
-        email: "",
+        name: '',
+        phone: '',
+        email: '',
       },
-    };
+    }
   },
   methods: {
     addNonFacebookFriend() {
-      if (this.form.name === "" || (this.form.phone === "" && this.form.email === ""))
-        return;
-        
+      if (
+        this.form.name === '' ||
+        (this.form.phone === '' && this.form.email === '')
+      )
+        return
+
       // Insert a new nonFacebookFriend into the Vuex database
       NonFacebookFriend.insert({
         data: this.form,
-      });
+      })
 
       //Clear the form
       this.form = {
-        name: "",
-        phone: "",
-        email: "",
-      };
+        name: '',
+        phone: '',
+        email: '',
+      }
     },
   },
-};
+}
 </script>
 
 <style scoped>

@@ -1,7 +1,7 @@
-import { Model } from '@vuex-orm/core';
+import { Model } from '@vuex-orm/core'
 
 export default class FiltersValues extends Model {
-  static entity = 'FiltersValues';
+  static entity = 'FiltersValues'
 
   static fields() {
     return {

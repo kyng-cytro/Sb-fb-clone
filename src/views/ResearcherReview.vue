@@ -20,24 +20,24 @@
 </template>
 
 <script>
-import FriendRequest from "@/vuex-orm_models/FriendRequestModel.js";
-import FriendRequestDisplay from "@/components/FriendsComponents/FriendRequestDisplay.vue";
+import FriendRequest from '@/vuex-orm_models/FriendRequestModel.js'
+import FriendRequestDisplay from '@/components/FriendsComponents/FriendRequestDisplay.vue'
 export default {
   components: {
     FriendRequestDisplay,
   },
   computed: {
     pendingRequests() {
-      return FriendRequest.query().where("state", "pending").get();
+      return FriendRequest.query().where('state', 'pending').get()
     },
     confirmedRequests() {
-      return FriendRequest.query().where("state", "confirmed").get();
+      return FriendRequest.query().where('state', 'confirmed').get()
     },
     deletedRequests() {
-      return FriendRequest.query().where("state", "deleted").get();
+      return FriendRequest.query().where('state', 'deleted').get()
     },
   },
-};
+}
 </script>
 
 <style scoped>

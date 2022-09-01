@@ -17,9 +17,9 @@
         v-if="this.$root.$data.fbLiteEnabled"
         class="d-flex align-content-center"
       >
-        <p id="expireMessage">{{
-          "Expires in " + friendRequest.daysUntilExpiration + " days"
-        }}</p>
+        <p id="expireMessage">
+          {{ 'Expires in ' + friendRequest.daysUntilExpiration + ' days' }}
+        </p>
         <i
           class="bi bi-question-circle tip"
           v-b-tooltip.hover.v-dark
@@ -82,52 +82,52 @@
 </template>
 
 <script>
-import FacebookLite from "@/vuex-orm_models/FacebookLiteModel.js";
-import FriendRequest from "@/vuex-orm_models/FriendRequestModel.js";
+import FacebookLite from '@/vuex-orm_models/FacebookLiteModel.js'
+import FriendRequest from '@/vuex-orm_models/FriendRequestModel.js'
 
 export default {
-  name: "friend-request-square",
-  props: ["friendRequest"],
+  name: 'friend-request-square',
+  props: ['friendRequest'],
   methods: {
     handleDeleteClick() {
       FriendRequest.update({
         where: this.friendRequest.id,
         data: {
-          state: "deleted",
+          state: 'deleted',
         },
-      });
+      })
     },
     setAltImg(event) {
       event.target.src = `https://ui-avatars.com/api/?name=${this.friendRequest.name
-        .split(" ")
-        .join("+")}`;
+        .split(' ')
+        .join('+')}`
     },
     handleConfirmClick() {
       FriendRequest.update({
         where: this.friendRequest.id,
         data: {
-          state: "confirmed",
+          state: 'confirmed',
         },
-      });
+      })
     },
   },
   watch: {
     getFacebookLite: function (isEnabled) {
       if (!isEnabled) {
         //If it's now not enabled
-        this.resetFilters();
+        this.resetFilters()
       }
     },
   },
   computed: {
     getFacebookLite() {
-      return FacebookLite.find(1).enabled;
+      return FacebookLite.find(1).enabled
     },
     tooltip() {
-      return `After ${this.friendRequest.daysUntilExpiration} days this request will be automatically deleted. The sender will not be notified.`;
+      return `After ${this.friendRequest.daysUntilExpiration} days this request will be automatically deleted. The sender will not be notified.`
     },
   },
-};
+}
 </script>
 
 <style scoped>

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-        <!-- Facebook -->
+      <!-- Facebook -->
       <p v-show="selectedFriends.length">
         Friends ({{ selectedFriends.length }})
       </p>
@@ -9,12 +9,12 @@
         v-for="friend in this.selectedFriends"
         :key="friend.id"
         class="selectRectangle"
-        >
-        <AttendanceTabInvitedListItem v-bind:friend="friend"/>
+      >
+        <AttendanceTabInvitedListItem v-bind:friend="friend" />
       </div>
-      <br>
-      <br>
-      
+      <br />
+      <br />
+
       <!-- Email -->
       <p v-show="onlyEmailFriends.length">
         Invited by email ({{ onlyEmailFriends.length }})
@@ -24,10 +24,10 @@
         :key="emailFriend.id"
         class="selectRectangle"
       >
-        <AttendanceTabInvitedListItem v-bind:friend="emailFriend"/>
+        <AttendanceTabInvitedListItem v-bind:friend="emailFriend" />
       </div>
-      <br>
-      <br>
+      <br />
+      <br />
 
       <!-- Phone -->
       <p v-show="onlyPhoneFriends.length">
@@ -38,10 +38,10 @@
         :key="phoneFriend.id"
         class="selectRectangle"
       >
-        <AttendanceTabInvitedListItem v-bind:friend="phoneFriend"/>
+        <AttendanceTabInvitedListItem v-bind:friend="phoneFriend" />
       </div>
-      <br>
-      <br>
+      <br />
+      <br />
 
       <!-- Both -->
       <p v-show="emailAndPhoneFriends.length">
@@ -52,30 +52,29 @@
         :key="bothFriend.id"
         class="selectRectangle"
       >
-        <AttendanceTabInvitedListItem v-bind:friend="bothFriend"/>
+        <AttendanceTabInvitedListItem v-bind:friend="bothFriend" />
       </div>
-      <br>
-      <br>
+      <br />
+      <br />
     </div>
   </div>
 </template>
 
 <script>
-import AttendanceTabInvitedListItem from "./AttendanceTabInvitedListItem.vue";
+import AttendanceTabInvitedListItem from './AttendanceTabInvitedListItem.vue'
 
-import { friendSorting } from "@/mixins/FriendSorting.js"
+import { friendSorting } from '@/mixins/FriendSorting.js'
 
 export default {
   components: {
     AttendanceTabInvitedListItem,
   },
   data() {
-    return {
-    };
+    return {}
   },
   methods: {},
-  mixins: [friendSorting]
-};
+  mixins: [friendSorting],
+}
 </script>
 
 <style scoped>

@@ -17,21 +17,21 @@
 </template>
 
 <script>
-import InviteFriendsList from "../InviteFriends/InviteFriendsList.vue";
-import InviteNonFacebook from "../InviteNonFacebook.vue";
-import Friend from "@/vuex-orm_models/FriendModel.js";
+import InviteFriendsList from '../InviteFriends/InviteFriendsList.vue'
+import InviteNonFacebook from '../InviteNonFacebook.vue'
+import Friend from '@/vuex-orm_models/FriendModel.js'
 
 export default {
   data() {
     return {
       form: {
-        name: "",
-        imageSource: "",
+        name: '',
+        imageSource: '',
         numOfMutualFriends: null,
       },
-      buttonText: "",
+      buttonText: '',
       showToolTip: false,
-    };
+    }
   },
   components: {
     InviteFriendsList,
@@ -39,13 +39,13 @@ export default {
   },
   methods: {
     addFriend() {
-      Friend.insert({ data: this.form });
+      Friend.insert({ data: this.form })
     },
     emitToggleNonFacebookVisibility() {
-      this.$emit("toggleNonFacebookVisibility");
+      this.$emit('toggleNonFacebookVisibility')
     },
   },
-};
+}
 </script>
 
 <style scoped>

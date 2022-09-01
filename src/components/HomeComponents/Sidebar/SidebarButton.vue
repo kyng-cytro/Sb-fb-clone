@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: "SidebarButton",
+  name: 'SidebarButton',
   // created() {
   //   this.setImage();
   // },
@@ -39,7 +39,7 @@ export default {
   // activated() {
   //   console.log("activated");
   // },
-  props: ["type"],
+  props: ['type'],
   // data() {
   //   return {
   //     image: null
@@ -47,7 +47,7 @@ export default {
   // },
   methods: {
     capitalizeFirstLetter(word) {
-      return word.charAt(0).toUpperCase() + word.slice(1);
+      return word.charAt(0).toUpperCase() + word.slice(1)
     },
     // clearImage() {
     //   console.log("Clearing image.");
@@ -65,10 +65,10 @@ export default {
   },
   computed: {
     getImage() {
-      return require("@/assets/images/SidebarIcons/" + this.type + ".png");
+      return require('@/assets/images/SidebarIcons/' + this.type + '.png')
     },
   },
-};
+}
 </script>
 
 <style scoped>

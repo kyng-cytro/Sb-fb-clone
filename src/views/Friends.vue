@@ -6,24 +6,23 @@
 </template>
 
 <script>
-import FriendSidebar from "@/components/FriendsComponents/FriendSidebar.vue";
-import FriendRequestDisplay from "@/components/FriendsComponents/FriendRequestDisplay.vue";
-import FriendRequest from "@/vuex-orm_models/FriendRequestModel.js";
+import FriendSidebar from '@/components/FriendsComponents/FriendSidebar.vue'
+import FriendRequestDisplay from '@/components/FriendsComponents/FriendRequestDisplay.vue'
+import FriendRequest from '@/vuex-orm_models/FriendRequestModel.js'
 
 export default {
-  name: "Friends",
+  name: 'Friends',
   components: {
     FriendSidebar,
     FriendRequestDisplay,
   },
   computed: {
     friendRequests() {
-      return FriendRequest.all();
+      return FriendRequest.all()
     },
   },
-};
+}
 </script>
-
 
 <style scoped>
 .Friends {

@@ -7,7 +7,7 @@
         <div v-if="getFacebookLite">
           <button
             class="checkboxButton"
-            style="margin-right: 8px;"
+            style="margin-right: 8px"
             :style="viewOnlyButtonStyles"
             @click="toggleViewOnly"
             v-b-tooltip.hover
@@ -26,11 +26,7 @@
           </button>
         </div>
         <div v-else class="lineHeight">
-          <button
-            class="checkboxButton"
-          >
-            Public
-          </button>
+          <button class="checkboxButton">Public</button>
         </div>
       </FriendDisplay>
     </div>
@@ -59,63 +55,63 @@
 </template>
 
 <script>
-import FacebookLite from "@/vuex-orm_models/FacebookLiteModel.js";
-import FriendDisplay from "@/components/Multipurpose/FriendDisplay";
-import Post from "@/vuex-orm_models/PostModel.js";
+import FacebookLite from '@/vuex-orm_models/FacebookLiteModel.js'
+import FriendDisplay from '@/components/Multipurpose/FriendDisplay'
+import Post from '@/vuex-orm_models/PostModel.js'
 
 export default {
   data() {
     return {
       postBeingCreated: {
-        text: "",
+        text: '',
         friend: this.user,
       },
       isMajorEvent: false,
       isPostViewOnly: false,
       viewOnlyButtonStyles:
-        "background-color: rgb(221, 221, 221) !important; color: rgb(10, 10, 10);",
+        'background-color: rgb(221, 221, 221) !important; color: rgb(10, 10, 10);',
       majorEventButtonStyles:
-        "background-color: rgb(221, 221, 221) !important; color: rgb(10, 10, 10);",
-    };
+        'background-color: rgb(221, 221, 221) !important; color: rgb(10, 10, 10);',
+    }
   },
   mounted() {
-    this.focusInput();
+    this.focusInput()
   },
   updated() {
-    this.focusInput();
+    this.focusInput()
   },
-  props: ["user"],
+  props: ['user'],
   components: {
     FriendDisplay,
   },
   methods: {
     focusInput() {
-      this.$refs.postText.focus();
+      this.$refs.postText.focus()
     },
     // Below are some really annoying hacks to get to styles to update. For some reason, it was being extremely uncooperative with other methods.
     toggleViewOnly() {
-      this.isViewOnly = !this.isViewOnly;
+      this.isViewOnly = !this.isViewOnly
       this.viewOnlyButtonStyles = this.isViewOnly
-        ? "background-color: #1b74e4 !important;"
-        : "background-color: rgb(221, 221, 221) !important; color: rgb(10, 10, 10);";
+        ? 'background-color: #1b74e4 !important;'
+        : 'background-color: rgb(221, 221, 221) !important; color: rgb(10, 10, 10);'
     },
     toggleMajorEvent() {
-      this.isMajorEvent = !this.isMajorEvent;
+      this.isMajorEvent = !this.isMajorEvent
       this.majorEventButtonStyles = this.isMajorEvent
-        ? "background-color: #1b74e4 !important;"
-        : "background-color: rgb(221, 221, 221) !important; color: rgb(10, 10, 10);";
+        ? 'background-color: #1b74e4 !important;'
+        : 'background-color: rgb(221, 221, 221) !important; color: rgb(10, 10, 10);'
     },
     closeDialog() {
-      this.$root.$emit("closeCreatePostDialog");
+      this.$root.$emit('closeCreatePostDialog')
     },
     resetFields() {
-      this.postBeingCreated.text = "";
-      this.isMajorEvent = false;
-      this.isPostViewOnly = false;
+      this.postBeingCreated.text = ''
+      this.isMajorEvent = false
+      this.isPostViewOnly = false
     },
     post() {
       let post = {
-        imageSource: "", // No image (yet)
+        imageSource: '', // No image (yet)
         friend: this.user,
         text: this.postBeingCreated.text,
         date: new Date().toString(),
@@ -126,15 +122,15 @@ export default {
           isMajorEvent: this.isMajorEvent,
           isPostViewOnly: this.isPostViewOnly,
         },
-      };
-      this.resetFields();
-      Post.insert({ data: post });
-      this.closeDialog();
+      }
+      this.resetFields()
+      Post.insert({ data: post })
+      this.closeDialog()
     },
   },
   computed: {
     ableToPost() {
-      return this.postBeingCreated.text.length > 0;
+      return this.postBeingCreated.text.length > 0
     },
     textAreaStyles() {
       let styles = `
@@ -143,18 +139,18 @@ export default {
                     resize: none;
                     outline: none;
                     overflow: hidden;
-                `;
+                `
       styles +=
         this.postBeingCreated.text.length < 61
-          ? "font-size: 1.7em;"
-          : "font-size: 1em;";
-      return styles;
+          ? 'font-size: 1.7em;'
+          : 'font-size: 1em;'
+      return styles
     },
     getFacebookLite() {
-      return FacebookLite.find(1).enabled;
+      return FacebookLite.find(1).enabled
     },
   },
-};
+}
 </script>
 
 <style scoped>

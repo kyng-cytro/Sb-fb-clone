@@ -1,62 +1,65 @@
-import FacebookLite from "@/vuex-orm_models/FacebookLiteModel.js";
+import FacebookLite from '@/vuex-orm_models/FacebookLiteModel.js'
 export const PostFiltering = {
-  name: "PostFiltering",
+  name: 'PostFiltering',
   methods: {
     filterPosts(posts, filter) {
-      if (!FacebookLite.find(1).enabled) { // If FacebookLite is disabled, you don't need to do any filtering
-        console.log("Facebook lite isn't enabled, so we're not filtering the posts.")
-        return posts;
+      if (!FacebookLite.find(1).enabled) {
+        // If FacebookLite is disabled, you don't need to do any filtering
+        console.log(
+          "Facebook lite isn't enabled, so we're not filtering the posts.",
+        )
+        return posts
       }
       function getDifferenceInTime(date1, date2) {
-        return Math.abs(date1.getTime() - date2.getTime());
+        return Math.abs(date1.getTime() - date2.getTime())
       }
       function getNumDaysBetween(date1, date2) {
-        return getDifferenceInTime(date1, date2) / (1000 * 60 * 60 * 24);
+        return getDifferenceInTime(date1, date2) / (1000 * 60 * 60 * 24)
       }
 
-      let newPosts = [];
+      let newPosts = []
       // In production, you can just create a new date like this:
-      let currentDate = new Date();
+      let currentDate = new Date()
       for (let i = 0; i < posts.length; i++) {
-        let post = posts[i];
-        post.date = new Date(post.date); // Convert the string date to a js date object
+        let post = posts[i]
+        post.date = new Date(post.date) // Convert the string date to a js date object
         // Here's how this branching works. If the filter is checked but the post doesn't meet any one of those filters, we continue to the next iteration of the loop
         if (filter.lastMonth) {
           if (!(currentDate.getMonth() - post.date.getMonth() <= 1)) {
-            continue;
+            continue
           }
         } else if (filter.lastTwoWeeks) {
           if (!(getNumDaysBetween(currentDate, post.date) <= 14)) {
-            continue;
+            continue
           }
         } else if (filter.lastWeek) {
           if (!(getNumDaysBetween(currentDate, post.date) <= 7)) {
-            continue;
+            continue
           }
         } else if (filter.lastThreeDays) {
           if (!(getNumDaysBetween(currentDate, post.date) <= 3)) {
-            continue;
+            continue
           }
         }
 
         //TAGS
         if (filter.isMajorEvent && !post.filter.isMajorEvent) {
-          continue;
+          continue
         }
 
         //PEOPLE
         if (filter.isFamily && !post.friend.isFamily) {
-          continue;
+          continue
         }
-        newPosts.push(post);
+        newPosts.push(post)
       }
 
       // Sort the filtered posts by the date:
       newPosts.sort((post1, post2) => {
-        return post2.date - post1.date;
-      });
+        return post2.date - post1.date
+      })
 
-      return newPosts;
+      return newPosts
     },
   },
-};
+}

@@ -28,9 +28,9 @@
     </div>
 
     <div class="info" v-if="isViewOnly">
-      <em> {{ post.numLikes + " Likes" }}</em>
+      <em> {{ post.numLikes + ' Likes' }}</em>
       <em style="float: right">{{
-        post.numComments + " comments " + post.numShares + " shares"
+        post.numComments + ' comments ' + post.numShares + ' shares'
       }}</em>
       <div class="line"></div>
       <div class="Buttons">
@@ -61,24 +61,24 @@
 </template>
 
 <script>
-import FacebookLite from "@/vuex-orm_models/FacebookLiteModel.js";
-import FriendDisplay from "@/components/Multipurpose/FriendDisplay";
-import { dateProcessing } from "@/mixins/DateProcessing.js";
-import FiltersValues from "@/vuex-orm_models/FilterModel.js";
+import FacebookLite from '@/vuex-orm_models/FacebookLiteModel.js'
+import FriendDisplay from '@/components/Multipurpose/FriendDisplay'
+import { dateProcessing } from '@/mixins/DateProcessing.js'
+import FiltersValues from '@/vuex-orm_models/FilterModel.js'
 
 export default {
-  name: "post-square",
+  name: 'post-square',
   components: {
     FriendDisplay,
   },
-  props: ["post"],
+  props: ['post'],
   mixins: [dateProcessing],
   computed: {
     isFacebookLite() {
-      return FacebookLite.find(1).enabled;
+      return FacebookLite.find(1).enabled
     },
     isUserViewOnly() {
-      return FiltersValues.find(1).isUserViewOnly;
+      return FiltersValues.find(1).isUserViewOnly
     },
     isViewOnly() {
       // it's view only if it's not facebook light and the post is view only, or it's not UserViewonly and it is postViewOnly
@@ -86,10 +86,10 @@ export default {
       return (
         (!this.isFacebookLite || !this.isUserViewOnly) &&
         !this.post.filter.isPostViewOnly
-      );
+      )
     },
   },
-};
+}
 </script>
 
 <style scoped>

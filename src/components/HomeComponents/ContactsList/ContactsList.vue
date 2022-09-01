@@ -8,25 +8,21 @@
         <i class="bi bi-three-dots"></i>
       </div>
     </div>
-    <hr>
-    <div
-        v-for="friend in friendsList"
-        :key="friend.id"
-        class="ContactCard"
-      >
-        <ContactCards v-bind:friend="friend" />
-      </div>
+    <hr />
+    <div v-for="friend in friendsList" :key="friend.id" class="ContactCard">
+      <ContactCards v-bind:friend="friend" />
+    </div>
   </div>
 </template>
 
 <script>
-import ContactCards from "./ContactCards.vue";
+import ContactCards from './ContactCards.vue'
 
 export default {
   components: {
     ContactCards,
   },
-  props: ["friendsList"],
+  props: ['friendsList'],
 }
 </script>
 

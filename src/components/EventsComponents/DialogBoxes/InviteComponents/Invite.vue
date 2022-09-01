@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import InviteFriends from "./InviteFriends/InviteFriends.vue";
-import InviteFriendsSidebar from "./InviteFriends/InviteFriendsSidebar.vue";
-import InvitesLeft from "./InvitesLeft.vue";
-import Friend from "@/vuex-orm_models/FriendModel.js";
-import GroupFriend from "@/vuex-orm_models/GroupFriendModel.js";
-import EventFriend from "@/vuex-orm_models/EventFriendModel.js";
+import InviteFriends from './InviteFriends/InviteFriends.vue'
+import InviteFriendsSidebar from './InviteFriends/InviteFriendsSidebar.vue'
+import InvitesLeft from './InvitesLeft.vue'
+import Friend from '@/vuex-orm_models/FriendModel.js'
+import GroupFriend from '@/vuex-orm_models/GroupFriendModel.js'
+import EventFriend from '@/vuex-orm_models/EventFriendModel.js'
 
 export default {
   components: {
@@ -34,36 +34,36 @@ export default {
       collapseNonFacebook: false,
       externalInviteMethod: null,
       friendsList: Friend.all().slice(0, 100),
-    };
+    }
   },
   methods: {
     toggleVisibility(method) {
-      if (method === null) this.collapseNonFacebook = false;
-      else this.collapseNonFacebook = true;
+      if (method === null) this.collapseNonFacebook = false
+      else this.collapseNonFacebook = true
 
-      this.externalInviteMethod = method;
+      this.externalInviteMethod = method
     },
     applySelectedList(list) {
-      if (list === "all") {
-        this.friendsList = Friend.all();
+      if (list === 'all') {
+        this.friendsList = Friend.all()
       } else {
-        this.friendsList = Friend.all().slice(0, 100);
+        this.friendsList = Friend.all().slice(0, 100)
       }
     },
     applySelectedGroup(group) {
       const groupFriends = GroupFriend.all().find(
-        (friend) => friend.groupName === group
-      ).friends;
-      this.friendsList = Friend.findIn(groupFriends);
+        (friend) => friend.groupName === group,
+      ).friends
+      this.friendsList = Friend.findIn(groupFriends)
     },
     applySelectedEvent(event) {
       const eventFriends = EventFriend.all().find(
-        (friend) => friend.eventName === event
-      ).friends;
-      this.friendsList = Friend.findIn(eventFriends);
+        (friend) => friend.eventName === event,
+      ).friends
+      this.friendsList = Friend.findIn(eventFriends)
     },
   },
-};
+}
 </script>
 
 <style scoped>

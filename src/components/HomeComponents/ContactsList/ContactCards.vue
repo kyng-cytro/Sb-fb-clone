@@ -1,19 +1,19 @@
 <template>
-    <div class="contact">
-        <div class="verticalAlign">
-            <FriendDisplay :friend="this.friend"/>
-        </div>
+  <div class="contact">
+    <div class="verticalAlign">
+      <FriendDisplay :friend="this.friend" />
     </div>
+  </div>
 </template>
 
 <script>
-import FriendDisplay from "@/components/Multipurpose/FriendDisplay";
+import FriendDisplay from '@/components/Multipurpose/FriendDisplay'
 
 export default {
-  props: ["friend"],
+  props: ['friend'],
   components: {
     FriendDisplay,
-  }
+  },
 }
 </script>
 

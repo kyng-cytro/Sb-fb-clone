@@ -10,18 +10,17 @@
 </template>
 
 <script>
-import GroupSidebar from "@/components/GroupComponents/GroupSidebar.vue";
-import GroupDisplay from "@/components/GroupComponents/GroupDisplay.vue";
+import GroupSidebar from '@/components/GroupComponents/GroupSidebar.vue'
+import GroupDisplay from '@/components/GroupComponents/GroupDisplay.vue'
 
 export default {
-  name: "Groups",
+  name: 'Groups',
   components: {
     GroupSidebar,
     GroupDisplay,
   },
-};
+}
 </script>
-
 
 <style scoped>
 .Friends {
