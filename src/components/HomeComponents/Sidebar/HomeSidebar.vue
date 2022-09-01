@@ -30,6 +30,7 @@ import SidebarButton from "./SidebarButton.vue";
 import Vue from "vue";
 import FacebookLite from "@/vuex-orm_models/FacebookLiteModel.js";
 import FriendRequest from "@/vuex-orm_models/FriendRequestModel.js";
+import Friend from "@/vuex-orm_models/FriendModel.js";
 
 Vue.use(ToggleButton);
 
@@ -80,6 +81,15 @@ export default {
         },
         data: {
           state: "pending",
+        },
+      });
+
+      Friend.update({
+        where: (friend) => {
+          return friend.id;
+        },
+        data: {
+          selected: false,
         },
       });
 

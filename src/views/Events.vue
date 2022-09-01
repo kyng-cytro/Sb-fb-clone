@@ -3,101 +3,100 @@
     <div>
       <EventsSidebar
         :eventState="this.eventState"
-        v-on:stateChange="updateEventState"
-        v-on:nameChange="updateEventName"
-        v-on:dateChange="updateEventDate"
-        v-on:timeChange="updateEventTime"
-        v-on:locationChange="updateEventLocation"
-        v-on:descriptionChange="updateEventDescription"
+        @stateChange="updateEventState"
+        @nameChange="updateEventName"
+        @dateChange="updateEventDate"
+        @timeChange="updateEventTime"
+        @locationChange="updateEventLocation"
+        @descriptionChange="updateEventDescription"
       />
     </div>
 
     <div class="content">
-      <EventExampleHolder v-if="eventState === 'normal'" />
-      <EventPreview
-        :event="currentEvent"
-        v-else-if="eventState === 'editing'"
+      <EventExampleHolder
+        v-if="!this.hasCustomEvent && eventState === 'normal'"
       />
       <EventData
-        :event="currentEvent"
+        :event="this.mostRecentEvent"
         :eventState="eventState"
-        v-else-if="eventState === 'eventCreated'"
+        v-else-if="this.hasCustomEvent && eventState === 'eventCreated'"
+      />
+      <EventPreview
+        :event="this.mostRecentEvent"
+        v-else-if="eventState === 'editing'"
       />
     </div>
   </div>
 </template>
 
 <script>
-import EventsSidebar from "@/components/EventsComponents/EventsSidebar.vue";
-import EventExampleHolder from "@/components/EventsComponents/EventExampleHolder.vue";
-import EventPreview from "@/components/EventsComponents/EventPreview.vue";
-import EventData from "@/components/EventsComponents/EventCurrentDisplay.vue";
-import { UserPopulation } from "@/mixins/UserPopulation";
-import { FriendPopulation } from "@/mixins/FriendPopulation";
+import UserEvent from '@/vuex-orm_models/EventModel.js'
+import EventsSidebar from '@/components/EventsComponents/EventsSidebar.vue'
+import EventExampleHolder from '@/components/EventsComponents/EventExampleHolder.vue'
+import EventPreview from '@/components/EventsComponents/EventPreview.vue'
+import EventData from '@/components/EventsComponents/EventCurrentDisplay.vue'
+import { UserPopulation } from '@/mixins/UserPopulation'
+import { FriendPopulation } from '@/mixins/FriendPopulation'
 
 export default {
-  name: "Events",
+  name: 'Events',
   mixins: [FriendPopulation, UserPopulation],
+  data() {
+    return {
+      //Options for state include normal, editing or eventCreated
+      eventState: 'normal',
+      currentEvent: {
+        name: 'Event name',
+        date: new Date().toJSON(),
+        time: new Date().toISOString().split('T')[1].split('.')[0],
+        location: 'Location',
+        description: 'Description',
+      },
+    }
+  },
   components: {
     EventsSidebar,
     EventExampleHolder,
     EventPreview,
     EventData,
   },
+  mounted() {
+    this.eventState = this.hasCustomEvent ? 'eventCreated' : 'normal'
+  },
+  computed: {
+    hasCustomEvent() {
+      return UserEvent.query().last() // Most recent event created
+    },
+    mostRecentEvent() {
+      return UserEvent.query().last() ?? this.currentEvent
+    },
+  },
   methods: {
     updateEventState(newState) {
-      this.eventState = newState;
+      this.eventState = newState
+      if (newState === 'eventCreated') {
+        UserEvent.insert({
+          data: this.currentEvent,
+        })
+      }
     },
     updateEventName(newName) {
-      this.currentEvent.name = newName;
-      console.log("You updated the eventName");
+      this.currentEvent.name = newName
     },
     updateEventDate(newDate) {
-      let timeString = newDate + "T00:00:00.000-07:00"; // Mountain Staindard Time
-      this.currentEvent.date = new Date(timeString); // Here, we convert the string newDate into an actual JS date object.
+      this.currentEvent.date = newDate + 'T00:00:00.000-07:00' // Make an ISO String
     },
     updateEventTime(newTime) {
-      let tempDate = new Date(this.currentEvent.date.getTime()); //This is essentially a deep copy of the date
-      console.log("This is the new time:");
-      //The following comment is to make it so that our linter doesn't get mad at the escape characters in the Regex.
-      //eslint-disable-next-line
-      let timeReg = /(\d+)\:(\d+) (\w+)/; //Thanks to this answer: https://stackoverflow.com/a/16382331/4913592
-      let parts = newTime.match(timeReg);
-      console.log(parts);
-      if (parts != null) {
-        let hours = /am/i.test(parts[3])
-          ? (function (am) {
-              return am < 12 ? am : 0;
-            })(parseInt(parts[1], 10))
-          : (function (pm) {
-              return pm < 12 ? pm + 12 : 12;
-            })(parseInt(parts[1], 10));
-        let minutes = parseInt(parts[2], 10);
-        tempDate.setHours(hours);
-        tempDate.setMinutes(minutes);
-      }
-      this.currentEvent.date = tempDate;
+      this.currentEvent.time = newTime
     },
     updateEventLocation(newLocation) {
-      this.currentEvent.location = newLocation;
+      this.currentEvent.location = newLocation
     },
     updateEventDescription(newDescription) {
-      this.currentEvent.description = newDescription;
+      this.currentEvent.description = newDescription
     },
   },
-  data() {
-    return {
-      // eventState : "normal", //Options for state include normal, creatingEvent, eventCreated
-      eventState: "eventCreated",
-      currentEvent: {
-        name: "",
-        date: new Date(),
-        location: "",
-        description: "",
-      },
-    };
-  },
-};
+}
 </script>
 
 <style scoped>
