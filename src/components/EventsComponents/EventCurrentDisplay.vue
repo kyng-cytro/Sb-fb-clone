@@ -28,20 +28,20 @@
 </template>
 
 <script>
-import PopupDialog from "../Multipurpose/PopupDialog.vue";
-import EventDataHeaderInfo from "./EventDataComponents/EventDataHeaderInfo.vue";
-import EventDetails from "./EventDataComponents/EventDetails.vue";
-import ButtonsPreview from "./EventDataComponents/ButtonsPreview.vue";
-import EventButtons from "./EventDataComponents/EventButtons.vue";
-import Invite from "./DialogBoxes/InviteComponents/Invite.vue";
-import InviteFooter from "./DialogBoxes/InviteComponents/InviteFooter.vue";
+import PopupDialog from '../Multipurpose/PopupDialog.vue'
+import EventDataHeaderInfo from './EventDataComponents/EventDataHeaderInfo.vue'
+import EventDetails from './EventDataComponents/EventDetails.vue'
+import ButtonsPreview from './EventDataComponents/ButtonsPreview.vue'
+import EventButtons from './EventDataComponents/EventButtons.vue'
+import Invite from './DialogBoxes/InviteComponents/Invite.vue'
+import InviteFooter from './DialogBoxes/InviteComponents/InviteFooter.vue'
 
 export default {
-  name: "Events",
+  name: 'Events',
   mounted() {
-    this.$root.$on("sendInvites", () => {
-      this.togglePopup("friendsTrigger");
-    });
+    this.$root.$on('sendInvites', () => {
+      this.togglePopup('friendsTrigger')
+    })
   },
   components: {
     PopupDialog,
@@ -52,21 +52,21 @@ export default {
     Invite,
     InviteFooter,
   },
-  props: ["event", "eventState"],
+  props: ['event', 'eventState'],
   data() {
     return {
       popupTriggers: {
         friendsTrigger: false,
       },
-    };
+    }
   },
   methods: {
     togglePopup(trigger) {
       //Invert the value passed in with trigger
-      this.popupTriggers[trigger] = !this.popupTriggers[trigger];
+      this.popupTriggers[trigger] = !this.popupTriggers[trigger]
     },
   },
-};
+}
 </script>
 
 <style scoped>
