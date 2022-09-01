@@ -60,6 +60,9 @@ export default {
 		EventPreview,
 		EventData,
 	},
+	mounted() {
+		this.eventState = this.hasCustomEvent ? 'eventCreated' : 'normal'
+	},
 	computed: {
 		hasCustomEvent() {
 			return UserEvent.query().last() // Most recent event created
