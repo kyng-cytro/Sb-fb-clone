@@ -47,7 +47,7 @@ export default {
 			eventState: 'normal',
 			currentEvent: {
 				name: 'Event name',
-				date: new Date(),
+				date: new Date().toJSON(),
 				time: new Date().toISOString().split('T')[1].split('.')[0],
 				location: 'Location',
 				description: 'Description',
@@ -79,11 +79,9 @@ export default {
 		},
 		updateEventName(newName) {
 			this.currentEvent.name = newName
-			console.log('You updated the eventName')
 		},
 		updateEventDate(newDate) {
-			let timeString = newDate + 'T00:00:00.000-07:00' // Mountain Standard Time
-			this.currentEvent.date = new Date(timeString) // Here, we convert the string newDate into an actual JS date object.
+			this.currentEvent.date = newDate + 'T00:00:00.000-07:00' // Make an ISO String
 		},
 		updateEventTime(newTime) {
 			this.currentEvent.time = newTime

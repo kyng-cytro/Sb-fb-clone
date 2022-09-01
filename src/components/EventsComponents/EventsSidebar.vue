@@ -126,9 +126,6 @@ export default {
 	computed: {
 		nextEnabled() {
 			if (this.stage == 0) {
-				console.log(
-					this.eventName.length && this.eventTime.length && this.eventDate,
-				)
 				return this.eventName.length && this.eventTime.length && this.eventDate
 			} else if (this.stage == 1) {
 				return this.eventLocation.length > 0

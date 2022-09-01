@@ -1,11 +1,11 @@
 <template>
 	<div id="container">
-		<CalendarIcon :date="event.date" />
+		<CalendarIcon :date="new Date(event.date)" />
 		<div id="headerInfo">
 			<br />
 			<strong class="dateText"
 				>{{
-					event.date
+					new Date(event.date)
 						.toLocaleString('en-US', {
 							weekday: 'long',
 							year: 'numeric',
