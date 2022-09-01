@@ -29,7 +29,7 @@ jobs:
         run: npm ci --legacy-peer-deps && sudo apt-get install sshpass -y
 
       - name: Build files
-        run: export NODE_OPTIONS=--openssl-legacy-provider && npm run build
+        run: npm run build
 
       - name: Deploy
         run: sshpass -p "${{secrets.SCP_PASSWORD}}" scp -rp ./dist/* ${{secrets.SCP_URL}}
