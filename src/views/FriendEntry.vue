@@ -113,6 +113,8 @@ export default {
       if (this.index > 0) {
         this.setQuestion(this.index)
         this.index--
+      } else {
+        this.goHome()
       }
     },
   },
