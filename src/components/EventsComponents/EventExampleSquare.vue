@@ -13,13 +13,7 @@
         event.numInterested + ' Interested · ' + event.numGoing + ' Going'
       }}</em>
       <div>
-        <button
-          type="button"
-          v-on:click="handleInterestedClick"
-          class="btn btn-secondary"
-        >
-          Interested
-        </button>
+        <button type="button" class="btn btn-secondary">Interested</button>
         <button type="button" class="btn btn-secondary">Share</button>
       </div>
     </div>
