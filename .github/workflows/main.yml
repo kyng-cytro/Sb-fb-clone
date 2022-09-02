@@ -34,9 +34,9 @@ jobs:
       - name: copy file via ssh password
         uses: appleboy/scp-action@master
         with:
-          host: hciresearch.byu.edu
-          username: braeden
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SCP_PASSWORD }}
-          source: "./dist/"
-          target: "/var/www/html/fb-lite"
+          source: "dist/"
+          target: ${{ secrets.SCP_TARGET }}
           strip_components: 1
