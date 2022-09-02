@@ -20,7 +20,6 @@ export const FriendPopulation = {
           return friends[i]
         }
       }
-      console.log('WE COULD NOT FIND THE FRIEND YOU WERE LOOKING FOR!')
     },
 
     /**
@@ -36,7 +35,6 @@ export const FriendPopulation = {
           return friends[i]
         }
       }
-      console.log('WE COULD NOT FIND THE FRIEND YOU WERE LOOKING FOR!')
     },
 
     /**

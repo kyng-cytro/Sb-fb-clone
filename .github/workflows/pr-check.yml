@@ -1,12 +1,11 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Update Website
+name: Screen Pull Requests
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "master" branch
-  push:
-    branches: ['master']
+  pull_request:
+    types: [opened, reopened]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -24,19 +23,11 @@ jobs:
         with:
           node-version: '14'
 
-      # Runs a single command using the runners shell
       - name: Install Packages
         run: npm ci --legacy-peer-deps
+      
+      - name: Lint and Format
+        run: npm run lint && npm run format
 
       - name: Build files
         run: npm run build
-
-      - name: copy file via ssh password
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.SCP_HOST }}
-          username: ${{ secrets.SCP_USERNAME }}
-          password: ${{ secrets.SCP_PASSWORD }}
-          source: 'dist/'
-          target: ${{ secrets.SCP_TARGETDIR }}
-          strip_components: 1

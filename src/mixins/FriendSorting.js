@@ -25,19 +25,13 @@ export const friendSorting = {
         .get()
     },
     onlyEmailFriends() {
-      //    console.log(this.emailFriends.filter(x => !this.phoneFriends.includes(x)));
-      //    return this.emailFriends.filter(x => !this.phoneFriends.includes(x));
       return this.getItemsFromList1NotIn2(this.emailFriends, this.phoneFriends)
     },
 
     onlyPhoneFriends() {
-      //    console.log(this.phoneFriends.filter(x => !this.emailFriends.includes(x)));
-      //    return this.phoneFriends.filter(x => !this.emailFriends.includes(x));
       return this.getItemsFromList1NotIn2(this.phoneFriends, this.emailFriends)
     },
     emailAndPhoneFriends() {
-      //    console.log(this.phoneFriends.filter(x => this.emailFriends.includes(x)));
-      //    return this.phoneFriends.filter(x => this.emailFriends.includes(x));
       return this.getItemsInBothLists(this.phoneFriends, this.emailFriends)
     },
   },

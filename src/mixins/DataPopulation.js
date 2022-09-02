@@ -12,7 +12,6 @@ export const DataPopulation = {
       return Math.floor(Math.random() * (max - min) + min) //The maximum is exclusive and the minimum is inclusive
     },
     populatePosts() {
-      console.log("I'm populating the posts!")
       for (let i = 0; i < this.localPosts.length; i++) {
         Post.insert({ data: this.localPosts[i] })
       }

@@ -120,7 +120,6 @@ export default {
   methods: {
     setTime(option) {
       this.dropDownTimeSelection = option
-      console.log('switching the time!')
       switch (this.dropDownTimeSelection) {
         case this.timeOptions[0]:
           this.last3Days = true
@@ -165,7 +164,6 @@ export default {
       })
     },
     resetFilters() {
-      console.log('Trying to reset the filters')
       this.isFamily = false
       this.isMajorEvent = false
       this.last3Days = true

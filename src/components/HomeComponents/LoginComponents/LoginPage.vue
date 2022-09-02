@@ -114,8 +114,6 @@ export default {
             password: this.password,
           })
 
-          console.log(data)
-
           this.addData(
             data.user,
             data.friends,

@@ -30,14 +30,6 @@
 export default {
   name: 'event-square',
   props: ['event'],
-  // data() {
-  //   return { deleted: false, accepted: false }
-  // },
-  methods: {
-    handleInterestedClick() {
-      console.log("You're intererested!")
-    },
-  },
 }
 </script>
 

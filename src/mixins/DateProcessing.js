@@ -13,8 +13,6 @@ export const dateProcessing = {
   },
   methods: {
     formatTime(time, prefix = '') {
-      console.log(typeof time)
-      console.log(time.toString())
       return typeof time == 'object' ? prefix + time.toLocaleDateString() : ''
     },
     formatDateUppercase(date) {

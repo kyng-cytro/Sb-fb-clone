@@ -4,10 +4,6 @@ export const PostFiltering = {
   methods: {
     filterPosts(posts, filter) {
       if (!FacebookLite.find(1).enabled) {
-        // If FacebookLite is disabled, you don't need to do any filtering
-        console.log(
-          "Facebook lite isn't enabled, so we're not filtering the posts.",
-        )
         return posts
       }
       function getDifferenceInTime(date1, date2) {

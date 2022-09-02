@@ -104,14 +104,12 @@ export default {
       this.resetFields()
     },
     next() {
-      console.log(this.index)
       if (this.index < questionFriendList.length - 1) {
         this.setQuestion(this.index)
         this.index++
       }
     },
     previous() {
-      console.log(this.index)
       if (this.index > 0) {
         this.setQuestion(this.index)
         this.index--

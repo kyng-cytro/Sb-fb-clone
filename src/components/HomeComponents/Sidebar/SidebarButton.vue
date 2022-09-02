@@ -18,50 +18,11 @@
 <script>
 export default {
   name: 'SidebarButton',
-  // created() {
-  //   this.setImage();
-  // },
-  // beforeMount() {
-  //   console.log("beforeMount");
-  // },
-  // mounted() {
-  //   console.log("mounted");
-  // },
-  // updated() {
-  //   console.log("updated");
-  // },
-  // unmounted() {
-  //   console.log("unmounted");
-  // },
-  // deactivated() {
-  //   console.log("deactivated");
-  // },
-  // activated() {
-  //   console.log("activated");
-  // },
   props: ['type'],
-  // data() {
-  //   return {
-  //     image: null
-  //   }
-  // },
   methods: {
     capitalizeFirstLetter(word) {
       return word.charAt(0).toUpperCase() + word.slice(1)
     },
-    // clearImage() {
-    //   console.log("Clearing image.");
-    //   this.image = null;
-    // },
-    // setImage() {
-    //   this.clearImage();
-    //   setTimeout(() => {
-    //     console.log("Setting image");
-    //     this.image = require('@/assets/images/SidebarIcons/' + this.type + '.png');
-    //     }, 2000);
-    //   console.log("Finished setting image");
-
-    // }
   },
   computed: {
     getImage() {

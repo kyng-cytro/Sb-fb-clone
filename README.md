@@ -37,6 +37,10 @@ npm run lint
 
 ## Project Build
 
+**_Note:_**
+The project is setup with GitHub Actions so that any push to master will be reflected on the hciresearch webpage where we are hosting the website. However, if the workflow fails and you need to push changes manually, follow the instructions below.
+
+**Manual Builds:**
 Build your public files. The build can be done in your ssh connection to the hciresearch server; however, it is faster to build it on your local machine and copy the public files from `dist` to the remote server:
 
 ### Builds public files
@@ -67,7 +71,7 @@ cp -rp dist/* /var/www/html/fb-lite
 If you built the files on your local machine (recommended):
 
 ```
-scp -rp dist/* [username]@hciresearch.byu.edu:/var/www/html/fb-lite
+scp -rp dist/* [username]@[host]:[targetDir]
 ```
 
 ### Customize configuration
