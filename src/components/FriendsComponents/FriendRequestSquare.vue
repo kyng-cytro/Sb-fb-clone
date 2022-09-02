@@ -62,7 +62,7 @@
           <button
             type="button"
             v-on:click="handleConfirmClick"
-            class="btn btn-primary"
+            class="btn btn-primary mx-0 w-100"
           >
             Confirm
           </button>
@@ -71,7 +71,7 @@
           <button
             type="button"
             v-on:click="handleDeleteClick"
-            class="btn btn-secondary"
+            class="btn btn-secondary mx-0 w-100"
           >
             Delete
           </button>
