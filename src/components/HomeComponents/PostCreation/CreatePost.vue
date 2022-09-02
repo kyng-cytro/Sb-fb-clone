@@ -89,7 +89,8 @@ export default {
   width: 95%;
   height: 40px;
   line-height: 2vh;
-  display: inline-block;
+  display: flex;
+  align-items: center;
   border: 0px solid #ccc;
   box-sizing: border-box;
   background-color: rgb(240, 242, 245);
@@ -102,7 +103,6 @@ export default {
   position: absolute;
   margin: 0;
   padding: 0;
-  padding-top: 10px;
   padding-left: 18px;
 }
 
