@@ -39,7 +39,7 @@ import { UserPopulation } from '@/mixins/UserPopulation'
 import { FriendPopulation } from '@/mixins/FriendPopulation'
 
 export default {
-  name: 'Events',
+  name: 'EventsView',
   mixins: [FriendPopulation, UserPopulation],
   data() {
     return {

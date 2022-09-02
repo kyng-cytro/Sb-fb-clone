@@ -35,7 +35,7 @@ import { UserPopulation } from '@/mixins/UserPopulation'
 import { FriendPopulation } from '@/mixins/FriendPopulation.js'
 
 export default {
-  name: 'Home',
+  name: 'HomeView',
   mixins: [UserPopulation, FriendPopulation],
   components: {
     LoginPage,

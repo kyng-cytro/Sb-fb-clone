@@ -25,7 +25,7 @@
 <script>
 import CircularIcon from './TopbarIcon'
 export default {
-  name: 'Topbar',
+  name: 'TopBar',
   components: {
     CircularIcon,
   },

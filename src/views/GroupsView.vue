@@ -14,7 +14,7 @@ import GroupSidebar from '@/components/GroupComponents/GroupSidebar.vue'
 import GroupDisplay from '@/components/GroupComponents/GroupDisplay.vue'
 
 export default {
-  name: 'Groups',
+  name: 'GroupsView',
   components: {
     GroupSidebar,
     GroupDisplay,

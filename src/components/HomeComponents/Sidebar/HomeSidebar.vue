@@ -35,13 +35,13 @@ import Friend from '@/vuex-orm_models/FriendModel.js'
 Vue.use(ToggleButton)
 
 export default {
-  name: 'Sidebar',
+  name: 'HomeSidebar',
   components: {
     SidebarButton,
   },
   data() {
     return {
-      facebookLight: this.getFacebookLite,
+      facebookLight: this.getFacebookLite, //eslint-disable-line
       facebookLightButtons: null,
       facebookButtons: null,
       toggleButtonHeight: 27,

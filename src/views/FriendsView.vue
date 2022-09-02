@@ -11,7 +11,7 @@ import FriendRequestDisplay from '@/components/FriendsComponents/FriendRequestDi
 import FriendRequest from '@/vuex-orm_models/FriendRequestModel.js'
 
 export default {
-  name: 'Friends',
+  name: 'FriendsView',
   components: {
     FriendSidebar,
     FriendRequestDisplay,

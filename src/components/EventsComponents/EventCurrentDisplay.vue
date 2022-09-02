@@ -33,11 +33,11 @@ import EventDataHeaderInfo from './EventDataComponents/EventDataHeaderInfo.vue'
 import EventDetails from './EventDataComponents/EventDetails.vue'
 import ButtonsPreview from './EventDataComponents/ButtonsPreview.vue'
 import EventButtons from './EventDataComponents/EventButtons.vue'
-import Invite from './DialogBoxes/InviteComponents/Invite.vue'
+import Invite from './DialogBoxes/InviteComponents/InviteMain.vue'
 import InviteFooter from './DialogBoxes/InviteComponents/InviteFooter.vue'
 
 export default {
-  name: 'Events',
+  name: 'EventsDisplay',
   mounted() {
     this.$root.$on('sendInvites', () => {
       this.togglePopup('friendsTrigger')

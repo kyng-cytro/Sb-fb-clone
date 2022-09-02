@@ -13,7 +13,7 @@
 import EventData from './EventCurrentDisplay.vue'
 
 export default {
-  name: 'Events',
+  name: 'EventsPreview',
   components: {
     EventData,
   },

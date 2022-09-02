@@ -108,37 +108,29 @@ export default {
       if (this.scrape) {
         const path = 'http://localhost:5000/logIn'
 
-        try {
-          const { data } = await axios.post(path, {
-            username: this.username,
-            password: this.password,
-          })
+        const { data } = await axios.post(path, {
+          username: this.username,
+          password: this.password,
+        })
 
-          this.addData(
-            data.user,
-            data.friends,
-            data.friendsByGroup,
-            data.friendsByEvent,
-          )
-        } catch (err) {
-          console.error(err.message)
-        }
+        this.addData(
+          data.user,
+          data.friends,
+          data.friendsByGroup,
+          data.friendsByEvent,
+        )
       } else {
-        try {
-          const genericURL =
-            process.env.NODE_ENV === 'production' ? '/fb-lite' : ''
-          const response = await fetch(`${genericURL}/generic.json`)
-          const data = await response.json()
+        const genericURL =
+          process.env.NODE_ENV === 'production' ? '/fb-lite' : ''
+        const response = await fetch(`${genericURL}/generic.json`)
+        const data = await response.json()
 
-          this.addData(
-            data.user,
-            data.friends,
-            data.friendsByGroup,
-            data.friendsByEvent,
-          )
-        } catch (err) {
-          console.error(err.message)
-        }
+        this.addData(
+          data.user,
+          data.friends,
+          data.friendsByGroup,
+          data.friendsByEvent,
+        )
       }
     },
   },
