@@ -5,7 +5,7 @@
         v-if="eventState === 'normal' || eventState === 'eventCreated'"
         class="sidebar-buttons-container"
       >
-        <PageSidebarButton iconName="calendar-check" text="Home" />
+        <PageSidebarButton iconName="calendar-check" text="Home" route="Home" />
         <PageSidebarButton iconName="person-circle" text="Your Events" />
         <PageSidebarButton iconName="gift" text="Birthdays" />
         <PageSidebarButton iconName="bell-fill" text="Notifications" />

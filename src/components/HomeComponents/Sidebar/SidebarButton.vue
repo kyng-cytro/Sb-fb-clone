@@ -1,6 +1,9 @@
 <template>
   <div>
-    <router-link :to="'/' + capitalizeFirstLetter(type)" class="sidebar-button">
+    <router-link
+      :to="this.hasRoute ? `/${capitalizeFirstLetter(type)}` : ''"
+      class="sidebar-button"
+    >
       <table>
         <tr>
           <td>
@@ -27,6 +30,10 @@ export default {
   computed: {
     getImage() {
       return require('@/assets/images/SidebarIcons/' + this.type + '.png')
+    },
+    hasRoute() {
+      const typesWithRoutes = ['friends', 'events']
+      return typesWithRoutes.includes(this.type)
     },
   },
 }

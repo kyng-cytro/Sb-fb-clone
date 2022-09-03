@@ -12,7 +12,6 @@
     <i v-else class="bi bi-person-fill profilePic"></i>
     <div class="info">
       <strong>{{ friendRequest.name }}</strong>
-      <br />
       <div
         v-if="this.$root.$data.fbLiteEnabled"
         class="d-flex align-content-center"
@@ -27,42 +26,26 @@
         ></i>
       </div>
       <div v-if="friendRequest.state === 'deleted'">
-        <div>
-          <button type="button" class="btn btn-secondary invisible" disabled>
-            Invisible
-          </button>
-        </div>
-        <div>
-          <button
-            type="button"
-            v-on:click="handleDeleteClick"
-            class="btn btn-secondary"
-            disabled
-          >
-            Request deleted
-          </button>
-        </div>
-        <em class="invisible">Invisible placeholder</em>
+        <button
+          type="button"
+          v-on:click="handleDeleteClick"
+          class="btn btn-secondary"
+          disabled
+        >
+          Request deleted
+        </button>
       </div>
       <div v-else-if="friendRequest.state === 'confirmed'">
-        <div>
-          <button type="button" class="btn btn-secondary invisible" disabled>
-            Invisible
-          </button>
-        </div>
-        <div>
-          <button type="button" class="btn btn-secondary" disabled>
-            Request confirmed
-          </button>
-        </div>
-        <em class="invisible">Invisible placeholder</em>
+        <button type="button" class="btn btn-secondary" disabled>
+          Request confirmed
+        </button>
       </div>
       <div v-else>
         <div>
           <button
             type="button"
             v-on:click="handleConfirmClick"
-            class="btn btn-primary mx-0 w-100"
+            class="btn btn-primary"
           >
             Confirm
           </button>
@@ -71,7 +54,7 @@
           <button
             type="button"
             v-on:click="handleDeleteClick"
-            class="btn btn-secondary mx-0 w-100"
+            class="btn btn-secondary"
           >
             Delete
           </button>
@@ -148,7 +131,6 @@ export default {
 }
 
 .friendRequestSquare {
-  width: 100%;
   border-radius: 10px;
   margin: 10%;
   box-shadow: 0px 0px 3px rgb(140, 140, 140);
@@ -168,8 +150,8 @@ export default {
 }
 
 button {
-  width: 90%;
-  margin: 2%;
+  width: 100%;
+  margin: 7px 0px;
   font-weight: bold;
   font-size: 0.9em;
 }
@@ -178,6 +160,7 @@ button {
   color: black;
   background-color: hsl(0, 0%, 92%);
   border: 0px;
+  margin: 0;
 }
 
 .invisible {

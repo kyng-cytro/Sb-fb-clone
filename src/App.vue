@@ -1,5 +1,5 @@
 <template>
-  <div id="App">
+  <div id="App" class="d-flex flex-column h-100">
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -40,6 +40,11 @@ export default {
 </script>
 
 <style>
+html,
+body {
+  height: 100%;
+}
+
 .App {
   text-align: center;
   width: 100%;
