@@ -30,12 +30,21 @@ export const friendSorting = {
     onlyEmailFriends() {
       return this.getItemsFromList1NotIn2(this.emailFriends, this.phoneFriends)
     },
-
     onlyPhoneFriends() {
       return this.getItemsFromList1NotIn2(this.phoneFriends, this.emailFriends)
     },
     emailAndPhoneFriends() {
       return this.getItemsInBothLists(this.phoneFriends, this.emailFriends)
+    },
+    invitedEmailFriends() {
+      return NonFacebookFriend.query({
+        where: (friend) => friend.email !== '' && friend.invited,
+      }).get()
+    },
+    invitedPhoneFriends() {
+      return NonFacebookFriend.query({
+        where: (friend) => friend.phone !== '' && friend.invited,
+      }).get()
     },
   },
   methods: {

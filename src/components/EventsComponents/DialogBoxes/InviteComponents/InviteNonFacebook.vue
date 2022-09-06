@@ -52,7 +52,12 @@ export default {
 
       // Insert a new nonFacebookFriend into the Vuex database
       NonFacebookFriend.insert({
-        data: this.form,
+        data: {
+          name: this.form.name,
+          phone: this.form.phone,
+          email: this.form.email,
+          selected: true,
+        },
       })
 
       //Clear the form

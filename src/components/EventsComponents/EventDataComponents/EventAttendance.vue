@@ -43,6 +43,7 @@ import Friend from '@/vuex-orm_models/FriendModel.js'
 import PopupDialog from '@/components/Multipurpose/PopupDialog.vue'
 import AttendanceTabs from '@/components/EventsComponents/DialogBoxes/AttendanceComponents/AttendanceTabs.vue'
 import { UserPopulation } from '@/mixins/UserPopulation'
+import NonFacebookFriend from '../../../vuex-orm_models/NonFacebookFriendModel'
 export default {
   props: ['eventState'],
   mixins: [UserPopulation],
@@ -59,7 +60,10 @@ export default {
   },
   computed: {
     numInvited() {
-      return Friend.query().where('invited', true).get().length
+      return (
+        Friend.query().where('invited', true).get().length +
+        NonFacebookFriend.query().where('invited', true).get().length
+      )
     },
   },
   methods: {

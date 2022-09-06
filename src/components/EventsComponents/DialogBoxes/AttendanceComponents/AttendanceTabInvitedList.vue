@@ -16,11 +16,11 @@
       <br />
 
       <!-- Email -->
-      <p v-show="onlyEmailFriends.length">
-        Invited by email ({{ onlyEmailFriends.length }})
+      <p v-show="invitedEmailFriends.length">
+        Invited by email ({{ invitedEmailFriends.length }})
       </p>
       <div
-        v-for="emailFriend in this.onlyEmailFriends"
+        v-for="emailFriend in this.invitedEmailFriends"
         :key="emailFriend.id"
         class="selectRectangle"
       >
@@ -30,11 +30,11 @@
       <br />
 
       <!-- Phone -->
-      <p v-show="onlyPhoneFriends.length">
-        Invited by text ({{ onlyPhoneFriends.length }})
+      <p v-show="invitedPhoneFriends.length">
+        Invited by text ({{ invitedPhoneFriends.length }})
       </p>
       <div
-        v-for="phoneFriend in this.onlyPhoneFriends"
+        v-for="phoneFriend in this.invitedPhoneFriends"
         :key="phoneFriend.id"
         class="selectRectangle"
       >

@@ -42,6 +42,11 @@ export default {
         data: { invited: false, selected: false },
       })
 
+      NonFacebookFriend.update({
+        where: (friend) => friend.selected === true,
+        data: { invited: true, selected: true },
+      })
+
       this.$root.$emit('sendInvites')
     },
     closeFriendInvites() {
@@ -49,6 +54,11 @@ export default {
         where: (friend) => friend.selected === true && friend.invited === false,
         data: { selected: false },
       })
+
+      NonFacebookFriend.delete(
+        (friend) => friend.selected === true && friend.invited === false,
+      )
+
       this.$root.$emit('sendInvites')
     },
   },

@@ -10,6 +10,7 @@ export default class NonFacebookFriend extends Model {
       phone: this.string(''),
       email: this.string(''),
       selected: this.boolean(false), // Whether or not this friend is selected for invitation
+      invited: this.boolean(false), // Whether or not this friend has been invited
     }
   }
 }
