@@ -84,11 +84,13 @@ export default {
         },
       })
 
+      // Reset Friends to not invited (so we can reuse our event invites from scratch)
       Friend.update({
         where: (friend) => {
           return friend.id
         },
         data: {
+          invited: false,
           selected: false,
         },
       })

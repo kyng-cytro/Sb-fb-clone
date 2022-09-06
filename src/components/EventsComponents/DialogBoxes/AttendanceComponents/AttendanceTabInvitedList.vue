@@ -2,11 +2,11 @@
   <div class="container">
     <div>
       <!-- Facebook -->
-      <p v-show="selectedFriends.length">
-        Friends ({{ selectedFriends.length }})
+      <p v-show="invitedFriends.length">
+        Friends ({{ invitedFriends.length }})
       </p>
       <div
-        v-for="friend in this.selectedFriends"
+        v-for="friend in this.invitedFriends"
         :key="friend.id"
         class="selectRectangle"
       >

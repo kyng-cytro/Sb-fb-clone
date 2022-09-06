@@ -39,7 +39,6 @@
 </template>
 
 <script>
-import NonFacebookFriend from '@/vuex-orm_models/NonFacebookFriendModel.js'
 import Friend from '@/vuex-orm_models/FriendModel.js'
 import PopupDialog from '@/components/Multipurpose/PopupDialog.vue'
 import AttendanceTabs from '@/components/EventsComponents/DialogBoxes/AttendanceComponents/AttendanceTabs.vue'
@@ -60,10 +59,7 @@ export default {
   },
   computed: {
     numInvited() {
-      return (
-        NonFacebookFriend.all().length +
-        Friend.query().where('selected', true).get().length
-      )
+      return Friend.query().where('invited', true).get().length
     },
   },
   methods: {

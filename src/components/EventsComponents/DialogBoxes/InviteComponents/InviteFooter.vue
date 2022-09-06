@@ -32,9 +32,23 @@ export default {
   },
   methods: {
     sendInvites() {
+      // Set all selected friends to invited, if they were unselected, set them to uninvited
+      Friend.update({
+        where: (friend) => friend.selected === true,
+        data: { invited: true, selected: true },
+      })
+      Friend.update({
+        where: (friend) => friend.selected === false,
+        data: { invited: false, selected: false },
+      })
+
       this.$root.$emit('sendInvites')
     },
     closeFriendInvites() {
+      Friend.update({
+        where: (friend) => friend.selected === true && friend.invited === false,
+        data: { selected: false },
+      })
       this.$root.$emit('sendInvites')
     },
   },

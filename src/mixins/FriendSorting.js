@@ -3,6 +3,9 @@ import NonFacebookFriend from '@/vuex-orm_models/NonFacebookFriendModel.js'
 
 export const friendSorting = {
   computed: {
+    invitedFriends() {
+      return Friend.query().where('invited', true).get()
+    },
     selectedFriends() {
       return Friend.query().where('selected', true).get()
     },
