@@ -19,6 +19,11 @@
         <p id="expireMessage"><i>
           {{ 'Expires in ' + friendRequest.daysUntilExpiration + ' days' }}
         </i></p>
+        <style>
+          .tooltip .tooltiptext {
+          text-align: left;
+          }
+        </style>
         <i
           class="bi bi-question-circle tip"
           v-b-tooltip.hover.v-dark
