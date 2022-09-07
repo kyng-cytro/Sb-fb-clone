@@ -16,9 +16,9 @@
         v-if="this.$root.$data.fbLiteEnabled"
         class="d-flex align-content-center"
       >
-        <p id="expireMessage">
-          {{ <i>'Expires in ' + friendRequest.daysUntilExpiration + ' days'</i> }}
-        </p>
+        <p id="expireMessage"><i>
+          {{ 'Expires in ' + friendRequest.daysUntilExpiration + ' days' }}
+        </i></p>
         <i
           class="bi bi-question-circle tip"
           v-b-tooltip.hover.v-dark
