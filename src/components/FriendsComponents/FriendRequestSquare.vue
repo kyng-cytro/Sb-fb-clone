@@ -17,7 +17,7 @@
         class="d-flex align-content-center"
       >
         <p id="expireMessage">
-          {{ 'Expires in ' + friendRequest.daysUntilExpiration + ' days' }}
+          {{ <i>'Expires in ' + friendRequest.daysUntilExpiration + ' days'</i> }}
         </p>
         <i
           class="bi bi-question-circle tip"
