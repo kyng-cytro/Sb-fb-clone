@@ -14,10 +14,12 @@
       <strong>{{ friendRequest.name }}</strong>
       <div
         v-if="this.$root.$data.fbLiteEnabled"
-        class="d-flex align-content-center"
+        class="d-flex align-items-center"
       >
         <p id="expireMessage">
-          {{ 'Expires in ' + friendRequest.daysUntilExpiration + ' days' }}
+          <i>
+            {{ 'Expires in ' + friendRequest.daysUntilExpiration + ' days' }}
+          </i>
         </p>
         <i
           class="bi bi-question-circle tip"
