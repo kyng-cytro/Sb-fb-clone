@@ -22,7 +22,7 @@
       <div class="form-group" v-show="method === 'email'">
         <input placeholder="Email" v-model="form.email" class="form-control" />
       </div>
-      <button class="btn btn-primary" @click="addNonFacebookFriend">
+      <button class="btn btn-primary" type="submit" :disabled="isDisabled">
         Add non-Facebook friend
       </button>
     </form>
@@ -36,31 +36,46 @@ export default {
   data() {
     return {
       form: {
-        name: '',
-        phone: '',
-        email: '',
+        name: undefined,
+        phone: undefined,
+        email: undefined,
       },
     }
   },
   methods: {
     addNonFacebookFriend() {
-      if (
-        this.form.name === '' ||
-        (this.form.phone === '' && this.form.email === '')
-      )
-        return
-
       // Insert a new nonFacebookFriend into the Vuex database
       NonFacebookFriend.insert({
-        data: this.form,
+        data: {
+          name: this.form.name,
+          phone: this.form.phone,
+          email: this.form.email,
+          selected: true,
+        },
       })
 
       //Clear the form
       this.form = {
-        name: '',
-        phone: '',
-        email: '',
+        name: undefined,
+        phone: undefined,
+        email: undefined,
       }
+    },
+    isEmptyString(property) {
+      return this.form[property] === ''
+    },
+    isUndefined(property) {
+      return this.form[property] == null
+    },
+  },
+  computed: {
+    isDisabled() {
+      return (
+        this.isEmptyString('name') ||
+        this.isUndefined('name') ||
+        ((this.isEmptyString('phone') || this.isUndefined('phone')) &&
+          (this.isEmptyString('email') || this.isUndefined('email')))
+      )
     },
   },
 }

@@ -20,13 +20,6 @@
     <!-- If they are a phone user -->
     <i v-else-if="isPhone" class="bi bi-chat-dots" :style="iconStyles"></i>
 
-    <!-- If they use both email and phone or if they are a facebook user but don't have an image -->
-    <i
-      v-else-if="isBoth || isFacebookWithoutImage"
-      class="bi bi-person"
-      :style="iconStyles"
-    ></i>
-
     <!-- The name of the person -->
     <p
       v-if="slotBelowText == null || slotBelowText == false"
@@ -71,25 +64,17 @@ export default {
     isEmail() {
       return (
         Object.prototype.hasOwnProperty.call(this.friend, 'email') &&
-        this.friend.email !== '' &&
-        !(this.friend.phone !== '')
+        this.friend.email != null &&
+        !(this.friend.phone != null)
       )
     },
     isPhone() {
       return (
         Object.prototype.hasOwnProperty.call(this.friend, 'phone') &&
-        this.friend.phone !== '' &&
-        !(this.friend.email !== '')
+        this.friend.phone != null &&
+        !(this.friend.email != null)
       )
     },
-    isBoth() {
-      return (
-        !this.isFacebookFriend &&
-        this.friend.phone !== '' &&
-        this.friend.email !== ''
-      )
-    },
-
     imgStyles() {
       if (this.size === 'small') {
         return `

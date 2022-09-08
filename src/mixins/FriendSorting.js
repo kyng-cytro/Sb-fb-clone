@@ -3,6 +3,9 @@ import NonFacebookFriend from '@/vuex-orm_models/NonFacebookFriendModel.js'
 
 export const friendSorting = {
   computed: {
+    invitedFriends() {
+      return Friend.query().where('invited', true).get()
+    },
     selectedFriends() {
       return Friend.query().where('selected', true).get()
     },
@@ -10,29 +13,33 @@ export const friendSorting = {
       return (
         this.maxInvites -
         this.selectedFriends.length -
-        this.emailFriends.length -
-        this.phoneFriends.length
+        this.emailSelectedFriends.length -
+        this.phoneSelectedFriends.length
       )
     },
-    emailFriends() {
+    emailSelectedFriends() {
       return NonFacebookFriend.query()
-        .where('email', (email) => email !== '')
+        .where('email', (email) => email != null)
+        .where('selected', true)
         .get()
     },
-    phoneFriends() {
+    phoneSelectedFriends() {
       return NonFacebookFriend.query()
-        .where('phone', (phone) => phone !== '')
+        .where('phone', (phone) => phone != null)
+        .where('selected', true)
         .get()
     },
-    onlyEmailFriends() {
-      return this.getItemsFromList1NotIn2(this.emailFriends, this.phoneFriends)
+    invitedEmailFriends() {
+      return NonFacebookFriend.query()
+        .where('email', (email) => email != null)
+        .where('invited', true)
+        .get()
     },
-
-    onlyPhoneFriends() {
-      return this.getItemsFromList1NotIn2(this.phoneFriends, this.emailFriends)
-    },
-    emailAndPhoneFriends() {
-      return this.getItemsInBothLists(this.phoneFriends, this.emailFriends)
+    invitedPhoneFriends() {
+      return NonFacebookFriend.query()
+        .where('phone', (phone) => phone != null)
+        .where('invited', true)
+        .get()
     },
   },
   methods: {

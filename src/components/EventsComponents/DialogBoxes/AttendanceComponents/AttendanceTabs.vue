@@ -46,8 +46,8 @@
 </template>
 
 <script>
-import NonFacebookFriend from '@/vuex-orm_models/NonFacebookFriendModel.js'
 import Friend from '@/vuex-orm_models/FriendModel.js'
+import NonFacebookFriend from '@/vuex-orm_models/NonFacebookFriendModel.js'
 import AttendanceTab from './AttendanceTab.vue'
 import AttendanceTabInvitedListItem from './AttendanceTabInvitedListItem.vue'
 import AttendanceTabInvitedList from './AttendanceTabInvitedList.vue'
@@ -69,8 +69,8 @@ export default {
   computed: {
     numInvited() {
       return (
-        NonFacebookFriend.all().length +
-        Friend.query().where('selected', true).get().length
+        Friend.query().where('invited', true).get().length +
+        NonFacebookFriend.query().where('invited', true).get().length
       )
     },
   },
