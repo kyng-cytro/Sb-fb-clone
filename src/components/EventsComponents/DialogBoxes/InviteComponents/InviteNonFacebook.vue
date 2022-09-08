@@ -22,7 +22,7 @@
       <div class="form-group" v-show="method === 'email'">
         <input placeholder="Email" v-model="form.email" class="form-control" />
       </div>
-      <button class="btn btn-primary" type="submit">
+      <button class="btn btn-primary" type="submit" :disabled="isDisabled">
         Add non-Facebook friend
       </button>
     </form>
@@ -60,6 +60,22 @@ export default {
         phone: undefined,
         email: undefined,
       }
+    },
+    isEmptyString(property) {
+      return this.form[property] === ''
+    },
+    isUndefined(property) {
+      return this.form[property] == null
+    },
+  },
+  computed: {
+    isDisabled() {
+      return (
+        this.isEmptyString('name') ||
+        this.isUndefined('name') ||
+        ((this.isEmptyString('phone') || this.isUndefined('phone')) &&
+          (this.isEmptyString('email') || this.isUndefined('email')))
+      )
     },
   },
 }
