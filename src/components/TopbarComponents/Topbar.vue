@@ -23,15 +23,14 @@
 </template>
 
 <script>
-import CircularIcon from "./TopbarIcon";
+import CircularIcon from './TopbarIcon'
 export default {
-  name: "Topbar",
+  name: 'TopBar',
   components: {
     CircularIcon,
   },
-};
+}
 </script>
-
 
 <style scoped>
 button {

@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import Friend from "@/vuex-orm_models/FriendModel.js";
-import FriendDisplay from "@/components/Multipurpose/FriendDisplay";
+import Friend from '@/vuex-orm_models/FriendModel.js'
+import FriendDisplay from '@/components/Multipurpose/FriendDisplay'
 
 export default {
-  props: ["friend"],
+  props: ['friend'],
   components: {
     FriendDisplay,
   },
@@ -26,13 +26,13 @@ export default {
         data: {
           selected: !this.isSelected(this.friend.id),
         },
-      });
+      })
     },
     isSelected(userID) {
-      return Friend.find(userID).selected;
+      return Friend.find(userID).selected
     },
   },
-};
+}
 </script>
 
 <style scoped>

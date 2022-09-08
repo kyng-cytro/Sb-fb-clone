@@ -12,7 +12,7 @@
         <PostDisplay />
       </div>
 
-      <div v-if=getFacebookLite class="filter col-2">
+      <div v-if="getFacebookLite" class="filter col-2">
         <FacebookLiteFilters />
       </div>
       <div class="contacts col-2">
@@ -24,18 +24,18 @@
 
 <script>
 // @ is an alias to /src
-import HomeSidebar from "@/components/HomeComponents/Sidebar/HomeSidebar.vue";
-import PostDisplay from "@/components/HomeComponents/PostDisplay.vue";
-import CreatePost from "@/components/HomeComponents/PostCreation/CreatePost.vue";
-import FacebookLiteFilters from "@/components/HomeComponents/FacebookLiteFilters.vue";
-import LoginPage from "@/components/HomeComponents/LoginComponents/LoginPage";
-import ContactsList from "@/components/HomeComponents/ContactsList/ContactsList.vue";
-import FacebookLite from "@/vuex-orm_models/FacebookLiteModel.js";
-import { UserPopulation } from "@/mixins/UserPopulation";
-import { FriendPopulation } from "@/mixins/FriendPopulation.js";
+import HomeSidebar from '@/components/HomeComponents/Sidebar/HomeSidebar.vue'
+import PostDisplay from '@/components/HomeComponents/PostDisplay.vue'
+import CreatePost from '@/components/HomeComponents/PostCreation/CreatePost.vue'
+import FacebookLiteFilters from '@/components/HomeComponents/FacebookLiteFilters.vue'
+import LoginPage from '@/components/HomeComponents/LoginComponents/LoginPage'
+import ContactsList from '@/components/HomeComponents/ContactsList/ContactsList.vue'
+import FacebookLite from '@/vuex-orm_models/FacebookLiteModel.js'
+import { UserPopulation } from '@/mixins/UserPopulation'
+import { FriendPopulation } from '@/mixins/FriendPopulation.js'
 
 export default {
-  name: "Home",
+  name: 'HomeView',
   mixins: [UserPopulation, FriendPopulation],
   components: {
     LoginPage,
@@ -47,17 +47,17 @@ export default {
   },
   computed: {
     getFacebookLite() {
-      return FacebookLite.find(1).enabled;
+      return FacebookLite.find(1).enabled
     },
     columnSize() {
       let fbLiteStatus = this.getFacebookLite
       return {
         'col-6': fbLiteStatus,
-        'col-8': !fbLiteStatus
+        'col-8': !fbLiteStatus,
       }
-    }
+    },
   },
-};
+}
 </script>
 
 <style scoped>

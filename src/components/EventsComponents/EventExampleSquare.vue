@@ -1,35 +1,30 @@
 <template>
-        <div class="eventSquare">
-          <img class="eventPic" :src="require('@/assets/images/EventImages/' + event.imageSource)" />
-          <div class="info">
-          <strong id="date">{{event.date}}</strong>
-          <br />
-          <strong id="name">{{event.name}}</strong>
-          <br />
-          <em>{{event.numInterested + " Interested · " + event.numGoing + " Going"}}</em>
-            <div>
-              <button type="button" v-on:click="handleInterestedClick" class="btn btn-secondary">Interested</button>
-              <button type="button" class="btn btn-secondary">Share</button>
-            </div>
-          </div>
-        </div>
+  <div class="eventSquare">
+    <img
+      class="eventPic"
+      :src="require('@/assets/images/EventImages/' + event.imageSource)"
+    />
+    <div class="info">
+      <strong id="date">{{ event.date }}</strong>
+      <br />
+      <strong id="name">{{ event.name }}</strong>
+      <br />
+      <em>{{
+        event.numInterested + ' Interested · ' + event.numGoing + ' Going'
+      }}</em>
+      <div>
+        <button type="button" class="btn btn-secondary">Interested</button>
+        <button type="button" class="btn btn-secondary">Share</button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "event-square",
-  props: ["event"],
-  // data() {
-  //   return { deleted: false, accepted: false }
-  // },
-  methods: {
-    handleInterestedClick() {
-      console.log("You're intererested!");
-    }
-  }
+  name: 'event-square',
+  props: ['event'],
 }
-
-
 </script>
 
 <style scoped>
@@ -52,7 +47,7 @@ export default {
 }
 
 .info {
-  margin:10px;
+  margin: 10px;
 }
 
 #name:hover {
@@ -63,13 +58,13 @@ button {
   width: 90%;
   margin: 2%;
   font-weight: bold;
-  font-size: .9em;
+  font-size: 0.9em;
 }
 
 .btn-secondary {
   color: black;
   background-color: hsl(0, 0%, 92%);
-  border: 0px
+  border: 0px;
 }
 
 .invisible {
@@ -79,7 +74,7 @@ button {
 
 #data {
   color: rgb(111, 111, 111);
-  font-size: .9em;
+  font-size: 0.9em;
 }
 
 #date {
@@ -88,7 +83,6 @@ button {
 
 em {
   color: rgb(111, 111, 111);
-  font-size: .9em;
+  font-size: 0.9em;
 }
-
 </style>

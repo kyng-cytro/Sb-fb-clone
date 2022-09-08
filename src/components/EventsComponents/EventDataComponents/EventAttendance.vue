@@ -20,7 +20,7 @@
     </div>
     <hr />
     <div v-if="this.eventState !== 'eventCreated'">
-      <p id="hostName">{{this.userName}}</p>
+      <p id="hostName">{{ this.userName }}</p>
       <p id="host">Host</p>
     </div>
     <div v-else></div>
@@ -39,92 +39,92 @@
 </template>
 
 <script>
-  import NonFacebookFriend from "@/vuex-orm_models/NonFacebookFriendModel.js";
-  import Friend from "@/vuex-orm_models/FriendModel.js";
-  import PopupDialog from "@/components/Multipurpose/PopupDialog.vue";
-  import AttendanceTabs from "@/components/EventsComponents/DialogBoxes/AttendanceComponents/AttendanceTabs.vue";
-  import { UserPopulation } from "@/mixins/UserPopulation";
-  export default {
-    props: ["eventState"],
-    mixins: [UserPopulation],
-    components: {
-      PopupDialog,
-      AttendanceTabs,
-    },
-    data() {
-      return {
-        popupTriggers: {
-          guestsTrigger: false,
-        },
-      };
-    },
-    computed: {
-      numInvited() {
-        return (
-          NonFacebookFriend.all().length +
-          Friend.query().where("selected", true).get().length
-        );
+import Friend from '@/vuex-orm_models/FriendModel.js'
+import PopupDialog from '@/components/Multipurpose/PopupDialog.vue'
+import AttendanceTabs from '@/components/EventsComponents/DialogBoxes/AttendanceComponents/AttendanceTabs.vue'
+import { UserPopulation } from '@/mixins/UserPopulation'
+import NonFacebookFriend from '../../../vuex-orm_models/NonFacebookFriendModel'
+export default {
+  props: ['eventState'],
+  mixins: [UserPopulation],
+  components: {
+    PopupDialog,
+    AttendanceTabs,
+  },
+  data() {
+    return {
+      popupTriggers: {
+        guestsTrigger: false,
       },
+    }
+  },
+  computed: {
+    numInvited() {
+      return (
+        Friend.query().where('invited', true).get().length +
+        NonFacebookFriend.query().where('invited', true).get().length
+      )
     },
-    methods: {
-      togglePopup(trigger) {
-        //Invert the value passed in with trigger
-        this.popupTriggers[trigger] = !this.popupTriggers[trigger];
-      },
-      showGuestList() {
-        this.popupTriggers["guestsTrigger"] = true;
-      },
+  },
+  methods: {
+    togglePopup(trigger) {
+      //Invert the value passed in with trigger
+      this.popupTriggers[trigger] = !this.popupTriggers[trigger]
     },
-  };
+    showGuestList() {
+      this.popupTriggers['guestsTrigger'] = true
+    },
+  },
+}
 </script>
 
 <style scoped>
-  #attendanceHeader {
-    display: flex;
-    justify-content: space-between;
-  }
-  #attendance {
-    display: flex;
-    flex-direction: row;
-  }
+#attendanceHeader {
+  display: flex;
+  justify-content: space-between;
+}
+#attendance {
+  display: flex;
+  flex-direction: row;
+}
 
-  h3 {
-    font-weight: bold;
-    font-size: 1.4em;
-  }
+h3 {
+  font-weight: bold;
+  font-size: 1.4em;
+}
 
-  .item {
-    margin: 10px;
-    padding: 5px;
-    text-align: center;
-  }
-  strong {
-    font-size: 1.2em;
-  }
-  p {
-    font-weight: bold;
-    color: grey;
-    font-size: 0.9em;
-  }
+.item {
+  margin: 10px;
+  padding: 5px;
+  text-align: center;
+}
+strong {
+  font-size: 1.2em;
+}
+p {
+  font-weight: bold;
+  color: grey;
+  font-size: 0.9em;
+}
 
-  #hostName {
-    font-weight: normal;
-    color: black;
-    font-size: 0.9em;
-  }
+#hostName {
+  font-weight: normal;
+  color: black;
+  font-size: 0.9em;
+}
 
-  #host {
-    font-weight: normal;
-    font-size: 0.8em;
-  }
+#host {
+  font-weight: normal;
+  font-size: 0.8em;
+}
 
-  button {
-    outline: none;
-    border-width: 0px;
-    background-color: transparent;
-    color: #216fdb;
-  }
-  button:hover {
-    text-decoration: underline;
-  }
+button {
+  outline: none;
+  border-width: 0px;
+  background-color: transparent;
+  color: #216fdb;
+}
+button:hover {
+  text-decoration: underline;
+}
 </style>

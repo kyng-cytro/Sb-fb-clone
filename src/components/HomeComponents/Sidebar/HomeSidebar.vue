@@ -25,43 +25,45 @@
 </template>
 
 <script>
-import ToggleButton from "vue-js-toggle-button";
-import SidebarButton from "./SidebarButton.vue";
-import Vue from "vue";
-import FacebookLite from "@/vuex-orm_models/FacebookLiteModel.js";
-import FriendRequest from "@/vuex-orm_models/FriendRequestModel.js";
+import ToggleButton from 'vue-js-toggle-button'
+import SidebarButton from './SidebarButton.vue'
+import Vue from 'vue'
+import FacebookLite from '@/vuex-orm_models/FacebookLiteModel.js'
+import FriendRequest from '@/vuex-orm_models/FriendRequestModel.js'
+import Friend from '@/vuex-orm_models/FriendModel.js'
+import NonFacebookFriend from '../../../vuex-orm_models/NonFacebookFriendModel'
 
-Vue.use(ToggleButton);
+Vue.use(ToggleButton)
 
 export default {
-  name: "Sidebar",
+  name: 'HomeSidebar',
   components: {
     SidebarButton,
   },
   data() {
     return {
-      facebookLight: this.getFacebookLite,
+      facebookLight: this.getFacebookLite, //eslint-disable-line
       facebookLightButtons: null,
       facebookButtons: null,
       toggleButtonHeight: 27,
-    };
+    }
   },
   computed: {
     getFacebookLite() {
-      return FacebookLite.find(1).enabled;
+      return FacebookLite.find(1).enabled
     },
   },
   created() {
-    this.$root.$data.fbLiteEnabled = this.getFacebookLite;
-    this.facebookLightButtons = ["friends", "groups", "events", "favorites"];
+    this.$root.$data.fbLiteEnabled = this.getFacebookLite
+    this.facebookLightButtons = ['friends', 'groups', 'events', 'favorites']
     this.facebookButtons = [
-      "marketplace",
-      "watch",
-      "memories",
-      "saved",
-      "pages",
-      "news",
-    ];
+      'marketplace',
+      'watch',
+      'memories',
+      'saved',
+      'pages',
+      'news',
+    ]
   },
   methods: {
     updateFacebookLite() {
@@ -71,22 +73,43 @@ export default {
         data: {
           enabled: !this.getFacebookLite,
         },
-      });
+      })
 
       // Reset Friend Requests to pending (so we can reuse our entered friends)
       FriendRequest.update({
         where: (friend) => {
-          return friend.id;
+          return friend.id
         },
         data: {
-          state: "pending",
+          state: 'pending',
         },
-      });
+      })
 
-      this.$root.$data.fbLiteEnabled = this.getFacebookLite;
+      // Reset Friends to not invited (so we can reuse our event invites from scratch)
+      Friend.update({
+        where: (friend) => {
+          return friend.id
+        },
+        data: {
+          invited: false,
+          selected: false,
+        },
+      })
+
+      NonFacebookFriend.update({
+        where: (friend) => {
+          return friend.id
+        },
+        data: {
+          selected: false,
+          invited: false,
+        },
+      })
+
+      this.$root.$data.fbLiteEnabled = this.getFacebookLite
     },
   },
-};
+}
 </script>
 <style scoped>
 #nav {

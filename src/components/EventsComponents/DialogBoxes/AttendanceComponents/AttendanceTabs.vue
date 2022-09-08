@@ -46,47 +46,47 @@
 </template>
 
 <script>
-  import NonFacebookFriend from "@/vuex-orm_models/NonFacebookFriendModel.js";
-  import Friend from "@/vuex-orm_models/FriendModel.js";
-  import AttendanceTab from "./AttendanceTab.vue";
-  import AttendanceTabInvitedListItem from "./AttendanceTabInvitedListItem.vue";
-  import AttendanceTabInvitedList from "./AttendanceTabInvitedList.vue";
-  import { UserPopulation } from "@/mixins/UserPopulation";
+import Friend from '@/vuex-orm_models/FriendModel.js'
+import NonFacebookFriend from '@/vuex-orm_models/NonFacebookFriendModel.js'
+import AttendanceTab from './AttendanceTab.vue'
+import AttendanceTabInvitedListItem from './AttendanceTabInvitedListItem.vue'
+import AttendanceTabInvitedList from './AttendanceTabInvitedList.vue'
+import { UserPopulation } from '@/mixins/UserPopulation'
 
-  export default {
-    mixins: [UserPopulation],
-    data() {
-      return {
-        selectedTitle: "Going (1)",
-        tabs: [],
-      };
+export default {
+  mixins: [UserPopulation],
+  data() {
+    return {
+      selectedTitle: 'Going (1)',
+      tabs: [],
+    }
+  },
+  components: {
+    AttendanceTab,
+    AttendanceTabInvitedListItem,
+    AttendanceTabInvitedList,
+  },
+  computed: {
+    numInvited() {
+      return (
+        Friend.query().where('invited', true).get().length +
+        NonFacebookFriend.query().where('invited', true).get().length
+      )
     },
-    components: {
-      AttendanceTab,
-      AttendanceTabInvitedListItem,
-      AttendanceTabInvitedList,
+  },
+  methods: {
+    setSelected(title) {
+      this.selectedTitle = title
     },
-    computed: {
-      numInvited() {
-        return (
-          NonFacebookFriend.all().length +
-          Friend.query().where("selected", true).get().length
-        );
-      },
-    },
-    methods: {
-      setSelected(title) {
-        this.selectedTitle = title;
-      },
-    },
-  };
+  },
+}
 </script>
 
 <style scoped>
-  .tabs {
-    display: flex;
-  }
-  .content {
-    margin-top: 1.25rem;
-  }
+.tabs {
+  display: flex;
+}
+.content {
+  margin-top: 1.25rem;
+}
 </style>

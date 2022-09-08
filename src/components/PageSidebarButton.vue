@@ -17,20 +17,18 @@
 
 <script>
 export default {
-  name: "PageSidebarButton",
-  props: ["iconName", "text"],
-
+  name: 'PageSidebarButton',
+  props: ['iconName', 'text', 'route'],
   computed: {
     getRouterLocation: function () {
-      if (this.$props.text == "Home") {
-        return "/";
-      }
-      return "\\";
+      if (this.$props.route == 'Home') {
+        return '/'
+      } else if (this.$props.route) return this.$props.route
+      else return ''
     },
   },
-};
+}
 </script>
-
 
 <style scoped>
 .sidebar-button {

@@ -1,6 +1,6 @@
 <template>
   <div class="popup">
-    <div class="popup-inner">
+    <div class="popup-inner" :style="innerStyles">
       <!-- HEADER -->
       <div class="header">
         <div id="headerContainer">
@@ -15,7 +15,7 @@
       <hr />
 
       <!-- CONTENT -->
-      <div class="content" v-bind:style="contentStyles">
+      <div class="content d-flex" :style="contentStyles">
         <slot name="content"> </slot>
       </div>
       <hr />
@@ -30,23 +30,27 @@
 
 <script>
 export default {
-  props: ["togglePopup", "header", "minWidth", "maxHeight", "minHeight"],
+  props: ['togglePopup', 'header', 'minWidth', 'maxHeight', 'minHeight'],
   computed: {
-    contentStyles() {
-      //  TODO: figure out how to make it so the scroll bar only appears when necessary
-      let styles = "";
-      styles +=
-        `min-height: ` +
-        this.minHeight +
-        ";" +
-        `min-width: ` +
-        this.minWidth +
-        ";";
+    innerStyles() {
+      let styles = ''
 
-      return styles;
+      if (this.header === 'Create post') styles += 'width: 40vw;'
+      else styles += 'width: 60vw;'
+
+      return styles
+    },
+    contentStyles() {
+      let styles = ''
+
+      if (this.minWidth) styles += `min-width: ${this.minWidth};`
+      if (this.maxHeight) styles += `max-height: ${this.maxHeight};`
+      if (this.minHeight) styles += `min-height: ${this.minHeight};`
+
+      return styles
     },
   },
-};
+}
 </script>
 
 <style scoped>

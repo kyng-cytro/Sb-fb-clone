@@ -4,8 +4,8 @@
     style="justify-content: space-evenly"
     id="nonFacebookForm"
   >
-    <div class="formCol">
-      <p>Want to invite friends not on Facebook? No problem!</p>
+    <form @submit.prevent="addNonFacebookFriend">
+      <p>Want to invite friends not through Facebook? No problem!</p>
 
       <div class="form-group">
         <input placeholder="Name" v-model="form.name" class="form-control" />
@@ -22,47 +22,63 @@
       <div class="form-group" v-show="method === 'email'">
         <input placeholder="Email" v-model="form.email" class="form-control" />
       </div>
-      <button class="btn btn-primary" @click="addNonFacebookFriend">
+      <button class="btn btn-primary" type="submit" :disabled="isDisabled">
         Add non-Facebook friend
       </button>
-    </div>
-    <i
-      class="bi bi-x-circle-fill text-end"
-      style="font-size: 1.5rem; height: fit-content"
-      @click="$emit('toggleNonFacebookVisibility', null)"
-    ></i>
+    </form>
   </div>
 </template>
 
 <script>
-import NonFacebookFriend from "@/vuex-orm_models/NonFacebookFriendModel.js";
+import NonFacebookFriend from '@/vuex-orm_models/NonFacebookFriendModel.js'
 export default {
   props: { method: String },
   data() {
     return {
       form: {
-        name: "",
-        phone: "",
-        email: "",
+        name: undefined,
+        phone: undefined,
+        email: undefined,
       },
-    };
+    }
   },
   methods: {
     addNonFacebookFriend() {
       // Insert a new nonFacebookFriend into the Vuex database
       NonFacebookFriend.insert({
-        data: this.form,
-      });
+        data: {
+          name: this.form.name,
+          phone: this.form.phone,
+          email: this.form.email,
+          selected: true,
+        },
+      })
 
       //Clear the form
       this.form = {
-        name: "",
-        phone: "",
-        email: "",
-      };
+        name: undefined,
+        phone: undefined,
+        email: undefined,
+      }
+    },
+    isEmptyString(property) {
+      return this.form[property] === ''
+    },
+    isUndefined(property) {
+      return this.form[property] == null
     },
   },
-};
+  computed: {
+    isDisabled() {
+      return (
+        this.isEmptyString('name') ||
+        this.isUndefined('name') ||
+        ((this.isEmptyString('phone') || this.isUndefined('phone')) &&
+          (this.isEmptyString('email') || this.isUndefined('email')))
+      )
+    },
+  },
+}
 </script>
 
 <style scoped>

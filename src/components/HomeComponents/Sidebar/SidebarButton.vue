@@ -1,6 +1,9 @@
 <template>
   <div>
-    <router-link :to="'/' + capitalizeFirstLetter(type)" class="sidebar-button">
+    <router-link
+      :to="this.hasRoute ? `/${capitalizeFirstLetter(type)}` : ''"
+      class="sidebar-button"
+    >
       <table>
         <tr>
           <td>
@@ -17,58 +20,23 @@
 
 <script>
 export default {
-  name: "SidebarButton",
-  // created() {
-  //   this.setImage();
-  // },
-  // beforeMount() {
-  //   console.log("beforeMount");
-  // },
-  // mounted() {
-  //   console.log("mounted");
-  // },
-  // updated() {
-  //   console.log("updated");
-  // },
-  // unmounted() {
-  //   console.log("unmounted");
-  // },
-  // deactivated() {
-  //   console.log("deactivated");
-  // },
-  // activated() {
-  //   console.log("activated");
-  // },
-  props: ["type"],
-  // data() {
-  //   return {
-  //     image: null
-  //   }
-  // },
+  name: 'SidebarButton',
+  props: ['type'],
   methods: {
     capitalizeFirstLetter(word) {
-      return word.charAt(0).toUpperCase() + word.slice(1);
+      return word.charAt(0).toUpperCase() + word.slice(1)
     },
-    // clearImage() {
-    //   console.log("Clearing image.");
-    //   this.image = null;
-    // },
-    // setImage() {
-    //   this.clearImage();
-    //   setTimeout(() => {
-    //     console.log("Setting image");
-    //     this.image = require('@/assets/images/SidebarIcons/' + this.type + '.png');
-    //     }, 2000);
-    //   console.log("Finished setting image");
-
-    // }
   },
   computed: {
     getImage() {
-      return require("@/assets/images/SidebarIcons/" + this.type + ".png");
+      return require('@/assets/images/SidebarIcons/' + this.type + '.png')
+    },
+    hasRoute() {
+      const typesWithRoutes = ['friends', 'events']
+      return typesWithRoutes.includes(this.type)
     },
   },
-};
+}
 </script>
 
 <style scoped>

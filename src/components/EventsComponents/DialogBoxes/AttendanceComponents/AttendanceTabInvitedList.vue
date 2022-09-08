@@ -1,81 +1,66 @@
 <template>
   <div class="container">
     <div>
-        <!-- Facebook -->
-      <p v-show="selectedFriends.length">
-        Friends ({{ selectedFriends.length }})
+      <!-- Facebook -->
+      <p v-show="invitedFriends.length">
+        Friends ({{ invitedFriends.length }})
       </p>
       <div
-        v-for="friend in this.selectedFriends"
+        v-for="friend in this.invitedFriends"
         :key="friend.id"
         class="selectRectangle"
-        >
-        <AttendanceTabInvitedListItem v-bind:friend="friend"/>
+      >
+        <AttendanceTabInvitedListItem v-bind:friend="friend" />
       </div>
-      <br>
-      <br>
-      
+      <br />
+      <br />
+
       <!-- Email -->
-      <p v-show="onlyEmailFriends.length">
-        Invited by email ({{ onlyEmailFriends.length }})
+      <p v-show="invitedEmailFriends.length">
+        Invited by email ({{ invitedEmailFriends.length }})
       </p>
       <div
-        v-for="emailFriend in this.onlyEmailFriends"
+        v-for="emailFriend in this.invitedEmailFriends"
         :key="emailFriend.id"
         class="selectRectangle"
       >
-        <AttendanceTabInvitedListItem v-bind:friend="emailFriend"/>
+        <AttendanceTabInvitedListItem v-bind:friend="emailFriend" />
       </div>
-      <br>
-      <br>
+      <br />
+      <br />
 
       <!-- Phone -->
-      <p v-show="onlyPhoneFriends.length">
-        Invited by text ({{ onlyPhoneFriends.length }})
+      <p v-show="invitedPhoneFriends.length">
+        Invited by text ({{ invitedPhoneFriends.length }})
       </p>
       <div
-        v-for="phoneFriend in this.onlyPhoneFriends"
+        v-for="phoneFriend in this.invitedPhoneFriends"
         :key="phoneFriend.id"
         class="selectRectangle"
       >
-        <AttendanceTabInvitedListItem v-bind:friend="phoneFriend"/>
+        <AttendanceTabInvitedListItem v-bind:friend="phoneFriend" />
       </div>
-      <br>
-      <br>
-
-      <!-- Both -->
-      <p v-show="emailAndPhoneFriends.length">
-        Invited by email and text ({{ emailAndPhoneFriends.length }})
-      </p>
-      <div
-        v-for="bothFriend in this.emailAndPhoneFriends"
-        :key="bothFriend.id"
-        class="selectRectangle"
-      >
-        <AttendanceTabInvitedListItem v-bind:friend="bothFriend"/>
-      </div>
-      <br>
-      <br>
+      <br />
+      <br />
     </div>
   </div>
 </template>
 
 <script>
-import AttendanceTabInvitedListItem from "./AttendanceTabInvitedListItem.vue";
+import AttendanceTabInvitedListItem from './AttendanceTabInvitedListItem.vue'
 
-import { friendSorting } from "@/mixins/FriendSorting.js"
+import { friendSorting } from '@/mixins/FriendSorting.js'
 
 export default {
   components: {
     AttendanceTabInvitedListItem,
   },
   data() {
-    return {
-    };
+    return {}
   },
   methods: {},
-  mixins: [friendSorting]
-};
+  mixins: [friendSorting],
+}
 </script>
 
 <style scoped>

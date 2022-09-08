@@ -77,10 +77,10 @@
 </template>
 
 <script>
-import FiltersValues from "@/vuex-orm_models/FilterModel.js";
+import FiltersValues from '@/vuex-orm_models/FilterModel.js'
 
 export default {
-  name: "FacebookLiteFilters",
+  name: 'FacebookLiteFilters',
   data() {
     return {
       isFamily: false,
@@ -90,64 +90,63 @@ export default {
       last2Weeks: false,
       lastMonth: true,
       isUserViewOnly: true,
-      dropDownTimeSelection: "Last month",
-    };
+      dropDownTimeSelection: 'Last month',
+    }
   },
   watch: {
     getFacebookLite: function (isEnabled) {
       if (!isEnabled) {
         //If it's now not enabled
-        this.resetFilters();
+        this.resetFilters()
       }
     },
   },
   computed: {
     getFilters() {
-      return FiltersValues.find(1);
+      return FiltersValues.find(1)
     },
     timeOptions() {
-      return ["Last three days", "Last week", "Last two weeks", "Last month"];
+      return ['Last three days', 'Last week', 'Last two weeks', 'Last month']
     },
   },
 
   created() {
     FiltersValues.insert({
       data: { id: 1 },
-    });
-    this.updateFilters();
-    this.setTime(this.dropDownTimeSelection);
+    })
+    this.updateFilters()
+    this.setTime(this.dropDownTimeSelection)
   },
   methods: {
     setTime(option) {
-      this.dropDownTimeSelection = option;
-      console.log("switching the time!");
+      this.dropDownTimeSelection = option
       switch (this.dropDownTimeSelection) {
         case this.timeOptions[0]:
-          this.last3Days = true;
-          this.lastWeek = false;
-          this.last2Weeks = false;
-          this.lastMonth = false;
-          break;
+          this.last3Days = true
+          this.lastWeek = false
+          this.last2Weeks = false
+          this.lastMonth = false
+          break
         case this.timeOptions[1]:
-          this.last3Days = false;
-          this.lastWeek = true;
-          this.last2Weeks = false;
-          this.lastMonth = false;
-          break;
+          this.last3Days = false
+          this.lastWeek = true
+          this.last2Weeks = false
+          this.lastMonth = false
+          break
         case this.timeOptions[2]:
-          this.last3Days = false;
-          this.lastWeek = false;
-          this.last2Weeks = true;
-          this.lastMonth = false;
-          break;
+          this.last3Days = false
+          this.lastWeek = false
+          this.last2Weeks = true
+          this.lastMonth = false
+          break
         case this.timeOptions[3]:
-          this.last3Days = false;
-          this.lastWeek = false;
-          this.last2Weeks = false;
-          this.lastMonth = true;
-          break;
+          this.last3Days = false
+          this.lastWeek = false
+          this.last2Weeks = false
+          this.lastMonth = true
+          break
       }
-      this.updateFilters();
+      this.updateFilters()
     },
     updateFilters() {
       // TODO: it seems that we might want to store the family filter in the friend object
@@ -162,20 +161,19 @@ export default {
           lastMonth: this.lastMonth,
           isUserViewOnly: this.isUserViewOnly,
         },
-      });
+      })
     },
     resetFilters() {
-      console.log("Trying to reset the filters");
-      this.isFamily = false;
-      this.isMajorEvent = false;
-      this.last3Days = true;
-      this.lastWeek = false;
-      this.lastTwoWeeks = false;
-      this.lastMonth = true;
-      this.updateFilters();
+      this.isFamily = false
+      this.isMajorEvent = false
+      this.last3Days = true
+      this.lastWeek = false
+      this.lastTwoWeeks = false
+      this.lastMonth = true
+      this.updateFilters()
     },
   },
-};
+}
 </script>
 
 <style scoped>

@@ -25,109 +25,112 @@
 </template>
 
 <script>
-import FriendRequest from "@/vuex-orm_models/FriendRequestModel.js";
+import FriendRequest from '@/vuex-orm_models/FriendRequestModel.js'
+import _ from 'lodash'
 
 const questionFriendList = [
   {
-    question: "would not want to connect with",
+    question: 'would not want to connect with',
     friendData: null,
   },
   {
-    question: "would like to connect with",
+    question: 'would like to connect with',
     friendData: null,
   },
   {
-    question: "would feel pressured to connect with",
+    question: 'would feel pressured to connect with',
     friendData: null,
   },
   {
-    question: "would like to connect with, but you have some sort of concern",
+    question: 'would like to connect with, but you have some sort of concern',
     friendData: null,
   },
   {
     question: "have already connected with, but you didn't want to",
     friendData: null,
   },
-];
+]
 export default {
   data() {
     return {
-      name: "",
-      numOfMutualFriends: "",
+      name: '',
+      numOfMutualFriends: '',
       daysUntilExpiration: 30,
       index: 0,
       submitted: false,
-    };
+    }
   },
   created() {
     // Reset Friend Request entry array to empty (start with a fresh set of friend requests)
     FriendRequest.delete((friend) => {
-      return friend.id;
-    });
+      return friend.id
+    })
   },
   methods: {
     enter() {
-      if (this.finished) this.submit();
-      else this.next();
+      if (this.finished) this.submit()
+      else this.next()
     },
     submit() {
-      this.setQuestion(this.index); // Basically do what the next function does for the last item
+      this.setQuestion(this.index) // Basically do what the next function does for the last item
       for (let i = 0; i < questionFriendList.length; i++) {
         FriendRequest.insert({
           data: {
-            name: questionFriendList.at(i).friendData.name,
-            imageSource: "",
+            name: _.startCase(
+              questionFriendList.at(i).friendData.name.toLowerCase(),
+            ),
+            imageSource: '',
             daysUntilExpiration: this.daysUntilExpiration,
             numOfMutualFriends: this.numOfMutualFriends,
             friendQuestion: questionFriendList.at(i).question,
           },
-        });
+        })
       }
-      this.submitted = true;
-      this.goHome();
+      this.submitted = true
+      this.goHome()
     },
     goHome() {
-      this.$router.push("/");
+      this.$router.push('/')
     },
     resetFields() {
-      this.name = "";
+      this.name = ''
     },
     setQuestion(index) {
       questionFriendList.at(index).friendData = {
         name: this.name,
         numOfMutualFriends: this.numOfMutualFriends,
         daysUntilExpiration: this.daysUntilExpiration,
-      };
-      this.resetFields();
+      }
+      this.resetFields()
     },
     next() {
-      console.log(this.index);
       if (this.index < questionFriendList.length - 1) {
-        this.setQuestion(this.index);
-        this.index++;
+        this.setQuestion(this.index)
+        this.index++
       }
     },
     previous() {
-      console.log(this.index);
       if (this.index > 0) {
-        this.setQuestion(this.index);
-        this.index--;
+        this.setQuestion(this.index)
+        this.index--
+      } else {
+        this.goHome()
       }
     },
   },
   computed: {
     currentQuestion() {
       return (
-        "Please enter the name of a friend you " +
+        'Please enter the name of a friend you ' +
         questionFriendList.at(this.index).question +
-        ":"
-      );
+        ':'
+      )
     },
     finished() {
-      return this.index == questionFriendList.length - 1;
+      return this.index == questionFriendList.length - 1
     },
   },
-};
+}
 </script>
 
 <style scoped>

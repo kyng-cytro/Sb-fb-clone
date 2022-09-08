@@ -9,9 +9,9 @@
 
 <script>
 export default {
-  name: "CircularIcon",
-  props: ["type"],
-};
+  name: 'CircularIcon',
+  props: ['type'],
+}
 </script>
 
 <style scoped>
