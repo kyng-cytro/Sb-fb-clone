@@ -133,11 +133,10 @@ export const FriendPopulation = {
      *
      * @param {boolean} select select is true if you want to select them all, false otherwise
      */
-    selectOrDeselectAllFriends(select) {
-      let numberOfFriends = this.friends.length
-      for (let i = 0; i < numberOfFriends; i++) {
+    selectOrDeselectAllFriends(select, friendsList) {
+      for (let i = 0; i < friendsList.length; i++) {
         Friend.update({
-          where: this.friends[i].id,
+          where: this.friendsList[i].id,
           data: {
             selected: select,
           },
