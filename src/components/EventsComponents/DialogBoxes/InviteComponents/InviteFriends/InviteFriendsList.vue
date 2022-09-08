@@ -38,7 +38,7 @@
     <div class="container m-0 p-0">
       <div>
         <button
-          v-if="!selectAll"
+          v-if="!isAllSelected"
           id="selectAll"
           class="selectRectangle"
           @click="selectAllFriends"
@@ -68,6 +68,7 @@
 <script>
 import InviteFriendsListItem from './InviteFriendsListItem.vue'
 import { FriendPopulation } from '@/mixins/FriendPopulation.js'
+import Friend from '@/vuex-orm_models/FriendModel'
 
 export default {
   mixins: [FriendPopulation],
@@ -77,19 +78,27 @@ export default {
   props: ['friendsList'],
   data() {
     return {
-      selectedFriends: [],
-      selectAll: false,
       searchQuery: '',
     }
   },
   methods: {
     selectAllFriends() {
-      this.selectOrDeselectAllFriends(true)
-      this.selectAll = true
+      this.selectOrDeselectAllFriends(true, this.friendsList)
     },
     deselectAllFriends() {
-      this.selectOrDeselectAllFriends(false)
-      this.selectAll = false
+      this.selectOrDeselectAllFriends(false, this.friendsList)
+    },
+  },
+  computed: {
+    isAllSelected() {
+      return (
+        Friend.query()
+          .where((friend) =>
+            this.friendsList.map((friend) => friend.id).includes(friend.id),
+          )
+          .where('selected', true)
+          .count() === this.friendsList.length
+      )
     },
   },
 }
