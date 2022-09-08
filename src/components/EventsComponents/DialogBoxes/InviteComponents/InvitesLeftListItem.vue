@@ -27,6 +27,7 @@ export default {
           where: this.friend.id,
           data: {
             selected: false,
+            invited: false,
           },
         })
       } else {

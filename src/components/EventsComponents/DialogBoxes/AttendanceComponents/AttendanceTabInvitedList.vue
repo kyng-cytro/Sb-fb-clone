@@ -42,20 +42,6 @@
       </div>
       <br />
       <br />
-
-      <!-- Both -->
-      <p v-show="emailAndPhoneFriends.length">
-        Invited by email and text ({{ emailAndPhoneFriends.length }})
-      </p>
-      <div
-        v-for="bothFriend in this.emailAndPhoneFriends"
-        :key="bothFriend.id"
-        class="selectRectangle"
-      >
-        <AttendanceTabInvitedListItem v-bind:friend="bothFriend" />
-      </div>
-      <br />
-      <br />
     </div>
   </div>
 </template>

@@ -22,7 +22,7 @@
       <div class="form-group" v-show="method === 'email'">
         <input placeholder="Email" v-model="form.email" class="form-control" />
       </div>
-      <button class="btn btn-primary" @click="addNonFacebookFriend">
+      <button class="btn btn-primary" type="submit">
         Add non-Facebook friend
       </button>
     </form>
@@ -36,20 +36,14 @@ export default {
   data() {
     return {
       form: {
-        name: '',
-        phone: '',
-        email: '',
+        name: undefined,
+        phone: undefined,
+        email: undefined,
       },
     }
   },
   methods: {
     addNonFacebookFriend() {
-      if (
-        this.form.name === '' ||
-        (this.form.phone === '' && this.form.email === '')
-      )
-        return
-
       // Insert a new nonFacebookFriend into the Vuex database
       NonFacebookFriend.insert({
         data: {
@@ -62,9 +56,9 @@ export default {
 
       //Clear the form
       this.form = {
-        name: '',
-        phone: '',
-        email: '',
+        name: undefined,
+        phone: undefined,
+        email: undefined,
       }
     },
   },

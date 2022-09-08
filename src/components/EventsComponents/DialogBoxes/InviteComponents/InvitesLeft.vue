@@ -5,14 +5,11 @@
       <div v-for="friend in selectedFriends" :key="friend.key">
         <InvitesLeftListItem :friend="friend" />
       </div>
-      <div v-for="emailFriend in onlyEmailFriends" :key="emailFriend.key">
+      <div v-for="emailFriend in emailSelectedFriends" :key="emailFriend.key">
         <InvitesLeftListItem :friend="emailFriend" />
       </div>
-      <div v-for="phoneFriend in onlyPhoneFriends" :key="phoneFriend.key">
+      <div v-for="phoneFriend in phoneSelectedFriends" :key="phoneFriend.key">
         <InvitesLeftListItem :friend="phoneFriend" />
-      </div>
-      <div v-for="bothFriend in emailAndPhoneFriends" :key="bothFriend.key">
-        <InvitesLeftListItem :friend="bothFriend" />
       </div>
     </div>
   </div>

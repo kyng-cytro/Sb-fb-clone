@@ -31,6 +31,7 @@ import Vue from 'vue'
 import FacebookLite from '@/vuex-orm_models/FacebookLiteModel.js'
 import FriendRequest from '@/vuex-orm_models/FriendRequestModel.js'
 import Friend from '@/vuex-orm_models/FriendModel.js'
+import NonFacebookFriend from '../../../vuex-orm_models/NonFacebookFriendModel'
 
 Vue.use(ToggleButton)
 
@@ -92,6 +93,16 @@ export default {
         data: {
           invited: false,
           selected: false,
+        },
+      })
+
+      NonFacebookFriend.update({
+        where: (friend) => {
+          return friend.id
+        },
+        data: {
+          selected: false,
+          invited: false,
         },
       })
 
