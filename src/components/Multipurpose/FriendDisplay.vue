@@ -1,24 +1,16 @@
 <template>
   <!-- NOTE: THIS COMPONENT WILL DISPLAY ACCORDING TO THE OBJECT PASSED IN. IF IT HAS AN EMAIL FIELD, IT WILL SHOW AN EMAIL ICON. ETC. -->
   <div class="horizontalAlign">
-    <!-- If the user is a facebook user: -->
-    <img
-      v-if="isFacebookWithImage"
-      v-bind:style="imgStyles"
-      :src="
-        friend.imageSource.slice(friend.imageSource.length - 3) == 'jpg'
-          ? require('@/assets/images/FriendProfilePics/' + friend.imageSource)
-          : friend.imageSource
-      "
-      @error="setAltImg"
-    />
-    <!-- That last line there says that if it ends with jpg, look in the FriendProfilePics folder for the image. Otherwise, assume it's a public URL -->
-
-    <!-- If they are an email user -->
-    <i v-else-if="isEmail" class="bi bi-envelope" :style="iconStyles"></i>
+    <i v-if="isEmail" class="bi bi-envelope" :style="iconStyles"></i>
 
     <!-- If they are a phone user -->
     <i v-else-if="isPhone" class="bi bi-chat-dots" :style="iconStyles"></i>
+
+    <img
+      v-else
+      src="@/assets/images/FriendProfilePics/generic-profile-picture.jpg"
+      :style="imgStyles"
+    />
 
     <!-- The name of the person -->
     <p
