@@ -10,13 +10,30 @@
             class="form-control"
             id="nameInput"
             placeholder="Name"
+            required
           />
         </div>
       </form>
 
-      <button class="back" @click="previous">Back</button>
-      <button v-show="!finished" @click="enter">Next</button>
-      <button class="submit" v-show="finished" @click="enter">Submit</button>
+      <button class="btn btn-secondary btn-lg mx-2" @click="previous">
+        Back
+      </button>
+      <button
+        class="btn btn-primary btn-lg mx-2"
+        v-show="!finished"
+        @click="enter"
+        :disabled="isNameEmpty"
+      >
+        Next
+      </button>
+      <button
+        class="btn btn-success btn-lg mx-2"
+        v-show="finished"
+        @click="enter"
+        :disabled="isNameEmpty"
+      >
+        Submit
+      </button>
     </div>
     <div v-else>
       <p>Thank you.</p>
@@ -129,6 +146,9 @@ export default {
     finished() {
       return this.index == questionFriendList.length - 1
     },
+    isNameEmpty() {
+      return this.name === ''
+    },
   },
 }
 </script>
@@ -136,37 +156,6 @@ export default {
 <style scoped>
 .container {
   padding: 50px;
-}
-
-button {
-  background-color: rgb(59, 138, 241);
-  color: white;
-  padding: 12px;
-  padding-left: 30px;
-  padding-right: 30px;
-  border-radius: 10px;
-  border-width: 0px;
-  outline: none;
-  align-self: flex-end;
-  margin: 20px;
-}
-
-button:hover {
-  background-color: rgb(167, 167, 167);
-  color: rgb(185, 185, 185);
-  transition: 0.1s;
-}
-
-.back {
-  background-color: grey;
-}
-
-.submit {
-  background-color: rgb(112, 172, 105);
-}
-
-button::selection {
-  outline: none;
 }
 
 .friendRequestDisplay {
