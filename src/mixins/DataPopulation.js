@@ -1,17 +1,29 @@
 import Post from '@/vuex-orm_models/PostModel.js'
 import FacebookLite from '@/vuex-orm_models/FacebookLiteModel.js'
 
+const getNewPostDate = (date) => {
+  const newDate = new Date(date)
+  newDate.setDate(newDate.getDate() - getRandomInt(0, 3))
+  newDate.setHours(getRandomInt(7, 24), getRandomInt(0, 60))
+  return newDate
+}
+
+const getRandomInt = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
+
 export const DataPopulation = {
   data() {
     return {}
   },
   methods: {
-    getRandomInt(min, max) {
-      min = Math.ceil(min)
-      max = Math.floor(max)
-      return Math.floor(Math.random() * (max - min) + min) //The maximum is exclusive and the minimum is inclusive
+    getRandomInt,
+    updatePostDate(date) {
+      return getNewPostDate(date)
     },
     populatePosts() {
+      Post.deleteAll()
+
       for (let i = 0; i < this.localPosts.length; i++) {
         Post.insert({ data: this.localPosts[i] })
       }
@@ -44,11 +56,8 @@ export const DataPopulation = {
         },
       })
 
-      currentPostDate.setDate(currentPostDate.getDate() - 2) // Set the date to two days earlier
-      currentPostDate.setHours(
-        this.getRandomInt(7, 24),
-        this.getRandomInt(0, 60),
-      )
+      currentPostDate = this.updatePostDate(currentPostDate)
+
       posts.push({
         imageSource: 'grandparents_shopping.jpg',
         friend: {
@@ -70,6 +79,8 @@ export const DataPopulation = {
         imageSource: 'rei.png',
         friend: {
           name: 'REI',
+          isFamily: false,
+          isFavorite: true,
         },
         text: "Members can now buy a Co-op Cycles kids' bike today and trade it in for a gift card later. Terms apply.",
         date: currentPostDate.toISOString(), // For some reason, dates have to be stored as strings in these objects otherwise the DateProcessing gets mad
@@ -78,11 +89,26 @@ export const DataPopulation = {
         numLikes: this.getRandomInt(5, 30),
       })
 
-      currentPostDate.setDate(currentPostDate.getDate() - 3)
-      currentPostDate.setHours(
-        this.getRandomInt(7, 24),
-        this.getRandomInt(0, 60),
-      )
+      currentPostDate = this.updatePostDate(currentPostDate)
+
+      posts.push({
+        friend: {
+          name: 'Childhood Friend',
+          isFamily: false,
+          isFavorite: true,
+        },
+        text: 'Hey, I just got a new job! I start next week. I am so excited!',
+        date: currentPostDate.toISOString(), // For some reason, dates have to be stored as strings in these objects otherwise the DateProcessing gets mad
+        numComments: this.getRandomInt(1, 10),
+        numShares: this.getRandomInt(0, 5),
+        numLikes: this.getRandomInt(5, 30),
+        filter: {
+          isMajorEvent: true,
+          isPostViewOnly: false,
+        },
+      })
+
+      currentPostDate = this.updatePostDate(currentPostDate)
 
       posts.push({
         imageSource: '',
@@ -101,10 +127,7 @@ export const DataPopulation = {
         },
       })
 
-      currentPostDate.setHours(
-        this.getRandomInt(7, 24),
-        this.getRandomInt(0, 60),
-      )
+      currentPostDate = this.updatePostDate(currentPostDate)
 
       posts.push({
         imageSource: 'covid.jpg',
@@ -123,11 +146,7 @@ export const DataPopulation = {
         },
       })
 
-      currentPostDate.setDate(currentPostDate.getDate() - 1)
-      currentPostDate.setHours(
-        this.getRandomInt(7, 24),
-        this.getRandomInt(0, 60),
-      )
+      currentPostDate = this.updatePostDate(currentPostDate)
 
       posts.push({
         imageSource: 'nerd.jpg',
@@ -146,11 +165,7 @@ export const DataPopulation = {
         },
       })
 
-      currentPostDate.setDate(currentPostDate.getDate() - 1)
-      currentPostDate.setHours(
-        this.getRandomInt(7, 24),
-        this.getRandomInt(0, 60),
-      )
+      currentPostDate = this.updatePostDate(currentPostDate)
 
       posts.push({
         imageSource: 'sax.jpg',
@@ -181,11 +196,7 @@ export const DataPopulation = {
         numLikes: this.getRandomInt(5, 30),
       })
 
-      currentPostDate.setDate(currentPostDate.getDate() - 6)
-      currentPostDate.setHours(
-        this.getRandomInt(7, 24),
-        this.getRandomInt(0, 60),
-      )
+      currentPostDate = this.updatePostDate(currentPostDate)
 
       posts.push({
         imageSource: 'birthday.jpg',
@@ -204,11 +215,8 @@ export const DataPopulation = {
         },
       })
 
-      currentPostDate.setDate(currentPostDate.getDate() - 6)
-      currentPostDate.setHours(
-        this.getRandomInt(7, 24),
-        this.getRandomInt(0, 60),
-      )
+      currentPostDate = this.updatePostDate(currentPostDate)
+
       posts.push({
         imageSource: 'new_house.jpg',
         friend: {
@@ -238,18 +246,35 @@ export const DataPopulation = {
         numLikes: this.getRandomInt(5, 30),
       })
 
-      currentPostDate.setDate(currentPostDate.getDate() - 6)
-      currentPostDate.setHours(
-        this.getRandomInt(7, 24),
-        this.getRandomInt(0, 60),
-      )
+      currentPostDate = this.updatePostDate(currentPostDate)
+
       posts.push({
         imageSource: 'snail.jpg',
         friend: {
           name: 'College Friend',
           isFamily: false,
+          isFavorite: true,
         },
         text: 'i am loving my new cannon dslr. check out the epic DOF!',
+        date: currentPostDate.toISOString(),
+        numComments: this.getRandomInt(2, 30),
+        numShares: this.getRandomInt(1, 3),
+        numLikes: this.getRandomInt(50, 130),
+        filter: {
+          isMajorEvent: false,
+          isPostViewOnly: false,
+        },
+      })
+
+      currentPostDate = this.updatePostDate(currentPostDate)
+
+      posts.push({
+        friend: {
+          name: 'Significant Other',
+          isFamily: true,
+          isFavorite: true,
+        },
+        text: 'I love my partner so much!',
         date: currentPostDate.toISOString(),
         numComments: this.getRandomInt(2, 30),
         numShares: this.getRandomInt(1, 3),

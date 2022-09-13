@@ -7,6 +7,7 @@ export default class FiltersValues extends Model {
     return {
       id: this.uid(),
       isFamily: this.boolean(false),
+      isFavorites: this.boolean(false),
       isMajorEvent: this.boolean(false),
       lastThreeDays: this.boolean(false),
       lastWeek: this.boolean(false),

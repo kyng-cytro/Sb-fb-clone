@@ -4,17 +4,26 @@
     <table>
       <th>People</th>
       <tr>
-        <input
-          type="checkbox"
-          id="checkbox"
-          v-model="isFamily"
-          v-on:change="updateFilters()"
-        />
-        Family
+        <label>
+          <input
+            type="checkbox"
+            id="checkbox"
+            v-model="isFamily"
+            @change="updateFilters()"
+          />
+          Family
+        </label>
       </tr>
       <tr>
-        <input type="checkbox" id="checkbox" />
-        Favorites
+        <label>
+          <input
+            type="checkbox"
+            id="favoriteBox"
+            v-model="isFavorites"
+            @change="updateFilters()"
+          />
+          Favorites
+        </label>
       </tr>
 
       <th>Time Period</th>
@@ -84,6 +93,7 @@ export default {
   data() {
     return {
       isFamily: false,
+      isFavorites: false,
       isMajorEvent: false,
       last3Days: false,
       lastWeek: false,
@@ -154,6 +164,7 @@ export default {
         where: 1,
         data: {
           isFamily: this.isFamily,
+          isFavorites: this.isFavorites,
           isMajorEvent: this.isMajorEvent,
           lastThreeDays: this.last3Days,
           lastWeek: this.lastWeek,
@@ -165,6 +176,7 @@ export default {
     },
     resetFilters() {
       this.isFamily = false
+      this.isFavorites = false
       this.isMajorEvent = false
       this.last3Days = true
       this.lastWeek = false

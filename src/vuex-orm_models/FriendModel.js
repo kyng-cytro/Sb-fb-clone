@@ -10,6 +10,7 @@ export default class Friend extends Model {
     return {
       id: this.uid(), // id is assumed to be the primary key (can be overridden) uid generates a unique ID for single client (not UUID)
       isFamily: this.boolean(false),
+      isFavorites: this.boolean(false),
       name: this.string(''), // The argument passed is the default value used when instantiating the model class
       imageSource: this.string(''), // this.attr is a generic field which accepts any value.
       numOfMutualFriends: this.attr(0),

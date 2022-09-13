@@ -46,7 +46,10 @@ export const PostFiltering = {
         //PEOPLE
         if (filter.isFamily && !post.friend.isFamily) {
           continue
+        } else if (filter.isFavorites && !post.friend.isFavorite) {
+          continue
         }
+
         newPosts.push(post)
       }
 
