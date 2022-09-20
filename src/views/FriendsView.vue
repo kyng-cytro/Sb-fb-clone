@@ -27,7 +27,7 @@ export default {
 <style scoped>
 .Friends {
   display: flex;
-  flex: 1 1 auto;
+  height: 100vh;
   background: rgb(244, 246, 247);
 }
 </style>

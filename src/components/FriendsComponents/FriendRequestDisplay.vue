@@ -52,9 +52,7 @@ export default {
 
 <style scoped>
 .friendRequestDisplay {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+  display: inline-block;
 }
 .square {
   margin: 10px;

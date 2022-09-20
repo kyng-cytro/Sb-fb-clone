@@ -138,6 +138,7 @@ export default {
   box-shadow: 0px 0px 3px rgb(140, 140, 140);
   display: flex;
   flex-direction: column;
+  float: left;
 }
 
 .profilePic {

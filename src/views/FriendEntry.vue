@@ -3,7 +3,8 @@
     <div v-if="!this.submitted">
       <form @submit.prevent="enter">
         <div class="form-group">
-          <label for="nameInput">{{ currentQuestion }}</label>
+          <h5>Please enter the name of:</h5>
+          <label>Someone you {{ currentQuestion }}</label>
           <input
             v-model="name"
             type="text"
@@ -47,23 +48,19 @@ import _ from 'lodash'
 
 const questionFriendList = [
   {
-    question: 'would not want to connect with',
+    question: 'want to connect with',
     friendData: null,
   },
   {
-    question: 'would like to connect with',
+    question: "don't want to connect with",
     friendData: null,
   },
   {
-    question: 'would feel pressured to connect with',
+    question: 'feel pressure to connect with',
     friendData: null,
   },
   {
-    question: 'would like to connect with, but you have some sort of concern',
-    friendData: null,
-  },
-  {
-    question: "have already connected with, but you didn't want to",
+    question: 'you want to connect with but have some sort of concern',
     friendData: null,
   },
 ]
@@ -137,11 +134,7 @@ export default {
   },
   computed: {
     currentQuestion() {
-      return (
-        'Please enter the name of a friend you ' +
-        questionFriendList.at(this.index).question +
-        ':'
-      )
+      return questionFriendList.at(this.index).question
     },
     finished() {
       return this.index == questionFriendList.length - 1
