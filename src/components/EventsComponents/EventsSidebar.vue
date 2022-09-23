@@ -17,7 +17,7 @@
       <div v-else-if="eventState === 'editing'">
         <p>Event > Create Event</p>
 
-        <h1>{{ stages[stage] }}</h1>
+        <h1 class="mt-2">{{ stages[stage] }}</h1>
 
         <!-- EVENT NAME -->
         <div v-if="stages[stage] === 'Event Details'">
@@ -66,6 +66,9 @@
 
         <!-- LOCATION -->
         <div v-else-if="stages[stage] === 'Location'">
+          <h5 class="font-weight-light mt-0 ml-2 mb-2">
+            Add a physical location for people to join your event.
+          </h5>
           <div class="form-group">
             <textarea
               v-model="eventLocation"
@@ -78,6 +81,10 @@
 
         <!-- DESCRIPTION -->
         <div v-else-if="stages[stage] === 'Description'">
+          <h5 class="font-weight-light mt-0 ml-2 mb-2">
+            Provide more information about your event so guests know what to
+            expect.
+          </h5>
           <div class="form-group">
             <textarea
               v-model="eventDescription"
