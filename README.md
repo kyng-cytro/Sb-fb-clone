@@ -1,4 +1,12 @@
-# Instructions to start:
+# Facebook Designed for Social Barrier Reduction:
+
+## Introduction:
+
+Social media has become an important resource in almost every life sphere – from social, professional, and personal realms, to civil participation and crisis management. Research has identified segments of the population that are disenfranchised as a result of socioeconomic barriers that bar access to technologies. Other researchers have focused on those who have abandoned social media because of barriers such as privacy concerns, information overload, or being bothered by drama and political posts. PI Page’s latest research identifies a previously unacknowledged class of social barriers to using social media. These concerns center on social interactions with others. For instance, anxiety around making decisions on accepting friend requests and keeping up with others’ posts, or worries about relying on a false sense of community and being overly influenced by others on social media. These individuals potentially face a lose-lose situation where they want to gain the social and functional benefits of being on social media, however, they find themselves dealing with social consequences when using social media, or losing social connection when they stop using it.
+
+Our research aims to better understand how these social barriers affect social media attitudes and behavior, who is likely to experience such social barriers, and how can we design technologies to alleviate the negative effects of such social barriers. We 1) undertake a survey study to see if and how social barriers affect social media use, 2) prototype design solutions, and 3) user test the prototypes to see if they can effectively mitigate user concerns.
+
+## Get Started with this project
 
 ```
 git clone https://github.com/BYU-STAPL/Sb-fb-clone.git
@@ -7,9 +15,9 @@ npm install
 npm run serve
 ```
 
-Go to `localhost:8080` in your browser
+Go to `localhost:8080` in your browser to view the preview.
 
-# sb-fb-clone
+# Sb-fb-clone important commands for development
 
 ## Project setup
 
@@ -35,15 +43,22 @@ npm run build
 npm run lint
 ```
 
-## Project Build
+### Format your files
 
+```
+npm run format
+```
+
+# Project Build for Production
+
+## Automatic CI/CD Pipeline
 **_Note:_**
 The project is setup with GitHub Actions so that any push to master will be reflected on the hciresearch webpage where we are hosting the website. However, if the workflow fails and you need to push changes manually, follow the instructions below.
 
-**Manual Builds:**
+## Manual Builds
 Build your public files. The build can be done in your ssh connection to the hciresearch server; however, it is faster to build it on your local machine and copy the public files from `dist` to the remote server:
 
-### Builds public files
+### **Build public files**
 
 ```
 cd Sb-fb-clone
@@ -51,22 +66,21 @@ npm i
 npm run build
 ```
 
-#### Note:
+> **_Note:_**
+>
+> If you encounter the following error:
+>
+> `Error: error:0308010C:digital envelope routines::unsupported`
+>
+> then run this line of code
+>
+> ```export NODE_OPTIONS=--openssl-legacy-provider```
+>
+> and rebuild your project.
 
-If you encounter the following error:
-`Error: error:0308010C:digital envelope routines::unsupported`
+### **Copy public files to server**
 
-then run this line of code `export NODE_OPTIONS=--openssl-legacy-provider` and rebuild your project.
-
-### Copy public files to server
-
-Now copy your public files to `/var/www/html/fb-lite`.
-
-If you built the files on the remote server:
-
-```
-cp -rp dist/* /var/www/html/fb-lite
-```
+Once your public files are built, copy them to `/var/www/html/fb-lite`.
 
 If you built the files on your local machine (recommended):
 
@@ -74,9 +88,11 @@ If you built the files on your local machine (recommended):
 scp -rp dist/* [username]@[host]:[targetDir]
 ```
 
-### Customize configuration
+If you built the files on the remote server:
 
-See [Configuration Reference](https://cli.vuejs.org/config/).
+```
+cp -rp dist/* /var/www/html/fb-lite
+```
 
 # Overview of Project Structure
 
