@@ -3,7 +3,7 @@ import FacebookLite from '@/vuex-orm_models/FacebookLiteModel.js'
 
 const getNewPostDate = (date) => {
   const newDate = new Date(date)
-  newDate.setDate(newDate.getDate() - getRandomInt(0, 3))
+  newDate.setDate(newDate.getDate() - getRandomInt(1, 3))
   newDate.setHours(getRandomInt(7, 24), getRandomInt(0, 60))
   return newDate
 }

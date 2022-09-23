@@ -7,7 +7,7 @@
         <div v-if="getFacebookLite">
           <button
             class="checkboxButton"
-            style="margin-right: 8px"
+            style="margin-right: 8px; padding: 10px"
             :style="viewOnlyButtonStyles"
             @click="toggleViewOnly"
             v-b-tooltip.hover
@@ -17,6 +17,7 @@
           </button>
           <button
             class="checkboxButton"
+            style="margin-right: 8px; padding: 10px"
             :style="majorEventButtonStyles"
             @click="toggleMajorEvent"
             v-b-tooltip.hover
@@ -26,7 +27,14 @@
           </button>
         </div>
         <div v-else class="lineHeight">
-          <button class="checkboxButton">Public</button>
+          <button
+            class="checkboxButton"
+            :style="publicVisibilityButton"
+            @click="togglePublicVisibility"
+            title="Make post visible to everyone"
+          >
+            Public
+          </button>
         </div>
       </FriendDisplay>
     </div>
@@ -66,12 +74,9 @@ export default {
         text: '',
         friend: this.user,
       },
+      isPublicPost: true,
       isMajorEvent: false,
       isPostViewOnly: false,
-      viewOnlyButtonStyles:
-        'background-color: rgb(221, 221, 221) !important; color: rgb(10, 10, 10);',
-      majorEventButtonStyles:
-        'background-color: rgb(221, 221, 221) !important; color: rgb(10, 10, 10);',
     }
   },
   mounted() {
@@ -88,18 +93,15 @@ export default {
     focusInput() {
       this.$refs.postText.focus()
     },
+    togglePublicVisibility() {
+      this.isPublicPost = !this.isPublicPost
+    },
     // Below are some really annoying hacks to get to styles to update. For some reason, it was being extremely uncooperative with other methods.
     toggleViewOnly() {
-      this.isViewOnly = !this.isViewOnly
-      this.viewOnlyButtonStyles = this.isViewOnly
-        ? 'background-color: #1b74e4 !important;'
-        : 'background-color: rgb(221, 221, 221) !important; color: rgb(10, 10, 10);'
+      this.isPostViewOnly = !this.isPostViewOnly
     },
     toggleMajorEvent() {
       this.isMajorEvent = !this.isMajorEvent
-      this.majorEventButtonStyles = this.isMajorEvent
-        ? 'background-color: #1b74e4 !important;'
-        : 'background-color: rgb(221, 221, 221) !important; color: rgb(10, 10, 10);'
     },
     closeDialog() {
       this.$root.$emit('closeCreatePostDialog')
@@ -149,6 +151,21 @@ export default {
     getFacebookLite() {
       return FacebookLite.find(1).enabled
     },
+    publicVisibilityButton() {
+      return this.isPublicPost
+        ? 'background-color: #1b74e4 !important;'
+        : 'background-color: gray !important; color: white;'
+    },
+    viewOnlyButtonStyles() {
+      return this.isPostViewOnly
+        ? 'background-color: #1b74e4 !important;'
+        : 'background-color: gray !important; color: white;'
+    },
+    majorEventButtonStyles() {
+      return this.isMajorEvent
+        ? 'background-color: #1b74e4 !important;'
+        : 'background-color: gray !important; color: white;'
+    },
   },
 }
 </script>
@@ -165,8 +182,7 @@ export default {
   width: 20vw;
 }
 .checkboxButton {
-  background-color: black;
-  margin: 0;
+  margin-top: 5px;
   outline: 0 !important;
   border-width: 0px;
   border-radius: 4px;
@@ -177,6 +193,7 @@ export default {
   line-height: 10%;
   width: fit-content;
   height: 2vh;
+  padding: 10px;
 }
 .footer {
   width: 100%;

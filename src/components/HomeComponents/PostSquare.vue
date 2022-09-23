@@ -35,8 +35,15 @@
       <div class="line"></div>
       <div class="Buttons">
         <div>
-          <button type="button" class="btn btn-secondary">
-            <i class="bi bi-hand-thumbs-up"></i>
+          <button
+            type="button"
+            class="btn"
+            @click="toggleLike"
+            :style="{
+              color: userLiked ? 'blue' : 'black',
+            }"
+          >
+            <i class="bi bi-hand-thumbs-up" />
             Like
           </button>
         </div>
@@ -65,6 +72,7 @@ import FacebookLite from '@/vuex-orm_models/FacebookLiteModel.js'
 import FriendDisplay from '@/components/Multipurpose/FriendDisplay'
 import { dateProcessing } from '@/mixins/DateProcessing.js'
 import FiltersValues from '@/vuex-orm_models/FilterModel.js'
+import Post from '@/vuex-orm_models/PostModel.js'
 
 export default {
   name: 'post-square',
@@ -73,6 +81,32 @@ export default {
   },
   props: ['post'],
   mixins: [dateProcessing],
+  data() {
+    return {
+      userLiked: false,
+    }
+  },
+  methods: {
+    toggleLike() {
+      this.userLiked = !this.userLiked
+
+      if (this.userLiked) {
+        Post.update({
+          where: this.post.id,
+          data: {
+            numLikes: this.post.numLikes + 1,
+          },
+        })
+      } else {
+        Post.update({
+          where: this.post.id,
+          data: {
+            numLikes: this.post.numLikes - 1,
+          },
+        })
+      }
+    },
+  },
   computed: {
     isFacebookLite() {
       return FacebookLite.find(1).enabled
