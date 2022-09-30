@@ -4,37 +4,75 @@
     <div class="header">
       <FriendDisplay :friend="this.user" :bold="true" :slotBelowText="true">
         <!-- CHECKBOX BUTTONS -->
-        <div v-if="getFacebookLite">
-          <button
-            class="checkboxButton"
-            style="margin-right: 8px; padding: 10px"
-            :style="viewOnlyButtonStyles"
-            @click="toggleViewOnly"
-            v-b-tooltip.hover
-            title="Friends can see your post but not interact with it"
-          >
-            View only
-          </button>
-          <button
-            class="checkboxButton"
-            style="margin-right: 8px; padding: 10px"
-            :style="majorEventButtonStyles"
-            @click="toggleMajorEvent"
-            v-b-tooltip.hover
-            title="Mark post as a major event so friends with the major event filter can view post"
-          >
-            Major Event
-          </button>
+        <div v-if="getFacebookLite" class="d-flex">
+          <div class="dropdown mr-2">
+            <button
+              class="btn btn-outline-secondary btn-sm dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="bi mr-1" :class="viewOnlyIcon"></i>
+              {{ isPostViewOnly ? 'View Only' : 'Public' }}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <button class="dropdown-item" @click="togglePublicInteraction">
+                <i class="bi bi-globe mr-1"></i> Public
+              </button>
+              <button class="dropdown-item" @click="toggleViewOnlyInteraction">
+                <i class="bi bi-eye mr-1"></i> View Only
+              </button>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button
+              class="btn btn-outline-secondary btn-sm dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="bi mr-1" :class="majorEventIcon"></i>
+              {{ isMajorEvent ? 'Major Event' : 'Normal' }}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <button class="dropdown-item" @click="toggleNormalPost">
+                <i class="bi bi-journal-text mr-1"></i> Normal
+              </button>
+              <button class="dropdown-item" @click="toggleMajorEventPost">
+                <i class="bi bi-gift mr-1"></i> Major Event
+              </button>
+            </div>
+          </div>
         </div>
         <div v-else class="lineHeight">
-          <button
-            class="checkboxButton"
-            :style="publicVisibilityButton"
-            @click="togglePublicVisibility"
-            title="Make post visible to everyone"
-          >
-            Public
-          </button>
+          <div class="dropdown">
+            <button
+              class="btn btn-outline-secondary btn-sm dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <i class="bi mr-1" :class="privacyIcon"></i>
+              {{ privacy }}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <button class="dropdown-item" @click="togglePublicVisibility">
+                <i class="bi bi-globe mr-1"></i> Public
+              </button>
+              <button class="dropdown-item" @click="toggleFriendOnlyVisibility">
+                <i class="bi bi-people mr-1"></i> Friends
+              </button>
+              <button class="dropdown-item" @click="togglePrivateVisibility">
+                <i class="bi bi-person mr-1"></i> Only Me
+              </button>
+            </div>
+          </div>
         </div>
       </FriendDisplay>
     </div>
@@ -74,7 +112,7 @@ export default {
         text: '',
         friend: this.user,
       },
-      isPublicPost: true,
+      privacy: 'Public',
       isMajorEvent: false,
       isPostViewOnly: false,
     }
@@ -94,14 +132,25 @@ export default {
       this.$refs.postText.focus()
     },
     togglePublicVisibility() {
-      this.isPublicPost = !this.isPublicPost
+      this.privacy = 'Public'
     },
-    // Below are some really annoying hacks to get to styles to update. For some reason, it was being extremely uncooperative with other methods.
-    toggleViewOnly() {
-      this.isPostViewOnly = !this.isPostViewOnly
+    toggleFriendOnlyVisibility() {
+      this.privacy = 'Friends'
     },
-    toggleMajorEvent() {
-      this.isMajorEvent = !this.isMajorEvent
+    togglePrivateVisibility() {
+      this.privacy = 'Only Me'
+    },
+    togglePublicInteraction() {
+      this.isPostViewOnly = false
+    },
+    toggleViewOnlyInteraction() {
+      this.isPostViewOnly = true
+    },
+    toggleNormalPost() {
+      this.isMajorEvent = false
+    },
+    toggleMajorEventPost() {
+      this.isMajorEvent = true
     },
     closeDialog() {
       this.$root.$emit('closeCreatePostDialog')
@@ -131,6 +180,29 @@ export default {
     },
   },
   computed: {
+    privacyIcon() {
+      if (this.privacy === 'Public') {
+        return 'bi-globe'
+      } else if (this.privacy === 'Friends') {
+        return 'bi-people'
+      } else if (this.privacy === 'Only Me') {
+        return 'bi-person'
+      } else return ''
+    },
+    viewOnlyIcon() {
+      if (this.isPostViewOnly) {
+        return 'bi-eye'
+      } else {
+        return 'bi-globe'
+      }
+    },
+    majorEventIcon() {
+      if (this.isMajorEvent) {
+        return 'bi-gift'
+      } else {
+        return 'bi-journal-text'
+      }
+    },
     ableToPost() {
       return this.postBeingCreated.text.length > 0
     },
@@ -150,11 +222,6 @@ export default {
     },
     getFacebookLite() {
       return FacebookLite.find(1).enabled
-    },
-    publicVisibilityButton() {
-      return this.isPublicPost
-        ? 'background-color: #1b74e4 !important;'
-        : 'background-color: gray !important; color: white;'
     },
     viewOnlyButtonStyles() {
       return this.isPostViewOnly
