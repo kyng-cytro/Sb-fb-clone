@@ -37,13 +37,18 @@
         <div>
           <button
             type="button"
-            class="btn"
+            class="btn shadow-none"
             @click="toggleLike"
             :style="{
-              color: userLiked ? 'blue' : 'black',
+              color: userLiked ? '#2078f4' : 'black',
             }"
           >
-            <i class="bi bi-hand-thumbs-up" />
+            <i
+              class="bi"
+              :class="[
+                userLiked ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up',
+              ]"
+            />
             Like
           </button>
         </div>
@@ -243,5 +248,9 @@ p#text {
 i {
   font-size: 1.3em;
   margin: 2px;
+}
+
+.shadow-none:hover {
+  background-color: #f0f2f5;
 }
 </style>

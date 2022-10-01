@@ -60,7 +60,7 @@ const questionFriendList = [
     friendData: null,
   },
   {
-    question: 'you want to connect with but have some sort of concern',
+    question: 'want to connect with but have some sort of concern',
     friendData: null,
   },
 ]
