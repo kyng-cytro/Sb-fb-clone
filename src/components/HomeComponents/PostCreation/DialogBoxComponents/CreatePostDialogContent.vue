@@ -2,76 +2,67 @@
   <div class="container">
     <!-- HEADER -->
     <div class="header">
-      <FriendDisplay :friend="this.user" :bold="true" :slotBelowText="true">
-        <!-- CHECKBOX BUTTONS -->
-        <div v-if="getFacebookLite" class="d-flex">
-          <div class="dropdown mr-2">
-            <button
-              class="btn btn-outline-secondary btn-sm dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <i class="bi mr-1" :class="viewOnlyIcon"></i>
-              {{ isPostViewOnly ? 'View Only' : 'Public' }}
+      <FriendDisplay
+        :friend="this.user"
+        :size="getFacebookLite ? 'large' : ''"
+        :bold="true"
+        :slotBelowText="true"
+      >
+        <div class="dropdown" :class="getFacebookLite ? 'w-50' : ''">
+          <button
+            class="btn btn-outline-secondary btn-sm dropdown-toggle m-0"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="bi mr-1" :class="privacyIcon"></i>
+            {{ privacy }}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <button class="dropdown-item" @click="togglePublicVisibility">
+              <i class="bi bi-globe mr-1"></i> Public
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <button class="dropdown-item" @click="togglePublicInteraction">
-                <i class="bi bi-globe mr-1"></i> Public
-              </button>
-              <button class="dropdown-item" @click="toggleViewOnlyInteraction">
-                <i class="bi bi-eye mr-1"></i> View Only
-              </button>
-            </div>
-          </div>
-          <div class="dropdown">
-            <button
-              class="btn btn-outline-secondary btn-sm dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <i class="bi mr-1" :class="majorEventIcon"></i>
-              {{ isMajorEvent ? 'Major Event' : 'Normal' }}
+            <button class="dropdown-item" @click="toggleFriendOnlyVisibility">
+              <i class="bi bi-people-fill mr-1"></i> Friends
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <button class="dropdown-item" @click="toggleNormalPost">
-                <i class="bi bi-journal-text mr-1"></i> Normal
-              </button>
-              <button class="dropdown-item" @click="toggleMajorEventPost">
-                <i class="bi bi-gift mr-1"></i> Major Event
-              </button>
-            </div>
+            <button class="dropdown-item" @click="togglePrivateVisibility">
+              <i class="bi bi-lock-fill mr-1"></i> Only Me
+            </button>
           </div>
         </div>
-        <div v-else class="lineHeight">
-          <div class="dropdown">
-            <button
-              class="btn btn-outline-secondary btn-sm dropdown-toggle"
-              type="button"
-              id="dropdownMenuButton"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
+        <!-- Facebook Lite Toggles -->
+        <div v-if="getFacebookLite" class="custom-toggles d-flex">
+          <!-- View Only -->
+          <div
+            class="form-check form-check-inline d-flex justify-content-center"
+          >
+            <input type="checkbox" v-model="isPostViewOnly" id="view-only" />
+            <label
+              class="mb-0 ml-1"
+              :class="
+                isPostViewOnly ? 'text-dark font-weight-bold' : 'text-secondary'
+              "
+              for="view-only"
             >
-              <i class="bi mr-1" :class="privacyIcon"></i>
-              {{ privacy }}
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <button class="dropdown-item" @click="togglePublicVisibility">
-                <i class="bi bi-globe mr-1"></i> Public
-              </button>
-              <button class="dropdown-item" @click="toggleFriendOnlyVisibility">
-                <i class="bi bi-people mr-1"></i> Friends
-              </button>
-              <button class="dropdown-item" @click="togglePrivateVisibility">
-                <i class="bi bi-person mr-1"></i> Only Me
-              </button>
-            </div>
+              View Only
+            </label>
+          </div>
+          <!-- Major Event -->
+          <div
+            class="form-check form-check-inline d-flex justify-content-center"
+          >
+            <input type="checkbox" v-model="isMajorEvent" id="major-event" />
+            <label
+              class="mb-0 ml-1"
+              :class="
+                isMajorEvent ? 'text-dark font-weight-bold' : 'text-secondary'
+              "
+              for="major-event"
+            >
+              Major Event
+            </label>
           </div>
         </div>
       </FriendDisplay>
@@ -140,17 +131,11 @@ export default {
     togglePrivateVisibility() {
       this.privacy = 'Only Me'
     },
-    togglePublicInteraction() {
-      this.isPostViewOnly = false
+    toggleViewOnlyPost() {
+      this.isPostViewOnly = !this.isPostViewOnly
     },
-    toggleViewOnlyInteraction() {
-      this.isPostViewOnly = true
-    },
-    toggleNormalPost() {
-      this.isMajorEvent = false
-    },
-    toggleMajorEventPost() {
-      this.isMajorEvent = true
+    toggleMajorEvent() {
+      this.isMajorEvent = !this.isMajorEvent
     },
     closeDialog() {
       this.$root.$emit('closeCreatePostDialog')
@@ -184,9 +169,9 @@ export default {
       if (this.privacy === 'Public') {
         return 'bi-globe'
       } else if (this.privacy === 'Friends') {
-        return 'bi-people'
+        return 'bi-people-fill'
       } else if (this.privacy === 'Only Me') {
-        return 'bi-person'
+        return 'bi-lock-fill'
       } else return ''
     },
     viewOnlyIcon() {
@@ -198,9 +183,9 @@ export default {
     },
     majorEventIcon() {
       if (this.isMajorEvent) {
-        return 'bi-gift'
+        return 'bi-gift-fill'
       } else {
-        return 'bi-journal-text'
+        return 'bi-gift'
       }
     },
     ableToPost() {

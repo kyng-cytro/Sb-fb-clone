@@ -28,9 +28,10 @@
     </div>
 
     <div class="info" v-if="isViewOnly">
-      <em> {{ post.numLikes + ' Likes' }}</em>
+      <em> {{ `${post.numLikes} ${pluralize(post.numLikes, 'Like')}` }}</em>
       <em style="float: right">{{
-        post.numComments + ' comments ' + post.numShares + ' shares'
+        `${post.numComments} ${pluralize(post.numComments, 'Comment')} 
+        ${post.numShares} ${pluralize(post.numShares, 'Share')}`
       }}</em>
       <div class="line"></div>
       <div class="Buttons">
@@ -110,6 +111,9 @@ export default {
           },
         })
       }
+    },
+    pluralize(count, word) {
+      return count === 1 ? word : word + 's'
     },
   },
   computed: {

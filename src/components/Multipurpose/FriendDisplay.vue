@@ -72,6 +72,10 @@ export default {
         return `
                     width: 25px;
                     height: 25px;`
+      } else if (this.size === 'large') {
+        return `
+                    width: 50px;
+                    height: 50px;`
       } else {
         return `
                     width: 37px;
