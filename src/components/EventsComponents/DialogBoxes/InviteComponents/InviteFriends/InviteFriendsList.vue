@@ -7,26 +7,21 @@
         <!-- For the purpose of having an absolutely positioned search icon that still scrolls in the dialog box -->
         <div class="inner mb-3">
           <div class="full-height">
-            <div v-if="!this.$root.$data.fbLiteEnabled" id="searchBoxContainer">
+            <div id="searchBoxContainer">
               <div class="form-group m-0 w-100">
                 <input
                   type="text"
                   id="searchBox2"
                   v-model="searchQuery"
-                  style="width: 95%"
-                  placeholder="  Search for people to invite"
-                />
-              </div>
-            </div>
-            <div v-else id="searchBoxContainer">
-              <div class="form-group m-0 w-100">
-                <input
-                  type="text"
-                  id="searchBox2"
-                  class="rounded"
-                  v-model="searchQuery"
-                  style="width: 95%"
-                  placeholder="  Search for friends to invite via Facebook"
+                  style="
+                    width: 95%;
+                    border-radius: 10px;
+                    background: #f0f2f5;
+                    color: #606770;
+                    border: none;
+                    padding: 0px 10px;
+                  "
+                  :placeholder="placeholderText"
                 />
               </div>
             </div>
@@ -37,20 +32,10 @@
     <!-- Friend List here -->
     <div class="container m-0 p-0">
       <div>
-        <button
-          v-if="!isAllSelected"
-          id="selectAll"
-          class="selectRectangle"
-          @click="selectAllFriends"
-        >
+        <button v-if="!isAllSelected" id="selectAll" @click="selectAllFriends">
           Select All
         </button>
-        <button
-          v-else
-          id="selectAll"
-          class="selectRectangle"
-          @click="deselectAllFriends"
-        >
+        <button v-else id="selectAll" @click="deselectAllFriends">
           Deselect All
         </button>
         <div
@@ -100,6 +85,11 @@ export default {
           .count() === this.friendsList.length
       )
     },
+    placeholderText() {
+      return !this.$root.$data.fbLiteEnabled
+        ? 'Search for people to invite'
+        : 'Search for Facebook friends to invite'
+    },
   },
 }
 </script>
@@ -118,7 +108,6 @@ export default {
   cursor: pointer;
   text-decoration: none;
   width: 100%;
-  padding: 8px;
   height: 60px;
 }
 
@@ -127,7 +116,10 @@ export default {
   font-family: Arial;
   font-size: 17px;
   font-weight: bold;
-  padding: 16px 31px;
+  background: none;
+  border: none;
+  width: 100%;
+  padding: 10px 0;
 }
 
 .selectRectangle:hover {

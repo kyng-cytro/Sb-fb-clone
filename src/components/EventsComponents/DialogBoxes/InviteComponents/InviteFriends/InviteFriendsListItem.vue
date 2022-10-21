@@ -69,7 +69,7 @@ p {
   height: 10px;
 }
 i {
-  padding-right: 60px;
+  padding-right: 30px;
   color: rgb(137, 142, 149);
   font-weight: bold;
 }
