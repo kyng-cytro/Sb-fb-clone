@@ -63,6 +63,14 @@ const questionFriendList = [
     question: 'want to connect with but have some sort of concern',
     friendData: null,
   },
+  {
+    question: 'just met online',
+    friendData: null,
+  },
+  {
+    question: 'just met in person',
+    friendData: null,
+  },
 ]
 export default {
   data() {
