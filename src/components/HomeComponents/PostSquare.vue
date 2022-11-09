@@ -26,13 +26,56 @@
       />
       <!-- Above is a weird bug. Even though the image will be hidden if the imageSource doesn't have a length, the :src component must still point to a valid image. So, we point to the birthday one.-->
     </div>
-
+    <i
+      v-show="isFacebookLite && !isViewOnly"
+      class="bi"
+      :class="[liteInteraction ? 'bi-chevron-up' : 'bi-chevron-down']"
+      @click="liteInteraction = !liteInteraction"
+    />
     <div class="info" v-if="isViewOnly">
       <em> {{ `${post.numLikes} ${pluralize(post.numLikes, 'Like')}` }}</em>
       <em style="float: right">{{
         `${post.numComments} ${pluralize(post.numComments, 'Comment')} 
         ${post.numShares} ${pluralize(post.numShares, 'Share')}`
       }}</em>
+      <div class="line"></div>
+      <div class="Buttons">
+        <div>
+          <button
+            type="button"
+            class="btn shadow-none"
+            @click="toggleLike"
+            :style="{
+              color: userLiked ? '#2078f4' : 'black',
+            }"
+          >
+            <i
+              class="bi"
+              :class="[
+                userLiked ? 'bi-hand-thumbs-up-fill' : 'bi-hand-thumbs-up',
+              ]"
+            />
+            Like
+          </button>
+        </div>
+        <div>
+          <button
+            type="button"
+            class="btn btn-secondary d-flex align-items-center"
+          >
+            <i class="bi bi-chat"></i>
+            <span class="pl-2">Comment</span>
+          </button>
+        </div>
+        <div>
+          <button type="button" class="btn btn-secondary">
+            <i id="share" class="bi bi-reply icon-flipped"></i>
+            Share
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="info" v-else-if="liteInteraction">
       <div class="line"></div>
       <div class="Buttons">
         <div>
@@ -90,6 +133,7 @@ export default {
   data() {
     return {
       userLiked: false,
+      liteInteraction: false,
     }
   },
   methods: {
@@ -150,6 +194,7 @@ export default {
 .postPic {
   width: 40vw;
   object-fit: cover; /*This makes it so the image is cropped instead of squished */
+  margin-bottom: 20px;
 }
 .postPicNoButtons {
   width: 40vw;
@@ -159,7 +204,7 @@ export default {
 }
 
 .info {
-  margin: 10px;
+  margin: 0 10px;
 }
 
 #name:hover {
@@ -256,5 +301,13 @@ i {
 
 .shadow-none:hover {
   background-color: #f0f2f5;
+}
+
+.bi-chevron-up,
+.bi-chevron-down {
+  text-align: end;
+  margin: 0;
+  margin-right: 15px;
+  transition: all 2s ease-out;
 }
 </style>
