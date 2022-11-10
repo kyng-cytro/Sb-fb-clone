@@ -1,87 +1,74 @@
 <template>
-  <div class="filter">
-    <h3 style="text-align: center">Filters</h3>
-    <table>
-      <th>People</th>
-      <tr>
-        <label>
+  <div class="d-flex flex-column align-items-center mt-4 features">
+    <h3>Facebook Lite</h3>
+    <div class="d-flex align-items-center">
+      <toggle-button
+        class="toggle"
+        v-model="isUserViewOnly"
+        @change="updateFilters()"
+        :height="15"
+        :width="30"
+        color="#1877F2"
+      />
+      <label class="ml-2" for="viewOnlyToggle">View-Only Mode</label>
+    </div>
+    <div class="filter">
+      <h4 style="text-align: center">Filters</h4>
+      <table>
+        <th>People</th>
+        <tr>
+          <label>
+            <input
+              type="checkbox"
+              id="checkbox"
+              v-model="isFamily"
+              @change="updateFilters()"
+            />
+            Family
+          </label>
+        </tr>
+        <tr>
+          <label>
+            <input
+              type="checkbox"
+              id="favoriteBox"
+              v-model="isFavorites"
+              @change="updateFilters()"
+            />
+            Favorites
+          </label>
+        </tr>
+        <th>Time Period</th>
+        <tr>
+          <b-dropdown
+            v-model="dropDownTimeSelection"
+            boundary="scrollParent"
+            id="dropdown-1"
+            :text="dropDownTimeSelection"
+            variant="light"
+            class="m-md-2 my-class"
+          >
+            <b-dropdown-item
+              :value="time"
+              v-for="time in timeOptions"
+              @click="setTime(time)"
+              v-bind:key="time"
+              >{{ time }}
+            </b-dropdown-item>
+          </b-dropdown>
+        </tr>
+        <th>Tags</th>
+        <tr>
           <input
             type="checkbox"
             id="checkbox"
-            v-model="isFamily"
-            @change="updateFilters()"
+            v-model="isMajorEvent"
+            v-on:change="updateFilters()"
           />
-          Family
-        </label>
-      </tr>
-      <tr>
-        <label>
-          <input
-            type="checkbox"
-            id="favoriteBox"
-            v-model="isFavorites"
-            @change="updateFilters()"
-          />
-          Favorites
-        </label>
-      </tr>
-
-      <th>Time Period</th>
-      <tr>
-        <b-dropdown
-          v-model="dropDownTimeSelection"
-          boundary="scrollParent"
-          id="dropdown-1"
-          :text="dropDownTimeSelection"
-          variant="light"
-          class="m-md-2 my-class"
-        >
-          <b-dropdown-item
-            :value="time"
-            v-for="time in timeOptions"
-            @click="setTime(time)"
-            v-bind:key="time"
-            >{{ time }}
-          </b-dropdown-item>
-        </b-dropdown>
-      </tr>
-      <th>Tags</th>
-      <tr>
-        <input
-          type="checkbox"
-          id="checkbox"
-          v-model="isMajorEvent"
-          v-on:change="updateFilters()"
-        />
-        Major Event
-      </tr>
-      <th>Features</th>
-      <tr>
-        <input
-          type="checkbox"
-          id="checkbox"
-          v-model="isUserViewOnly"
-          v-on:change="updateFilters()"
-        />
-        View only mode
-      </tr>
-      <!-- <tr>
-        <input type="checkbox" id="checkbox" />
-        wedding
-      </tr>
-      <tr>
-        <input type="checkbox" id="checkbox" />
-        Engagements
-      </tr>
-      <tr>
-        <input type="checkbox" id="checkbox" />
-        Birthdays
-      </tr>
-      <tr>
-        <input type="checkbox" id="checkbox" />
-        Vacations
-      </tr> -->
-    </table>
+          Major Event
+        </tr>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -189,10 +176,14 @@ export default {
 </script>
 
 <style scoped>
+.features {
+  position: fixed;
+}
 .filter {
+  width: 100%;
   background-color: white;
   border-radius: 10px;
-  margin: 3vh 3vh 3vh 0;
+  margin-top: 5px;
   box-shadow: 0px 0px 3px rgb(140, 140, 140);
   display: flex;
   flex-direction: column;
