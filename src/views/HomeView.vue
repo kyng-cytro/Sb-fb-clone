@@ -12,7 +12,10 @@
         <PostDisplay />
       </div>
 
-      <div v-if="getFacebookLite" class="filter col-2">
+      <div
+        v-if="getFacebookLite"
+        class="filter col-2 p-0 d-flex justify-center"
+      >
         <FacebookLiteFilters />
       </div>
       <div class="contacts col-2">
